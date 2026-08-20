@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "motus-solver"
+version = "0.1.0"
+description = "Solveur Motus assisté par entropie, avec bot Tuzmo optionnel."
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "playwright>=1.40",
+    "pytest>=8.0",
+    "click>=8.1",
+]
+
+[project.scripts]
+motus-solve = "motus_solver.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/motus_solver"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
