@@ -1,0 +1,70 @@
+{
+  "n_games": 3,
+  "n_games_solved": 2,
+  "game_outcomes": {
+    "candidates_exhausted_after_rejections": 1,
+    "solved": 2
+  },
+  "n_moves_completed": 7,
+  "n_moves_rejected": 13,
+  "rejection_rate": 0.65,
+  "per_step_latency": {
+    "duration_cycle_start_to_solver_suggest_s": {
+      "mean_s": 0.0,
+      "median_s": 0.0,
+      "p95_s": 0.0,
+      "n": 7
+    },
+    "duration_feedback_confirmed_to_feedback_detected_s": {
+      "mean_s": 0.0461,
+      "median_s": 0.0429,
+      "p95_s": 0.0625,
+      "n": 7
+    },
+    "duration_feedback_detected_to_feedback_parsed_s": {
+      "mean_s": 0.0,
+      "median_s": 0.0,
+      "p95_s": 0.0,
+      "n": 7
+    },
+    "duration_guess_submitted_to_feedback_confirmed_s": {
+      "mean_s": 0.5768,
+      "median_s": 0.5237,
+      "p95_s": 0.7221,
+      "n": 7
+    },
+    "duration_guess_typed_to_guess_submitted_s": {
+      "mean_s": 0.2573,
+      "median_s": 0.2528,
+      "p95_s": 0.3132,
+      "n": 7
+    },
+    "duration_solver_suggest_to_guess_typed_s": {
+      "mean_s": 0.9204,
+      "median_s": 0.8294,
+      "p95_s": 1.2931,
+      "n": 7
+    }
+  },
+  "move_total_latency": {
+    "mean_s": 1.8007,
+    "median_s": 1.7233,
+    "p95_s": 2.1578
+  },
+  "attempts_per_game": {
+    "mean": 2.67,
+    "values": [
+      2,
+      2,
+      4
+    ]
+  },
+  "game_total_latency_by_attempts": {
+    "1": 1.8,
+    "2": 3.6,
+    "3": 5.4,
+    "4": 7.2,
+    "5": 9.0,
+    "6": 10.8
+  }
+}

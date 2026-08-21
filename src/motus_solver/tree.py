@@ -4,8 +4,23 @@ import math
 
 import numpy as np
 
-from .feedback import entropy_from_codes, pattern_codes, words_to_matrix
-from .scoring import composite_score, distinct_count, vowel_count, word_freq_score
+from .feedback import (
+    ALPHABET,
+    LETTER_TO_INDEX,
+    candidate_letter_counts,
+    entropy_from_codes,
+    pattern_codes,
+    pattern_codes_batch,
+    words_to_matrix,
+)
+from .scoring import VOWELS, composite_score, distinct_count, vowel_count, word_freq_score
+
+_VOWEL_LOOKUP = np.array([letter in VOWELS for letter in ALPHABET], dtype=np.float64)
+
+# Cible mémoire pour le tableau (batch, candidats, 26) alloué par lot dans
+# `_score_guesses_batch` (int16 -> 2 octets/élément) : borne la taille de lot pour
+# rester raisonnable même sur les plus gros groupes (lettre, longueur) du corpus.
+_BATCH_MEMORY_TARGET_BYTES = 150_000_000
 
 
 def score_guess(
@@ -25,6 +40,64 @@ def score_guess(
     return score, entropy, vowel_count(guess)
 
 
+def _batch_size_for(n_candidates: int, length: int) -> int:
+    """Nombre de guesses traités simultanément par lot : borné pour que le tableau
+    (batch, n_candidates, 26) de `pattern_codes_batch` reste sous ~150 Mo, quelle que
+    soit la densité du groupe (lettre, longueur)."""
+    per_guess_bytes = max(1, n_candidates) * 26 * 4  # float32
+    return max(1, min(4096, _BATCH_MEMORY_TARGET_BYTES // per_guess_bytes))
+
+
+def score_guesses_batch(
+    guesses: list[str],
+    candidates: list[str],
+    candidates_arr: np.ndarray,
+    global_freq: dict[str, float],
+    positional_freq: np.ndarray,
+    letter_counts: np.ndarray | None = None,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Version vectorisée de `score_guess` sur tout un lot de guesses à la fois :
+    aucune boucle Python par guess ni par candidat (seules des boucles bornées sur les
+    26 lettres / la longueur du mot subsistent, indépendantes du nombre de candidats).
+
+    Retourne (scores, entropies, vowels), un triplet de tableaux (len(guesses),).
+    """
+    length = len(candidates[0])
+    n = len(candidates)
+    guesses_arr = words_to_matrix(guesses)
+    b = guesses_arr.shape[0]
+    if letter_counts is None:
+        letter_counts = candidate_letter_counts(candidates_arr)
+
+    codes = pattern_codes_batch(guesses_arr, candidates_arr, letter_counts)  # (B, N)
+
+    n_codes = 3**length
+    flat_idx = (np.arange(b, dtype=np.int64)[:, None] * n_codes + codes).ravel()
+    hist = np.bincount(flat_idx, minlength=b * n_codes).reshape(b, n_codes).astype(np.float64)
+    probs = hist / n
+    with np.errstate(divide="ignore", invalid="ignore"):
+        terms = np.where(probs > 0, probs * np.log2(probs), 0.0)
+    entropy = -terms.sum(axis=1)
+
+    vowels = _VOWEL_LOOKUP[guesses_arr].sum(axis=1)
+    sorted_letters = np.sort(guesses_arr, axis=1)
+    distinct = 1 + np.sum(np.diff(sorted_letters, axis=1) != 0, axis=1)
+
+    presence = (guesses_arr[:, :, None] == np.arange(26)[None, None, :]).any(axis=1)  # (B, 26)
+    global_freq_arr = np.array([global_freq.get(letter, 0.0) for letter in ALPHABET])
+    global_component = (presence * global_freq_arr[None, :]).sum(axis=1) / length
+    positional_component = positional_freq[np.arange(length), guesses_arr].sum(axis=1) / length
+    freq_score = 0.5 * global_component + 0.5 * positional_component
+
+    max_entropy = math.log2(n) if n > 1 else 1.0
+    h_norm = entropy / max_entropy if max_entropy > 0 else np.zeros(b)
+    vowel_norm = vowels / length
+    distinct_norm = distinct / length
+    scores = 0.40 * h_norm + 0.25 * vowel_norm + 0.20 * distinct_norm + 0.15 * freq_score
+
+    return scores, entropy, vowels.astype(np.int64)
+
+
 def best_guess_composite(
     candidates: list[str],
     guess_pool: list[str],
@@ -34,11 +107,18 @@ def best_guess_composite(
     if not candidates:
         raise ValueError("aucun candidat restant")
     candidates_arr = words_to_matrix(candidates)
+    letter_counts = candidate_letter_counts(candidates_arr)
+
+    batch_size = _batch_size_for(len(candidates), len(candidates[0]))
     best: tuple[float, str, float, int] | None = None
-    for guess in guess_pool:
-        score, entropy, vowels = score_guess(guess, candidates, candidates_arr, global_freq, positional_freq)
-        if best is None or score > best[0]:
-            best = (score, guess, entropy, vowels)
+    for start in range(0, len(guess_pool), batch_size):
+        chunk = guess_pool[start : start + batch_size]
+        scores, entropies, vowels = score_guesses_batch(
+            chunk, candidates, candidates_arr, global_freq, positional_freq, letter_counts
+        )
+        idx = int(np.argmax(scores))
+        if best is None or scores[idx] > best[0]:
+            best = (float(scores[idx]), chunk[idx], float(entropies[idx]), int(vowels[idx]))
     _, guess, entropy, vowels = best
     return guess, entropy, vowels
 

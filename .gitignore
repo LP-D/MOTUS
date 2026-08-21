@@ -6,3 +6,16 @@ __pycache__/
 dist/
 build/
 .env
+data/tuzmo_auth_state.json
+
+# graphe de code auto-généré (régénérable via `graphify update .`)
+graphify-out/
+
+# logs bruts par requête (régénérés à chaque run, --fresh-log les vide)
+data/bot_latency_log.jsonl
+data/dashboard_bot_log.jsonl
+data/dictionary_extraction_stress_log.jsonl
+
+# échantillons de validation précoces, supplantés par data/known_invalid_words.json
+data/root_cache_word_validation.json
+data/tuzmo_dictionary_validation.json

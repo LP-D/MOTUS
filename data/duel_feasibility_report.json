@@ -1,0 +1,83 @@
+{
+  "duel_window_s": 45.0,
+  "safety_margin": 0.2,
+  "budget_with_margin_s": 36.0,
+  "measured_rejection_rate_per_move": 0.429,
+  "measured_game_outcomes": {
+    "solved": 4,
+    "all_candidates_rejected": 6
+  },
+  "measured_unplayable_game_rate": 0.6,
+  "measured_move_total_latency_s": {
+    "mean_s": 2.2262,
+    "median_s": 2.2397,
+    "p95_s": 2.4166
+  },
+  "expected_move_cost_accounting_for_rejections_s": {
+    "mean_s": 3.899,
+    "median_s": 3.922,
+    "p95_s": 4.232
+  },
+  "slowest_step": {
+    "name": "duration_solver_suggest_to_guess_typed_s",
+    "mean_s": 1.3587,
+    "median_s": 1.3471,
+    "p95_s": 1.5839,
+    "n": 8
+  },
+  "scenarios": [
+    {
+      "n": 2,
+      "moves_available": 1,
+      "time_needed_mean_s": 3.9,
+      "fits_in_45s_mean_s": true,
+      "fits_with_margin_mean_s": true,
+      "time_needed_median_s": 3.92,
+      "fits_in_45s_median_s": true,
+      "fits_with_margin_median_s": true,
+      "time_needed_p95_s": 4.23,
+      "fits_in_45s_p95_s": true,
+      "fits_with_margin_p95_s": true
+    },
+    {
+      "n": 3,
+      "moves_available": 2,
+      "time_needed_mean_s": 7.8,
+      "fits_in_45s_mean_s": true,
+      "fits_with_margin_mean_s": true,
+      "time_needed_median_s": 7.84,
+      "fits_in_45s_median_s": true,
+      "fits_with_margin_median_s": true,
+      "time_needed_p95_s": 8.46,
+      "fits_in_45s_p95_s": true,
+      "fits_with_margin_p95_s": true
+    },
+    {
+      "n": 4,
+      "moves_available": 3,
+      "time_needed_mean_s": 11.7,
+      "fits_in_45s_mean_s": true,
+      "fits_with_margin_mean_s": true,
+      "time_needed_median_s": 11.77,
+      "fits_in_45s_median_s": true,
+      "fits_with_margin_median_s": true,
+      "time_needed_p95_s": 12.7,
+      "fits_in_45s_p95_s": true,
+      "fits_with_margin_p95_s": true
+    },
+    {
+      "n": 5,
+      "moves_available": 4,
+      "time_needed_mean_s": 15.6,
+      "fits_in_45s_mean_s": true,
+      "fits_with_margin_mean_s": true,
+      "time_needed_median_s": 15.69,
+      "fits_in_45s_median_s": true,
+      "fits_with_margin_median_s": true,
+      "time_needed_p95_s": 16.93,
+      "fits_in_45s_p95_s": true,
+      "fits_with_margin_p95_s": true
+    }
+  ],
+  "verdict": "La latence pure n'est PAS le facteur limitant (tous les scénarios n=2..5 tiennent largement dans le budget). Le facteur limitant réel est le taux de rejet 'Mot inconnu' : 60% des parties testées n'ont trouvé AUCUN mot jouable parmi les 5 meilleures suggestions dès le coup 1 (corpus/dictionnaire de jeu mal alignés) — le bot perdrait ces duels non pas par manque de temps, mais faute de pouvoir soumettre un coup valide du tout."
+}

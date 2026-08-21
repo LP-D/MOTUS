@@ -1,0 +1,652 @@
+{
+  "A_5": {
+    "entropy": 4.182578560094953,
+    "vowels": 4,
+    "word": "ALOIE"
+  },
+  "A_6": {
+    "entropy": 5.437394794628917,
+    "vowels": 5,
+    "word": "AINOUE"
+  },
+  "A_7": {
+    "entropy": 6.9856120554898915,
+    "vowels": 5,
+    "word": "AUROISE"
+  },
+  "A_8": {
+    "entropy": 8.635140821054437,
+    "vowels": 5,
+    "word": "AROUTINE"
+  },
+  "A_9": {
+    "entropy": 9.572168161118102,
+    "vowels": 6,
+    "word": "AUTORISEE"
+  },
+  "B_5": {
+    "entropy": 4.414789051225472,
+    "vowels": 4,
+    "word": "BOUAI"
+  },
+  "B_6": {
+    "entropy": 5.219548600646478,
+    "vowels": 5,
+    "word": "BOUAYE"
+  },
+  "B_7": {
+    "entropy": 7.19793787963221,
+    "vowels": 5,
+    "word": "BOULAIE"
+  },
+  "B_8": {
+    "entropy": 8.481773468364427,
+    "vowels": 5,
+    "word": "BOUERAIS"
+  },
+  "B_9": {
+    "entropy": 9.54482581779812,
+    "vowels": 5,
+    "word": "BERAUTOIS"
+  },
+  "C_5": {
+    "entropy": 4.581807131382916,
+    "vowels": 4,
+    "word": "CAIEU"
+  },
+  "C_6": {
+    "entropy": 5.950525780194996,
+    "vowels": 4,
+    "word": "COUIER"
+  },
+  "C_7": {
+    "entropy": 7.310356859460706,
+    "vowels": 5,
+    "word": "COURAIE"
+  },
+  "C_8": {
+    "entropy": 8.701247236606264,
+    "vowels": 5,
+    "word": "COURAIES"
+  },
+  "C_9": {
+    "entropy": 9.848037588693352,
+    "vowels": 5,
+    "word": "COURIATES"
+  },
+  "D_5": {
+    "entropy": 4.430776303723492,
+    "vowels": 4,
+    "word": "DOUAI"
+  },
+  "D_6": {
+    "entropy": 5.795515005903402,
+    "vowels": 4,
+    "word": "DENUAI"
+  },
+  "D_7": {
+    "entropy": 6.780818245462099,
+    "vowels": 5,
+    "word": "DOUAIRE"
+  },
+  "D_8": {
+    "entropy": 7.765898830060247,
+    "vowels": 5,
+    "word": "DEROUTAI"
+  },
+  "D_9": {
+    "entropy": 9.122666816740576,
+    "vowels": 5,
+    "word": "DETOURAIS"
+  },
+  "E_5": {
+    "entropy": 4.140555924267763,
+    "vowels": 4,
+    "word": "ELUAI"
+  },
+  "E_6": {
+    "entropy": 5.316379455664126,
+    "vowels": 5,
+    "word": "ENOUAI"
+  },
+  "E_7": {
+    "entropy": 7.006893691134708,
+    "vowels": 5,
+    "word": "ENOUAIS"
+  },
+  "E_8": {
+    "entropy": 8.590283368047157,
+    "vowels": 5,
+    "word": "ENROUAIS"
+  },
+  "E_9": {
+    "entropy": 9.731774559351146,
+    "vowels": 5,
+    "word": "ENTOURAIS"
+  },
+  "F_5": {
+    "entropy": 4.6693267264348775,
+    "vowels": 4,
+    "word": "FOUIE"
+  },
+  "F_6": {
+    "entropy": 6.0934756153397025,
+    "vowels": 4,
+    "word": "FOUIES"
+  },
+  "F_7": {
+    "entropy": 7.285376569944425,
+    "vowels": 5,
+    "word": "FAOUINE"
+  },
+  "F_8": {
+    "entropy": 8.5507343805222,
+    "vowels": 5,
+    "word": "FAOUINES"
+  },
+  "F_9": {
+    "entropy": 9.464055460535235,
+    "vowels": 5,
+    "word": "FAURIONES"
+  },
+  "G_5": {
+    "entropy": 4.361406127702535,
+    "vowels": 4,
+    "word": "GUEAI"
+  },
+  "G_6": {
+    "entropy": 5.810001974994572,
+    "vowels": 4,
+    "word": "GUIORE"
+  },
+  "G_7": {
+    "entropy": 7.326565322170277,
+    "vowels": 4,
+    "word": "GUANIER"
+  },
+  "G_8": {
+    "entropy": 8.08089291880124,
+    "vowels": 5,
+    "word": "GEAUNOIS"
+  },
+  "G_9": {
+    "entropy": 9.015752156387697,
+    "vowels": 5,
+    "word": "GUIORATES"
+  },
+  "H_5": {
+    "entropy": 4.147160735077685,
+    "vowels": 4,
+    "word": "HOUAI"
+  },
+  "H_6": {
+    "entropy": 5.7743499317199305,
+    "vowels": 4,
+    "word": "HAROUE"
+  },
+  "H_7": {
+    "entropy": 7.435724768475463,
+    "vowels": 4,
+    "word": "HAURIET"
+  },
+  "H_8": {
+    "entropy": 7.925413564967723,
+    "vowels": 5,
+    "word": "HOUERAIS"
+  },
+  "H_9": {
+    "entropy": 8.476842199793031,
+    "vowels": 5,
+    "word": "HAYERIONS"
+  },
+  "I_5": {
+    "entropy": 3.895128001691462,
+    "vowels": 4,
+    "word": "IOULE"
+  },
+  "I_6": {
+    "entropy": 5.729522926116939,
+    "vowels": 5,
+    "word": "INOUIE"
+  },
+  "I_7": {
+    "entropy": 7.092424164870519,
+    "vowels": 5,
+    "word": "INOUIES"
+  },
+  "I_8": {
+    "entropy": 7.472504794896684,
+    "vowels": 5,
+    "word": "IOULATES"
+  },
+  "I_9": {
+    "entropy": 8.734507856967511,
+    "vowels": 5,
+    "word": "IODURATES"
+  },
+  "J_5": {
+    "entropy": 4.193617422397499,
+    "vowels": 4,
+    "word": "JOUAI"
+  },
+  "J_6": {
+    "entropy": 5.736008926770235,
+    "vowels": 4,
+    "word": "JAUNIE"
+  },
+  "J_7": {
+    "entropy": 6.494408958279754,
+    "vowels": 5,
+    "word": "JOUERAI"
+  },
+  "J_8": {
+    "entropy": 7.622426706009068,
+    "vowels": 5,
+    "word": "JOUERAIS"
+  },
+  "J_9": {
+    "entropy": 8.254273014298338,
+    "vowels": 5,
+    "word": "JOUTERAIS"
+  },
+  "K_5": {
+    "entropy": 4.2922697225551385,
+    "vowels": 3,
+    "word": "KOTAI"
+  },
+  "K_6": {
+    "entropy": 5.57113147451933,
+    "vowels": 3,
+    "word": "KOTAIS"
+  },
+  "K_7": {
+    "entropy": 5.731226085023674,
+    "vowels": 4,
+    "word": "KOTERAI"
+  },
+  "K_8": {
+    "entropy": 6.400206664940673,
+    "vowels": 4,
+    "word": "KOTERAIS"
+  },
+  "K_9": {
+    "entropy": 6.8842322034626235,
+    "vowels": 4,
+    "word": "KOLATIERS"
+  },
+  "L_5": {
+    "entropy": 4.294234706998303,
+    "vowels": 4,
+    "word": "LOUAI"
+  },
+  "L_6": {
+    "entropy": 5.915745830526486,
+    "vowels": 4,
+    "word": "LAITUE"
+  },
+  "L_7": {
+    "entropy": 6.764869089270393,
+    "vowels": 5,
+    "word": "LOUERAI"
+  },
+  "L_8": {
+    "entropy": 7.489027908897624,
+    "vowels": 6,
+    "word": "LOUEYAIS"
+  },
+  "L_9": {
+    "entropy": 9.097793484822358,
+    "vowels": 5,
+    "word": "LAURETOIS"
+  },
+  "M_5": {
+    "entropy": 4.9579972186939765,
+    "vowels": 3,
+    "word": "MARIE"
+  },
+  "M_6": {
+    "entropy": 6.078346230127869,
+    "vowels": 4,
+    "word": "MAORIE"
+  },
+  "M_7": {
+    "entropy": 7.670688699459126,
+    "vowels": 4,
+    "word": "MAURIES"
+  },
+  "M_8": {
+    "entropy": 8.558245101060795,
+    "vowels": 5,
+    "word": "MALOUINE"
+  },
+  "M_9": {
+    "entropy": 9.82417096059823,
+    "vowels": 5,
+    "word": "MATOURINE"
+  },
+  "N_5": {
+    "entropy": 4.486856810300101,
+    "vowels": 4,
+    "word": "NIOUE"
+  },
+  "N_6": {
+    "entropy": 5.738370428287032,
+    "vowels": 4,
+    "word": "NOUAIS"
+  },
+  "N_7": {
+    "entropy": 6.692267824136576,
+    "vowels": 5,
+    "word": "NOISEAU"
+  },
+  "N_8": {
+    "entropy": 7.808978843232832,
+    "vowels": 5,
+    "word": "NOUERAIS"
+  },
+  "N_9": {
+    "entropy": 8.852103101221491,
+    "vowels": 5,
+    "word": "NOTARIEES"
+  },
+  "O_5": {
+    "entropy": 4.597133973612392,
+    "vowels": 4,
+    "word": "OUIES"
+  },
+  "O_6": {
+    "entropy": 5.503174514764888,
+    "vowels": 5,
+    "word": "OISEAU"
+  },
+  "O_7": {
+    "entropy": 7.284025146609989,
+    "vowels": 5,
+    "word": "OUARINE"
+  },
+  "O_8": {
+    "entropy": 8.224483284903048,
+    "vowels": 5,
+    "word": "OURIATES"
+  },
+  "O_9": {
+    "entropy": 8.792775123776185,
+    "vowels": 6,
+    "word": "OUATINEES"
+  },
+  "P_5": {
+    "entropy": 5.0786975515832715,
+    "vowels": 3,
+    "word": "PARIE"
+  },
+  "P_6": {
+    "entropy": 5.932598214237158,
+    "vowels": 4,
+    "word": "PIAUTE"
+  },
+  "P_7": {
+    "entropy": 6.967674880606537,
+    "vowels": 5,
+    "word": "POIREAU"
+  },
+  "P_8": {
+    "entropy": 8.625628503628516,
+    "vowels": 5,
+    "word": "PAROUSIE"
+  },
+  "P_9": {
+    "entropy": 9.573142722029898,
+    "vowels": 5,
+    "word": "POULAINES"
+  },
+  "Q_5": {
+    "entropy": 4.015319531114783,
+    "vowels": 3,
+    "word": "QUIET"
+  },
+  "Q_6": {
+    "entropy": 4.956075806889281,
+    "vowels": 4,
+    "word": "QUETAI"
+  },
+  "Q_7": {
+    "entropy": 5.681326273848672,
+    "vowels": 4,
+    "word": "QUETAIS"
+  },
+  "Q_8": {
+    "entropy": 6.760972278096331,
+    "vowels": 4,
+    "word": "QUARTINE"
+  },
+  "Q_9": {
+    "entropy": 7.091306050464478,
+    "vowels": 5,
+    "word": "QUINTOYAS"
+  },
+  "R_5": {
+    "entropy": 4.660915764944923,
+    "vowels": 4,
+    "word": "ROUIE"
+  },
+  "R_6": {
+    "entropy": 5.931864815398956,
+    "vowels": 4,
+    "word": "RESUAI"
+  },
+  "R_7": {
+    "entropy": 6.570256085949381,
+    "vowels": 5,
+    "word": "RETOUAI"
+  },
+  "R_8": {
+    "entropy": 7.752707456878384,
+    "vowels": 5,
+    "word": "RETOUAIS"
+  },
+  "R_9": {
+    "entropy": 8.972592311899378,
+    "vowels": 5,
+    "word": "RECOUINAS"
+  },
+  "S_5": {
+    "entropy": 4.856845098016926,
+    "vowels": 3,
+    "word": "SAITE"
+  },
+  "S_6": {
+    "entropy": 6.369490800116917,
+    "vowels": 4,
+    "word": "SAURIE"
+  },
+  "S_7": {
+    "entropy": 7.630670428738254,
+    "vowels": 4,
+    "word": "SAUTIER"
+  },
+  "S_8": {
+    "entropy": 8.234425912196723,
+    "vowels": 5,
+    "word": "SOUCIATE"
+  },
+  "S_9": {
+    "entropy": 9.39994972672018,
+    "vowels": 5,
+    "word": "SOURIANTE"
+  },
+  "T_5": {
+    "entropy": 5.166235585582351,
+    "vowels": 3,
+    "word": "TARIE"
+  },
+  "T_6": {
+    "entropy": 5.985554425610282,
+    "vowels": 4,
+    "word": "TOREAI"
+  },
+  "T_7": {
+    "entropy": 6.820578801357712,
+    "vowels": 5,
+    "word": "TOUERAI"
+  },
+  "T_8": {
+    "entropy": 8.288162410624732,
+    "vowels": 5,
+    "word": "TOURAINE"
+  },
+  "T_9": {
+    "entropy": 9.329059455989587,
+    "vowels": 5,
+    "word": "TOURAINES"
+  },
+  "U_5": {
+    "entropy": 4.7771536239797525,
+    "vowels": 3,
+    "word": "UNIES"
+  },
+  "U_6": {
+    "entropy": 5.845250028424553,
+    "vowels": 4,
+    "word": "URIASE"
+  },
+  "U_7": {
+    "entropy": 6.708278883068839,
+    "vowels": 4,
+    "word": "UNAIRES"
+  },
+  "U_8": {
+    "entropy": 7.322154030688198,
+    "vowels": 4,
+    "word": "URINATES"
+  },
+  "U_9": {
+    "entropy": 7.126177400612766,
+    "vowels": 6,
+    "word": "ULIACOISE"
+  },
+  "V_5": {
+    "entropy": 4.911348044017653,
+    "vowels": 3,
+    "word": "VARIE"
+  },
+  "V_6": {
+    "entropy": 6.4039325852452595,
+    "vowels": 3,
+    "word": "VARIES"
+  },
+  "V_7": {
+    "entropy": 6.454003987042207,
+    "vowels": 5,
+    "word": "VOUERAI"
+  },
+  "V_8": {
+    "entropy": 7.805517150234721,
+    "vowels": 5,
+    "word": "VOUERAIS"
+  },
+  "V_9": {
+    "entropy": 8.84092484549165,
+    "vowels": 5,
+    "word": "VELOUTAIS"
+  },
+  "W_5": {
+    "entropy": 3.7998737308598,
+    "vowels": 2,
+    "word": "WASTE"
+  },
+  "W_6": {
+    "entropy": 4.595928694092457,
+    "vowels": 3,
+    "word": "WOIREL"
+  },
+  "W_7": {
+    "entropy": 5.446900124845029,
+    "vowels": 4,
+    "word": "WALOISE"
+  },
+  "W_8": {
+    "entropy": 5.984788425428185,
+    "vowels": 5,
+    "word": "WEYEROIS"
+  },
+  "W_9": {
+    "entropy": 6.593269798272653,
+    "vowels": 5,
+    "word": "WAZIEROIS"
+  },
+  "X_5": {
+    "entropy": 3.521640636343318,
+    "vowels": 2,
+    "word": "XIVES"
+  },
+  "X_6": {
+    "entropy": 3.418295834054489,
+    "vowels": 3,
+    "word": "XIAMEN"
+  },
+  "X_7": {
+    "entropy": 3.169925001442312,
+    "vowels": 4,
+    "word": "XYLODIE"
+  },
+  "X_8": {
+    "entropy": 3.773557262275186,
+    "vowels": 4,
+    "word": "XYLOTOME"
+  },
+  "X_9": {
+    "entropy": 4.523561956057013,
+    "vowels": 5,
+    "word": "XENELASIE"
+  },
+  "Y_5": {
+    "entropy": 3.634888822103677,
+    "vowels": 4,
+    "word": "YAUDE"
+  },
+  "Y_6": {
+    "entropy": 4.891654091902981,
+    "vowels": 4,
+    "word": "YOLERA"
+  },
+  "Y_7": {
+    "entropy": 5.309510474298477,
+    "vowels": 6,
+    "word": "YEUSAIE"
+  },
+  "Y_8": {
+    "entropy": 6.043462030306619,
+    "vowels": 5,
+    "word": "YOLERAIS"
+  },
+  "Y_9": {
+    "entropy": 6.141744485170487,
+    "vowels": 5,
+    "word": "YPORTAISE"
+  },
+  "Z_5": {
+    "entropy": 4.37761688568512,
+    "vowels": 3,
+    "word": "ZAIRE"
+  },
+  "Z_6": {
+    "entropy": 5.139044049932457,
+    "vowels": 4,
+    "word": "ZIEUTA"
+  },
+  "Z_7": {
+    "entropy": 6.120273794126047,
+    "vowels": 5,
+    "word": "ZOISEAU"
+  },
+  "Z_8": {
+    "entropy": 6.588999164750857,
+    "vowels": 5,
+    "word": "ZIGOTEAU"
+  },
+  "Z_9": {
+    "entropy": 6.916297701893784,
+    "vowels": 5,
+    "word": "ZOUKERAIS"
+  }
+}

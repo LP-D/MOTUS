@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .cache import cache_key
 from .corpus import Corpus
 from .feedback import pattern_codes, pattern_to_code, words_to_matrix
 from .scoring import letter_frequencies, positional_frequencies
@@ -15,11 +16,25 @@ class Move:
 
 
 class Solver:
-    def __init__(self, letter: str, length: int, corpus: Corpus):
+    def __init__(
+        self,
+        letter: str,
+        length: int,
+        corpus: Corpus,
+        root_cache: dict[str, dict] | None = None,
+        blocklist: set[str] | None = None,
+    ):
         self.letter = letter.upper()
         self.length = length
         self.corpus = corpus
-        self.candidates: list[str] = corpus.subset(self.letter, length)
+        self.root_cache = root_cache
+        candidates = corpus.subset(self.letter, length)
+        if blocklist:
+            # Mots déjà confirmés rejetés par le dictionnaire de validation du jeu
+            # réel (cf. motus_solver.blocklist) : jamais reproposés, quelle que soit
+            # la partie — évite de redécouvrir le même rejet à chaque coup 1.
+            candidates = [w for w in candidates if w not in blocklist]
+        self.candidates: list[str] = candidates
         if not self.candidates:
             raise ValueError(f"aucun candidat pour letter={letter!r} length={length}")
         self.history: list[Move] = []
@@ -27,6 +42,16 @@ class Solver:
         self._positional_freq = positional_frequencies(corpus, length)
 
     def suggest(self, top_n: int = 5) -> list[tuple[str, float, int]]:
+        if not self.history and self.root_cache is not None:
+            cached = self.root_cache.get(cache_key(self.letter, self.length))
+            # Le mot en cache n'est utilisé que s'il est toujours un candidat valide :
+            # un appelant peut avoir retiré ce mot de self.candidates (ex. rejeté par
+            # le jeu réel comme "Mot inconnu") sans que l'historique du solveur ait
+            # changé — sans ce garde-fou, le cache renverrait indéfiniment le même
+            # mot déjà écarté au lieu de retomber sur le calcul dynamique.
+            if cached is not None and cached["word"] in self.candidates:
+                return [(cached["word"], cached["entropy"], cached["vowels"])]
+
         candidates_arr = words_to_matrix(self.candidates)
         scored = []
         for guess in self.candidates:

@@ -1,0 +1,36 @@
+{
+  "requests_before_signal": null,
+  "requests_total_tested": 1600,
+  "abort_signal": null,
+  "tier_results": [
+    {
+      "tier": 100,
+      "requests_sent": 100,
+      "aborted": false
+    },
+    {
+      "tier": 500,
+      "requests_sent": 500,
+      "aborted": false
+    },
+    {
+      "tier": 1000,
+      "requests_sent": 1000,
+      "aborted": false
+    }
+  ],
+  "current_delay_s": [
+    1.5,
+    2.5
+  ],
+  "recommended_delay_s": [
+    1.5,
+    2.5
+  ],
+  "recommendation": "Aucun signal de blocage sur 1600 requêtes cumulées. Débit 1.5-2.5s validé pour l'extraction complète.",
+  "full_corpus_size": 241339,
+  "estimated_total_requests_full_extraction": 289606,
+  "estimated_total_time_s": 579212.0,
+  "estimated_total_time_h": 160.89,
+  "account_note": "Aucun compte utilisé (ni IRAM66 ni compte de test) : le mode /infinite ne nécessite aucune authentification, chaque partie crée une session anonyme via un cookie JWT éphémère indépendant de tout compte. Ce test comme l'extraction complète ne touchent donc à aucun compte."
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Motus bot — dashboard</title>
+<style>
+  :root {
+    --bg: #0f1720;
+    --panel: #17222d;
+    --border: #2a3a48;
+    --text: #e6edf3;
+    --muted: #8b98a5;
+    --absent: #3a4753;
+    --present: #b58900;
+    --correct: #2e7d32;
+    --accent: #3b82f6;
+    --error: #d64545;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  header {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  header h1 { font-size: 16px; margin: 0; flex: 0 0 auto; }
+  .status-pill {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    background: var(--absent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .status-pill[data-status="running"] { background: var(--accent); }
+  .status-pill[data-status="solved"], .status-pill[data-status="idle"] { background: var(--correct); }
+  .status-pill[data-status="error"] { background: var(--error); }
+  .auth-pill { font-size: 12px; color: var(--muted); margin-left: auto; }
+  button {
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  button:hover { border-color: var(--accent); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(260px, 380px) 1fr;
+    gap: 16px;
+    padding: 16px 20px;
+    overflow: hidden;
+  }
+  section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    overflow: auto;
+  }
+  section h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 0 0 10px; }
+  #board { display: flex; flex-direction: column; gap: 4px; align-items: center; margin-bottom: 20px; }
+  .row { display: flex; gap: 4px; }
+  .cell {
+    width: 34px; height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px;
+    background: #10181f;
+  }
+  .cell[data-state="0"] { background: var(--absent); }
+  .cell[data-state="1"] { background: var(--present); }
+  .cell[data-state="2"] { background: var(--correct); }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; }
+  #events { display: flex; flex-direction: column-reverse; gap: 4px; font-size: 12px; font-family: ui-monospace, monospace; }
+  .event { padding: 4px 6px; border-radius: 4px; background: #10181f; }
+  .event .t { color: var(--muted); margin-right: 6px; }
+  .event.rejected { color: #f0b429; }
+  .event.solved { color: #4ade80; }
+  .event.error { color: var(--error); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Motus bot — dashboard</h1>
+  <span id="status" class="status-pill" data-status="idle">idle</span>
+  <button id="startBtn">Démarrer</button>
+  <button id="stopBtn" disabled>Arrêter</button>
+  <span id="authPill" class="auth-pill">session : —</span>
+</header>
+<main>
+  <section>
+    <h2>Plateau</h2>
+    <div id="board"></div>
+    <h2>Latence par étape (dernier coup)</h2>
+    <table id="latencyTable">
+      <thead><tr><th>étape</th><th>durée (s)</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+  <section>
+    <h2>Événements</h2>
+    <div id="events"></div>
+  </section>
+</main>
+<script>
+const boardEl = document.getElementById('board');
+const eventsEl = document.getElementById('events');
+const statusEl = document.getElementById('status');
+const authPill = document.getElementById('authPill');
+const startBtn = document.getElementById('startBtn');
+const stopBtn = document.getElementById('stopBtn');
+const latencyBody = document.querySelector('#latencyTable tbody');
+
+let wordLength = 0;
+let rows = [];
+
+function setStatus(status) {
+  statusEl.textContent = status;
+  statusEl.dataset.status = status;
+  startBtn.disabled = status === 'running';
+  stopBtn.disabled = status !== 'running';
+}
+
+function renderBoard() {
+  boardEl.innerHTML = '';
+  for (const row of rows) {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'row';
+    for (let i = 0; i < wordLength; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.textContent = row.letters[i] || '';
+      if (row.pattern) cell.dataset.state = row.pattern[i];
+      rowEl.appendChild(cell);
+    }
+    boardEl.appendChild(rowEl);
+  }
+}
+
+function addEvent(ev, cls) {
+  const div = document.createElement('div');
+  div.className = 'event' + (cls ? ' ' + cls : '');
+  const time = new Date(ev.timestamp * 1000).toLocaleTimeString();
+  div.innerHTML = `<span class="t">${time}</span>${ev.type}: ${JSON.stringify(
+    Object.fromEntries(Object.entries(ev).filter(([k]) => !['type', 'timestamp', 'record'].includes(k)))
+  )}`;
+  eventsEl.prepend(div);
+  while (eventsEl.children.length > 200) eventsEl.removeChild(eventsEl.lastChild);
+}
+
+function renderLatency(record) {
+  latencyBody.innerHTML = '';
+  if (!record) return;
+  for (const [key, value] of Object.entries(record)) {
+    if (!key.startsWith('duration_')) continue;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${key.replace('duration_', '').replace(/_s$/, '')}</td><td>${value}</td>`;
+    latencyBody.appendChild(tr);
+  }
+}
+
+function handleEvent(ev) {
+  switch (ev.type) {
+    case 'game_started':
+      wordLength = ev.length;
+      rows = [];
+      renderBoard();
+      addEvent(ev);
+      break;
+    case 'guess_proposed':
+      rows.push({ letters: ev.guess.split(''), pattern: null });
+      renderBoard();
+      addEvent(ev);
+      break;
+    case 'guess_rejected':
+      rows.pop(); // le coup n'a pas été retenu par le jeu, on retire la ligne provisoire
+      renderBoard();
+      renderLatency(ev.record);
+      addEvent(ev, 'rejected');
+      break;
+    case 'feedback_received':
+      if (rows.length) rows[rows.length - 1].pattern = ev.pattern;
+      renderBoard();
+      renderLatency(ev.record);
+      addEvent(ev);
+      break;
+    case 'solved':
+      addEvent(ev, 'solved');
+      setStatus('solved');
+      break;
+    case 'not_solved':
+    case 'candidates_exhausted':
+      addEvent(ev, 'rejected');
+      break;
+    case 'stopped':
+      setStatus('stopped');
+      addEvent(ev);
+      break;
+    case 'error':
+      setStatus('error');
+      addEvent(ev, 'error');
+      break;
+    default:
+      addEvent(ev);
+  }
+}
+
+function connectWebSocket() {
+  const ws = new WebSocket(`ws://${location.host}/ws`);
+  ws.onmessage = (msg) => handleEvent(JSON.parse(msg.data));
+  ws.onclose = () => setTimeout(connectWebSocket, 1000);
+}
+
+async function refreshStatus() {
+  const res = await fetch('/api/status');
+  const data = await res.json();
+  setStatus(data.status);
+  authPill.textContent = 'session : ' + (data.auth_state_present ? 'sauvegardée' : 'anonyme');
+}
+
+startBtn.addEventListener('click', async () => {
+  await fetch('/api/start', { method: 'POST' });
+  setStatus('running');
+});
+stopBtn.addEventListener('click', async () => {
+  await fetch('/api/stop', { method: 'POST' });
+});
+
+connectWebSocket();
+refreshStatus();
+setInterval(refreshStatus, 5000);
+</script>
+</body>
+</html>
