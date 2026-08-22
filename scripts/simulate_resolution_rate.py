@@ -2,15 +2,26 @@
 """Simulation exhaustive du solveur Motus sur tout le corpus.
 
 Pour chaque mot du corpus, simule une partie complète (le mot est la cible, l'arbre
-de décision composite est le joueur) et enregistre le nombre de coups nécessaires
-(borné à 6 ; au-delà = échec). Agrège les résultats par tranche de longueur et
-exporte un tableau (taux de résolution en <=2..<=6 coups, taux d'échec) dans un
-sheet dédié d'un classeur Excel multi-sheet.
+de décision est le joueur) et enregistre le nombre de coups nécessaires (borné à 6 ;
+au-delà = échec). Agrège les résultats par tranche de longueur et exporte un tableau
+(taux de résolution en <=2..<=6 coups, taux d'échec) dans un sheet dédié d'un
+classeur Excel multi-sheet.
+
+`--strategy` sélectionne l'algorithme de suggestion : `composite` (défaut, actuel,
+`best_guess_composite` — utilise `--root-cache` s'il existe), `entropy_pure`
+(`best_guess_entropy_pure` — utilise `--root-cache-entropy-pure` s'il existe, un
+fichier séparé du cache composite puisque les deux stratégies ne choisissent pas
+forcément le même mot pour un même (lettre, longueur) ; générer ce cache via
+`python scripts/build_root_cache.py --strategy entropy_pure`), ou `both` (lance
+les deux, séquentiellement, et exporte un tableau comparatif côte à côte). Sans
+cache dédié, chaque stratégie recalcule dynamiquement son coup 1 (comportement
+d'origine, juste plus lent à grande échelle). N'implique aucune décision sur la
+stratégie par défaut du solveur/bot — diagnostic uniquement.
 
 Script autonome : ne dépend ni de la CLI (`motus_solver.cli`) ni du bot Playwright,
 uniquement du package `motus_solver`. Utilisable directement :
 
-    python scripts/simulate_resolution_rate.py --limit 2000 --workers 4
+    python scripts/simulate_resolution_rate.py --limit 2000 --workers 4 --strategy both
 """
 from __future__ import annotations
 
@@ -29,16 +40,28 @@ from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.export import add_sheet, open_or_create_workbook, save_workbook  # noqa: E402
 from motus_solver.feedback import pattern_codes, pattern_string, pattern_to_code, words_to_matrix  # noqa: E402
 from motus_solver.scoring import letter_frequencies, positional_frequencies  # noqa: E402
-from motus_solver.tree import best_guess_composite  # noqa: E402
+from motus_solver.tree import best_guess_composite, best_guess_entropy_pure  # noqa: E402
 
 MAX_ATTEMPTS = 6
 THRESHOLDS = [2, 3, 4, 5, 6]
+STRATEGIES = ("composite", "entropy_pure")
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_CORPUS = ROOT_DIR / "data" / "corpus_fr.txt"
 DEFAULT_OUTPUT = ROOT_DIR / "data" / "simulation_report.xlsx"
 DEFAULT_ROOT_CACHE = ROOT_DIR / "data" / "root_cache.json"
+DEFAULT_ROOT_CACHE_ENTROPY_PURE = ROOT_DIR / "data" / "root_cache_entropy_pure.json"
 DEFAULT_CHECKPOINT = ROOT_DIR / "data" / "simulation_checkpoint.json"
+
+
+def _best_guess(strategy: str, candidates: list[str], global_freq: dict, positional_freq) -> str:
+    if strategy == "composite":
+        guess, _entropy, _vowels = best_guess_composite(candidates, candidates, global_freq, positional_freq)
+        return guess
+    if strategy == "entropy_pure":
+        guess, _entropy = best_guess_entropy_pure(candidates)
+        return guess
+    raise ValueError(f"stratégie inconnue : {strategy!r} (attendu : {STRATEGIES})")
 
 # État par processus worker, rempli une fois par _init_worker (évite de repayer le
 # coût de letter_frequencies()/positional_frequencies() à chaque mot simulé).
@@ -48,11 +71,15 @@ _ROOT_CACHE: dict[str, dict] = {}
 _POSITIONAL_FREQ_CACHE: dict[int, object] = {}
 
 
-def _init_worker(corpus_path: str, root_cache_path: str | None) -> None:
-    global _CORPUS, _GLOBAL_FREQ, _ROOT_CACHE
+_STRATEGY = "composite"
+
+
+def _init_worker(corpus_path: str, root_cache_path: str | None, strategy: str = "composite") -> None:
+    global _CORPUS, _GLOBAL_FREQ, _ROOT_CACHE, _STRATEGY
     _CORPUS = Corpus.from_file(corpus_path)
     _GLOBAL_FREQ = letter_frequencies(_CORPUS)
     _ROOT_CACHE = load_cache(root_cache_path) if root_cache_path else {}
+    _STRATEGY = strategy
 
 
 def _positional_freq(length: int):
@@ -67,6 +94,7 @@ def simulate_one(
     target: str,
     global_freq: dict[str, float],
     positional_freq,
+    strategy: str = "composite",
 ) -> int:
     """Joue une partie complète contre `target`, en partant du coup 1 `guess1`.
 
@@ -74,6 +102,8 @@ def simulate_one(
     par le bot et la CLI) : la partie est gagnée dès que le sous-corpus filtré par le
     feedback cumulé ne contient plus qu'un seul mot. Retourne le nombre de coups joués,
     ou MAX_ATTEMPTS + 1 si la cible n'a pas été isolée en MAX_ATTEMPTS coups (échec).
+    `strategy` sélectionne l'algorithme utilisé pour les coups 2+ (le coup 1,
+    `guess1`, est déjà déterminé par l'appelant — cf. `simulate_group`).
     """
     candidates = candidates_init
     guess = guess1
@@ -86,7 +116,7 @@ def simulate_one(
             return attempt
         if attempt == MAX_ATTEMPTS:
             break
-        guess, _, _ = best_guess_composite(candidates, candidates, global_freq, positional_freq)
+        guess = _best_guess(strategy, candidates, global_freq, positional_freq)
     return MAX_ATTEMPTS + 1
 
 
@@ -97,16 +127,22 @@ def simulate_group(
     candidates_init = _CORPUS.subset(letter, length)
     positional_freq = _positional_freq(length)
 
+    # `_ROOT_CACHE` est chargé (dans `_init_worker`, via `run_strategy_simulation`)
+    # avec le cache correspondant à `_STRATEGY` — composite et entropie pure ont
+    # chacun leur propre fichier (mots potentiellement différents pour le même
+    # (lettre, longueur)), jamais mélangés.
     cached = _ROOT_CACHE.get(cache_key(letter, length))
     if cached is not None:
         guess1 = cached["word"]
     else:
-        guess1, _, _ = best_guess_composite(
-            candidates_init, candidates_init, _GLOBAL_FREQ, positional_freq
-        )
+        guess1 = _best_guess(_STRATEGY, candidates_init, _GLOBAL_FREQ, positional_freq)
 
     results = [
-        (target, length, simulate_one(guess1, candidates_init, target, _GLOBAL_FREQ, positional_freq))
+        (
+            target,
+            length,
+            simulate_one(guess1, candidates_init, target, _GLOBAL_FREQ, positional_freq, _STRATEGY),
+        )
         for target in targets
     ]
     return letter, length, results
@@ -172,16 +208,126 @@ def aggregate(
     return headers, rows
 
 
+def build_comparative_table(
+    records_by_strategy: dict[str, list[tuple[str, int, int]]], buckets: list[tuple[int, int]]
+) -> tuple[list[str], list[list]]:
+    """Tableau comparatif côte à côte : pour chaque tranche de longueur, une paire
+    de colonnes (une par stratégie) à chaque seuil de coups."""
+    per_strategy = {s: aggregate(records, buckets) for s, records in records_by_strategy.items()}
+    strategies = list(records_by_strategy)
+
+    headers = ["Seuil"]
+    for b in buckets:
+        for s in strategies:
+            bucket_header = per_strategy[s][0][1 + buckets.index(b)]
+            headers.append(f"{bucket_header} [{s}]")
+
+    rows = []
+    n_threshold_rows = len(THRESHOLDS) + 1  # + ligne échec
+    for row_idx in range(n_threshold_rows):
+        label = per_strategy[strategies[0]][1][row_idx][0]
+        row = [label]
+        for b_idx in range(len(buckets)):
+            for s in strategies:
+                row.append(per_strategy[s][1][row_idx][1 + b_idx])
+        rows.append(row)
+    return headers, rows
+
+
+def run_strategy_simulation(
+    strategy: str,
+    corpus: Corpus,
+    groups: dict[tuple[str, int], list[str]],
+    buckets: list[tuple[int, int]],
+    args,
+) -> list[tuple[str, int, int]]:
+    """Lance la simulation complète pour une stratégie donnée (checkpoint et export
+    intermédiaire dédiés, suffixés par la stratégie) et retourne les enregistrements."""
+    checkpoint_path = _strategy_path(args.checkpoint, strategy, len(_active_strategies(args)) > 1)
+    root_cache_path = None
+    if not args.no_root_cache:
+        root_cache_path = args.root_cache if strategy == "composite" else args.root_cache_entropy_pure
+    if root_cache_path and not Path(root_cache_path).exists():
+        root_cache_path = None
+
+    checkpoint: dict[str, list[list]] = {} if args.fresh else load_checkpoint(checkpoint_path)
+    if checkpoint:
+        print(f"[{strategy}] Checkpoint chargé : {len(checkpoint)} groupe(s) déjà simulé(s), repris tel quel.")
+
+    work_items = [(key, targets) for key, targets in groups.items() if cache_key(*key) not in checkpoint]
+    skipped = len(groups) - len(work_items)
+    if skipped:
+        print(f"[{strategy}] {skipped} groupe(s) déjà dans le checkpoint, non recalculé(s).")
+
+    remaining_words = sum(len(targets) for _, targets in work_items)
+    print(f"[{strategy}] {remaining_words} mot(s) à simuler sur {len(work_items)} groupe(s) restant(s).")
+    start = time.time()
+
+    def export_snapshot() -> None:
+        headers, rows = aggregate(checkpoint_records(checkpoint), buckets)
+        sheet_name = _strategy_sheet_name(args.sheet_name, strategy, len(_active_strategies(args)) > 1)
+        workbook = open_or_create_workbook(args.output)
+        add_sheet(workbook, sheet_name, headers, rows)
+        save_workbook(workbook, args.output)
+
+    if work_items:
+        with mp.Pool(
+            processes=args.workers,
+            initializer=_init_worker,
+            initargs=(args.corpus_path, root_cache_path, strategy),
+        ) as pool:
+            for i, (letter, length, group_results) in enumerate(
+                pool.imap_unordered(simulate_group, work_items), start=1
+            ):
+                checkpoint[cache_key(letter, length)] = [list(r) for r in group_results]
+                save_checkpoint(checkpoint, checkpoint_path)
+
+                if i % 10 == 0 or i == len(work_items):
+                    total_words = sum(len(rows) for rows in checkpoint.values())
+                    print(f"[{strategy}]   groupes traités : {i}/{len(work_items)} ({total_words} mots cumulés)")
+
+                if args.export_every and i % args.export_every == 0:
+                    export_snapshot()
+
+    print(f"[{strategy}] Simulation terminée en {time.time() - start:.1f}s.")
+    export_snapshot()
+    return checkpoint_records(checkpoint)
+
+
+def _active_strategies(args) -> list[str]:
+    return list(STRATEGIES) if args.strategy == "both" else [args.strategy]
+
+
+def _strategy_path(base_path: str, strategy: str, multi: bool) -> str:
+    if not multi:
+        return base_path
+    p = Path(base_path)
+    return str(p.with_name(f"{p.stem}_{strategy}{p.suffix}"))
+
+
+def _strategy_sheet_name(base_name: str, strategy: str, multi: bool) -> str:
+    return f"{base_name}_{strategy}" if multi else base_name
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--corpus-path", default=str(DEFAULT_CORPUS))
     parser.add_argument(
         "--root-cache",
         default=str(DEFAULT_ROOT_CACHE),
-        help="Cache JSON du coup 1 (motus_solver.cache.build_root_cache) ; ignoré s'il n'existe pas.",
+        help="Cache JSON du coup 1 pour la stratégie composite ; ignoré s'il n'existe pas.",
     )
     parser.add_argument(
-        "--no-root-cache", action="store_true", help="Ignore le cache et recalcule le coup 1 dynamiquement."
+        "--root-cache-entropy-pure",
+        default=str(DEFAULT_ROOT_CACHE_ENTROPY_PURE),
+        help="Cache JSON du coup 1 pour la stratégie entropie pure (fichier séparé du "
+        "cache composite) ; ignoré s'il n'existe pas. Générer via "
+        "`python scripts/build_root_cache.py --strategy entropy_pure`.",
+    )
+    parser.add_argument(
+        "--no-root-cache",
+        action="store_true",
+        help="Ignore les deux caches (composite et entropie pure) et recalcule le coup 1 dynamiquement.",
     )
     parser.add_argument("--output", default=str(DEFAULT_OUTPUT), help="Classeur Excel de sortie (multi-sheet).")
     parser.add_argument("--sheet-name", default="Simulation", help="Nom du sheet à écrire/remplacer.")
@@ -208,17 +354,17 @@ def main() -> None:
         default=10,
         help="Réexporte le sheet Excel tous les N groupes traités (0 = seulement à la fin).",
     )
+    parser.add_argument(
+        "--strategy",
+        choices=[*STRATEGIES, "both"],
+        default="composite",
+        help="Stratégie de suggestion : composite (défaut, cache racine si dispo), "
+        "entropy_pure (best_guess_entropy_pure, toujours dynamique), ou both "
+        "(les deux, séquentiellement, + tableau comparatif côte à côte).",
+    )
     args = parser.parse_args()
 
     corpus = Corpus.from_file(args.corpus_path)
-    root_cache_path = None if args.no_root_cache else args.root_cache
-    if root_cache_path and not Path(root_cache_path).exists():
-        root_cache_path = None
-
-    checkpoint: dict[str, list[list]] = {} if args.fresh else load_checkpoint(args.checkpoint)
-    if checkpoint:
-        print(f"Checkpoint chargé : {len(checkpoint)} groupe(s) déjà simulé(s), repris tel quel.")
-
     all_words = list(corpus)
     if args.limit:
         all_words = all_words[: args.limit]
@@ -228,48 +374,22 @@ def main() -> None:
     for word in all_words:
         groups[(word[0], len(word))].append(word)
 
-    work_items = [
-        (key, targets) for key, targets in groups.items() if cache_key(*key) not in checkpoint
-    ]
-    skipped = len(groups) - len(work_items)
-    if skipped:
-        print(f"{skipped} groupe(s) déjà dans le checkpoint, non recalculé(s).")
-
-    remaining_words = sum(len(targets) for _, targets in work_items)
-    print(f"{remaining_words} mot(s) à simuler sur {len(work_items)} groupe(s) restant(s) (lettre, longueur).")
-    start = time.time()
-
     lengths_present = sorted({len(w) for w in corpus})
     buckets = make_buckets(lengths_present, args.bucket_size)
 
-    def export_snapshot() -> None:
-        headers, rows = aggregate(checkpoint_records(checkpoint), buckets)
-        workbook = open_or_create_workbook(args.output)
-        add_sheet(workbook, args.sheet_name, headers, rows)
-        save_workbook(workbook, args.output)
+    strategies = _active_strategies(args)
+    records_by_strategy = {s: run_strategy_simulation(s, corpus, groups, buckets, args) for s in strategies}
 
-    if work_items:
-        with mp.Pool(
-            processes=args.workers, initializer=_init_worker, initargs=(args.corpus_path, root_cache_path)
-        ) as pool:
-            for i, (letter, length, group_results) in enumerate(
-                pool.imap_unordered(simulate_group, work_items), start=1
-            ):
-                checkpoint[cache_key(letter, length)] = [list(r) for r in group_results]
-                save_checkpoint(checkpoint, args.checkpoint)
+    if len(strategies) == 1:
+        print(f"Tableau exporté : {args.output} (sheet '{args.sheet_name}')")
+        return
 
-                if i % 10 == 0 or i == len(work_items):
-                    total_words = sum(len(rows) for rows in checkpoint.values())
-                    print(f"  groupes traités : {i}/{len(work_items)} ({total_words} mots cumulés)")
-
-                if args.export_every and i % args.export_every == 0:
-                    export_snapshot()
-                    print(f"  export intermédiaire à jour ({args.output}).")
-
-    print(f"Simulation terminée en {time.time() - start:.1f}s.")
-
-    export_snapshot()
-    print(f"Tableau exporté : {args.output} (sheet '{args.sheet_name}')")
+    headers, rows = build_comparative_table(records_by_strategy, buckets)
+    comparative_sheet = f"{args.sheet_name}_comparatif"
+    workbook = open_or_create_workbook(args.output)
+    add_sheet(workbook, comparative_sheet, headers, rows)
+    save_workbook(workbook, args.output)
+    print(f"Tableau comparatif exporté : {args.output} (sheet '{comparative_sheet}')")
 
 
 if __name__ == "__main__":

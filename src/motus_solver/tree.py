@@ -123,6 +123,67 @@ def best_guess_composite(
     return guess, entropy, vowels
 
 
+def _entropy_batch(
+    guesses: list[str], candidates_arr: np.ndarray, n: int, length: int, letter_counts: np.ndarray
+) -> np.ndarray:
+    """Entropie de Shannon (bits) des patterns de réponse pour tout un lot de
+    guesses, vectorisé — même infrastructure que `score_guesses_batch`, sans les
+    composantes voyelles/lettres-distinctes/fréquence du scoring composite."""
+    guesses_arr = words_to_matrix(guesses)
+    b = guesses_arr.shape[0]
+    codes = pattern_codes_batch(guesses_arr, candidates_arr, letter_counts)  # (B, N)
+
+    n_codes = 3**length
+    flat_idx = (np.arange(b, dtype=np.int64)[:, None] * n_codes + codes).ravel()
+    hist = np.bincount(flat_idx, minlength=b * n_codes).reshape(b, n_codes).astype(np.float64)
+    probs = hist / n
+    with np.errstate(divide="ignore", invalid="ignore"):
+        terms = np.where(probs > 0, probs * np.log2(probs), 0.0)
+    return -terms.sum(axis=1)
+
+
+def best_guess_entropy_pure(
+    candidates: list[str], guess_pool: list[str] | None = None
+) -> tuple[str, float]:
+    """Stratégie alternative "entropie pure" : score uniquement l'entropie de
+    Shannon des patterns de réponse (information-théorique), sans les composantes
+    voyelles/lettres-distinctes/fréquence du scoring composite existant
+    (`best_guess_composite`, non modifié — les deux stratégies coexistent).
+
+    `guess_pool` par défaut = `candidates` (jamais un corpus externe complet) :
+    garantit structurellement qu'aucune suggestion n'est hors des candidats
+    validés restants. Les égalités d'entropie sont départagées en préférant un mot
+    qui appartient lui-même à `candidates` (heuristique de fin de partie : un tel
+    mot peut directement être la solution, contrairement à un mot du `guess_pool`
+    qui ne serait qu'un "mot sonde" sans être lui-même une réponse possible) — un
+    no-op par construction quand `guess_pool` vaut son défaut, mais utile si un
+    appelant fournit un `guess_pool` plus large.
+
+    Retourne (guess, entropy).
+    """
+    if not candidates:
+        raise ValueError("aucun candidat restant")
+    if guess_pool is None:
+        guess_pool = candidates
+    candidates_set = set(candidates)
+    candidates_arr = words_to_matrix(candidates)
+    letter_counts = candidate_letter_counts(candidates_arr)
+    n = len(candidates)
+    length = len(candidates[0])
+
+    batch_size = _batch_size_for(n, length)
+    best: tuple[float, bool, str] | None = None
+    for start in range(0, len(guess_pool), batch_size):
+        chunk = guess_pool[start : start + batch_size]
+        entropies = _entropy_batch(chunk, candidates_arr, n, length, letter_counts)
+        for guess, entropy in zip(chunk, entropies):
+            key = (float(entropy), guess in candidates_set)
+            if best is None or key > (best[0], best[1]):
+                best = (key[0], key[1], guess)
+
+    return best[2], best[0]
+
+
 def build_tree(
     candidates: list[str],
     guess_pool: list[str],

@@ -7,7 +7,9 @@ from pathlib import Path
 from .corpus import Corpus
 from .feedback import ALPHABET
 from .scoring import letter_frequencies, positional_frequencies
-from .tree import best_guess_composite
+from .tree import best_guess_composite, best_guess_entropy_pure
+
+STRATEGIES = ("composite", "entropy_pure")
 
 
 def cache_key(letter: str, length: int) -> str:
@@ -21,18 +23,30 @@ def _compute_entry(
     global_freq: dict[str, float],
     positional_freq,
     blocklist: set[str] | None = None,
+    strategy: str = "composite",
 ) -> dict | None:
     candidates = corpus.subset(letter, length)
     if blocklist:
         candidates = [w for w in candidates if w not in blocklist]
     if not candidates:
         return None
+    if strategy == "entropy_pure":
+        # Coup 1 = mot du corpus qui maximise l'entropie de Shannon pure sur ce
+        # couple (lettre, longueur) — même principe de cache que le composite (le
+        # coup 1 ne dépend que de (lettre, longueur), donc calculable une fois pour
+        # toutes), mais un fichier séparé (cf. build_root_cache) puisque les deux
+        # stratégies ne choisissent pas forcément le même mot.
+        guess, entropy = best_guess_entropy_pure(candidates)
+        return {"word": guess, "entropy": entropy}
     guess, entropy, vowels = best_guess_composite(candidates, candidates, global_freq, positional_freq)
     return {"word": guess, "entropy": entropy, "vowels": vowels}
 
 
 def build_root_cache(
-    corpus: Corpus, workers: int = 1, blocklist: set[str] | None = None
+    corpus: Corpus,
+    workers: int = 1,
+    blocklist: set[str] | None = None,
+    strategy: str = "composite",
 ) -> dict[str, dict]:
     """Précalcule le meilleur premier coup pour chaque couple (lettre imposée, longueur).
 
@@ -42,6 +56,12 @@ def build_root_cache(
     `blocklist` (mots confirmés rejetés par le dictionnaire de validation du jeu réel,
     cf. motus_solver.blocklist) exclut ces mots du calcul du meilleur coup, pour ne
     plus jamais les recommander une fois régénéré.
+
+    `strategy` : `"composite"` (défaut, inchangé — `best_guess_composite`, entrées
+    `{word, entropy, vowels}`) ou `"entropy_pure"` (`best_guess_entropy_pure`,
+    entrées `{word, entropy}`, pas de `vowels`). Les deux caches sont indépendants
+    (fichiers séparés, cf. `scripts/simulate_resolution_rate.py`) — ce paramètre ne
+    modifie ni les poids ni le comportement de la stratégie composite existante.
 
     Chaque groupe (lettre, longueur) est indépendant des autres : `workers > 1`
     parallélise leur calcul via multiprocessing (un process par cœur), utile sur un
@@ -55,11 +75,13 @@ def build_root_cache(
         for length in lengths:
             positional_freq = positional_frequencies(corpus, length)
             for letter in ALPHABET:
-                entry = _compute_entry(letter, length, corpus, global_freq, positional_freq, blocklist)
+                entry = _compute_entry(
+                    letter, length, corpus, global_freq, positional_freq, blocklist, strategy
+                )
                 if entry is not None:
                     cache[cache_key(letter, length)] = entry
         return cache
-    return _build_root_cache_parallel(corpus, lengths, workers, blocklist)
+    return _build_root_cache_parallel(corpus, lengths, workers, blocklist, strategy)
 
 
 # --- état par processus worker, peuplé une fois par _init_worker (multiprocessing) ---
@@ -67,13 +89,15 @@ _CORPUS: Corpus | None = None
 _GLOBAL_FREQ: dict[str, float] | None = None
 _POSITIONAL_FREQ_CACHE: dict[int, object] = {}
 _BLOCKLIST: set[str] | None = None
+_STRATEGY: str = "composite"
 
 
-def _init_worker(words: list[str], blocklist: set[str] | None = None) -> None:
-    global _CORPUS, _GLOBAL_FREQ, _BLOCKLIST
+def _init_worker(words: list[str], blocklist: set[str] | None = None, strategy: str = "composite") -> None:
+    global _CORPUS, _GLOBAL_FREQ, _BLOCKLIST, _STRATEGY
     _CORPUS = Corpus(words)
     _GLOBAL_FREQ = letter_frequencies(_CORPUS)
     _BLOCKLIST = blocklist
+    _STRATEGY = strategy
 
 
 def _positional_freq_cached(length: int):
@@ -84,17 +108,23 @@ def _positional_freq_cached(length: int):
 
 def _compute_group(item: tuple[str, int]) -> tuple[str, int, dict | None]:
     letter, length = item
-    entry = _compute_entry(letter, length, _CORPUS, _GLOBAL_FREQ, _positional_freq_cached(length), _BLOCKLIST)
+    entry = _compute_entry(
+        letter, length, _CORPUS, _GLOBAL_FREQ, _positional_freq_cached(length), _BLOCKLIST, _STRATEGY
+    )
     return letter, length, entry
 
 
 def _build_root_cache_parallel(
-    corpus: Corpus, lengths: list[int], workers: int, blocklist: set[str] | None = None
+    corpus: Corpus,
+    lengths: list[int],
+    workers: int,
+    blocklist: set[str] | None = None,
+    strategy: str = "composite",
 ) -> dict[str, dict]:
     items = [(letter, length) for length in lengths for letter in ALPHABET]
     cache: dict[str, dict] = {}
     with mp.Pool(
-        processes=workers, initializer=_init_worker, initargs=(corpus.words, blocklist)
+        processes=workers, initializer=_init_worker, initargs=(corpus.words, blocklist, strategy)
     ) as pool:
         for letter, length, entry in pool.imap_unordered(_compute_group, items):
             if entry is not None:

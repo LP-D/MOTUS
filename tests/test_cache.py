@@ -3,7 +3,7 @@ import json
 from motus_solver.cache import build_root_cache, cache_key, load_cache, save_cache
 from motus_solver.corpus import Corpus
 from motus_solver.solver import Solver
-from motus_solver.tree import best_guess_composite
+from motus_solver.tree import best_guess_composite, best_guess_entropy_pure
 from motus_solver.scoring import letter_frequencies, positional_frequencies
 
 FAKE_WORDS = ["RIVER", "RIVAL", "RIVET", "ROBOT", "ROUGE", "RADIO", "RAPIDE", "REVEIL", "REGIME"]
@@ -104,6 +104,41 @@ def test_solver_falls_back_to_dynamic_when_cached_word_removed_from_candidates()
     next_suggestion = solver.suggest(top_n=1)[0][0]
     assert next_suggestion != entry["word"]
     assert next_suggestion in solver.candidates
+
+
+def test_build_root_cache_entropy_pure_strategy_matches_dynamic_first_move():
+    """Tâche 3 : cache racine dédié à la stratégie entropie pure (fichier/entrées
+    séparés du cache composite, cf. scripts/simulate_resolution_rate.py)."""
+    corpus = make_corpus()
+    cache = build_root_cache(corpus, strategy="entropy_pure")
+
+    assert cache_key("R", 5) in cache
+
+    candidates = corpus.subset("R", 5)
+    expected_word, expected_entropy = best_guess_entropy_pure(candidates)
+
+    entry = cache[cache_key("R", 5)]
+    assert entry["word"] == expected_word
+    assert entry["entropy"] == expected_entropy
+    # pas de composante "vowels" (propre au scoring composite, non utilisée par
+    # l'entropie pure) — distingue clairement les deux formats d'entrée.
+    assert "vowels" not in entry
+
+
+def test_build_root_cache_entropy_pure_parallel_matches_sequential():
+    corpus = make_corpus()
+    sequential = build_root_cache(corpus, workers=1, strategy="entropy_pure")
+    parallel = build_root_cache(corpus, workers=2, strategy="entropy_pure")
+    assert parallel == sequential
+
+
+def test_build_root_cache_default_strategy_still_composite():
+    """La stratégie composite (défaut, inchangé) ne doit pas être affectée par
+    l'ajout du paramètre `strategy`."""
+    corpus = make_corpus()
+    default_call = build_root_cache(corpus)
+    explicit_composite = build_root_cache(corpus, strategy="composite")
+    assert default_call == explicit_composite
 
 
 def test_solver_falls_back_to_dynamic_when_key_missing():

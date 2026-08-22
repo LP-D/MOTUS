@@ -43,20 +43,31 @@ class TuzmoClient:
     def get_word_length(self) -> int:
         return self.page.eval_on_selector_all(f"{ROW_SELECTOR}:first-child .cell", "cells => cells.length")
 
-    def submit_guess(self, word: str, timer: CycleTimer | None = None, timeout: float | None = None) -> None:
+    def submit_guess(
+        self,
+        word: str,
+        timer: CycleTimer | None = None,
+        timeout: float | None = None,
+        letter_delay: tuple[float, float] = (0.08, 0.22),
+        enter_delay: tuple[float, float] = (0.15, 0.35),
+    ) -> None:
         """`timer` : instrumentation optionnelle (aucun effet sur le déroulement du
         jeu si omis). `timeout` : délai d'attente (ms) de la confirmation du coup,
         transmis tel quel à Playwright (défaut Playwright si omis, comportement
         historique inchangé) — un appelant peut réduire ce délai pour détecter plus
-        vite un rejet ("Mot inconnu", cf. bot/timing.py) sans changer la logique."""
+        vite un rejet ("Mot inconnu", cf. bot/timing.py) sans changer la logique.
+        `letter_delay`/`enter_delay` : intervalles (secondes) du délai anti-détection
+        entre chaque lettre tapée / avant validation — valeurs par défaut identiques
+        au comportement historique ; un appelant (dashboard) peut les ajuster en
+        direct sans changer cette méthode (cf. dashboard/bot_config.py)."""
         keyboard = self._keyboard()
         for letter in word.upper()[1:]:  # la 1ère lettre est déjà offerte, jamais tapée
             keyboard[letter].click()
-            time.sleep(random.uniform(0.08, 0.22))
+            time.sleep(random.uniform(*letter_delay))
         if timer is not None:
             timer.mark("guess_typed")
 
-        time.sleep(random.uniform(0.15, 0.35))
+        time.sleep(random.uniform(*enter_delay))
         keyboard[ENTER_KEY].click()
         if timer is not None:
             timer.mark("guess_submitted")

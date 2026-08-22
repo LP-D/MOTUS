@@ -22,6 +22,7 @@ from motus_solver.cache import load_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
 
+from bot.parser import CORRECT  # noqa: E402
 from bot.tuzmo_client import TuzmoClient, WordRejectedError  # noqa: E402
 
 URL = "https://www.tusmo.xyz/daily"
@@ -90,8 +91,15 @@ def main() -> None:
             print(f"  retour: {pattern}")
             solver.update(pattern)
 
-            if solver.is_solved():
-                print(f"Résolu : {solver.solution}")
+            # Victoire confirmée uniquement par le pattern du coup soumis (toutes
+            # les cases "correct"), pas par solver.is_solved() : ce dernier ne fait
+            # que déduire localement que le pool de candidats s'est réduit à un
+            # seul mot par élimination, ce qui peut arriver sans que le mot
+            # effectivement joué soit le bon (ex. écart entre le corpus local et
+            # le dictionnaire de validation réel de Tuzmo) — cf.
+            # tests/test_solved_confirmation.py.
+            if pattern == CORRECT * length:
+                print(f"Résolu : {guess}")
                 break
 
             time.sleep(random.uniform(0.6, 1.4))

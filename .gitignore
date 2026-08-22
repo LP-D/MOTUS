@@ -19,3 +19,10 @@ data/dictionary_extraction_stress_log.jsonl
 # échantillons de validation précoces, supplantés par data/known_invalid_words.json
 data/root_cache_word_validation.json
 data/tuzmo_dictionary_validation.json
+
+# stats live accumulées par le dashboard (régénérées au fil des parties, pas du code)
+data/dashboard_stats.json
+
+# checkpoints de simulation (régénérables via scripts/simulate_resolution_rate.py,
+# plusieurs Mo, pas du code)
+data/simulation_checkpoint*.json

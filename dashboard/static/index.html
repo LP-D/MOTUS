@@ -61,10 +61,26 @@
     flex: 1;
     display: grid;
     grid-template-columns: minmax(260px, 380px) 1fr;
+    grid-template-rows: minmax(0, 1fr) minmax(160px, 260px);
     gap: 16px;
     padding: 16px 20px;
     overflow: hidden;
   }
+  main > section.stats { grid-column: 1 / -1; }
+  .config-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 12px; }
+  .config-row label { flex: 0 0 90px; color: var(--muted); }
+  .config-row input[type="number"] {
+    width: 70px; background: #10181f; color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 3px 6px; font-size: 12px;
+  }
+  .config-hint { font-size: 11px; color: var(--muted); margin: 4px 0 12px; }
+  th.sortable { cursor: pointer; user-select: none; }
+  th.sortable:hover { color: var(--text); }
+  .stats-tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+  .stats-tabs button { padding: 3px 10px; font-size: 11px; }
+  .stats-tabs button[data-active="true"] { border-color: var(--accent); color: var(--accent); }
+  .stats-pane { display: none; }
+  .stats-pane[data-active="true"] { display: block; }
   section {
     background: var(--panel);
     border: 1px solid var(--border);
@@ -101,8 +117,11 @@
 <header>
   <h1>Motus bot — dashboard</h1>
   <span id="status" class="status-pill" data-status="idle">idle</span>
+  <label for="iterationsInput" style="font-size:12px;color:var(--muted);">parties</label>
+  <input type="number" id="iterationsInput" min="1" max="100000" value="1" style="width:70px;background:#10181f;color:var(--text);border:1px solid var(--border);border-radius:4px;padding:4px 6px;font-size:12px;" />
   <button id="startBtn">Démarrer</button>
   <button id="stopBtn" disabled>Arrêter</button>
+  <span id="loopProgress" class="auth-pill" style="margin-left:0;"></span>
   <span id="authPill" class="auth-pill">session : —</span>
 </header>
 <main>
@@ -114,10 +133,50 @@
       <thead><tr><th>étape</th><th>durée (s)</th></tr></thead>
       <tbody></tbody>
     </table>
+    <h2>Délai de saisie</h2>
+    <div class="config-row">
+      <label for="letterDelayMin">min (ms)</label>
+      <input type="number" id="letterDelayMin" min="0" step="10" />
+      <label for="letterDelayMax">max (ms)</label>
+      <input type="number" id="letterDelayMax" min="0" step="10" />
+      <button id="applyDelayBtn">Appliquer</button>
+    </div>
+    <div class="config-hint" id="delayHint">valeur actuelle : —</div>
   </section>
   <section>
     <h2>Événements</h2>
     <div id="events"></div>
+  </section>
+  <section class="stats">
+    <h2>Statistiques (parties jouées, persistant entre sessions)</h2>
+    <div class="stats-tabs">
+      <button data-tab="overall" data-active="true">Global</button>
+      <button data-tab="by_length">Par longueur</button>
+      <button data-tab="by_letter">Par lettre</button>
+      <button data-tab="failed">Échecs</button>
+      <button data-tab="solutions">Solutions</button>
+    </div>
+    <div class="stats-pane" data-pane="overall" data-active="true">
+      <table id="overallStatsTable"><tbody></tbody></table>
+    </div>
+    <div class="stats-pane" data-pane="by_length">
+      <table id="byLengthStatsTable"></table>
+    </div>
+    <div class="stats-pane" data-pane="by_letter">
+      <table id="byLetterStatsTable"></table>
+    </div>
+    <div class="stats-pane" data-pane="failed">
+      <table id="failedStatsTable"></table>
+    </div>
+    <div class="stats-pane" data-pane="solutions">
+      <div class="config-hint" id="solutionsHint"></div>
+      <h2 style="margin-top:10px;">Longueur des solutions</h2>
+      <table id="solutionsByLengthTable"></table>
+      <h2 style="margin-top:10px;">Lettre initiale des solutions</h2>
+      <table id="solutionsByLetterTable"></table>
+      <h2 style="margin-top:10px;">Solutions déjà vues plusieurs fois</h2>
+      <table id="solutionsRepeatedTable"></table>
+    </div>
   </section>
 </main>
 <script>
@@ -127,6 +186,8 @@ const statusEl = document.getElementById('status');
 const authPill = document.getElementById('authPill');
 const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
+const loopProgress = document.getElementById('loopProgress');
+const iterationsInput = document.getElementById('iterationsInput');
 const latencyBody = document.querySelector('#latencyTable tbody');
 
 let wordLength = 0;
@@ -203,12 +264,25 @@ function handleEvent(ev) {
       addEvent(ev);
       break;
     case 'solved':
+      // Statut global ('running'/'idle'/...) piloté par loop_progress/loop_finished
+      // /stopped/error, PAS par l'issue d'une partie individuelle — sinon une
+      // boucle de N parties s'afficherait comme terminée dès la 1re victoire.
       addEvent(ev, 'solved');
-      setStatus('solved');
+      refreshStats();
+      refreshSolutions();
       break;
     case 'not_solved':
     case 'candidates_exhausted':
       addEvent(ev, 'rejected');
+      refreshStats();
+      break;
+    case 'loop_progress':
+      loopProgress.textContent = `partie ${ev.current}/${ev.total}`;
+      addEvent(ev);
+      break;
+    case 'loop_finished':
+      loopProgress.textContent = `terminé : ${ev.completed}/${ev.total}`;
+      addEvent(ev);
       break;
     case 'stopped':
       setStatus('stopped');
@@ -234,18 +308,187 @@ async function refreshStatus() {
   const data = await res.json();
   setStatus(data.status);
   authPill.textContent = 'session : ' + (data.auth_state_present ? 'sauvegardée' : 'anonyme');
+  if (data.status === 'running' && data.total_iterations > 1) {
+    loopProgress.textContent = `partie ${data.current_iteration}/${data.total_iterations}`;
+  }
 }
 
 startBtn.addEventListener('click', async () => {
-  await fetch('/api/start', { method: 'POST' });
-  setStatus('running');
+  const iterations = Math.max(1, Number(iterationsInput.value) || 1);
+  loopProgress.textContent = '';
+  const res = await fetch('/api/start', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ iterations }),
+  });
+  const data = await res.json();
+  if (data.started) {
+    setStatus('running');
+  } else {
+    // Refusé : une partie/boucle tournait déjà (cf. journal de cycle de vie côté
+    // serveur, événement "start_requested") — ne pas prétendre qu'on vient d'en
+    // démarrer une nouvelle, refléter l'état réel du runner.
+    loopProgress.textContent = 'déjà en cours (voir statut)';
+    setStatus(data.status);
+  }
 });
 stopBtn.addEventListener('click', async () => {
   await fetch('/api/stop', { method: 'POST' });
 });
 
+// --- délai de saisie ---
+const letterDelayMin = document.getElementById('letterDelayMin');
+const letterDelayMax = document.getElementById('letterDelayMax');
+const applyDelayBtn = document.getElementById('applyDelayBtn');
+const delayHint = document.getElementById('delayHint');
+
+async function loadTypingDelay() {
+  const res = await fetch('/bot/config/typing_delay');
+  const cfg = await res.json();
+  letterDelayMin.value = cfg.letter_delay_min_ms;
+  letterDelayMax.value = cfg.letter_delay_max_ms;
+  delayHint.textContent = `valeur actuelle : ${cfg.letter_delay_min_ms}-${cfg.letter_delay_max_ms}ms/lettre ` +
+    `(pris en compte au prochain coup, pas en cours de frappe)`;
+}
+
+applyDelayBtn.addEventListener('click', async () => {
+  const res = await fetch('/bot/config/typing_delay', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      letter_delay_min_ms: Number(letterDelayMin.value),
+      letter_delay_max_ms: Number(letterDelayMax.value),
+    }),
+  });
+  if (res.ok) {
+    await loadTypingDelay();
+  } else {
+    const err = await res.json();
+    delayHint.textContent = 'erreur : ' + (err.error || res.statusText);
+  }
+});
+
+// --- statistiques ---
+document.querySelectorAll('.stats-tabs button').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.stats-tabs button').forEach((b) => (b.dataset.active = 'false'));
+    document.querySelectorAll('.stats-pane').forEach((p) => (p.dataset.active = 'false'));
+    btn.dataset.active = 'true';
+    document.querySelector(`.stats-pane[data-pane="${btn.dataset.tab}"]`).dataset.active = 'true';
+  });
+});
+
+function makeSortableTable(table, rows, columns) {
+  table.innerHTML = '';
+  const thead = document.createElement('thead');
+  const headRow = document.createElement('tr');
+  columns.forEach((col, i) => {
+    const th = document.createElement('th');
+    th.textContent = col.label;
+    th.className = 'sortable';
+    th.addEventListener('click', () => {
+      const dir = th.dataset.dir === 'asc' ? 'desc' : 'asc';
+      columns.forEach((c) => delete headRow.children[columns.indexOf(c)].dataset.dir);
+      th.dataset.dir = dir;
+      rows.sort((a, b) => {
+        const va = a[col.key], vb = b[col.key];
+        const cmp = typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb));
+        return dir === 'asc' ? cmp : -cmp;
+      });
+      renderBody();
+    });
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+  const tbody = document.createElement('tbody');
+  table.appendChild(tbody);
+
+  function renderBody() {
+    tbody.innerHTML = '';
+    for (const row of rows) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = columns.map((c) => `<td>${row[c.key] ?? ''}</td>`).join('');
+      tbody.appendChild(tr);
+    }
+  }
+  renderBody();
+}
+
+function renderOverallStats(overall) {
+  const tbody = document.querySelector('#overallStatsTable tbody');
+  tbody.innerHTML = '';
+  const rows = [
+    ['Parties jouées', overall.total],
+    ['Résolues', overall.solved],
+    ['Taux de résolution', overall.resolution_rate_pct != null ? overall.resolution_rate_pct + '%' : '—'],
+    ...Object.entries(overall.histogram_pct || {}).map(([k, v]) => [k, v + '%']),
+  ];
+  for (const [label, value] of rows) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${label}</td><td>${value}</td>`;
+    tbody.appendChild(tr);
+  }
+}
+
+async function refreshStats() {
+  const res = await fetch('/bot/stats');
+  const stats = await res.json();
+  renderOverallStats(stats.overall);
+  makeSortableTable(document.getElementById('byLengthStatsTable'), stats.by_length, [
+    { key: 'length_range', label: 'Longueur' },
+    { key: 'total', label: 'Parties' },
+    { key: 'resolution_rate_pct', label: 'Taux résolution %' },
+  ]);
+  makeSortableTable(document.getElementById('byLetterStatsTable'), stats.by_letter, [
+    { key: 'letter', label: 'Lettre' },
+    { key: 'total', label: 'Parties' },
+    { key: 'resolution_rate_pct', label: 'Taux résolution %' },
+  ]);
+  makeSortableTable(
+    document.getElementById('failedStatsTable'),
+    stats.failed_games.map((g) => ({ ...g, guesses_attempted: (g.guesses_attempted || []).join(', ') })),
+    [
+      { key: 'letter', label: 'Lettre' },
+      { key: 'length', label: 'Longueur' },
+      { key: 'attempts', label: 'Coups' },
+      { key: 'outcome', label: 'Issue' },
+      { key: 'guesses_attempted', label: 'Mots joués' },
+    ]
+  );
+}
+
+async function refreshSolutions() {
+  const res = await fetch('/bot/stats/solutions');
+  const data = await res.json();
+  const hint = document.getElementById('solutionsHint');
+  hint.textContent = `${data.n_solutions_recorded} solution(s) enregistrée(s), ` +
+    `${data.n_distinct_solutions} distincte(s)` +
+    (data.has_observed_repeats
+      ? ` — au moins un mot déjà vu plusieurs fois (voir tableau ci-dessous).`
+      : ` — aucune répétition observée pour l'instant (échantillon peut-être encore trop petit).`);
+
+  makeSortableTable(document.getElementById('solutionsByLengthTable'), data.length_distribution, [
+    { key: 'length', label: 'Longueur' },
+    { key: 'count', label: 'Occurrences' },
+    { key: 'pct', label: '%' },
+  ]);
+  makeSortableTable(document.getElementById('solutionsByLetterTable'), data.letter_distribution, [
+    { key: 'letter', label: 'Lettre' },
+    { key: 'count', label: 'Occurrences' },
+    { key: 'pct', label: '%' },
+  ]);
+  makeSortableTable(document.getElementById('solutionsRepeatedTable'), data.repeated_solutions, [
+    { key: 'word', label: 'Mot' },
+    { key: 'count', label: 'Nb de fois vu' },
+  ]);
+}
+
 connectWebSocket();
 refreshStatus();
+loadTypingDelay();
+refreshStats();
+refreshSolutions();
 setInterval(refreshStatus, 5000);
 </script>
 </body>

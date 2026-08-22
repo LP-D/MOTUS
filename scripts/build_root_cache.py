@@ -20,18 +20,30 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from motus_solver.cache import build_root_cache, save_cache  # noqa: E402
+from motus_solver.cache import STRATEGIES, build_root_cache, save_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_CORPUS = ROOT_DIR / "data" / "corpus_fr.txt"
 DEFAULT_OUTPUT = ROOT_DIR / "data" / "root_cache.json"
+DEFAULT_OUTPUT_ENTROPY_PURE = ROOT_DIR / "data" / "root_cache_entropy_pure.json"
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--corpus-path", default=str(DEFAULT_CORPUS))
-    parser.add_argument("--output", default=str(DEFAULT_OUTPUT))
+    parser.add_argument(
+        "--output",
+        default=None,
+        help="Défaut : data/root_cache.json (composite) ou data/root_cache_entropy_pure.json "
+        "(--strategy entropy_pure) — fichiers séparés, jamais mélangés.",
+    )
+    parser.add_argument(
+        "--strategy",
+        choices=STRATEGIES,
+        default="composite",
+        help="Stratégie de suggestion précalculée (défaut composite, inchangé).",
+    )
     parser.add_argument(
         "--workers",
         type=int,
@@ -39,17 +51,21 @@ def main() -> None:
         help="1 = séquentiel (comportement d'origine). >1 = un process par groupe (lettre, longueur).",
     )
     args = parser.parse_args()
+    output = args.output or (str(DEFAULT_OUTPUT) if args.strategy == "composite" else str(DEFAULT_OUTPUT_ENTROPY_PURE))
 
     corpus = Corpus.from_file(args.corpus_path)
     n_groups = len({(w[0], len(w)) for w in corpus})
-    print(f"{len(corpus)} mot(s), {n_groups} groupe(s) (lettre, longueur) à précalculer, workers={args.workers}.")
+    print(
+        f"[{args.strategy}] {len(corpus)} mot(s), {n_groups} groupe(s) (lettre, longueur) à "
+        f"précalculer, workers={args.workers}."
+    )
 
     start = time.time()
-    cache = build_root_cache(corpus, workers=args.workers)
+    cache = build_root_cache(corpus, workers=args.workers, strategy=args.strategy)
     elapsed = time.time() - start
 
-    save_cache(cache, args.output)
-    print(f"{len(cache)} entrée(s) de cache écrites dans {args.output} en {elapsed:.1f}s.")
+    save_cache(cache, output)
+    print(f"[{args.strategy}] {len(cache)} entrée(s) de cache écrites dans {output} en {elapsed:.1f}s.")
 
 
 if __name__ == "__main__":
