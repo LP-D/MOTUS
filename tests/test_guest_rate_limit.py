@@ -34,6 +34,10 @@ class FakeContext:
     def __init__(self):
         self.pages: list[FakePage] = []
         self.closed = False
+        self.cookie_jar = [{"name": "tusmo_token", "value": "existing"}]  # invité déjà créé
+
+    def cookies(self, url=None):
+        return list(self.cookie_jar)
 
     def new_page(self):
         page = FakePage()
@@ -143,3 +147,66 @@ def test_monitor_sees_429_on_api_me_not_only_api_game():
     call, reason = signal
     assert "/api/me" in call.url
     assert "429" in reason
+
+
+# --- invité créé avant le 1er chargement (course GET /api/me <-> POST /api/game) ---
+
+class _ApiResp:
+    def __init__(self, status=200, headers=None):
+        self.status, self.headers = status, headers or {}
+
+
+class _Request:
+    def __init__(self, ctx, status, headers):
+        self.ctx, self.status, self.headers = ctx, status, headers
+
+    def get(self, url, timeout=None):
+        self.ctx.api_calls.append(url)
+        if self.status == 200:
+            self.ctx.cookie_jar.append({"name": "tusmo_token", "value": "x"})
+        return _ApiResp(self.status, self.headers)
+
+
+class _GuestContext(FakeContext):
+    def __init__(self, cookies=(), status=200, headers=None):
+        super().__init__()
+        self.cookie_jar = list(cookies)  # remplace l'invité par défaut du FakeContext
+        self.api_calls = []
+        self.request = _Request(self, status, headers)
+
+    def cookies(self, url=None):
+        return list(self.cookie_jar)
+
+
+def test_guest_is_created_once_before_first_page_load(runner, monkeypatch):
+    """Au chargement, le site envoie GET /api/me et POST /api/game en même temps :
+    sur un invité neuf, les deux en créent un et la partie peut appartenir à
+    l'autre (NOT_FOUND au 1er coup, run d'amélioration n° 4)."""
+    monkeypatch.setattr(bot_runner.time, "sleep", lambda s: None)
+    ctx = _GuestContext()
+    runner._ensure_guest(ctx)
+    assert ctx.api_calls == [bot_runner.API_ME_URL]
+    runner._ensure_guest(ctx)  # cookie présent : aucune nouvelle requête
+    assert ctx.api_calls == [bot_runner.API_ME_URL]
+
+
+def test_existing_guest_cookie_means_no_extra_request(runner):
+    ctx = _GuestContext(cookies=[{"name": "tusmo_token", "value": "saved"}])
+    runner._ensure_guest(ctx)
+    assert ctx.api_calls == []
+
+
+@pytest.mark.parametrize("status, headers", [(429, {}), (200, {"Retry-After": "30"})], ids=["429", "retry_after"])
+def test_guest_creation_throttling_stops_loop_before_any_game(runner, monkeypatch, status, headers):
+    monkeypatch.setattr(bot_runner.time, "sleep", lambda s: None)
+    ctx = _GuestContext(status=status, headers=headers)
+
+    class _B:
+        def new_context(self, **kw):
+            return ctx
+
+    opened = []
+    monkeypatch.setattr(runner, "_open_game_page", lambda c: opened.append(1))
+    runner._run_games(_B(), 5, corpus=None, root_cache={}, blocklist=set())
+    assert opened == []
+    assert runner.status == "throttled"

@@ -7,9 +7,14 @@ from pathlib import Path
 from .corpus import Corpus
 from .feedback import ALPHABET
 from .scoring import letter_frequencies, positional_frequencies
-from .tree import best_guess_composite, best_guess_entropy_pure
+from .tree import best_guess_entropy_pure, top_guesses_composite
 
 STRATEGIES = ("composite", "entropy_pure")
+# Coups 1 de repli stockés par groupe (composite) : si le meilleur coup est refusé
+# par le dictionnaire du jeu, le suivant est pris instantanément au lieu d'un
+# recalcul complet (run d'amélioration n° 1 : 3 rejets d'affilée sur R,9 =
+# 3 x ~290 s de recalcul ; 4 x ~7,5 s sur A,7).
+ROOT_ALTERNATIVES = 9
 
 
 def cache_key(letter: str, length: int) -> str:
@@ -38,8 +43,15 @@ def _compute_entry(
         # stratégies ne choisissent pas forcément le même mot.
         guess, entropy = best_guess_entropy_pure(candidates)
         return {"word": guess, "entropy": entropy}
-    guess, entropy, vowels = best_guess_composite(candidates, candidates, global_freq, positional_freq)
-    return {"word": guess, "entropy": entropy, "vowels": vowels}
+    ranked = top_guesses_composite(candidates, candidates, global_freq, positional_freq, k=ROOT_ALTERNATIVES + 1)
+    (guess, _score, entropy, vowels), rest = ranked[0], ranked[1:]
+    return {
+        "word": guess, "entropy": entropy, "vowels": vowels,
+        # classement calculé sur le groupe complet (hors liste noire) : si un coup
+        # est refusé, le suivant est quasi identique à un recalcul sans ce mot
+        # (1 mot retiré sur des centaines/milliers), sans en payer le coût
+        "alternatives": [{"word": w, "entropy": e, "vowels": v} for w, _s, e, v in rest],
+    }
 
 
 def build_root_cache(

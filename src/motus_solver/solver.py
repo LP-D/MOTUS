@@ -23,8 +23,12 @@ class Solver:
         corpus: Corpus,
         root_cache: dict[str, dict] | None = None,
         blocklist: set[str] | None = None,
+        known_valid: set[str] | None = None,
     ):
         self.letter = letter.upper()
+        # Mots déjà ACCEPTÉS par le vrai jeu : au coup 1, préférés parmi le coup
+        # racine et ses replis (scores quasi égaux), pour ne pas payer un rejet.
+        self.known_valid: set[str] = known_valid or set()
         self.length = length
         self.corpus = corpus
         self.root_cache = root_cache
@@ -49,8 +53,17 @@ class Solver:
             # le jeu réel comme "Mot inconnu") sans que l'historique du solveur ait
             # changé — sans ce garde-fou, le cache renverrait indéfiniment le même
             # mot déjà écarté au lieu de retomber sur le calcul dynamique.
-            if cached is not None and cached["word"] in self.candidates:
-                return [(cached["word"], cached["entropy"], cached["vowels"])]
+            # Puis les coups de repli précalculés du groupe (cf. cache.ROOT_ALTERNATIVES) :
+            # un coup 1 refusé ne relance pas un calcul complet (jusqu'à ~290 s sur R,9).
+            # Parmi ceux encore candidats, un mot déjà accepté par le jeu passe en
+            # premier (run d'amélioration n° 2 : 9 rejets au coup 1 sur 11, et un
+            # rafraîchissement du cache pouvait remplacer un coup 1 prouvé valide par
+            # un mot jamais testé). Sinon, ordre du classement composite.
+            if cached is not None:
+                ranked = [e for e in (cached, *cached.get("alternatives", ())) if e["word"] in self.candidates]
+                if ranked:
+                    chosen = next((e for e in ranked if e["word"] in self.known_valid), ranked[0])
+                    return [(chosen["word"], chosen["entropy"], chosen.get("vowels", 0))]
 
         candidates_arr = words_to_matrix(self.candidates)
         scored = []

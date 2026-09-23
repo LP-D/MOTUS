@@ -1,650 +1,6755 @@
 {
   "A_5": {
-    "entropy": 4.054622576775183,
+    "alternatives": [
+      {
+        "entropy": 3.9654492966619994,
+        "vowels": 4,
+        "word": "AIGUE"
+      },
+      {
+        "entropy": 3.872576272135567,
+        "vowels": 4,
+        "word": "AOUTE"
+      },
+      {
+        "entropy": 3.8503196672242384,
+        "vowels": 4,
+        "word": "ABOIE"
+      },
+      {
+        "entropy": 3.8576245977580723,
+        "vowels": 4,
+        "word": "ADIEU"
+      },
+      {
+        "entropy": 4.791554335016763,
+        "vowels": 3,
+        "word": "ARIEN"
+      },
+      {
+        "entropy": 4.658215147223635,
+        "vowels": 3,
+        "word": "AIRES"
+      },
+      {
+        "entropy": 3.724676142419543,
+        "vowels": 4,
+        "word": "AVOIE"
+      },
+      {
+        "entropy": 4.6641788188554285,
+        "vowels": 3,
+        "word": "ARISE"
+      },
+      {
+        "entropy": 4.652663636164374,
+        "vowels": 3,
+        "word": "ANIER"
+      }
+    ],
+    "entropy": 4.056654204479597,
     "vowels": 4,
     "word": "AIEUL"
   },
   "A_6": {
-    "entropy": 6.062060990478181,
+    "alternatives": [
+      {
+        "entropy": 5.830504411881876,
+        "vowels": 4,
+        "word": "ALOIES"
+      },
+      {
+        "entropy": 5.899422306998783,
+        "vowels": 4,
+        "word": "ANUITE"
+      },
+      {
+        "entropy": 5.748291061980755,
+        "vowels": 5,
+        "word": "AUNAIE"
+      },
+      {
+        "entropy": 5.862213301468273,
+        "vowels": 4,
+        "word": "ALUINE"
+      },
+      {
+        "entropy": 5.68751657124306,
+        "vowels": 4,
+        "word": "AURONE"
+      },
+      {
+        "entropy": 5.702763899245847,
+        "vowels": 4,
+        "word": "ATONIE"
+      },
+      {
+        "entropy": 5.685326301524643,
+        "vowels": 4,
+        "word": "AILURE"
+      },
+      {
+        "entropy": 5.659278425147956,
+        "vowels": 4,
+        "word": "ANOURE"
+      },
+      {
+        "entropy": 5.597672154313132,
+        "vowels": 4,
+        "word": "AURICE"
+      }
+    ],
+    "entropy": 6.062114115501942,
     "vowels": 4,
     "word": "ANURIE"
   },
   "A_7": {
-    "entropy": 7.01516032606111,
+    "alternatives": [
+      {
+        "entropy": 6.714237221222922,
+        "vowels": 5,
+        "word": "ABOUTIE"
+      },
+      {
+        "entropy": 7.343222313230012,
+        "vowels": 4,
+        "word": "ANUITES"
+      },
+      {
+        "entropy": 6.514469308721295,
+        "vowels": 5,
+        "word": "ABOULIE"
+      },
+      {
+        "entropy": 6.4308500595422,
+        "vowels": 5,
+        "word": "AUMOISE"
+      },
+      {
+        "entropy": 7.184538515138037,
+        "vowels": 5,
+        "word": "AURIATE"
+      },
+      {
+        "entropy": 7.265991342720971,
+        "vowels": 4,
+        "word": "ALUINES"
+      },
+      {
+        "entropy": 7.253433808100235,
+        "vowels": 4,
+        "word": "ANUITER"
+      },
+      {
+        "entropy": 6.320919273050531,
+        "vowels": 5,
+        "word": "AUDOISE"
+      },
+      {
+        "entropy": 7.028861731843041,
+        "vowels": 5,
+        "word": "AORASIE"
+      }
+    ],
+    "entropy": 6.635955556855261,
     "vowels": 5,
-    "word": "AUTOIRE"
+    "word": "AOUTIEN"
   },
   "A_8": {
-    "entropy": 8.635140821054437,
+    "alternatives": [
+      {
+        "entropy": 8.283348721776715,
+        "vowels": 5,
+        "word": "AURELOIS"
+      },
+      {
+        "entropy": 8.213504997341673,
+        "vowels": 5,
+        "word": "AUTELOIS"
+      },
+      {
+        "entropy": 8.192199312607169,
+        "vowels": 5,
+        "word": "ABOUTIES"
+      },
+      {
+        "entropy": 8.139430032688034,
+        "vowels": 5,
+        "word": "AURECOIS"
+      },
+      {
+        "entropy": 8.203589830053247,
+        "vowels": 5,
+        "word": "ACOUTINE"
+      },
+      {
+        "entropy": 8.039498738428653,
+        "vowels": 5,
+        "word": "AOUSTIEN"
+      },
+      {
+        "entropy": 8.032969257832988,
+        "vowels": 5,
+        "word": "AUGEROIS"
+      },
+      {
+        "entropy": 8.016748974873586,
+        "vowels": 5,
+        "word": "ABOULIES"
+      },
+      {
+        "entropy": 7.993360183781443,
+        "vowels": 5,
+        "word": "AUMONIER"
+      }
+    ],
+    "entropy": 8.337544952391184,
     "vowels": 5,
-    "word": "AROUTINE"
+    "word": "AUTORISE"
   },
   "A_9": {
-    "entropy": 9.572168161118102,
+    "alternatives": [
+      {
+        "entropy": 9.445775375257067,
+        "vowels": 5,
+        "word": "AUTOGIRES"
+      },
+      {
+        "entropy": 9.397352130147606,
+        "vowels": 5,
+        "word": "ACOUTINES"
+      },
+      {
+        "entropy": 9.249817060733065,
+        "vowels": 5,
+        "word": "ABROUTIES"
+      },
+      {
+        "entropy": 9.213003123096541,
+        "vowels": 6,
+        "word": "AURONAISE"
+      },
+      {
+        "entropy": 9.123185247866761,
+        "vowels": 6,
+        "word": "AUREOLAIS"
+      },
+      {
+        "entropy": 9.167135769387636,
+        "vowels": 5,
+        "word": "AUGERIONS"
+      },
+      {
+        "entropy": 9.079755184189587,
+        "vowels": 6,
+        "word": "AURETOISE"
+      },
+      {
+        "entropy": 9.129842121102886,
+        "vowels": 5,
+        "word": "AUMONIERS"
+      },
+      {
+        "entropy": 9.134018923441104,
+        "vowels": 5,
+        "word": "AMEUTIONS"
+      }
+    ],
+    "entropy": 9.572154193735535,
     "vowels": 6,
     "word": "AUTORISEE"
   },
   "B_5": {
-    "entropy": 4.414789051225472,
+    "alternatives": [
+      {
+        "entropy": 4.332953778127736,
+        "vowels": 4,
+        "word": "BIAOU"
+      },
+      {
+        "entropy": 5.075342810317159,
+        "vowels": 3,
+        "word": "BARIE"
+      },
+      {
+        "entropy": 4.879029618536464,
+        "vowels": 3,
+        "word": "BAIES"
+      },
+      {
+        "entropy": 4.920568435839046,
+        "vowels": 3,
+        "word": "BRAIE"
+      },
+      {
+        "entropy": 4.857852721451715,
+        "vowels": 3,
+        "word": "BAISE"
+      },
+      {
+        "entropy": 4.882554052280632,
+        "vowels": 3,
+        "word": "BORIE"
+      },
+      {
+        "entropy": 4.807369370857796,
+        "vowels": 3,
+        "word": "BATIE"
+      },
+      {
+        "entropy": 4.865573209943814,
+        "vowels": 3,
+        "word": "BRUIE"
+      },
+      {
+        "entropy": 4.8275069283471925,
+        "vowels": 3,
+        "word": "BURIE"
+      }
+    ],
+    "entropy": 4.413102359278909,
     "vowels": 4,
     "word": "BOUAI"
   },
   "B_6": {
+    "alternatives": [
+      {
+        "entropy": 6.024973168572294,
+        "vowels": 4,
+        "word": "BROUIE"
+      },
+      {
+        "entropy": 5.919354576539633,
+        "vowels": 4,
+        "word": "BEUTAI"
+      },
+      {
+        "entropy": 5.881382485360063,
+        "vowels": 4,
+        "word": "BISEAU"
+      },
+      {
+        "entropy": 5.933408355018065,
+        "vowels": 4,
+        "word": "BOUAIS"
+      },
+      {
+        "entropy": 5.806437681450976,
+        "vowels": 4,
+        "word": "BUERAI"
+      },
+      {
+        "entropy": 5.894945950735712,
+        "vowels": 4,
+        "word": "BOUSAI"
+      },
+      {
+        "entropy": 5.802461791781255,
+        "vowels": 4,
+        "word": "BAUDIE"
+      },
+      {
+        "entropy": 5.836192574924075,
+        "vowels": 4,
+        "word": "BOUAIT"
+      },
+      {
+        "entropy": 5.700590795246985,
+        "vowels": 4,
+        "word": "BOUERA"
+      }
+    ],
     "entropy": 5.219548600646478,
     "vowels": 5,
     "word": "BOUAYE"
   },
   "B_7": {
-    "entropy": 7.19793787963221,
+    "alternatives": [
+      {
+        "entropy": 7.021643605559495,
+        "vowels": 5,
+        "word": "BOUERAI"
+      },
+      {
+        "entropy": 7.026016724069373,
+        "vowels": 5,
+        "word": "BONIEAU"
+      },
+      {
+        "entropy": 6.785281744951339,
+        "vowels": 5,
+        "word": "BOUELAI"
+      },
+      {
+        "entropy": 7.619001850644058,
+        "vowels": 4,
+        "word": "BAISURE"
+      },
+      {
+        "entropy": 7.602222433709715,
+        "vowels": 4,
+        "word": "BROUIES"
+      },
+      {
+        "entropy": 7.493212610335791,
+        "vowels": 4,
+        "word": "BORAINE"
+      },
+      {
+        "entropy": 7.583441689578686,
+        "vowels": 4,
+        "word": "BOUSIER"
+      },
+      {
+        "entropy": 7.439869735858081,
+        "vowels": 4,
+        "word": "BEUTAIS"
+      },
+      {
+        "entropy": 7.385252438347191,
+        "vowels": 4,
+        "word": "BAROISE"
+      }
+    ],
+    "entropy": 7.197865518875375,
     "vowels": 5,
     "word": "BOULAIE"
   },
   "B_8": {
-    "entropy": 8.491231752028558,
+    "alternatives": [
+      {
+        "entropy": 8.250568478829578,
+        "vowels": 5,
+        "word": "BAUDROIE"
+      },
+      {
+        "entropy": 8.181749028235947,
+        "vowels": 5,
+        "word": "BAUGEOIS"
+      },
+      {
+        "entropy": 8.142062094728736,
+        "vowels": 5,
+        "word": "BOUTERAI"
+      },
+      {
+        "entropy": 8.854614847489671,
+        "vowels": 4,
+        "word": "BORAINES"
+      },
+      {
+        "entropy": 8.139690591892009,
+        "vowels": 5,
+        "word": "BOUCAINE"
+      },
+      {
+        "entropy": 8.088038994324599,
+        "vowels": 5,
+        "word": "BOUELAIT"
+      },
+      {
+        "entropy": 8.816172626843619,
+        "vowels": 4,
+        "word": "BALOIRES"
+      },
+      {
+        "entropy": 8.883683591410016,
+        "vowels": 4,
+        "word": "BRUNOIES"
+      },
+      {
+        "entropy": 8.010215725707084,
+        "vowels": 5,
+        "word": "BOUGEAIS"
+      }
+    ],
+    "entropy": 8.246897068760205,
     "vowels": 5,
-    "word": "BOURIATE"
+    "word": "BOUSERAI"
   },
   "B_9": {
-    "entropy": 9.54482581779812,
+    "alternatives": [
+      {
+        "entropy": 9.507875870497552,
+        "vowels": 5,
+        "word": "BOUTERAIS"
+      },
+      {
+        "entropy": 9.532145279613042,
+        "vowels": 5,
+        "word": "BROUTAINE"
+      },
+      {
+        "entropy": 9.464712846700257,
+        "vowels": 5,
+        "word": "BOULERAIS"
+      },
+      {
+        "entropy": 9.445461346016328,
+        "vowels": 5,
+        "word": "BOUSAIENT"
+      },
+      {
+        "entropy": 9.393647673295646,
+        "vowels": 5,
+        "word": "BOUSERAIT"
+      },
+      {
+        "entropy": 9.337131681335105,
+        "vowels": 5,
+        "word": "BOUCAINES"
+      },
+      {
+        "entropy": 9.304240901380334,
+        "vowels": 5,
+        "word": "BAUDROIES"
+      },
+      {
+        "entropy": 9.36982415822316,
+        "vowels": 5,
+        "word": "BOULAIENT"
+      },
+      {
+        "entropy": 9.326163150726021,
+        "vowels": 5,
+        "word": "BOULERAIT"
+      }
+    ],
+    "entropy": 9.544344794308756,
     "vowels": 5,
     "word": "BERAUTOIS"
   },
   "C_5": {
+    "alternatives": [
+      {
+        "entropy": 5.021431361470032,
+        "vowels": 3,
+        "word": "CARIE"
+      },
+      {
+        "entropy": 4.969707900739554,
+        "vowels": 3,
+        "word": "CAIRE"
+      },
+      {
+        "entropy": 3.9810796361718763,
+        "vowels": 4,
+        "word": "CAYEU"
+      },
+      {
+        "entropy": 4.801231160409393,
+        "vowels": 3,
+        "word": "CRAIE"
+      },
+      {
+        "entropy": 4.844724153753951,
+        "vowels": 3,
+        "word": "CAURE"
+      },
+      {
+        "entropy": 4.71352194680697,
+        "vowels": 3,
+        "word": "CATIE"
+      },
+      {
+        "entropy": 4.691436101120466,
+        "vowels": 3,
+        "word": "CROIE"
+      },
+      {
+        "entropy": 4.625476893876896,
+        "vowels": 3,
+        "word": "CREAI"
+      },
+      {
+        "entropy": 4.643038508988279,
+        "vowels": 3,
+        "word": "CAUSE"
+      }
+    ],
     "entropy": 4.581807131382916,
     "vowels": 4,
     "word": "CAIEU"
   },
   "C_6": {
+    "alternatives": [
+      {
+        "entropy": 5.814979095393586,
+        "vowels": 4,
+        "word": "COUINE"
+      },
+      {
+        "entropy": 5.790100229750002,
+        "vowels": 4,
+        "word": "COURAI"
+      },
+      {
+        "entropy": 5.546179869688723,
+        "vowels": 4,
+        "word": "CISEAU"
+      },
+      {
+        "entropy": 6.418594120194248,
+        "vowels": 3,
+        "word": "CARIES"
+      },
+      {
+        "entropy": 5.650946540579104,
+        "vowels": 4,
+        "word": "COUTAI"
+      },
+      {
+        "entropy": 5.609443605687287,
+        "vowels": 4,
+        "word": "COUINA"
+      },
+      {
+        "entropy": 5.521342020763318,
+        "vowels": 4,
+        "word": "COTEAU"
+      },
+      {
+        "entropy": 5.521953768199433,
+        "vowels": 4,
+        "word": "CAHIEU"
+      },
+      {
+        "entropy": 5.568287501426282,
+        "vowels": 4,
+        "word": "COULAI"
+      }
+    ],
     "entropy": 5.950525780194996,
     "vowels": 4,
     "word": "COUIER"
   },
   "C_7": {
+    "alternatives": [
+      {
+        "entropy": 7.422788133674397,
+        "vowels": 4,
+        "word": "COATIEN"
+      },
+      {
+        "entropy": 7.402201550948711,
+        "vowels": 4,
+        "word": "CALORIE"
+      },
+      {
+        "entropy": 6.514069802857364,
+        "vowels": 5,
+        "word": "COURAYE"
+      },
+      {
+        "entropy": 7.380710847967174,
+        "vowels": 4,
+        "word": "CARIOLE"
+      },
+      {
+        "entropy": 7.378755984374849,
+        "vowels": 4,
+        "word": "CALOIRE"
+      },
+      {
+        "entropy": 7.435935317126312,
+        "vowels": 4,
+        "word": "COURSIE"
+      },
+      {
+        "entropy": 7.439030754826559,
+        "vowels": 4,
+        "word": "COUTIER"
+      },
+      {
+        "entropy": 7.379867408770626,
+        "vowels": 4,
+        "word": "COUINES"
+      },
+      {
+        "entropy": 7.336097642898451,
+        "vowels": 4,
+        "word": "CROATIE"
+      }
+    ],
     "entropy": 7.449075603087266,
     "vowels": 4,
     "word": "CAIROTE"
   },
   "C_8": {
-    "entropy": 8.584298727386837,
+    "alternatives": [
+      {
+        "entropy": 8.114226617476149,
+        "vowels": 5,
+        "word": "COUINERA"
+      },
+      {
+        "entropy": 8.168132170092244,
+        "vowels": 5,
+        "word": "COLINEAU"
+      },
+      {
+        "entropy": 8.87323709624219,
+        "vowels": 4,
+        "word": "CAIROTES"
+      },
+      {
+        "entropy": 8.856507729051216,
+        "vowels": 4,
+        "word": "CORAIENS"
+      },
+      {
+        "entropy": 8.052740773893037,
+        "vowels": 5,
+        "word": "COULERAI"
+      },
+      {
+        "entropy": 8.828085623167187,
+        "vowels": 4,
+        "word": "CALORIES"
+      },
+      {
+        "entropy": 8.839500413236793,
+        "vowels": 4,
+        "word": "CARIOLES"
+      },
+      {
+        "entropy": 8.855850828146702,
+        "vowels": 4,
+        "word": "COATIENS"
+      },
+      {
+        "entropy": 8.839383039691574,
+        "vowels": 4,
+        "word": "CAROTINE"
+      }
+    ],
+    "entropy": 8.228419373957896,
     "vowels": 5,
-    "word": "COUTAINE"
+    "word": "COUTERAI"
   },
   "C_9": {
-    "entropy": 9.848037588693352,
+    "alternatives": [
+      {
+        "entropy": 9.818834112824991,
+        "vowels": 5,
+        "word": "COUTAINES"
+      },
+      {
+        "entropy": 9.755720972665682,
+        "vowels": 5,
+        "word": "COULAINES"
+      },
+      {
+        "entropy": 9.644664820933638,
+        "vowels": 5,
+        "word": "COUTERAIS"
+      },
+      {
+        "entropy": 9.67281400494955,
+        "vowels": 5,
+        "word": "COURAIENT"
+      },
+      {
+        "entropy": 9.617842171040603,
+        "vowels": 5,
+        "word": "COUINATES"
+      },
+      {
+        "entropy": 9.623084057995765,
+        "vowels": 5,
+        "word": "CAOURSIEN"
+      },
+      {
+        "entropy": 9.591306394962652,
+        "vowels": 5,
+        "word": "COUSAIENT"
+      },
+      {
+        "entropy": 9.538520917084433,
+        "vowels": 5,
+        "word": "COULERAIS"
+      },
+      {
+        "entropy": 9.447766245228744,
+        "vowels": 5,
+        "word": "COUINERAS"
+      }
+    ],
+    "entropy": 9.848447994714984,
     "vowels": 5,
     "word": "COURIATES"
   },
   "D_5": {
-    "entropy": 4.430776303723492,
+    "alternatives": [
+      {
+        "entropy": 4.668829953416157,
+        "vowels": 3,
+        "word": "DRAIE"
+      },
+      {
+        "entropy": 4.58673539133841,
+        "vowels": 3,
+        "word": "DIANE"
+      },
+      {
+        "entropy": 4.6473562636754675,
+        "vowels": 3,
+        "word": "DEROI"
+      },
+      {
+        "entropy": 4.5417321862063975,
+        "vowels": 3,
+        "word": "DAINE"
+      },
+      {
+        "entropy": 4.614739088091042,
+        "vowels": 3,
+        "word": "DIONE"
+      },
+      {
+        "entropy": 4.613898459981034,
+        "vowels": 3,
+        "word": "DORAI"
+      },
+      {
+        "entropy": 4.531174211872664,
+        "vowels": 3,
+        "word": "DENIA"
+      },
+      {
+        "entropy": 4.560313210192275,
+        "vowels": 3,
+        "word": "DUIRE"
+      },
+      {
+        "entropy": 4.562772535495278,
+        "vowels": 3,
+        "word": "DOITE"
+      }
+    ],
+    "entropy": 4.428665083965408,
     "vowels": 4,
     "word": "DOUAI"
   },
   "D_6": {
-    "entropy": 5.795515005903402,
+    "alternatives": [
+      {
+        "entropy": 5.778834788450669,
+        "vowels": 4,
+        "word": "DOUANE"
+      },
+      {
+        "entropy": 5.712128523441159,
+        "vowels": 4,
+        "word": "DOUAIS"
+      },
+      {
+        "entropy": 5.620235059227381,
+        "vowels": 4,
+        "word": "DENOUA"
+      },
+      {
+        "entropy": 5.536301428297274,
+        "vowels": 4,
+        "word": "DOUERA"
+      },
+      {
+        "entropy": 5.65102534858678,
+        "vowels": 4,
+        "word": "DOUAIT"
+      },
+      {
+        "entropy": 5.397074547610762,
+        "vowels": 4,
+        "word": "DOUTAI"
+      },
+      {
+        "entropy": 6.079607767197487,
+        "vowels": 4,
+        "word": "DERAIE"
+      },
+      {
+        "entropy": 5.339423336950721,
+        "vowels": 4,
+        "word": "DOUCIE"
+      },
+      {
+        "entropy": 6.074095743401655,
+        "vowels": 3,
+        "word": "DENIAS"
+      }
+    ],
+    "entropy": 5.791648426792942,
     "vowels": 4,
     "word": "DENUAI"
   },
   "D_7": {
-    "entropy": 6.780818245462099,
+    "alternatives": [
+      {
+        "entropy": 6.425325653336284,
+        "vowels": 5,
+        "word": "DOUERAI"
+      },
+      {
+        "entropy": 6.3775631024048645,
+        "vowels": 5,
+        "word": "DENOUAI"
+      },
+      {
+        "entropy": 6.006667997896011,
+        "vowels": 5,
+        "word": "DEVOUAI"
+      },
+      {
+        "entropy": 6.795785438218543,
+        "vowels": 4,
+        "word": "DOUATES"
+      },
+      {
+        "entropy": 6.772884896832283,
+        "vowels": 4,
+        "word": "DOSERAI"
+      },
+      {
+        "entropy": 6.704990007022082,
+        "vowels": 4,
+        "word": "DOUERAS"
+      },
+      {
+        "entropy": 6.7034793552768015,
+        "vowels": 4,
+        "word": "DENUAIS"
+      },
+      {
+        "entropy": 6.81273263876792,
+        "vowels": 4,
+        "word": "DOUAINS"
+      },
+      {
+        "entropy": 5.843979444607768,
+        "vowels": 5,
+        "word": "DENOYAI"
+      }
+    ],
+    "entropy": 6.779755989751395,
     "vowels": 5,
     "word": "DOUAIRE"
   },
   "D_8": {
-    "entropy": 7.765898830060247,
+    "alternatives": [
+      {
+        "entropy": 7.718419417429242,
+        "vowels": 5,
+        "word": "DENOUAIS"
+      },
+      {
+        "entropy": 7.6928117577163935,
+        "vowels": 5,
+        "word": "DOUERAIS"
+      },
+      {
+        "entropy": 7.6885982527596175,
+        "vowels": 5,
+        "word": "DOUANIER"
+      },
+      {
+        "entropy": 7.710619585793251,
+        "vowels": 5,
+        "word": "DETOURAI"
+      },
+      {
+        "entropy": 7.5596919982914095,
+        "vowels": 5,
+        "word": "DOUERAIT"
+      },
+      {
+        "entropy": 7.546163987236479,
+        "vowels": 5,
+        "word": "DOUAIENT"
+      },
+      {
+        "entropy": 7.5321656430970965,
+        "vowels": 5,
+        "word": "DENOUAIT"
+      },
+      {
+        "entropy": 7.522137512862715,
+        "vowels": 5,
+        "word": "DEROULAI"
+      },
+      {
+        "entropy": 7.437206081058315,
+        "vowels": 5,
+        "word": "DROUAISE"
+      }
+    ],
+    "entropy": 7.765943510732145,
     "vowels": 5,
     "word": "DEROUTAI"
   },
   "D_9": {
+    "alternatives": [
+      {
+        "entropy": 9.08791797704021,
+        "vowels": 5,
+        "word": "DEROUTAIS"
+      },
+      {
+        "entropy": 8.927124826814365,
+        "vowels": 5,
+        "word": "DEROULAIS"
+      },
+      {
+        "entropy": 8.89592785766189,
+        "vowels": 5,
+        "word": "DOUANIERS"
+      },
+      {
+        "entropy": 8.827277805305384,
+        "vowels": 5,
+        "word": "DEMOURAIS"
+      },
+      {
+        "entropy": 8.803629194272435,
+        "vowels": 5,
+        "word": "DECOULAIS"
+      },
+      {
+        "entropy": 8.77789862603438,
+        "vowels": 5,
+        "word": "DEROULAIT"
+      },
+      {
+        "entropy": 8.766295826275705,
+        "vowels": 5,
+        "word": "DETOURNAI"
+      },
+      {
+        "entropy": 8.708738311927203,
+        "vowels": 5,
+        "word": "DEFOUIRAS"
+      },
+      {
+        "entropy": 8.679260178265608,
+        "vowels": 6,
+        "word": "DOUANIERE"
+      }
+    ],
     "entropy": 9.122666816740576,
     "vowels": 5,
     "word": "DETOURAIS"
   },
   "E_5": {
+    "alternatives": [
+      {
+        "entropy": 4.629378251770612,
+        "vowels": 4,
+        "word": "ERAIE"
+      },
+      {
+        "entropy": 4.643235430192776,
+        "vowels": 4,
+        "word": "ETAIE"
+      },
+      {
+        "entropy": 3.750978086276417,
+        "vowels": 4,
+        "word": "ECOUA"
+      },
+      {
+        "entropy": 4.472743869706833,
+        "vowels": 3,
+        "word": "ETAIS"
+      },
+      {
+        "entropy": 4.455845407477395,
+        "vowels": 3,
+        "word": "ETIRA"
+      },
+      {
+        "entropy": 4.421493357460637,
+        "vowels": 3,
+        "word": "ELIAS"
+      },
+      {
+        "entropy": 4.436244265324011,
+        "vowels": 3,
+        "word": "ELITA"
+      },
+      {
+        "entropy": 4.389916740974007,
+        "vowels": 3,
+        "word": "ELIAT"
+      },
+      {
+        "entropy": 4.3736067991125696,
+        "vowels": 3,
+        "word": "ETAIN"
+      }
+    ],
     "entropy": 3.890818227271759,
     "vowels": 4,
     "word": "ENOUA"
   },
   "E_6": {
+    "alternatives": [
+      {
+        "entropy": 5.196343832835543,
+        "vowels": 5,
+        "word": "ECOUAI"
+      },
+      {
+        "entropy": 4.698236892597521,
+        "vowels": 5,
+        "word": "EBOUAI"
+      },
+      {
+        "entropy": 5.5629490591321975,
+        "vowels": 4,
+        "word": "ELUAIS"
+      },
+      {
+        "entropy": 5.563275767438633,
+        "vowels": 4,
+        "word": "ETIOLA"
+      },
+      {
+        "entropy": 5.495183234734215,
+        "vowels": 4,
+        "word": "ENOUAS"
+      },
+      {
+        "entropy": 5.520247006412292,
+        "vowels": 4,
+        "word": "ELUAIT"
+      },
+      {
+        "entropy": 5.524412211930461,
+        "vowels": 4,
+        "word": "ETOILA"
+      },
+      {
+        "entropy": 5.471824571021388,
+        "vowels": 4,
+        "word": "ECOINA"
+      },
+      {
+        "entropy": 5.4171549943612956,
+        "vowels": 4,
+        "word": "ECURAI"
+      }
+    ],
     "entropy": 5.316379455664126,
     "vowels": 5,
     "word": "ENOUAI"
   },
   "E_7": {
-    "entropy": 7.006893691134708,
+    "alternatives": [
+      {
+        "entropy": 6.985782067983738,
+        "vowels": 5,
+        "word": "ENROUAI"
+      },
+      {
+        "entropy": 6.87747765345782,
+        "vowels": 5,
+        "word": "ENOUAIT"
+      },
+      {
+        "entropy": 6.782374960793749,
+        "vowels": 5,
+        "word": "ECOUAIS"
+      },
+      {
+        "entropy": 6.742398271620033,
+        "vowels": 5,
+        "word": "ECROUAI"
+      },
+      {
+        "entropy": 6.719584178429819,
+        "vowels": 5,
+        "word": "ECOUTAI"
+      },
+      {
+        "entropy": 6.680356100049394,
+        "vowels": 5,
+        "word": "ECOUAIT"
+      },
+      {
+        "entropy": 6.6324880282455,
+        "vowels": 5,
+        "word": "EPOUTIA"
+      },
+      {
+        "entropy": 6.579753391088474,
+        "vowels": 5,
+        "word": "EPOUSAI"
+      },
+      {
+        "entropy": 6.530182240344691,
+        "vowels": 5,
+        "word": "ECOULAI"
+      }
+    ],
+    "entropy": 7.0058471048765885,
     "vowels": 5,
     "word": "ENOUAIS"
   },
   "E_8": {
+    "alternatives": [
+      {
+        "entropy": 8.46127479971366,
+        "vowels": 5,
+        "word": "ENROUAIT"
+      },
+      {
+        "entropy": 8.396178586688443,
+        "vowels": 5,
+        "word": "ENTOURAI"
+      },
+      {
+        "entropy": 8.329869016445626,
+        "vowels": 5,
+        "word": "ECROUAIS"
+      },
+      {
+        "entropy": 8.294581027378596,
+        "vowels": 5,
+        "word": "ENSOUTAI"
+      },
+      {
+        "entropy": 8.244537302383772,
+        "vowels": 5,
+        "word": "ECOUTAIS"
+      },
+      {
+        "entropy": 8.23257692409073,
+        "vowels": 5,
+        "word": "ECROUAIT"
+      },
+      {
+        "entropy": 8.204855802998836,
+        "vowels": 5,
+        "word": "ETAULOIS"
+      },
+      {
+        "entropy": 8.22355515256655,
+        "vowels": 5,
+        "word": "EPOUTIAS"
+      },
+      {
+        "entropy": 8.187387798675031,
+        "vowels": 5,
+        "word": "ENROULAI"
+      }
+    ],
     "entropy": 8.590283368047157,
     "vowels": 5,
     "word": "ENROUAIS"
   },
   "E_9": {
+    "alternatives": [
+      {
+        "entropy": 9.730433330320434,
+        "vowels": 5,
+        "word": "ENCOURAIS"
+      },
+      {
+        "entropy": 9.622311168661357,
+        "vowels": 5,
+        "word": "ENROULAIS"
+      },
+      {
+        "entropy": 9.4311405933194,
+        "vowels": 6,
+        "word": "ENOUERAIS"
+      },
+      {
+        "entropy": 9.612958767358169,
+        "vowels": 5,
+        "word": "ENCOURAIT"
+      },
+      {
+        "entropy": 9.48332183177371,
+        "vowels": 5,
+        "word": "ECROUTAIS"
+      },
+      {
+        "entropy": 9.487221337427362,
+        "vowels": 5,
+        "word": "ECOURTAIS"
+      },
+      {
+        "entropy": 9.49552345642012,
+        "vowels": 5,
+        "word": "ENROULAIT"
+      },
+      {
+        "entropy": 9.313165586981277,
+        "vowels": 6,
+        "word": "ECOEURAIS"
+      },
+      {
+        "entropy": 9.399820444343051,
+        "vowels": 5,
+        "word": "EPOUTIRAS"
+      }
+    ],
     "entropy": 9.731774559351146,
     "vowels": 5,
     "word": "ENTOURAIS"
   },
   "F_5": {
+    "alternatives": [
+      {
+        "entropy": 5.031081377857964,
+        "vowels": 3,
+        "word": "FAIRE"
+      },
+      {
+        "entropy": 4.954039574340586,
+        "vowels": 3,
+        "word": "FERIA"
+      },
+      {
+        "entropy": 4.919914734029591,
+        "vowels": 3,
+        "word": "FRAIE"
+      },
+      {
+        "entropy": 4.8882983730343845,
+        "vowels": 3,
+        "word": "FASIE"
+      },
+      {
+        "entropy": 4.953088115276975,
+        "vowels": 3,
+        "word": "FURIE"
+      },
+      {
+        "entropy": 4.833915528253587,
+        "vowels": 3,
+        "word": "FERAI"
+      },
+      {
+        "entropy": 4.824887914991107,
+        "vowels": 3,
+        "word": "FAITE"
+      },
+      {
+        "entropy": 4.820310633059058,
+        "vowels": 3,
+        "word": "FAINE"
+      },
+      {
+        "entropy": 4.761787833338771,
+        "vowels": 3,
+        "word": "FIERA"
+      }
+    ],
     "entropy": 4.6693267264348775,
     "vowels": 4,
     "word": "FOUIE"
   },
   "F_6": {
+    "alternatives": [
+      {
+        "entropy": 5.884270546536606,
+        "vowels": 4,
+        "word": "FUTAIE"
+      },
+      {
+        "entropy": 5.8947825127445785,
+        "vowels": 4,
+        "word": "FEULAI"
+      },
+      {
+        "entropy": 5.926158352675283,
+        "vowels": 4,
+        "word": "FOUIRA"
+      },
+      {
+        "entropy": 5.86055380961759,
+        "vowels": 4,
+        "word": "FOUINE"
+      },
+      {
+        "entropy": 5.870952767273486,
+        "vowels": 4,
+        "word": "FROUAI"
+      },
+      {
+        "entropy": 5.7390871513824475,
+        "vowels": 4,
+        "word": "FUELAI"
+      },
+      {
+        "entropy": 5.696055441653346,
+        "vowels": 4,
+        "word": "FOUINA"
+      },
+      {
+        "entropy": 5.710055614316154,
+        "vowels": 4,
+        "word": "FOULAI"
+      },
+      {
+        "entropy": 5.492758551401478,
+        "vowels": 4,
+        "word": "FOENAI"
+      }
+    ],
     "entropy": 6.0934756153397025,
     "vowels": 4,
     "word": "FOUIES"
   },
   "F_7": {
-    "entropy": 7.285376569944425,
-    "vowels": 5,
-    "word": "FAOUINE"
+    "alternatives": [
+      {
+        "entropy": 7.430981877602941,
+        "vowels": 4,
+        "word": "FOUITES"
+      },
+      {
+        "entropy": 7.30230685026286,
+        "vowels": 4,
+        "word": "FORAINE"
+      },
+      {
+        "entropy": 7.356188021775667,
+        "vowels": 4,
+        "word": "FOUINES"
+      },
+      {
+        "entropy": 7.328815294616786,
+        "vowels": 4,
+        "word": "FAISEUR"
+      },
+      {
+        "entropy": 7.347867351725615,
+        "vowels": 4,
+        "word": "FRITEAU"
+      },
+      {
+        "entropy": 7.3800054261240575,
+        "vowels": 4,
+        "word": "FROUAIS"
+      },
+      {
+        "entropy": 7.299790383113873,
+        "vowels": 4,
+        "word": "FOUINER"
+      },
+      {
+        "entropy": 7.2479788402544445,
+        "vowels": 4,
+        "word": "FEULAIS"
+      },
+      {
+        "entropy": 6.41258142546811,
+        "vowels": 5,
+        "word": "FOUGEAI"
+      }
+    ],
+    "entropy": 7.48365066758018,
+    "vowels": 4,
+    "word": "FOUIRAS"
   },
   "F_8": {
-    "entropy": 8.5507343805222,
+    "alternatives": [
+      {
+        "entropy": 8.014365290481411,
+        "vowels": 5,
+        "word": "FOUACIER"
+      },
+      {
+        "entropy": 8.01422455795481,
+        "vowels": 5,
+        "word": "FOUINERA"
+      },
+      {
+        "entropy": 8.01642300838197,
+        "vowels": 5,
+        "word": "FUSAIOLE"
+      },
+      {
+        "entropy": 7.916830931178676,
+        "vowels": 5,
+        "word": "FOUGEAIS"
+      },
+      {
+        "entropy": 7.860834435825021,
+        "vowels": 5,
+        "word": "FOULERAI"
+      },
+      {
+        "entropy": 8.529223120044254,
+        "vowels": 4,
+        "word": "FORAINES"
+      },
+      {
+        "entropy": 8.61701319517712,
+        "vowels": 4,
+        "word": "FOURNIES"
+      },
+      {
+        "entropy": 8.661610397020512,
+        "vowels": 4,
+        "word": "FAURIONS"
+      },
+      {
+        "entropy": 7.804865752312808,
+        "vowels": 5,
+        "word": "FLOUERAI"
+      }
+    ],
+    "entropy": 8.305256100320502,
     "vowels": 5,
-    "word": "FAOUINES"
+    "word": "FOUTAISE"
   },
   "F_9": {
+    "alternatives": [
+      {
+        "entropy": 9.292278436189793,
+        "vowels": 5,
+        "word": "FOURASINE"
+      },
+      {
+        "entropy": 9.184127056555678,
+        "vowels": 5,
+        "word": "FOULERAIS"
+      },
+      {
+        "entropy": 9.151027248785013,
+        "vowels": 5,
+        "word": "FOUINERAS"
+      },
+      {
+        "entropy": 9.171633272766297,
+        "vowels": 5,
+        "word": "FROUAIENT"
+      },
+      {
+        "entropy": 9.132731000020957,
+        "vowels": 6,
+        "word": "FAOUETIEN"
+      },
+      {
+        "entropy": 9.105355975603258,
+        "vowels": 5,
+        "word": "FLOUERAIS"
+      },
+      {
+        "entropy": 9.12777829810683,
+        "vowels": 5,
+        "word": "FOULAIENT"
+      },
+      {
+        "entropy": 9.069834010389794,
+        "vowels": 5,
+        "word": "FOURNAISE"
+      },
+      {
+        "entropy": 9.056717364935821,
+        "vowels": 5,
+        "word": "FOULERAIT"
+      }
+    ],
     "entropy": 9.386913299949084,
     "vowels": 5,
     "word": "FOUINATES"
   },
   "G_5": {
+    "alternatives": [
+      {
+        "entropy": 4.808998898233173,
+        "vowels": 3,
+        "word": "GERAI"
+      },
+      {
+        "entropy": 4.817305287000156,
+        "vowels": 3,
+        "word": "GAURE"
+      },
+      {
+        "entropy": 4.787888840812708,
+        "vowels": 3,
+        "word": "GAINE"
+      },
+      {
+        "entropy": 4.779553543057581,
+        "vowels": 3,
+        "word": "GALIE"
+      },
+      {
+        "entropy": 4.669344383884265,
+        "vowels": 3,
+        "word": "GAIES"
+      },
+      {
+        "entropy": 4.719586920801071,
+        "vowels": 3,
+        "word": "GREAI"
+      },
+      {
+        "entropy": 4.6699629860056815,
+        "vowels": 3,
+        "word": "GAITE"
+      },
+      {
+        "entropy": 4.683547497709866,
+        "vowels": 3,
+        "word": "GAULE"
+      },
+      {
+        "entropy": 4.600931712129073,
+        "vowels": 3,
+        "word": "GROIE"
+      }
+    ],
     "entropy": 4.361406127702535,
     "vowels": 4,
     "word": "GUEAI"
   },
   "G_6": {
+    "alternatives": [
+      {
+        "entropy": 5.7926146974437405,
+        "vowels": 4,
+        "word": "GOUINE"
+      },
+      {
+        "entropy": 5.6242448415259645,
+        "vowels": 4,
+        "word": "GAUDIE"
+      },
+      {
+        "entropy": 5.611798625810942,
+        "vowels": 4,
+        "word": "GOUISE"
+      },
+      {
+        "entropy": 6.385016918941234,
+        "vowels": 3,
+        "word": "GARIES"
+      },
+      {
+        "entropy": 5.554907335107813,
+        "vowels": 4,
+        "word": "GUEAIT"
+      },
+      {
+        "entropy": 5.61199563808575,
+        "vowels": 4,
+        "word": "GOURAI"
+      },
+      {
+        "entropy": 6.399987225287106,
+        "vowels": 3,
+        "word": "GARNIE"
+      },
+      {
+        "entropy": 5.550157404156994,
+        "vowels": 4,
+        "word": "GUIORA"
+      },
+      {
+        "entropy": 6.270653760120202,
+        "vowels": 3,
+        "word": "GAINER"
+      }
+    ],
     "entropy": 5.720826942057523,
     "vowels": 4,
     "word": "GUEAIS"
   },
   "G_7": {
-    "entropy": 7.326565322170277,
+    "alternatives": [
+      {
+        "entropy": 7.232890690669082,
+        "vowels": 4,
+        "word": "GROUINE"
+      },
+      {
+        "entropy": 7.189042723719773,
+        "vowels": 4,
+        "word": "GUIORAS"
+      },
+      {
+        "entropy": 7.139790634245291,
+        "vowels": 4,
+        "word": "GUITARE"
+      },
+      {
+        "entropy": 7.138323607990025,
+        "vowels": 4,
+        "word": "GAINULE"
+      },
+      {
+        "entropy": 7.059194774420819,
+        "vowels": 4,
+        "word": "GULAIRE"
+      },
+      {
+        "entropy": 7.072044046185843,
+        "vowels": 4,
+        "word": "GOULIER"
+      },
+      {
+        "entropy": 6.980778585945254,
+        "vowels": 4,
+        "word": "GAUDIES"
+      },
+      {
+        "entropy": 7.016657291755877,
+        "vowels": 4,
+        "word": "GOURAIS"
+      },
+      {
+        "entropy": 7.056459181377086,
+        "vowels": 4,
+        "word": "GUIORAT"
+      }
+    ],
+    "entropy": 7.22380450217882,
     "vowels": 4,
-    "word": "GUANIER"
+    "word": "GOUINES"
   },
   "G_8": {
+    "alternatives": [
+      {
+        "entropy": 7.975944526748055,
+        "vowels": 5,
+        "word": "GAULOISE"
+      },
+      {
+        "entropy": 7.69842730848272,
+        "vowels": 5,
+        "word": "GOUTERAI"
+      },
+      {
+        "entropy": 8.459730939472863,
+        "vowels": 4,
+        "word": "GROUINES"
+      },
+      {
+        "entropy": 8.413938551022243,
+        "vowels": 4,
+        "word": "GRUAIENT"
+      },
+      {
+        "entropy": 7.630069658454687,
+        "vowels": 5,
+        "word": "GRELOUAI"
+      },
+      {
+        "entropy": 8.419686245087425,
+        "vowels": 4,
+        "word": "GROUINAS"
+      },
+      {
+        "entropy": 7.579622015782699,
+        "vowels": 5,
+        "word": "GAUDOISE"
+      },
+      {
+        "entropy": 8.29207637786266,
+        "vowels": 4,
+        "word": "GARNOISE"
+      },
+      {
+        "entropy": 8.310003497550762,
+        "vowels": 4,
+        "word": "GRANOISE"
+      }
+    ],
     "entropy": 8.08089291880124,
     "vowels": 5,
     "word": "GEAUNOIS"
   },
   "G_9": {
-    "entropy": 8.98610763687622,
+    "alternatives": [
+      {
+        "entropy": 8.880397407166297,
+        "vowels": 5,
+        "word": "GRELOUAIS"
+      },
+      {
+        "entropy": 8.844007491094482,
+        "vowels": 5,
+        "word": "GOURAIENT"
+      },
+      {
+        "entropy": 8.864196954454123,
+        "vowels": 5,
+        "word": "GOULETAIS"
+      },
+      {
+        "entropy": 8.885713349960758,
+        "vowels": 5,
+        "word": "GAULTOISE"
+      },
+      {
+        "entropy": 8.752141785458136,
+        "vowels": 5,
+        "word": "GUERONAIS"
+      },
+      {
+        "entropy": 8.715255677142117,
+        "vowels": 6,
+        "word": "GEAUNOISE"
+      },
+      {
+        "entropy": 8.7956942618571,
+        "vowels": 5,
+        "word": "GRELOUAIT"
+      },
+      {
+        "entropy": 8.6396084203553,
+        "vowels": 5,
+        "word": "GUIORAMES"
+      },
+      {
+        "entropy": 9.284029888922776,
+        "vowels": 4,
+        "word": "GRATENOIS"
+      }
+    ],
+    "entropy": 8.86766215113969,
     "vowels": 5,
-    "word": "GURATEOIS"
+    "word": "GOUTERAIS"
   },
   "H_5": {
-    "entropy": 4.147160735077685,
+    "alternatives": [
+      {
+        "entropy": 4.723698646226083,
+        "vowels": 3,
+        "word": "HAIRE"
+      },
+      {
+        "entropy": 4.572709987137596,
+        "vowels": 3,
+        "word": "HAIES"
+      },
+      {
+        "entropy": 4.499497726567948,
+        "vowels": 3,
+        "word": "HAUTE"
+      },
+      {
+        "entropy": 4.377495062663716,
+        "vowels": 3,
+        "word": "HAINE"
+      },
+      {
+        "entropy": 4.3683299157669095,
+        "vowels": 3,
+        "word": "HAIEN"
+      },
+      {
+        "entropy": 4.432242939846655,
+        "vowels": 3,
+        "word": "HUIRE"
+      },
+      {
+        "entropy": 3.6442240249362143,
+        "vowels": 4,
+        "word": "HOYAU"
+      },
+      {
+        "entropy": 4.288923307717067,
+        "vowels": 3,
+        "word": "HIERA"
+      },
+      {
+        "entropy": 4.357960283903546,
+        "vowels": 3,
+        "word": "HOURE"
+      }
+    ],
+    "entropy": 4.137647426185055,
     "vowels": 4,
     "word": "HOUAI"
   },
   "H_6": {
+    "alternatives": [
+      {
+        "entropy": 5.605222210969973,
+        "vowels": 4,
+        "word": "HUERAI"
+      },
+      {
+        "entropy": 5.542607849147326,
+        "vowels": 4,
+        "word": "HOUAIS"
+      },
+      {
+        "entropy": 6.17300340685071,
+        "vowels": 3,
+        "word": "HAIRES"
+      },
+      {
+        "entropy": 5.470684582715951,
+        "vowels": 4,
+        "word": "HOUARI"
+      },
+      {
+        "entropy": 5.472498340737487,
+        "vowels": 4,
+        "word": "HOUAIT"
+      },
+      {
+        "entropy": 5.3255235834906065,
+        "vowels": 4,
+        "word": "HOUERA"
+      },
+      {
+        "entropy": 5.33561405628527,
+        "vowels": 4,
+        "word": "HAYIEN"
+      },
+      {
+        "entropy": 6.03855054472635,
+        "vowels": 3,
+        "word": "HATIER"
+      },
+      {
+        "entropy": 5.994820938220288,
+        "vowels": 3,
+        "word": "HAITES"
+      }
+    ],
     "entropy": 5.7743499317199305,
     "vowels": 4,
     "word": "HAROUE"
   },
   "H_7": {
+    "alternatives": [
+      {
+        "entropy": 7.280367980616433,
+        "vowels": 4,
+        "word": "HAUTINE"
+      },
+      {
+        "entropy": 7.117507041340375,
+        "vowels": 4,
+        "word": "HUROISE"
+      },
+      {
+        "entropy": 6.937930691905091,
+        "vowels": 4,
+        "word": "HUERAIS"
+      },
+      {
+        "entropy": 6.928682345627093,
+        "vowels": 5,
+        "word": "HOUERIE"
+      },
+      {
+        "entropy": 6.92685325835283,
+        "vowels": 4,
+        "word": "HANOISE"
+      },
+      {
+        "entropy": 6.927115861313943,
+        "vowels": 4,
+        "word": "HEURTAI"
+      },
+      {
+        "entropy": 6.878521236174598,
+        "vowels": 4,
+        "word": "HEROISA"
+      },
+      {
+        "entropy": 6.875602112694054,
+        "vowels": 4,
+        "word": "HOUERAS"
+      },
+      {
+        "entropy": 6.817649496931903,
+        "vowels": 4,
+        "word": "HOUATES"
+      }
+    ],
     "entropy": 6.598911103083285,
     "vowels": 5,
     "word": "HOUERAI"
   },
   "H_8": {
-    "entropy": 7.925413564967723,
+    "alternatives": [
+      {
+        "entropy": 7.776655805733348,
+        "vowels": 5,
+        "word": "HOUERAIT"
+      },
+      {
+        "entropy": 7.635861060236036,
+        "vowels": 5,
+        "word": "HOUAIENT"
+      },
+      {
+        "entropy": 8.146057587684142,
+        "vowels": 4,
+        "word": "HEROISAT"
+      },
+      {
+        "entropy": 8.086503065090849,
+        "vowels": 4,
+        "word": "HEURTAIS"
+      },
+      {
+        "entropy": 7.969356739992865,
+        "vowels": 4,
+        "word": "HAIERONS"
+      },
+      {
+        "entropy": 7.302170233110587,
+        "vowels": 5,
+        "word": "HOGUAISE"
+      },
+      {
+        "entropy": 7.889194446725105,
+        "vowels": 5,
+        "word": "HAIREUSE"
+      },
+      {
+        "entropy": 7.841374843296638,
+        "vowels": 5,
+        "word": "HAUTAINE"
+      },
+      {
+        "entropy": 7.816024249178236,
+        "vowels": 4,
+        "word": "HOLERAIS"
+      }
+    ],
+    "entropy": 7.927401211136939,
     "vowels": 5,
     "word": "HOUERAIS"
   },
   "H_9": {
+    "alternatives": [
+      {
+        "entropy": 8.4296783954163,
+        "vowels": 5,
+        "word": "HOUPERAIS"
+      },
+      {
+        "entropy": 8.379858467783357,
+        "vowels": 6,
+        "word": "HOUATAISE"
+      },
+      {
+        "entropy": 8.32354330229425,
+        "vowels": 5,
+        "word": "HEUGONAIS"
+      },
+      {
+        "entropy": 8.368846733277476,
+        "vowels": 5,
+        "word": "HORGUAISE"
+      },
+      {
+        "entropy": 8.331083510204728,
+        "vowels": 5,
+        "word": "HOUPERAIT"
+      },
+      {
+        "entropy": 8.88635691861887,
+        "vowels": 4,
+        "word": "HEROISANT"
+      },
+      {
+        "entropy": 8.936945219013346,
+        "vowels": 4,
+        "word": "HEURTIONS"
+      },
+      {
+        "entropy": 8.34564586386881,
+        "vowels": 5,
+        "word": "HOUPAIENT"
+      },
+      {
+        "entropy": 8.92095673560601,
+        "vowels": 4,
+        "word": "HARICOTES"
+      }
+    ],
     "entropy": 8.476842199793031,
     "vowels": 5,
     "word": "HAYERIONS"
   },
   "I_5": {
+    "alternatives": [
+      {
+        "entropy": 4.4923475910187625,
+        "vowels": 3,
+        "word": "IRONE"
+      },
+      {
+        "entropy": 4.4204075426848854,
+        "vowels": 3,
+        "word": "ISOLE"
+      },
+      {
+        "entropy": 3.6060158215426834,
+        "vowels": 4,
+        "word": "IOULA"
+      },
+      {
+        "entropy": 4.356309699599635,
+        "vowels": 3,
+        "word": "IODES"
+      },
+      {
+        "entropy": 4.322783286702188,
+        "vowels": 3,
+        "word": "IDEAS"
+      },
+      {
+        "entropy": 4.317736308550626,
+        "vowels": 3,
+        "word": "INDUE"
+      },
+      {
+        "entropy": 4.2670408238975375,
+        "vowels": 3,
+        "word": "ILEON"
+      },
+      {
+        "entropy": 4.135673833650327,
+        "vowels": 3,
+        "word": "IODER"
+      },
+      {
+        "entropy": 4.113893897090944,
+        "vowels": 3,
+        "word": "INULE"
+      }
+    ],
     "entropy": 3.895128001691462,
     "vowels": 4,
     "word": "IOULE"
   },
   "I_6": {
+    "alternatives": [
+      {
+        "entropy": 5.384149554608104,
+        "vowels": 4,
+        "word": "IOURTE"
+      },
+      {
+        "entropy": 5.249765591105466,
+        "vowels": 4,
+        "word": "IOULES"
+      },
+      {
+        "entropy": 5.4021516359522295,
+        "vowels": 4,
+        "word": "INDOUE"
+      },
+      {
+        "entropy": 5.071867548764272,
+        "vowels": 4,
+        "word": "IODERA"
+      },
+      {
+        "entropy": 5.747465035460076,
+        "vowels": 4,
+        "word": "ISAIRE"
+      },
+      {
+        "entropy": 5.112702659421252,
+        "vowels": 4,
+        "word": "IODURE"
+      },
+      {
+        "entropy": 5.0750420321836485,
+        "vowels": 4,
+        "word": "IOULAS"
+      },
+      {
+        "entropy": 5.002388642765107,
+        "vowels": 4,
+        "word": "IOULER"
+      },
+      {
+        "entropy": 5.7390513810253925,
+        "vowels": 4,
+        "word": "IONISE"
+      }
+    ],
     "entropy": 5.729522926116939,
     "vowels": 5,
     "word": "INOUIE"
   },
   "I_7": {
+    "alternatives": [
+      {
+        "entropy": 6.88362668186752,
+        "vowels": 4,
+        "word": "INOSATE"
+      },
+      {
+        "entropy": 5.952340403505241,
+        "vowels": 5,
+        "word": "INAVOUE"
+      },
+      {
+        "entropy": 5.73449025900088,
+        "vowels": 5,
+        "word": "IOULERA"
+      },
+      {
+        "entropy": 6.467751080354269,
+        "vowels": 4,
+        "word": "IODATES"
+      },
+      {
+        "entropy": 6.582548282047901,
+        "vowels": 4,
+        "word": "INDOUES"
+      },
+      {
+        "entropy": 6.438163191382618,
+        "vowels": 4,
+        "word": "IODERAS"
+      },
+      {
+        "entropy": 6.421323850948249,
+        "vowels": 4,
+        "word": "IODURES"
+      },
+      {
+        "entropy": 6.366999289259182,
+        "vowels": 4,
+        "word": "ICOSANE"
+      },
+      {
+        "entropy": 6.305249829359137,
+        "vowels": 5,
+        "word": "IOULAIS"
+      }
+    ],
     "entropy": 7.092424164870519,
     "vowels": 5,
     "word": "INOUIES"
   },
   "I_8": {
+    "alternatives": [
+      {
+        "entropy": 7.390884772131937,
+        "vowels": 5,
+        "word": "INAVOUES"
+      },
+      {
+        "entropy": 8.075501497024383,
+        "vowels": 4,
+        "word": "INSATURE"
+      },
+      {
+        "entropy": 7.207576666250977,
+        "vowels": 5,
+        "word": "IOULERAS"
+      },
+      {
+        "entropy": 7.216529036126902,
+        "vowels": 5,
+        "word": "IOULAMES"
+      },
+      {
+        "entropy": 7.879594840155599,
+        "vowels": 4,
+        "word": "INSTAURE"
+      },
+      {
+        "entropy": 7.051266362390029,
+        "vowels": 6,
+        "word": "INAVOUEE"
+      },
+      {
+        "entropy": 7.655373414640798,
+        "vowels": 5,
+        "word": "IODERAIS"
+      },
+      {
+        "entropy": 6.910522167860369,
+        "vowels": 5,
+        "word": "IAKOUTES"
+      },
+      {
+        "entropy": 7.593913308782566,
+        "vowels": 5,
+        "word": "IODUREES"
+      }
+    ],
     "entropy": 7.472504794896684,
     "vowels": 5,
     "word": "IOULATES"
   },
   "I_9": {
-    "entropy": 8.734507856967511,
+    "alternatives": [
+      {
+        "entropy": 8.567514860500959,
+        "vowels": 5,
+        "word": "IODURAMES"
+      },
+      {
+        "entropy": 8.389091514247102,
+        "vowels": 6,
+        "word": "INAVOUEES"
+      },
+      {
+        "entropy": 8.282258430645598,
+        "vowels": 6,
+        "word": "IOULERAIS"
+      },
+      {
+        "entropy": 8.966082666950754,
+        "vowels": 5,
+        "word": "INSTAUREE"
+      },
+      {
+        "entropy": 9.012173229560645,
+        "vowels": 4,
+        "word": "INDURATES"
+      },
+      {
+        "entropy": 8.356264140013046,
+        "vowels": 5,
+        "word": "ISOLATEUR"
+      },
+      {
+        "entropy": 8.236626294465125,
+        "vowels": 6,
+        "word": "IOULAIENT"
+      },
+      {
+        "entropy": 8.99625998397802,
+        "vowels": 5,
+        "word": "INSULAIRE"
+      },
+      {
+        "entropy": 8.108118585602806,
+        "vowels": 6,
+        "word": "IOULERAIT"
+      }
+    ],
+    "entropy": 8.731215479161037,
     "vowels": 5,
     "word": "IODURATES"
   },
   "J_5": {
+    "alternatives": [
+      {
+        "entropy": 4.03954163321891,
+        "vowels": 4,
+        "word": "JOUEY"
+      },
+      {
+        "entropy": 4.709782516439715,
+        "vowels": 3,
+        "word": "JAUNE"
+      },
+      {
+        "entropy": 4.706662720729004,
+        "vowels": 3,
+        "word": "JOUES"
+      },
+      {
+        "entropy": 4.641224832259127,
+        "vowels": 3,
+        "word": "JAUEN"
+      },
+      {
+        "entropy": 4.611957573068228,
+        "vowels": 3,
+        "word": "JOSUE"
+      },
+      {
+        "entropy": 4.625866673911638,
+        "vowels": 3,
+        "word": "JOUET"
+      },
+      {
+        "entropy": 4.60286408793547,
+        "vowels": 3,
+        "word": "JOUTE"
+      },
+      {
+        "entropy": 4.485561668344073,
+        "vowels": 3,
+        "word": "JEUNA"
+      },
+      {
+        "entropy": 4.496186863793888,
+        "vowels": 3,
+        "word": "JOUAS"
+      }
+    ],
     "entropy": 4.193617422397499,
     "vowels": 4,
     "word": "JOUAI"
   },
   "J_6": {
+    "alternatives": [
+      {
+        "entropy": 5.663529514725028,
+        "vowels": 4,
+        "word": "JOUTAI"
+      },
+      {
+        "entropy": 5.541735256262179,
+        "vowels": 4,
+        "word": "JOUAIS"
+      },
+      {
+        "entropy": 5.5001466395366165,
+        "vowels": 4,
+        "word": "JEUNAI"
+      },
+      {
+        "entropy": 5.571257061791547,
+        "vowels": 4,
+        "word": "JOUAIT"
+      },
+      {
+        "entropy": 5.280482758095952,
+        "vowels": 4,
+        "word": "JOUERA"
+      },
+      {
+        "entropy": 5.332750486449493,
+        "vowels": 4,
+        "word": "JOUIRA"
+      },
+      {
+        "entropy": 5.298161188534562,
+        "vowels": 4,
+        "word": "JUGEAI"
+      },
+      {
+        "entropy": 5.210765655970633,
+        "vowels": 4,
+        "word": "JOUIEZ"
+      },
+      {
+        "entropy": 5.228335287652132,
+        "vowels": 4,
+        "word": "JOUAIL"
+      }
+    ],
     "entropy": 5.736008926770235,
     "vowels": 4,
     "word": "JAUNIE"
   },
   "J_7": {
+    "alternatives": [
+      {
+        "entropy": 7.118714309543346,
+        "vowels": 4,
+        "word": "JAUNIES"
+      },
+      {
+        "entropy": 7.053898543730542,
+        "vowels": 4,
+        "word": "JOUITES"
+      },
+      {
+        "entropy": 6.946744702213451,
+        "vowels": 4,
+        "word": "JASIONE"
+      },
+      {
+        "entropy": 6.866704226813386,
+        "vowels": 4,
+        "word": "JOUIRAS"
+      },
+      {
+        "entropy": 6.79556409753721,
+        "vowels": 4,
+        "word": "JOUATES"
+      },
+      {
+        "entropy": 6.8736402379759935,
+        "vowels": 4,
+        "word": "JOUTAIS"
+      },
+      {
+        "entropy": 6.728598763151501,
+        "vowels": 4,
+        "word": "JOUERAS"
+      },
+      {
+        "entropy": 6.73488912853103,
+        "vowels": 4,
+        "word": "JEUNAIS"
+      },
+      {
+        "entropy": 6.124946089190029,
+        "vowels": 5,
+        "word": "JOUYAIS"
+      }
+    ],
     "entropy": 6.494408958279754,
     "vowels": 5,
     "word": "JOUERAI"
   },
   "J_8": {
+    "alternatives": [
+      {
+        "entropy": 7.049483927149235,
+        "vowels": 6,
+        "word": "JOUYAISE"
+      },
+      {
+        "entropy": 7.663010351764395,
+        "vowels": 5,
+        "word": "JALOUSIE"
+      },
+      {
+        "entropy": 7.529784677600491,
+        "vowels": 5,
+        "word": "JOUAIENT"
+      },
+      {
+        "entropy": 7.489092172931457,
+        "vowels": 5,
+        "word": "JOUERAIT"
+      },
+      {
+        "entropy": 8.107303564508584,
+        "vowels": 4,
+        "word": "JAUNITES"
+      },
+      {
+        "entropy": 7.406717134591,
+        "vowels": 5,
+        "word": "JOUTERAI"
+      },
+      {
+        "entropy": 7.828223572325168,
+        "vowels": 5,
+        "word": "JOUIERES"
+      },
+      {
+        "entropy": 7.277576550483136,
+        "vowels": 5,
+        "word": "JAUDOINE"
+      },
+      {
+        "entropy": 7.9143062160757385,
+        "vowels": 4,
+        "word": "JOUTIRAS"
+      }
+    ],
     "entropy": 7.622426706009068,
     "vowels": 5,
     "word": "JOUERAIS"
   },
   "J_9": {
+    "alternatives": [
+      {
+        "entropy": 8.241927388812304,
+        "vowels": 5,
+        "word": "JAUDOINES"
+      },
+      {
+        "entropy": 7.5939232606551075,
+        "vowels": 6,
+        "word": "JOYEUSAIN"
+      },
+      {
+        "entropy": 8.199197779564518,
+        "vowels": 5,
+        "word": "JAULNOISE"
+      },
+      {
+        "entropy": 8.101728962439985,
+        "vowels": 5,
+        "word": "JALOUSIEZ"
+      },
+      {
+        "entropy": 7.779960060910103,
+        "vowels": 6,
+        "word": "JOUYAISES"
+      },
+      {
+        "entropy": 7.773160920150856,
+        "vowels": 6,
+        "word": "JOUACAISE"
+      },
+      {
+        "entropy": 8.340204805393315,
+        "vowels": 5,
+        "word": "JOUTIRAIS"
+      },
+      {
+        "entropy": 7.7516415340064455,
+        "vowels": 5,
+        "word": "JOYACIENS"
+      },
+      {
+        "entropy": 8.339015269334597,
+        "vowels": 4,
+        "word": "JOINTURES"
+      }
+    ],
     "entropy": 8.254273014298338,
     "vowels": 5,
     "word": "JOUTERAIS"
   },
   "K_5": {
+    "alternatives": [
+      {
+        "entropy": 4.223258642583934,
+        "vowels": 3,
+        "word": "KAORI"
+      },
+      {
+        "entropy": 3.9923759767293214,
+        "vowels": 3,
+        "word": "KOINE"
+      },
+      {
+        "entropy": 4.5312457308305065,
+        "vowels": 2,
+        "word": "KITAS"
+      },
+      {
+        "entropy": 3.7901719367130577,
+        "vowels": 3,
+        "word": "KOUAN"
+      },
+      {
+        "entropy": 4.396176739708996,
+        "vowels": 2,
+        "word": "KITES"
+      },
+      {
+        "entropy": 3.5617743418876633,
+        "vowels": 3,
+        "word": "KYRIE"
+      },
+      {
+        "entropy": 4.3006479802795825,
+        "vowels": 2,
+        "word": "KOTAS"
+      },
+      {
+        "entropy": 4.257658012412828,
+        "vowels": 2,
+        "word": "KAONS"
+      },
+      {
+        "entropy": 3.43610520423724,
+        "vowels": 3,
+        "word": "KENYA"
+      }
+    ],
     "entropy": 4.2922697225551385,
     "vowels": 3,
     "word": "KOTAI"
   },
   "K_6": {
-    "entropy": 5.57113147451933,
+    "alternatives": [
+      {
+        "entropy": 5.343008297974139,
+        "vowels": 3,
+        "word": "KAISER"
+      },
+      {
+        "entropy": 5.2766791490856235,
+        "vowels": 3,
+        "word": "KARITE"
+      },
+      {
+        "entropy": 5.117092392117728,
+        "vowels": 3,
+        "word": "KITERA"
+      },
+      {
+        "entropy": 5.158933314177401,
+        "vowels": 3,
+        "word": "KAOLIN"
+      },
+      {
+        "entropy": 5.006039171760474,
+        "vowels": 3,
+        "word": "KOTERA"
+      },
+      {
+        "entropy": 4.9890998576447485,
+        "vowels": 3,
+        "word": "KESACO"
+      },
+      {
+        "entropy": 4.9513746649605315,
+        "vowels": 3,
+        "word": "KALMIE"
+      },
+      {
+        "entropy": 4.827245105642074,
+        "vowels": 3,
+        "word": "KADINE"
+      },
+      {
+        "entropy": 4.738853815814796,
+        "vowels": 3,
+        "word": "KYRIES"
+      }
+    ],
+    "entropy": 5.507125504106309,
     "vowels": 3,
     "word": "KOTAIS"
   },
   "K_7": {
+    "alternatives": [
+      {
+        "entropy": 5.69450536129741,
+        "vowels": 5,
+        "word": "KILAUEA"
+      },
+      {
+        "entropy": 6.193756336949944,
+        "vowels": 4,
+        "word": "KARAITE"
+      },
+      {
+        "entropy": 6.235510584540933,
+        "vowels": 3,
+        "word": "KITAMES"
+      },
+      {
+        "entropy": 5.6737846375711465,
+        "vowels": 4,
+        "word": "KANOURI"
+      },
+      {
+        "entropy": 6.111432384506317,
+        "vowels": 3,
+        "word": "KITERAS"
+      },
+      {
+        "entropy": 6.152594360728131,
+        "vowels": 3,
+        "word": "KOTAMES"
+      },
+      {
+        "entropy": 6.117471484523626,
+        "vowels": 3,
+        "word": "KORISTE"
+      },
+      {
+        "entropy": 6.015432384506317,
+        "vowels": 3,
+        "word": "KOTERAS"
+      },
+      {
+        "entropy": 5.981834536984559,
+        "vowels": 4,
+        "word": "KETAINE"
+      }
+    ],
     "entropy": 5.731226085023674,
     "vowels": 4,
     "word": "KOTERAI"
   },
   "K_8": {
+    "alternatives": [
+      {
+        "entropy": 6.466887058731834,
+        "vowels": 4,
+        "word": "KINOVATE"
+      },
+      {
+        "entropy": 6.429148873770691,
+        "vowels": 4,
+        "word": "KILOTAGE"
+      },
+      {
+        "entropy": 6.325572439240401,
+        "vowels": 4,
+        "word": "KOURILES"
+      },
+      {
+        "entropy": 6.328948938955001,
+        "vowels": 4,
+        "word": "KILOBASE"
+      },
+      {
+        "entropy": 6.6297256718196245,
+        "vowels": 4,
+        "word": "KARAITES"
+      },
+      {
+        "entropy": 6.6622933944371825,
+        "vowels": 4,
+        "word": "KERASINE"
+      },
+      {
+        "entropy": 6.644285240443411,
+        "vowels": 4,
+        "word": "KERATINE"
+      },
+      {
+        "entropy": 6.657122932093598,
+        "vowels": 3,
+        "word": "KITERONS"
+      },
+      {
+        "entropy": 6.6297256718196245,
+        "vowels": 4,
+        "word": "KIFAIENT"
+      }
+    ],
     "entropy": 6.400206664940673,
     "vowels": 4,
     "word": "KOTERAIS"
   },
   "K_9": {
+    "alternatives": [
+      {
+        "entropy": 6.738634153725171,
+        "vowels": 5,
+        "word": "KAOLINISE"
+      },
+      {
+        "entropy": 6.643097451689574,
+        "vowels": 4,
+        "word": "KERFOTAIS"
+      },
+      {
+        "entropy": 6.599558689367464,
+        "vowels": 5,
+        "word": "KERATOIDE"
+      },
+      {
+        "entropy": 6.669589206962692,
+        "vowels": 4,
+        "word": "KILOBYTES"
+      },
+      {
+        "entropy": 6.550051951840185,
+        "vowels": 4,
+        "word": "KILOGRAYS"
+      },
+      {
+        "entropy": 6.457714717736258,
+        "vowels": 4,
+        "word": "KILOMETRA"
+      },
+      {
+        "entropy": 6.802602593502858,
+        "vowels": 4,
+        "word": "KITERIONS"
+      },
+      {
+        "entropy": 6.452360905664176,
+        "vowels": 4,
+        "word": "KABYLISER"
+      },
+      {
+        "entropy": 6.471602349084012,
+        "vowels": 4,
+        "word": "KRUTHOISE"
+      }
+    ],
     "entropy": 6.8842322034626235,
     "vowels": 4,
     "word": "KOLATIERS"
   },
   "L_5": {
+    "alternatives": [
+      {
+        "entropy": 4.863457688699339,
+        "vowels": 3,
+        "word": "LAIES"
+      },
+      {
+        "entropy": 4.055749619103413,
+        "vowels": 4,
+        "word": "LOUEY"
+      },
+      {
+        "entropy": 4.686919472286625,
+        "vowels": 3,
+        "word": "LAIRE"
+      },
+      {
+        "entropy": 4.7204406663223235,
+        "vowels": 3,
+        "word": "LESAI"
+      },
+      {
+        "entropy": 4.680340353095135,
+        "vowels": 3,
+        "word": "LAITE"
+      },
+      {
+        "entropy": 4.634774100650061,
+        "vowels": 3,
+        "word": "LAINE"
+      },
+      {
+        "entropy": 4.6088544275781,
+        "vowels": 3,
+        "word": "LAURE"
+      },
+      {
+        "entropy": 4.518342908315577,
+        "vowels": 3,
+        "word": "LIANE"
+      },
+      {
+        "entropy": 4.476769334955224,
+        "vowels": 3,
+        "word": "LAONE"
+      }
+    ],
     "entropy": 4.294234706998303,
     "vowels": 4,
     "word": "LOUAI"
   },
   "L_6": {
-    "entropy": 5.915745830526486,
+    "alternatives": [
+      {
+        "entropy": 5.869046280733673,
+        "vowels": 4,
+        "word": "LITEAU"
+      },
+      {
+        "entropy": 5.83860374619695,
+        "vowels": 4,
+        "word": "LATOUE"
+      },
+      {
+        "entropy": 5.733624001123474,
+        "vowels": 4,
+        "word": "LOUAIS"
+      },
+      {
+        "entropy": 5.642733649704591,
+        "vowels": 4,
+        "word": "LOUAIT"
+      },
+      {
+        "entropy": 5.5263882024103,
+        "vowels": 4,
+        "word": "LOUERA"
+      },
+      {
+        "entropy": 5.512996919532904,
+        "vowels": 4,
+        "word": "LOURAI"
+      },
+      {
+        "entropy": 5.40813111790972,
+        "vowels": 4,
+        "word": "LUGEAI"
+      },
+      {
+        "entropy": 5.3739771692181435,
+        "vowels": 4,
+        "word": "LAYURE"
+      },
+      {
+        "entropy": 6.177745988793382,
+        "vowels": 3,
+        "word": "LANIER"
+      }
+    ],
+    "entropy": 5.9166991354246345,
     "vowels": 4,
     "word": "LAITUE"
   },
   "L_7": {
-    "entropy": 6.764869089270393,
+    "alternatives": [
+      {
+        "entropy": 7.462902510092762,
+        "vowels": 4,
+        "word": "LAURINE"
+      },
+      {
+        "entropy": 7.251546724991178,
+        "vowels": 4,
+        "word": "LAITUES"
+      },
+      {
+        "entropy": 7.235188163429932,
+        "vowels": 4,
+        "word": "LUNAIRE"
+      },
+      {
+        "entropy": 7.208442427335023,
+        "vowels": 4,
+        "word": "LAOTIEN"
+      },
+      {
+        "entropy": 7.263859318140349,
+        "vowels": 4,
+        "word": "LISTEAU"
+      },
+      {
+        "entropy": 6.410390236803083,
+        "vowels": 5,
+        "word": "LEUYOIS"
+      },
+      {
+        "entropy": 7.1404608171419515,
+        "vowels": 4,
+        "word": "LEUNAIS"
+      },
+      {
+        "entropy": 7.243680807595259,
+        "vowels": 4,
+        "word": "LINTEAU"
+      },
+      {
+        "entropy": 7.075441958885514,
+        "vowels": 4,
+        "word": "LOUERAS"
+      }
+    ],
+    "entropy": 6.766699957552589,
     "vowels": 5,
     "word": "LOUERAI"
   },
   "L_8": {
+    "alternatives": [
+      {
+        "entropy": 8.246746322854301,
+        "vowels": 5,
+        "word": "LAURIOTE"
+      },
+      {
+        "entropy": 8.119007517601435,
+        "vowels": 5,
+        "word": "LOUERAIS"
+      },
+      {
+        "entropy": 8.074060901476543,
+        "vowels": 5,
+        "word": "LOUAIENT"
+      },
+      {
+        "entropy": 7.994929769396009,
+        "vowels": 5,
+        "word": "LOURAISE"
+      },
+      {
+        "entropy": 7.971536380600228,
+        "vowels": 5,
+        "word": "LOUERAIT"
+      },
+      {
+        "entropy": 8.421282328406308,
+        "vowels": 4,
+        "word": "LUNAIRES"
+      },
+      {
+        "entropy": 8.467530051345335,
+        "vowels": 4,
+        "word": "LASURITE"
+      },
+      {
+        "entropy": 8.48308814957284,
+        "vowels": 4,
+        "word": "LAURIONS"
+      },
+      {
+        "entropy": 7.653992033917927,
+        "vowels": 5,
+        "word": "LAUMOISE"
+      }
+    ],
     "entropy": 7.489027908897624,
     "vowels": 6,
     "word": "LOUEYAIS"
   },
   "L_9": {
+    "alternatives": [
+      {
+        "entropy": 9.061189297580118,
+        "vowels": 5,
+        "word": "LAURIOTES"
+      },
+      {
+        "entropy": 9.010631242645218,
+        "vowels": 6,
+        "word": "LOUISIANE"
+      },
+      {
+        "entropy": 8.942256735779127,
+        "vowels": 5,
+        "word": "LOURAIENT"
+      },
+      {
+        "entropy": 8.86813985465976,
+        "vowels": 5,
+        "word": "LAUGEROIS"
+      },
+      {
+        "entropy": 8.85238332774777,
+        "vowels": 5,
+        "word": "LACOURIEN"
+      },
+      {
+        "entropy": 8.06690047343358,
+        "vowels": 7,
+        "word": "LOUEYAISE"
+      },
+      {
+        "entropy": 8.705999682687793,
+        "vowels": 5,
+        "word": "LOGUERAIS"
+      },
+      {
+        "entropy": 8.73554384660946,
+        "vowels": 5,
+        "word": "LOUVAINES"
+      },
+      {
+        "entropy": 8.678896670795897,
+        "vowels": 5,
+        "word": "LEUCATOIS"
+      }
+    ],
     "entropy": 9.097793484822358,
     "vowels": 5,
     "word": "LAURETOIS"
   },
   "M_5": {
-    "entropy": 4.9579972186939765,
+    "alternatives": [
+      {
+        "entropy": 4.114929761413871,
+        "vowels": 4,
+        "word": "MIAOU"
+      },
+      {
+        "entropy": 4.904027373081382,
+        "vowels": 3,
+        "word": "MATIE"
+      },
+      {
+        "entropy": 4.8332119389891375,
+        "vowels": 3,
+        "word": "MAIRE"
+      },
+      {
+        "entropy": 4.830828313856152,
+        "vowels": 3,
+        "word": "MAIES"
+      },
+      {
+        "entropy": 4.856421804838824,
+        "vowels": 3,
+        "word": "MANIE"
+      },
+      {
+        "entropy": 3.9905670151549084,
+        "vowels": 4,
+        "word": "MOYAI"
+      },
+      {
+        "entropy": 3.987946262145632,
+        "vowels": 4,
+        "word": "MOYEU"
+      },
+      {
+        "entropy": 4.727927614962246,
+        "vowels": 3,
+        "word": "MAURE"
+      },
+      {
+        "entropy": 4.773437561237676,
+        "vowels": 3,
+        "word": "MURIE"
+      }
+    ],
+    "entropy": 4.960239913782422,
     "vowels": 3,
     "word": "MARIE"
   },
   "M_6": {
-    "entropy": 6.078346230127869,
+    "alternatives": [
+      {
+        "entropy": 5.97863565130126,
+        "vowels": 4,
+        "word": "MAIEUR"
+      },
+      {
+        "entropy": 5.84475485368388,
+        "vowels": 4,
+        "word": "MAOISE"
+      },
+      {
+        "entropy": 5.8256798542395245,
+        "vowels": 4,
+        "word": "MOIERA"
+      },
+      {
+        "entropy": 5.882288983912207,
+        "vowels": 4,
+        "word": "MOREAU"
+      },
+      {
+        "entropy": 5.891460812673845,
+        "vowels": 4,
+        "word": "MOUISE"
+      },
+      {
+        "entropy": 5.904621311873344,
+        "vowels": 4,
+        "word": "MOUAIS"
+      },
+      {
+        "entropy": 6.568132312924771,
+        "vowels": 3,
+        "word": "MARIES"
+      },
+      {
+        "entropy": 5.6586569943546206,
+        "vowels": 4,
+        "word": "MUERAI"
+      },
+      {
+        "entropy": 5.673504826499698,
+        "vowels": 4,
+        "word": "MEULAI"
+      }
+    ],
+    "entropy": 6.074558543295868,
     "vowels": 4,
     "word": "MAORIE"
   },
   "M_7": {
-    "entropy": 7.670688699459126,
+    "alternatives": [
+      {
+        "entropy": 7.672198291405991,
+        "vowels": 4,
+        "word": "MORAINE"
+      },
+      {
+        "entropy": 6.824399500291293,
+        "vowels": 5,
+        "word": "MOINEAU"
+      },
+      {
+        "entropy": 7.596696610717729,
+        "vowels": 4,
+        "word": "MURAINE"
+      },
+      {
+        "entropy": 7.577727371170029,
+        "vowels": 4,
+        "word": "MURIATE"
+      },
+      {
+        "entropy": 7.498629273250907,
+        "vowels": 4,
+        "word": "MOURIES"
+      },
+      {
+        "entropy": 7.474857576267802,
+        "vowels": 4,
+        "word": "MARIOLE"
+      },
+      {
+        "entropy": 7.427023133747845,
+        "vowels": 4,
+        "word": "MANOISE"
+      },
+      {
+        "entropy": 7.338363493984523,
+        "vowels": 4,
+        "word": "MAOISER"
+      },
+      {
+        "entropy": 7.440913827614283,
+        "vowels": 4,
+        "word": "MANIEUR"
+      }
+    ],
+    "entropy": 7.671355248401639,
     "vowels": 4,
     "word": "MAURIES"
   },
   "M_8": {
-    "entropy": 8.558245101060795,
+    "alternatives": [
+      {
+        "entropy": 8.384301606924874,
+        "vowels": 5,
+        "word": "MAUTOISE"
+      },
+      {
+        "entropy": 9.023234423706914,
+        "vowels": 4,
+        "word": "MORAINES"
+      },
+      {
+        "entropy": 8.311510610939449,
+        "vowels": 5,
+        "word": "MAROEUIL"
+      },
+      {
+        "entropy": 8.184097053545276,
+        "vowels": 5,
+        "word": "MEOUNAIS"
+      },
+      {
+        "entropy": 8.24793791613963,
+        "vowels": 5,
+        "word": "MACOUINE"
+      },
+      {
+        "entropy": 8.202041829573076,
+        "vowels": 5,
+        "word": "MAULOISE"
+      },
+      {
+        "entropy": 8.881295501092007,
+        "vowels": 4,
+        "word": "MARIOLES"
+      },
+      {
+        "entropy": 8.869873820108552,
+        "vowels": 4,
+        "word": "MAURINES"
+      },
+      {
+        "entropy": 8.84392765104451,
+        "vowels": 4,
+        "word": "MURAINES"
+      }
+    ],
+    "entropy": 8.558623331520826,
     "vowels": 5,
     "word": "MALOUINE"
   },
   "M_9": {
+    "alternatives": [
+      {
+        "entropy": 9.746241749948968,
+        "vowels": 5,
+        "word": "MOUTARINE"
+      },
+      {
+        "entropy": 9.710836851670457,
+        "vowels": 5,
+        "word": "MATOURIEN"
+      },
+      {
+        "entropy": 9.618679844160045,
+        "vowels": 5,
+        "word": "MALOUINES"
+      },
+      {
+        "entropy": 9.575796972904502,
+        "vowels": 5,
+        "word": "MAURENOIS"
+      },
+      {
+        "entropy": 9.53859034585233,
+        "vowels": 5,
+        "word": "MOULARINE"
+      },
+      {
+        "entropy": 9.496453755909211,
+        "vowels": 5,
+        "word": "MAUROSIEN"
+      },
+      {
+        "entropy": 9.43891027752765,
+        "vowels": 5,
+        "word": "MOURAIENT"
+      },
+      {
+        "entropy": 9.36706444297458,
+        "vowels": 5,
+        "word": "MACOUINES"
+      },
+      {
+        "entropy": 9.413515587955263,
+        "vowels": 5,
+        "word": "MONTIREAU"
+      }
+    ],
     "entropy": 9.799658306260415,
     "vowels": 5,
     "word": "MARSOUINE"
   },
   "N_5": {
-    "entropy": 4.486856810300101,
+    "alternatives": [
+      {
+        "entropy": 4.609098024148414,
+        "vowels": 3,
+        "word": "NAIRE"
+      },
+      {
+        "entropy": 3.89038243595134,
+        "vowels": 4,
+        "word": "NOYAI"
+      },
+      {
+        "entropy": 4.606927361896376,
+        "vowels": 3,
+        "word": "NOIRE"
+      },
+      {
+        "entropy": 4.587314315237601,
+        "vowels": 3,
+        "word": "NOIES"
+      },
+      {
+        "entropy": 4.560957089187077,
+        "vowels": 3,
+        "word": "NOISE"
+      },
+      {
+        "entropy": 4.4780758757836105,
+        "vowels": 3,
+        "word": "NORIA"
+      },
+      {
+        "entropy": 4.342214980265287,
+        "vowels": 3,
+        "word": "NIERA"
+      },
+      {
+        "entropy": 3.6679836539881796,
+        "vowels": 4,
+        "word": "NOYAU"
+      },
+      {
+        "entropy": 4.406142747608974,
+        "vowels": 3,
+        "word": "NOUES"
+      }
+    ],
+    "entropy": 4.305482347346067,
     "vowels": 4,
-    "word": "NIOUE"
+    "word": "NOUAI"
   },
   "N_6": {
+    "alternatives": [
+      {
+        "entropy": 5.5681847253308465,
+        "vowels": 4,
+        "word": "NOIERA"
+      },
+      {
+        "entropy": 5.545286831357624,
+        "vowels": 4,
+        "word": "NUERAI"
+      },
+      {
+        "entropy": 5.617838995525524,
+        "vowels": 4,
+        "word": "NOUAIT"
+      },
+      {
+        "entropy": 5.3622508711166175,
+        "vowels": 4,
+        "word": "NOUERA"
+      },
+      {
+        "entropy": 5.373363819436743,
+        "vowels": 4,
+        "word": "NIVEAU"
+      },
+      {
+        "entropy": 6.024508303392391,
+        "vowels": 3,
+        "word": "NOIRES"
+      },
+      {
+        "entropy": 5.228820294804686,
+        "vowels": 4,
+        "word": "NIAULE"
+      },
+      {
+        "entropy": 6.058253174803685,
+        "vowels": 3,
+        "word": "NORIAS"
+      },
+      {
+        "entropy": 5.954426441583771,
+        "vowels": 3,
+        "word": "NIERAS"
+      }
+    ],
     "entropy": 5.738370428287032,
     "vowels": 4,
     "word": "NOUAIS"
   },
   "N_7": {
+    "alternatives": [
+      {
+        "entropy": 7.2254408242945205,
+        "vowels": 4,
+        "word": "NOTARIE"
+      },
+      {
+        "entropy": 7.177628070229648,
+        "vowels": 4,
+        "word": "NOTAIRE"
+      },
+      {
+        "entropy": 7.156607184056357,
+        "vowels": 4,
+        "word": "NAUTIER"
+      },
+      {
+        "entropy": 7.024937679186844,
+        "vowels": 4,
+        "word": "NOIERAS"
+      },
+      {
+        "entropy": 7.082967089528201,
+        "vowels": 4,
+        "word": "NEUROIS"
+      },
+      {
+        "entropy": 6.95486265562859,
+        "vowels": 4,
+        "word": "NUERAIS"
+      },
+      {
+        "entropy": 6.91624096243819,
+        "vowels": 4,
+        "word": "NOUERAS"
+      },
+      {
+        "entropy": 6.836550355294383,
+        "vowels": 4,
+        "word": "NOUATES"
+      },
+      {
+        "entropy": 6.873448508725409,
+        "vowels": 4,
+        "word": "NOUATRE"
+      }
+    ],
     "entropy": 6.645674257276057,
     "vowels": 5,
     "word": "NOUERAI"
   },
   "N_8": {
+    "alternatives": [
+      {
+        "entropy": 7.590974454669651,
+        "vowels": 5,
+        "word": "NOUERAIT"
+      },
+      {
+        "entropy": 8.212675949521103,
+        "vowels": 4,
+        "word": "NOTARIES"
+      },
+      {
+        "entropy": 8.210739839052748,
+        "vowels": 4,
+        "word": "NOTAIRES"
+      },
+      {
+        "entropy": 8.083441910167268,
+        "vowels": 5,
+        "word": "NOTARIEE"
+      },
+      {
+        "entropy": 6.830864085957804,
+        "vowels": 6,
+        "word": "NYOISEAU"
+      },
+      {
+        "entropy": 7.395065381913309,
+        "vowels": 5,
+        "word": "NEOULAIS"
+      },
+      {
+        "entropy": 8.034105826505126,
+        "vowels": 4,
+        "word": "NORTAISE"
+      },
+      {
+        "entropy": 7.329826689044966,
+        "vowels": 5,
+        "word": "NOYAUTES"
+      },
+      {
+        "entropy": 7.907439253620094,
+        "vowels": 4,
+        "word": "NOTERAIS"
+      }
+    ],
     "entropy": 7.808978843232832,
     "vowels": 5,
     "word": "NOUERAIS"
   },
   "N_9": {
+    "alternatives": [
+      {
+        "entropy": 8.245880189347616,
+        "vowels": 6,
+        "word": "NOYAUTEES"
+      },
+      {
+        "entropy": 7.679563867284801,
+        "vowels": 6,
+        "word": "NOYAUTIEZ"
+      },
+      {
+        "entropy": 8.184404658090111,
+        "vowels": 5,
+        "word": "NOIRAUDES"
+      },
+      {
+        "entropy": 8.105790272055332,
+        "vowels": 6,
+        "word": "NEOULAISE"
+      },
+      {
+        "entropy": 8.571671833020932,
+        "vowels": 5,
+        "word": "NAGEOIRES"
+      },
+      {
+        "entropy": 8.616093315506534,
+        "vowels": 5,
+        "word": "NOUATRAIS"
+      },
+      {
+        "entropy": 8.549218052738727,
+        "vowels": 5,
+        "word": "NAUTONIER"
+      },
+      {
+        "entropy": 7.977469556864632,
+        "vowels": 6,
+        "word": "NOYAUTAIS"
+      },
+      {
+        "entropy": 7.915115808197142,
+        "vowels": 5,
+        "word": "NARQUOISE"
+      }
+    ],
     "entropy": 8.852103101221491,
     "vowels": 5,
     "word": "NOTARIEES"
   },
   "O_5": {
+    "alternatives": [
+      {
+        "entropy": 4.453500874073345,
+        "vowels": 4,
+        "word": "OUAIS"
+      },
+      {
+        "entropy": 4.368740983611531,
+        "vowels": 4,
+        "word": "OUIRA"
+      },
+      {
+        "entropy": 4.238730968096571,
+        "vowels": 4,
+        "word": "OUATE"
+      },
+      {
+        "entropy": 4.08134999111162,
+        "vowels": 4,
+        "word": "OYAIS"
+      },
+      {
+        "entropy": 4.892388374788163,
+        "vowels": 3,
+        "word": "ORIEN"
+      },
+      {
+        "entropy": 4.869509650267402,
+        "vowels": 3,
+        "word": "ORTIE"
+      },
+      {
+        "entropy": 4.06793621036529,
+        "vowels": 4,
+        "word": "ORIYA"
+      },
+      {
+        "entropy": 3.9468790868494077,
+        "vowels": 4,
+        "word": "ONAYE"
+      },
+      {
+        "entropy": 4.767447189240692,
+        "vowels": 3,
+        "word": "OSIER"
+      }
+    ],
     "entropy": 4.597133973612392,
     "vowels": 4,
     "word": "OUIES"
   },
   "O_6": {
+    "alternatives": [
+      {
+        "entropy": 6.100531497130161,
+        "vowels": 4,
+        "word": "ORANIE"
+      },
+      {
+        "entropy": 6.111701379187713,
+        "vowels": 4,
+        "word": "OUIRAS"
+      },
+      {
+        "entropy": 6.033030488350031,
+        "vowels": 4,
+        "word": "OTARIE"
+      },
+      {
+        "entropy": 5.897830763658094,
+        "vowels": 4,
+        "word": "OUITES"
+      },
+      {
+        "entropy": 5.773245771717463,
+        "vowels": 4,
+        "word": "OASIEN"
+      },
+      {
+        "entropy": 5.722964076214015,
+        "vowels": 4,
+        "word": "OASITE"
+      },
+      {
+        "entropy": 5.749101213545947,
+        "vowels": 4,
+        "word": "OSERAI"
+      },
+      {
+        "entropy": 5.8493744635001175,
+        "vowels": 4,
+        "word": "OURIAT"
+      },
+      {
+        "entropy": 5.700200786299914,
+        "vowels": 4,
+        "word": "OUATES"
+      }
+    ],
     "entropy": 5.503174514764888,
     "vowels": 5,
     "word": "OISEAU"
   },
   "O_7": {
+    "alternatives": [
+      {
+        "entropy": 7.156796370495442,
+        "vowels": 5,
+        "word": "OURIATE"
+      },
+      {
+        "entropy": 7.022132771684507,
+        "vowels": 5,
+        "word": "OUATINE"
+      },
+      {
+        "entropy": 7.240804479649174,
+        "vowels": 4,
+        "word": "OTARIES"
+      },
+      {
+        "entropy": 6.455983216684506,
+        "vowels": 5,
+        "word": "ORIPEAU"
+      },
+      {
+        "entropy": 7.202642310644649,
+        "vowels": 4,
+        "word": "ORALITE"
+      },
+      {
+        "entropy": 7.170968448698666,
+        "vowels": 4,
+        "word": "ORALISE"
+      },
+      {
+        "entropy": 6.37573240324169,
+        "vowels": 5,
+        "word": "OIRYATE"
+      },
+      {
+        "entropy": 7.206478153174188,
+        "vowels": 4,
+        "word": "OUTRAIS"
+      },
+      {
+        "entropy": 6.395821550987961,
+        "vowels": 5,
+        "word": "OYAIENT"
+      }
+    ],
     "entropy": 7.284025146609989,
     "vowels": 5,
     "word": "OUARINE"
   },
   "O_8": {
-    "entropy": 8.224483284903048,
+    "alternatives": [
+      {
+        "entropy": 7.908771803978894,
+        "vowels": 6,
+        "word": "OUATINEE"
+      },
+      {
+        "entropy": 7.950488427969914,
+        "vowels": 5,
+        "word": "OUATINER"
+      },
+      {
+        "entropy": 7.851718433225255,
+        "vowels": 5,
+        "word": "OURALITE"
+      },
+      {
+        "entropy": 7.755603297458576,
+        "vowels": 5,
+        "word": "OURALIEN"
+      },
+      {
+        "entropy": 8.273382680163099,
+        "vowels": 4,
+        "word": "ORIENTAS"
+      },
+      {
+        "entropy": 7.510891001107998,
+        "vowels": 5,
+        "word": "OUESTIRA"
+      },
+      {
+        "entropy": 8.14072183980519,
+        "vowels": 5,
+        "word": "ORALISEE"
+      },
+      {
+        "entropy": 7.5546000899315064,
+        "vowels": 5,
+        "word": "OCULAIRE"
+      },
+      {
+        "entropy": 7.416431189552863,
+        "vowels": 5,
+        "word": "OIRYATES"
+      }
+    ],
+    "entropy": 8.12259013292546,
     "vowels": 5,
-    "word": "OURIATES"
+    "word": "OUATINES"
   },
   "O_9": {
+    "alternatives": [
+      {
+        "entropy": 8.77728009149726,
+        "vowels": 5,
+        "word": "OURALIENS"
+      },
+      {
+        "entropy": 8.633916136932193,
+        "vowels": 6,
+        "word": "OUIRAIENT"
+      },
+      {
+        "entropy": 8.617145492307344,
+        "vowels": 5,
+        "word": "OURLAIENT"
+      },
+      {
+        "entropy": 8.544796624913703,
+        "vowels": 5,
+        "word": "OCULAIRES"
+      },
+      {
+        "entropy": 8.472320275795573,
+        "vowels": 5,
+        "word": "OUBLIATES"
+      },
+      {
+        "entropy": 8.280509162270723,
+        "vowels": 6,
+        "word": "OUATERAIS"
+      },
+      {
+        "entropy": 8.428581492174159,
+        "vowels": 5,
+        "word": "OUVRAIENT"
+      },
+      {
+        "entropy": 8.257240467730096,
+        "vowels": 6,
+        "word": "OUATERIEZ"
+      },
+      {
+        "entropy": 8.338034864063387,
+        "vowels": 5,
+        "word": "ORLIAGUET"
+      }
+    ],
     "entropy": 8.792775123776185,
     "vowels": 6,
     "word": "OUATINEES"
   },
   "P_5": {
-    "entropy": 5.0786975515832715,
+    "alternatives": [
+      {
+        "entropy": 5.006166559440187,
+        "vowels": 3,
+        "word": "PAIES"
+      },
+      {
+        "entropy": 4.91387881707065,
+        "vowels": 3,
+        "word": "PAIRE"
+      },
+      {
+        "entropy": 4.928068052611511,
+        "vowels": 3,
+        "word": "PALIE"
+      },
+      {
+        "entropy": 4.824749787333608,
+        "vowels": 3,
+        "word": "PAIEN"
+      },
+      {
+        "entropy": 4.774463156930365,
+        "vowels": 3,
+        "word": "PARUE"
+      },
+      {
+        "entropy": 4.716276812449569,
+        "vowels": 3,
+        "word": "PAREO"
+      },
+      {
+        "entropy": 4.757338800083163,
+        "vowels": 3,
+        "word": "PEINA"
+      },
+      {
+        "entropy": 4.722938738225377,
+        "vowels": 3,
+        "word": "PESAI"
+      },
+      {
+        "entropy": 4.747047009551245,
+        "vowels": 3,
+        "word": "POISE"
+      }
+    ],
+    "entropy": 5.078133936444253,
     "vowels": 3,
     "word": "PARIE"
   },
   "P_6": {
-    "entropy": 5.839975011839424,
+    "alternatives": [
+      {
+        "entropy": 5.8231352827954135,
+        "vowels": 4,
+        "word": "PIAULE"
+      },
+      {
+        "entropy": 5.8452281731751246,
+        "vowels": 4,
+        "word": "POULIE"
+      },
+      {
+        "entropy": 5.832164266829707,
+        "vowels": 4,
+        "word": "POILUE"
+      },
+      {
+        "entropy": 5.7367561331088925,
+        "vowels": 4,
+        "word": "PIEUTA"
+      },
+      {
+        "entropy": 5.626127519923402,
+        "vowels": 4,
+        "word": "PUERAI"
+      },
+      {
+        "entropy": 6.501898393018455,
+        "vowels": 3,
+        "word": "PARIES"
+      },
+      {
+        "entropy": 5.640654723976837,
+        "vowels": 4,
+        "word": "POELAI"
+      },
+      {
+        "entropy": 5.59723791372197,
+        "vowels": 4,
+        "word": "POTEAU"
+      },
+      {
+        "entropy": 6.374423277465484,
+        "vowels": 3,
+        "word": "PAIRES"
+      }
+    ],
+    "entropy": 5.841137411041355,
     "vowels": 4,
     "word": "PINEAU"
   },
   "P_7": {
-    "entropy": 6.967674880606537,
+    "alternatives": [
+      {
+        "entropy": 6.63630547180016,
+        "vowels": 5,
+        "word": "PAUMOIE"
+      },
+      {
+        "entropy": 7.452083487979538,
+        "vowels": 4,
+        "word": "POTIANE"
+      },
+      {
+        "entropy": 7.383911594760725,
+        "vowels": 4,
+        "word": "PIAUTES"
+      },
+      {
+        "entropy": 7.4104661620041785,
+        "vowels": 4,
+        "word": "POLAIRE"
+      },
+      {
+        "entropy": 7.396421237751185,
+        "vowels": 4,
+        "word": "PALIURE"
+      },
+      {
+        "entropy": 6.445561623780406,
+        "vowels": 5,
+        "word": "POYAISE"
+      },
+      {
+        "entropy": 7.329427401532285,
+        "vowels": 4,
+        "word": "PATOISE"
+      },
+      {
+        "entropy": 7.369709028602693,
+        "vowels": 4,
+        "word": "POULIES"
+      },
+      {
+        "entropy": 7.326703072510764,
+        "vowels": 4,
+        "word": "PIAUTRE"
+      }
+    ],
+    "entropy": 6.9678660714892215,
     "vowels": 5,
     "word": "POIREAU"
   },
   "P_8": {
-    "entropy": 8.625628503628516,
+    "alternatives": [
+      {
+        "entropy": 8.425308777266045,
+        "vowels": 5,
+        "word": "POULAINE"
+      },
+      {
+        "entropy": 8.312152252931288,
+        "vowels": 5,
+        "word": "POUTAISE"
+      },
+      {
+        "entropy": 8.269113862599141,
+        "vowels": 5,
+        "word": "PAULOISE"
+      },
+      {
+        "entropy": 8.16617201348668,
+        "vowels": 5,
+        "word": "POIRAUTE"
+      },
+      {
+        "entropy": 8.199726138139338,
+        "vowels": 5,
+        "word": "PLOUAISE"
+      },
+      {
+        "entropy": 8.059303384276063,
+        "vowels": 5,
+        "word": "PAUMOIES"
+      },
+      {
+        "entropy": 8.862426290924647,
+        "vowels": 4,
+        "word": "POLAIRES"
+      },
+      {
+        "entropy": 8.049565655300484,
+        "vowels": 5,
+        "word": "POINTEAU"
+      },
+      {
+        "entropy": 7.9514130798516565,
+        "vowels": 5,
+        "word": "POULERAI"
+      }
+    ],
+    "entropy": 8.624543209048891,
     "vowels": 5,
     "word": "PAROUSIE"
   },
   "P_9": {
+    "alternatives": [
+      {
+        "entropy": 9.542559084877835,
+        "vowels": 5,
+        "word": "POULIATES"
+      },
+      {
+        "entropy": 9.411246380054946,
+        "vowels": 5,
+        "word": "POIRAUTES"
+      },
+      {
+        "entropy": 9.35691935745665,
+        "vowels": 5,
+        "word": "POULERAIS"
+      },
+      {
+        "entropy": 9.343082680743303,
+        "vowels": 5,
+        "word": "PLOUERAIS"
+      },
+      {
+        "entropy": 9.211191046895362,
+        "vowels": 5,
+        "word": "POULIERAS"
+      },
+      {
+        "entropy": 9.295440118244416,
+        "vowels": 5,
+        "word": "POULAIENT"
+      },
+      {
+        "entropy": 9.23475591620873,
+        "vowels": 5,
+        "word": "POULERAIT"
+      },
+      {
+        "entropy": 9.857825897745897,
+        "vowels": 4,
+        "word": "PONTAIRES"
+      },
+      {
+        "entropy": 9.06808505418798,
+        "vowels": 6,
+        "word": "POIREAUTE"
+      }
+    ],
     "entropy": 9.573142722029898,
     "vowels": 5,
     "word": "POULAINES"
   },
   "Q_5": {
+    "alternatives": [
+      {
+        "entropy": 3.827819531114783,
+        "vowels": 3,
+        "word": "QUINE"
+      },
+      {
+        "entropy": 3.6647170014624826,
+        "vowels": 3,
+        "word": "QUETA"
+      },
+      {
+        "entropy": 3.9292292966721747,
+        "vowels": 2,
+        "word": "QATES"
+      },
+      {
+        "entropy": 3.8400182662886326,
+        "vowels": 2,
+        "word": "QATER"
+      },
+      {
+        "entropy": 3.2852885811475985,
+        "vowels": 3,
+        "word": "QUASI"
+      },
+      {
+        "entropy": 3.338710641914682,
+        "vowels": 3,
+        "word": "QUITO"
+      },
+      {
+        "entropy": 3.2227885811475985,
+        "vowels": 3,
+        "word": "QUAIS"
+      },
+      {
+        "entropy": 3.9025182662886326,
+        "vowels": 2,
+        "word": "QUINT"
+      },
+      {
+        "entropy": 3.1480898459737485,
+        "vowels": 3,
+        "word": "QUOTA"
+      }
+    ],
     "entropy": 4.015319531114783,
     "vowels": 3,
     "word": "QUIET"
   },
   "Q_6": {
+    "alternatives": [
+      {
+        "entropy": 4.982642190917253,
+        "vowels": 3,
+        "word": "QUETAS"
+      },
+      {
+        "entropy": 4.9047255103299605,
+        "vowels": 3,
+        "word": "QUATRE"
+      },
+      {
+        "entropy": 4.861247249460396,
+        "vowels": 3,
+        "word": "QUARTE"
+      },
+      {
+        "entropy": 4.771254746262646,
+        "vowels": 3,
+        "word": "QUATER"
+      },
+      {
+        "entropy": 4.814308632025702,
+        "vowels": 3,
+        "word": "QUINTE"
+      },
+      {
+        "entropy": 4.180572082853983,
+        "vowels": 4,
+        "word": "QUINOA"
+      },
+      {
+        "entropy": 4.1827114513147166,
+        "vowels": 4,
+        "word": "QUENYA"
+      },
+      {
+        "entropy": 4.741894532163155,
+        "vowels": 3,
+        "word": "QUIRAT"
+      },
+      {
+        "entropy": 4.669284349359531,
+        "vowels": 4,
+        "word": "QUEUTA"
+      }
+    ],
     "entropy": 4.956075806889281,
     "vowels": 4,
     "word": "QUETAI"
   },
   "Q_7": {
+    "alternatives": [
+      {
+        "entropy": 5.329845598414247,
+        "vowels": 5,
+        "word": "QUEUTAI"
+      },
+      {
+        "entropy": 5.392414739081628,
+        "vowels": 4,
+        "word": "QUINOAS"
+      },
+      {
+        "entropy": 4.733766851702672,
+        "vowels": 5,
+        "word": "QUAROYE"
+      },
+      {
+        "entropy": 5.873809577855335,
+        "vowels": 3,
+        "word": "QUATRES"
+      },
+      {
+        "entropy": 5.821246654505056,
+        "vowels": 3,
+        "word": "QUARTES"
+      },
+      {
+        "entropy": 5.1698066136448855,
+        "vowels": 5,
+        "word": "QUEUSAI"
+      },
+      {
+        "entropy": 5.80408006688598,
+        "vowels": 3,
+        "word": "QUANTES"
+      },
+      {
+        "entropy": 5.845404157718216,
+        "vowels": 3,
+        "word": "QUINTAS"
+      },
+      {
+        "entropy": 5.1633154406651105,
+        "vowels": 4,
+        "word": "QUALITE"
+      }
+    ],
     "entropy": 5.681326273848672,
     "vowels": 4,
     "word": "QUETAIS"
   },
   "Q_8": {
+    "alternatives": [
+      {
+        "entropy": 6.649911743971461,
+        "vowels": 5,
+        "word": "QUETAINE"
+      },
+      {
+        "entropy": 6.538416992653879,
+        "vowels": 5,
+        "word": "QUEUTAIS"
+      },
+      {
+        "entropy": 6.147208385701327,
+        "vowels": 5,
+        "word": "QUINTOYE"
+      },
+      {
+        "entropy": 6.554268187651173,
+        "vowels": 4,
+        "word": "QUINTERA"
+      },
+      {
+        "entropy": 6.103824435922388,
+        "vowels": 5,
+        "word": "QUINTOYA"
+      },
+      {
+        "entropy": 6.495576902167016,
+        "vowels": 4,
+        "word": "QUETIONS"
+      },
+      {
+        "entropy": 6.40820799511037,
+        "vowels": 5,
+        "word": "QUEUSAIT"
+      },
+      {
+        "entropy": 6.4366594564111885,
+        "vowels": 4,
+        "word": "QUARTILE"
+      },
+      {
+        "entropy": 6.4080950344922325,
+        "vowels": 5,
+        "word": "QUINTOIE"
+      }
+    ],
     "entropy": 6.760972278096331,
     "vowels": 4,
     "word": "QUARTINE"
   },
   "Q_9": {
+    "alternatives": [
+      {
+        "entropy": 6.807563254616214,
+        "vowels": 5,
+        "word": "QUEANTOIS"
+      },
+      {
+        "entropy": 7.327116094145625,
+        "vowels": 4,
+        "word": "QUARTILES"
+      },
+      {
+        "entropy": 7.3014573143437165,
+        "vowels": 4,
+        "word": "QUINTERAS"
+      },
+      {
+        "entropy": 7.181998074734069,
+        "vowels": 4,
+        "word": "QATERIONS"
+      },
+      {
+        "entropy": 7.262144548341307,
+        "vowels": 4,
+        "word": "QUARTIONS"
+      },
+      {
+        "entropy": 7.196036139037762,
+        "vowels": 5,
+        "word": "QUINTOIES"
+      },
+      {
+        "entropy": 7.2173000481414995,
+        "vowels": 4,
+        "word": "QUINTAMES"
+      },
+      {
+        "entropy": 6.753705351010858,
+        "vowels": 5,
+        "word": "QUINTOYER"
+      },
+      {
+        "entropy": 7.118767540460907,
+        "vowels": 5,
+        "word": "QUARTAINE"
+      }
+    ],
     "entropy": 7.091306050464478,
     "vowels": 5,
     "word": "QUINTOYAS"
   },
   "R_5": {
-    "entropy": 4.660915764944923,
+    "alternatives": [
+      {
+        "entropy": 4.4978803303618,
+        "vowels": 4,
+        "word": "REOUI"
+      },
+      {
+        "entropy": 4.367496450747149,
+        "vowels": 4,
+        "word": "ROUAI"
+      },
+      {
+        "entropy": 4.985055000102104,
+        "vowels": 3,
+        "word": "RAIES"
+      },
+      {
+        "entropy": 4.890447373062175,
+        "vowels": 3,
+        "word": "REAIS"
+      },
+      {
+        "entropy": 4.8967679256739896,
+        "vowels": 3,
+        "word": "ROSIE"
+      },
+      {
+        "entropy": 4.782627357346211,
+        "vowels": 3,
+        "word": "ROIES"
+      },
+      {
+        "entropy": 3.895054103914163,
+        "vowels": 4,
+        "word": "ROYAI"
+      },
+      {
+        "entropy": 4.789848458419984,
+        "vowels": 3,
+        "word": "REOIS"
+      },
+      {
+        "entropy": 4.697810138795597,
+        "vowels": 3,
+        "word": "RENIA"
+      }
+    ],
+    "entropy": 4.661025808751424,
     "vowels": 4,
     "word": "ROUIE"
   },
   "R_6": {
-    "entropy": 5.931864815398956,
+    "alternatives": [
+      {
+        "entropy": 5.757706039124251,
+        "vowels": 4,
+        "word": "ROUIES"
+      },
+      {
+        "entropy": 5.74638710670019,
+        "vowels": 4,
+        "word": "REUSAI"
+      },
+      {
+        "entropy": 5.803168914087863,
+        "vowels": 4,
+        "word": "ROUAIS"
+      },
+      {
+        "entropy": 5.741876782706494,
+        "vowels": 4,
+        "word": "REOUIS"
+      },
+      {
+        "entropy": 5.659002383888703,
+        "vowels": 5,
+        "word": "REOUIE"
+      },
+      {
+        "entropy": 5.735942318790028,
+        "vowels": 4,
+        "word": "RETOUA"
+      },
+      {
+        "entropy": 5.583255978527259,
+        "vowels": 4,
+        "word": "REOSAI"
+      },
+      {
+        "entropy": 5.728318665297641,
+        "vowels": 4,
+        "word": "ROUAIT"
+      },
+      {
+        "entropy": 5.659768141821185,
+        "vowels": 4,
+        "word": "REOUIT"
+      }
+    ],
+    "entropy": 5.831560333821437,
     "vowels": 4,
-    "word": "RESUAI"
+    "word": "RETUAI"
   },
   "R_7": {
-    "entropy": 6.413371132669778,
+    "alternatives": [
+      {
+        "entropy": 6.390160499827184,
+        "vowels": 5,
+        "word": "RELOUAI"
+      },
+      {
+        "entropy": 6.097699561754962,
+        "vowels": 5,
+        "word": "REDOUAI"
+      },
+      {
+        "entropy": 6.0179614113700195,
+        "vowels": 5,
+        "word": "ROYAISE"
+      },
+      {
+        "entropy": 5.998107623056147,
+        "vowels": 5,
+        "word": "REVOUAI"
+      },
+      {
+        "entropy": 6.960813872007067,
+        "vowels": 4,
+        "word": "RESITUA"
+      },
+      {
+        "entropy": 6.866494165406308,
+        "vowels": 4,
+        "word": "ROTAISE"
+      },
+      {
+        "entropy": 6.778933866230864,
+        "vowels": 5,
+        "word": "REOUIES"
+      },
+      {
+        "entropy": 5.816371051834054,
+        "vowels": 5,
+        "word": "REOYAIS"
+      },
+      {
+        "entropy": 6.811168141613057,
+        "vowels": 4,
+        "word": "RETUAIS"
+      }
+    ],
+    "entropy": 6.414006216684483,
     "vowels": 5,
     "word": "RENOUAI"
   },
   "R_8": {
-    "entropy": 7.752707456878384,
+    "alternatives": [
+      {
+        "entropy": 7.6114431814204515,
+        "vowels": 5,
+        "word": "RENOUAIS"
+      },
+      {
+        "entropy": 7.586814684975428,
+        "vowels": 5,
+        "word": "RELOUAIS"
+      },
+      {
+        "entropy": 7.584684132231185,
+        "vowels": 5,
+        "word": "RESOULAI"
+      },
+      {
+        "entropy": 7.506607533539547,
+        "vowels": 5,
+        "word": "RENOUAIT"
+      },
+      {
+        "entropy": 7.503421471412092,
+        "vowels": 5,
+        "word": "ROUAIENT"
+      },
+      {
+        "entropy": 7.515252277725701,
+        "vowels": 5,
+        "word": "RELOUAIT"
+      },
+      {
+        "entropy": 7.511758367708138,
+        "vowels": 5,
+        "word": "RESOUCIA"
+      },
+      {
+        "entropy": 7.487531601141374,
+        "vowels": 5,
+        "word": "RECOUTAI"
+      },
+      {
+        "entropy": 7.449008915919415,
+        "vowels": 5,
+        "word": "RECOUINA"
+      }
+    ],
+    "entropy": 7.752181075956818,
     "vowels": 5,
     "word": "RETOUAIS"
   },
   "R_9": {
-    "entropy": 8.895693580831633,
+    "alternatives": [
+      {
+        "entropy": 8.726827336879532,
+        "vowels": 5,
+        "word": "RESOULAIT"
+      },
+      {
+        "entropy": 8.70115600456916,
+        "vowels": 5,
+        "word": "REBOUISAT"
+      },
+      {
+        "entropy": 8.681584591275014,
+        "vowels": 5,
+        "word": "RECOUSINA"
+      },
+      {
+        "entropy": 8.662408660550355,
+        "vowels": 5,
+        "word": "RECOUSAIT"
+      },
+      {
+        "entropy": 8.643072281630051,
+        "vowels": 5,
+        "word": "RECOULAIS"
+      },
+      {
+        "entropy": 8.436705565532698,
+        "vowels": 6,
+        "word": "REOUATAIS"
+      },
+      {
+        "entropy": 8.600108569930615,
+        "vowels": 5,
+        "word": "RECLOUAIS"
+      },
+      {
+        "entropy": 8.571454742106553,
+        "vowels": 5,
+        "word": "REFOUINAS"
+      },
+      {
+        "entropy": 8.5451314334515,
+        "vowels": 5,
+        "word": "RETOUPAIS"
+      }
+    ],
+    "entropy": 8.726337878398656,
     "vowels": 5,
-    "word": "RESOUCIAT"
+    "word": "RABOUTIES"
   },
   "S_5": {
+    "alternatives": [
+      {
+        "entropy": 4.871599243805113,
+        "vowels": 3,
+        "word": "SAURE"
+      },
+      {
+        "entropy": 4.815154627149731,
+        "vowels": 3,
+        "word": "SERIA"
+      },
+      {
+        "entropy": 4.8188351214958285,
+        "vowels": 3,
+        "word": "SAINE"
+      },
+      {
+        "entropy": 4.799321537814841,
+        "vowels": 3,
+        "word": "SANIE"
+      },
+      {
+        "entropy": 4.746600936315807,
+        "vowels": 3,
+        "word": "SERAI"
+      },
+      {
+        "entropy": 4.785957188394625,
+        "vowels": 3,
+        "word": "SAUTE"
+      },
+      {
+        "entropy": 4.71739497171595,
+        "vowels": 3,
+        "word": "SALIE"
+      },
+      {
+        "entropy": 4.762714314825702,
+        "vowels": 3,
+        "word": "SAUNE"
+      },
+      {
+        "entropy": 4.723219571194613,
+        "vowels": 3,
+        "word": "SURIE"
+      }
+    ],
     "entropy": 4.856845098016926,
     "vowels": 3,
     "word": "SAITE"
   },
   "S_6": {
+    "alternatives": [
+      {
+        "entropy": 6.078147647564017,
+        "vowels": 4,
+        "word": "SUAIRE"
+      },
+      {
+        "entropy": 6.016624977446354,
+        "vowels": 4,
+        "word": "SOURIE"
+      },
+      {
+        "entropy": 5.780635325599069,
+        "vowels": 4,
+        "word": "SUERAI"
+      },
+      {
+        "entropy": 5.6821801154432,
+        "vowels": 4,
+        "word": "SINEAU"
+      },
+      {
+        "entropy": 5.661767481526176,
+        "vowels": 4,
+        "word": "SAOULE"
+      },
+      {
+        "entropy": 5.695039484848286,
+        "vowels": 4,
+        "word": "SOUTAI"
+      },
+      {
+        "entropy": 5.6137155634237486,
+        "vowels": 4,
+        "word": "SOUCIE"
+      },
+      {
+        "entropy": 5.445349130094186,
+        "vowels": 4,
+        "word": "SAYIEN"
+      },
+      {
+        "entropy": 5.481342449750846,
+        "vowels": 4,
+        "word": "SOULAI"
+      }
+    ],
     "entropy": 6.369490800116917,
     "vowels": 4,
     "word": "SAURIE"
   },
   "S_7": {
-    "entropy": 7.611733999230073,
+    "alternatives": [
+      {
+        "entropy": 7.553362646383361,
+        "vowels": 4,
+        "word": "SAUNIER"
+      },
+      {
+        "entropy": 6.546860876193353,
+        "vowels": 5,
+        "word": "SECOUAI"
+      },
+      {
+        "entropy": 7.436303006335901,
+        "vowels": 4,
+        "word": "SOUTIRE"
+      },
+      {
+        "entropy": 7.401151730807541,
+        "vowels": 4,
+        "word": "SOUTIER"
+      },
+      {
+        "entropy": 7.370317999044868,
+        "vowels": 4,
+        "word": "SOITURE"
+      },
+      {
+        "entropy": 7.287945869204593,
+        "vowels": 4,
+        "word": "SAUCIER"
+      },
+      {
+        "entropy": 7.271519622428355,
+        "vowels": 4,
+        "word": "SOURATE"
+      },
+      {
+        "entropy": 7.333951269278708,
+        "vowels": 4,
+        "word": "SOUTIEN"
+      },
+      {
+        "entropy": 7.271267115097745,
+        "vowels": 4,
+        "word": "SUAIENT"
+      }
+    ],
+    "entropy": 7.610806013590522,
     "vowels": 4,
     "word": "SAURIEN"
   },
   "S_8": {
-    "entropy": 8.234425912196723,
+    "alternatives": [
+      {
+        "entropy": 8.043518766250557,
+        "vowels": 5,
+        "word": "SAGOUINE"
+      },
+      {
+        "entropy": 7.944713947797267,
+        "vowels": 5,
+        "word": "SOULERAI"
+      },
+      {
+        "entropy": 7.985428437338841,
+        "vowels": 5,
+        "word": "SOUDAINE"
+      },
+      {
+        "entropy": 8.725352161088471,
+        "vowels": 5,
+        "word": "SOUTIREE"
+      },
+      {
+        "entropy": 7.900596363244908,
+        "vowels": 5,
+        "word": "SECOUAIT"
+      },
+      {
+        "entropy": 7.883456862306806,
+        "vowels": 5,
+        "word": "SOUCIERA"
+      },
+      {
+        "entropy": 7.861816609387489,
+        "vowels": 5,
+        "word": "SAOUDITE"
+      },
+      {
+        "entropy": 8.563434858731583,
+        "vowels": 5,
+        "word": "SAUTERIE"
+      },
+      {
+        "entropy": 8.649195397690123,
+        "vowels": 4,
+        "word": "SAULTIER"
+      }
+    ],
+    "entropy": 8.081654231073738,
     "vowels": 5,
-    "word": "SOUCIATE"
+    "word": "SOUTERAI"
   },
   "S_9": {
+    "alternatives": [
+      {
+        "entropy": 9.325947550447413,
+        "vowels": 5,
+        "word": "SOULERAIT"
+      },
+      {
+        "entropy": 9.329857923389397,
+        "vowels": 5,
+        "word": "SOULAIENT"
+      },
+      {
+        "entropy": 9.235934333588784,
+        "vowels": 5,
+        "word": "SOULIERAT"
+      },
+      {
+        "entropy": 9.093336116133536,
+        "vowels": 5,
+        "word": "SECOURAIT"
+      },
+      {
+        "entropy": 9.144704090853002,
+        "vowels": 5,
+        "word": "SAGOUTIER"
+      },
+      {
+        "entropy": 9.170108412181492,
+        "vowels": 5,
+        "word": "SOUTIRAGE"
+      },
+      {
+        "entropy": 9.08160704960334,
+        "vowels": 5,
+        "word": "SOUPAIENT"
+      },
+      {
+        "entropy": 9.050290803464396,
+        "vowels": 5,
+        "word": "SOUPERAIT"
+      },
+      {
+        "entropy": 9.039446071402821,
+        "vowels": 5,
+        "word": "SAFOUTIER"
+      }
+    ],
     "entropy": 9.39994972672018,
     "vowels": 5,
     "word": "SOURIANTE"
   },
   "T_5": {
+    "alternatives": [
+      {
+        "entropy": 4.309810900306096,
+        "vowels": 4,
+        "word": "TOUAI"
+      },
+      {
+        "entropy": 5.079107602219357,
+        "vowels": 3,
+        "word": "TAIRE"
+      },
+      {
+        "entropy": 4.937066306032998,
+        "vowels": 3,
+        "word": "TAIES"
+      },
+      {
+        "entropy": 4.963580714899971,
+        "vowels": 3,
+        "word": "TRAIE"
+      },
+      {
+        "entropy": 4.919941415350854,
+        "vowels": 3,
+        "word": "TIARE"
+      },
+      {
+        "entropy": 4.926400052908705,
+        "vowels": 3,
+        "word": "TOREA"
+      },
+      {
+        "entropy": 4.904926064082155,
+        "vowels": 3,
+        "word": "TAISE"
+      },
+      {
+        "entropy": 4.913807076004988,
+        "vowels": 3,
+        "word": "TAURE"
+      },
+      {
+        "entropy": 4.83972144765318,
+        "vowels": 3,
+        "word": "TRUIE"
+      }
+    ],
     "entropy": 5.166235585582351,
     "vowels": 3,
     "word": "TARIE"
   },
   "T_6": {
-    "entropy": 5.985554425610282,
+    "alternatives": [
+      {
+        "entropy": 5.955929177521863,
+        "vowels": 4,
+        "word": "TOURIE"
+      },
+      {
+        "entropy": 5.786972049607025,
+        "vowels": 4,
+        "word": "TUERAI"
+      },
+      {
+        "entropy": 5.816605225569663,
+        "vowels": 4,
+        "word": "TROUAI"
+      },
+      {
+        "entropy": 5.734893313684468,
+        "vowels": 4,
+        "word": "TOUAIS"
+      },
+      {
+        "entropy": 5.74544539917845,
+        "vowels": 4,
+        "word": "TOURAI"
+      },
+      {
+        "entropy": 6.4852443522639724,
+        "vowels": 3,
+        "word": "TARIES"
+      },
+      {
+        "entropy": 5.64419037918477,
+        "vowels": 4,
+        "word": "TOUERA"
+      },
+      {
+        "entropy": 5.6678998731423285,
+        "vowels": 4,
+        "word": "TAOUIN"
+      },
+      {
+        "entropy": 6.428023141171645,
+        "vowels": 3,
+        "word": "TARINE"
+      }
+    ],
+    "entropy": 5.984024650553168,
     "vowels": 4,
     "word": "TOREAI"
   },
   "T_7": {
-    "entropy": 6.820578801357712,
+    "alternatives": [
+      {
+        "entropy": 7.473487876544764,
+        "vowels": 4,
+        "word": "TAURINE"
+      },
+      {
+        "entropy": 7.332310976250225,
+        "vowels": 4,
+        "word": "TOREAIS"
+      },
+      {
+        "entropy": 7.344027591425351,
+        "vowels": 4,
+        "word": "TROUAIS"
+      },
+      {
+        "entropy": 7.219587374448405,
+        "vowels": 4,
+        "word": "TAULIER"
+      },
+      {
+        "entropy": 7.2355589505624565,
+        "vowels": 4,
+        "word": "TOURAIS"
+      },
+      {
+        "entropy": 7.141856026787217,
+        "vowels": 4,
+        "word": "TUERAIS"
+      },
+      {
+        "entropy": 7.156434715112389,
+        "vowels": 4,
+        "word": "TOISERA"
+      },
+      {
+        "entropy": 7.186914135386781,
+        "vowels": 4,
+        "word": "TOISEUR"
+      },
+      {
+        "entropy": 7.048697216175359,
+        "vowels": 4,
+        "word": "TOUERAS"
+      }
+    ],
+    "entropy": 6.820310621891369,
     "vowels": 5,
     "word": "TOUERAI"
   },
   "T_8": {
-    "entropy": 8.288162410624732,
+    "alternatives": [
+      {
+        "entropy": 8.092617022684012,
+        "vowels": 5,
+        "word": "TOUERAIS"
+      },
+      {
+        "entropy": 8.082474142394078,
+        "vowels": 5,
+        "word": "TOURAISE"
+      },
+      {
+        "entropy": 8.622222986046495,
+        "vowels": 4,
+        "word": "TAURINES"
+      },
+      {
+        "entropy": 7.620009775483115,
+        "vowels": 5,
+        "word": "TABOUISE"
+      },
+      {
+        "entropy": 8.42442941083009,
+        "vowels": 4,
+        "word": "TOURAINS"
+      },
+      {
+        "entropy": 8.292918589749839,
+        "vowels": 4,
+        "word": "TAULIERS"
+      },
+      {
+        "entropy": 8.352442589608755,
+        "vowels": 4,
+        "word": "TRUNOISE"
+      },
+      {
+        "entropy": 8.1948652946281,
+        "vowels": 4,
+        "word": "TOILERAS"
+      },
+      {
+        "entropy": 8.21990948125387,
+        "vowels": 4,
+        "word": "TAUPINES"
+      }
+    ],
+    "entropy": 8.285786079240847,
     "vowels": 5,
     "word": "TOURAINE"
   },
   "T_9": {
+    "alternatives": [
+      {
+        "entropy": 8.976886972811084,
+        "vowels": 5,
+        "word": "TOURNAISE"
+      },
+      {
+        "entropy": 8.759196573433506,
+        "vowels": 6,
+        "word": "TABOUISEE"
+      },
+      {
+        "entropy": 8.681851635879983,
+        "vowels": 5,
+        "word": "TECOUNAIS"
+      },
+      {
+        "entropy": 8.659482628517367,
+        "vowels": 5,
+        "word": "TABOUISER"
+      },
+      {
+        "entropy": 8.661976681433018,
+        "vowels": 5,
+        "word": "TOURBAINE"
+      },
+      {
+        "entropy": 9.26009420074153,
+        "vowels": 5,
+        "word": "TROUAIENT"
+      },
+      {
+        "entropy": 9.18080253999321,
+        "vowels": 5,
+        "word": "TAULIERES"
+      },
+      {
+        "entropy": 9.281198711310966,
+        "vowels": 5,
+        "word": "TROUANAIS"
+      },
+      {
+        "entropy": 8.602260313957643,
+        "vowels": 5,
+        "word": "TROUPIALE"
+      }
+    ],
     "entropy": 9.329059455989587,
     "vowels": 5,
     "word": "TOURAINES"
   },
   "U_5": {
+    "alternatives": [
+      {
+        "entropy": 4.690834494751313,
+        "vowels": 3,
+        "word": "URANE"
+      },
+      {
+        "entropy": 4.737698427512942,
+        "vowels": 3,
+        "word": "USINE"
+      },
+      {
+        "entropy": 4.641706494435101,
+        "vowels": 3,
+        "word": "URINE"
+      },
+      {
+        "entropy": 4.621106186434703,
+        "vowels": 3,
+        "word": "USERA"
+      },
+      {
+        "entropy": 4.622455719814566,
+        "vowels": 3,
+        "word": "UNIAS"
+      },
+      {
+        "entropy": 4.62380525319443,
+        "vowels": 3,
+        "word": "USINA"
+      },
+      {
+        "entropy": 4.507392514067562,
+        "vowels": 3,
+        "word": "USITE"
+      },
+      {
+        "entropy": 4.313456574766812,
+        "vowels": 3,
+        "word": "URATE"
+      },
+      {
+        "entropy": 4.320232368779427,
+        "vowels": 3,
+        "word": "URIEL"
+      }
+    ],
     "entropy": 4.7771536239797525,
     "vowels": 3,
     "word": "UNIES"
   },
   "U_6": {
+    "alternatives": [
+      {
+        "entropy": 5.745085117093808,
+        "vowels": 4,
+        "word": "URANIE"
+      },
+      {
+        "entropy": 5.704302931775618,
+        "vowels": 4,
+        "word": "UNAIRE"
+      },
+      {
+        "entropy": 5.654058661801643,
+        "vowels": 4,
+        "word": "USERAI"
+      },
+      {
+        "entropy": 5.623906598915576,
+        "vowels": 4,
+        "word": "UNIATE"
+      },
+      {
+        "entropy": 5.986032213742744,
+        "vowels": 3,
+        "word": "URANES"
+      },
+      {
+        "entropy": 5.995823710292096,
+        "vowels": 3,
+        "word": "URINES"
+      },
+      {
+        "entropy": 5.296741145875892,
+        "vowels": 4,
+        "word": "UROISE"
+      },
+      {
+        "entropy": 5.886216724806764,
+        "vowels": 3,
+        "word": "URATES"
+      },
+      {
+        "entropy": 5.958472995529002,
+        "vowels": 3,
+        "word": "USITER"
+      }
+    ],
     "entropy": 5.845250028424553,
     "vowels": 4,
     "word": "URIASE"
   },
   "U_7": {
+    "alternatives": [
+      {
+        "entropy": 6.780982862747184,
+        "vowels": 4,
+        "word": "URANITE"
+      },
+      {
+        "entropy": 6.606426438570003,
+        "vowels": 4,
+        "word": "USINERA"
+      },
+      {
+        "entropy": 6.550334000867668,
+        "vowels": 4,
+        "word": "USERAIT"
+      },
+      {
+        "entropy": 6.488151185036258,
+        "vowels": 4,
+        "word": "USAIENT"
+      },
+      {
+        "entropy": 6.437081309641324,
+        "vowels": 4,
+        "word": "URBAINE"
+      },
+      {
+        "entropy": 6.374398489612913,
+        "vowels": 4,
+        "word": "URTOISE"
+      },
+      {
+        "entropy": 6.92914068512126,
+        "vowels": 4,
+        "word": "URINEES"
+      },
+      {
+        "entropy": 6.312272444143231,
+        "vowels": 4,
+        "word": "ULNAIRE"
+      },
+      {
+        "entropy": 6.259235815023773,
+        "vowels": 4,
+        "word": "UNIPARE"
+      }
+    ],
     "entropy": 6.708278883068839,
     "vowels": 4,
     "word": "UNAIRES"
   },
   "U_8": {
+    "alternatives": [
+      {
+        "entropy": 7.188416311776626,
+        "vowels": 4,
+        "word": "URANISTE"
+      },
+      {
+        "entropy": 7.145480941836283,
+        "vowels": 4,
+        "word": "URINAMES"
+      },
+      {
+        "entropy": 7.118661830283914,
+        "vowels": 4,
+        "word": "URANIDES"
+      },
+      {
+        "entropy": 7.066887759982341,
+        "vowels": 4,
+        "word": "URBAINES"
+      },
+      {
+        "entropy": 6.966727301480161,
+        "vowels": 5,
+        "word": "UNITAIRE"
+      },
+      {
+        "entropy": 6.895841560229735,
+        "vowels": 4,
+        "word": "URANISME"
+      },
+      {
+        "entropy": 6.766969965483788,
+        "vowels": 4,
+        "word": "ULMARINE"
+      },
+      {
+        "entropy": 6.659771025033249,
+        "vowels": 5,
+        "word": "USINERAI"
+      },
+      {
+        "entropy": 6.731712799968031,
+        "vowels": 4,
+        "word": "URDENOIS"
+      }
+    ],
     "entropy": 7.322154030688198,
     "vowels": 4,
     "word": "URINATES"
   },
   "U_9": {
+    "alternatives": [
+      {
+        "entropy": 7.157436825288233,
+        "vowels": 5,
+        "word": "UROLAGNIE"
+      },
+      {
+        "entropy": 7.499447797991829,
+        "vowels": 5,
+        "word": "UNITAIRES"
+      },
+      {
+        "entropy": 7.083006191804913,
+        "vowels": 5,
+        "word": "ULCOTAISE"
+      },
+      {
+        "entropy": 7.450110371816631,
+        "vowels": 5,
+        "word": "USERAIENT"
+      },
+      {
+        "entropy": 6.986455685991897,
+        "vowels": 5,
+        "word": "UROMANCIE"
+      },
+      {
+        "entropy": 7.3700521468861915,
+        "vowels": 5,
+        "word": "USURAIENT"
+      },
+      {
+        "entropy": 7.283367929922624,
+        "vowels": 5,
+        "word": "USINERAIT"
+      },
+      {
+        "entropy": 7.252585067481321,
+        "vowels": 5,
+        "word": "URBANISEE"
+      },
+      {
+        "entropy": 7.25489902307012,
+        "vowels": 5,
+        "word": "URGEAIENT"
+      }
+    ],
     "entropy": 7.126177400612766,
     "vowels": 6,
     "word": "ULIACOISE"
   },
   "V_5": {
+    "alternatives": [
+      {
+        "entropy": 4.132102404559035,
+        "vowels": 4,
+        "word": "VOUAI"
+      },
+      {
+        "entropy": 4.830754959670381,
+        "vowels": 3,
+        "word": "VERIA"
+      },
+      {
+        "entropy": 4.7397109548067995,
+        "vowels": 3,
+        "word": "VAIRE"
+      },
+      {
+        "entropy": 4.5981665176648825,
+        "vowels": 3,
+        "word": "VAINE"
+      },
+      {
+        "entropy": 4.61139802800729,
+        "vowels": 3,
+        "word": "VOIRE"
+      },
+      {
+        "entropy": 4.53965960935646,
+        "vowels": 3,
+        "word": "VRAIE"
+      },
+      {
+        "entropy": 4.541514965896722,
+        "vowels": 3,
+        "word": "VIANE"
+      },
+      {
+        "entropy": 4.536552272063011,
+        "vowels": 3,
+        "word": "VEINA"
+      },
+      {
+        "entropy": 4.5041525438818475,
+        "vowels": 3,
+        "word": "VOIES"
+      }
+    ],
     "entropy": 4.911348044017653,
     "vowels": 3,
     "word": "VARIE"
   },
   "V_6": {
+    "alternatives": [
+      {
+        "entropy": 5.62888981832767,
+        "vowels": 4,
+        "word": "VOUAIS"
+      },
+      {
+        "entropy": 6.242727458656853,
+        "vowels": 3,
+        "word": "VASIER"
+      },
+      {
+        "entropy": 6.077929984409627,
+        "vowels": 4,
+        "word": "VARIEE"
+      },
+      {
+        "entropy": 5.446420262255243,
+        "vowels": 4,
+        "word": "VOUAIT"
+      },
+      {
+        "entropy": 6.145038512994171,
+        "vowels": 3,
+        "word": "VAINES"
+      },
+      {
+        "entropy": 6.116093796812848,
+        "vowels": 3,
+        "word": "VENAIS"
+      },
+      {
+        "entropy": 6.0791245261621105,
+        "vowels": 3,
+        "word": "VEINAS"
+      },
+      {
+        "entropy": 5.3016261122175194,
+        "vowels": 4,
+        "word": "VOUTAI"
+      },
+      {
+        "entropy": 5.1624167450506295,
+        "vowels": 4,
+        "word": "VOUERA"
+      }
+    ],
     "entropy": 6.4039325852452595,
     "vowels": 3,
     "word": "VARIES"
   },
   "V_7": {
-    "entropy": 6.454003987042207,
+    "alternatives": [
+      {
+        "entropy": 7.325909823893844,
+        "vowels": 4,
+        "word": "VARIOLE"
+      },
+      {
+        "entropy": 7.124811480784379,
+        "vowels": 4,
+        "word": "VAURIEN"
+      },
+      {
+        "entropy": 7.221214719269896,
+        "vowels": 4,
+        "word": "VIULANE"
+      },
+      {
+        "entropy": 7.113524851654928,
+        "vowels": 4,
+        "word": "VALOISE"
+      },
+      {
+        "entropy": 7.065525822428361,
+        "vowels": 4,
+        "word": "VAULIER"
+      },
+      {
+        "entropy": 7.030737392297361,
+        "vowels": 4,
+        "word": "VEULAIS"
+      },
+      {
+        "entropy": 7.025748116973367,
+        "vowels": 4,
+        "word": "VEUROIS"
+      },
+      {
+        "entropy": 6.942658262124608,
+        "vowels": 4,
+        "word": "VOISERA"
+      },
+      {
+        "entropy": 6.9305037889959005,
+        "vowels": 4,
+        "word": "VEROTAI"
+      }
+    ],
+    "entropy": 6.454227750894432,
     "vowels": 5,
     "word": "VOUERAI"
   },
   "V_8": {
+    "alternatives": [
+      {
+        "entropy": 7.777882249078194,
+        "vowels": 5,
+        "word": "VEAUNOIS"
+      },
+      {
+        "entropy": 7.78787416777954,
+        "vowels": 5,
+        "word": "VOUAIENT"
+      },
+      {
+        "entropy": 7.687723355232568,
+        "vowels": 5,
+        "word": "VOUERAIT"
+      },
+      {
+        "entropy": 8.323245687626898,
+        "vowels": 4,
+        "word": "VELAROIS"
+      },
+      {
+        "entropy": 8.273394465239011,
+        "vowels": 4,
+        "word": "VERONAIS"
+      },
+      {
+        "entropy": 7.590852219460647,
+        "vowels": 5,
+        "word": "VOUTERAI"
+      },
+      {
+        "entropy": 7.6049345589323005,
+        "vowels": 5,
+        "word": "VELOUTAI"
+      },
+      {
+        "entropy": 8.333971321650985,
+        "vowels": 4,
+        "word": "VARNOISE"
+      },
+      {
+        "entropy": 8.2676719362452,
+        "vowels": 4,
+        "word": "VEROLAIS"
+      }
+    ],
     "entropy": 7.805517150234721,
     "vowels": 5,
     "word": "VOUERAIS"
   },
   "V_9": {
+    "alternatives": [
+      {
+        "entropy": 8.89419489213976,
+        "vowels": 5,
+        "word": "VALOUSIEN"
+      },
+      {
+        "entropy": 8.780368677748177,
+        "vowels": 5,
+        "word": "VOUTERAIS"
+      },
+      {
+        "entropy": 8.853466800246485,
+        "vowels": 5,
+        "word": "VOULTAINE"
+      },
+      {
+        "entropy": 9.37820738713448,
+        "vowels": 4,
+        "word": "VERIATONS"
+      },
+      {
+        "entropy": 8.735838372034783,
+        "vowels": 5,
+        "word": "VOULAIENT"
+      },
+      {
+        "entropy": 9.362648345898654,
+        "vowels": 4,
+        "word": "VIROLATES"
+      },
+      {
+        "entropy": 9.353183974943098,
+        "vowels": 5,
+        "word": "VARIOLINE"
+      },
+      {
+        "entropy": 9.342479844812257,
+        "vowels": 5,
+        "word": "VIRIOLANE"
+      },
+      {
+        "entropy": 9.299194973449515,
+        "vowels": 4,
+        "word": "VOLTAIRES"
+      }
+    ],
     "entropy": 8.84092484549165,
     "vowels": 5,
     "word": "VELOUTAIS"
   },
   "W_5": {
+    "alternatives": [
+      {
+        "entropy": 3.8605295324716318,
+        "vowels": 2,
+        "word": "WIPES"
+      },
+      {
+        "entropy": 3.7602502466337198,
+        "vowels": 2,
+        "word": "WHITE"
+      },
+      {
+        "entropy": 3.6215430188544806,
+        "vowels": 2,
+        "word": "WATER"
+      },
+      {
+        "entropy": 3.7358287331401954,
+        "vowels": 2,
+        "word": "WIPAS"
+      },
+      {
+        "entropy": 3.542831947364096,
+        "vowels": 2,
+        "word": "WICHE"
+      },
+      {
+        "entropy": 3.40346507426188,
+        "vowels": 3,
+        "word": "WIPEE"
+      },
+      {
+        "entropy": 3.446601502956935,
+        "vowels": 2,
+        "word": "WIPER"
+      },
+      {
+        "entropy": 3.413880159307602,
+        "vowels": 2,
+        "word": "WEIRD"
+      },
+      {
+        "entropy": 3.4389613181241043,
+        "vowels": 2,
+        "word": "WISON"
+      }
+    ],
     "entropy": 3.7998737308598,
     "vowels": 2,
     "word": "WASTE"
   },
   "W_6": {
+    "alternatives": [
+      {
+        "entropy": 4.587666303702385,
+        "vowels": 3,
+        "word": "WALOIS"
+      },
+      {
+        "entropy": 4.521953643641606,
+        "vowels": 3,
+        "word": "WIPERA"
+      },
+      {
+        "entropy": 4.500850041983359,
+        "vowels": 3,
+        "word": "WIMYEN"
+      },
+      {
+        "entropy": 4.334472389597194,
+        "vowels": 3,
+        "word": "WEIMAR"
+      },
+      {
+        "entropy": 4.549235685581213,
+        "vowels": 2,
+        "word": "WATERS"
+      },
+      {
+        "entropy": 4.57104850723889,
+        "vowels": 2,
+        "word": "WICRES"
+      },
+      {
+        "entropy": 4.65163982083488,
+        "vowels": 2,
+        "word": "WIPENT"
+      },
+      {
+        "entropy": 4.579357405470636,
+        "vowels": 2,
+        "word": "WIPANT"
+      },
+      {
+        "entropy": 3.9419058720056057,
+        "vowels": 4,
+        "word": "WILAYA"
+      }
+    ],
     "entropy": 4.595928694092457,
     "vowels": 3,
     "word": "WOIREL"
   },
   "W_7": {
+    "alternatives": [
+      {
+        "entropy": 5.730343346957444,
+        "vowels": 3,
+        "word": "WASTIEN"
+      },
+      {
+        "entropy": 5.432091690304871,
+        "vowels": 3,
+        "word": "WIPERAS"
+      },
+      {
+        "entropy": 5.4414979439329,
+        "vowels": 3,
+        "word": "WAZIERS"
+      },
+      {
+        "entropy": 5.480595684870689,
+        "vowels": 3,
+        "word": "WIPAMES"
+      },
+      {
+        "entropy": 5.3980082996625764,
+        "vowels": 3,
+        "word": "WIPATES"
+      },
+      {
+        "entropy": 5.422996660158324,
+        "vowels": 3,
+        "word": "WARLUIS"
+      },
+      {
+        "entropy": 5.4758925580566755,
+        "vowels": 3,
+        "word": "WIMYENS"
+      },
+      {
+        "entropy": 5.427699786972338,
+        "vowels": 3,
+        "word": "WALHEIM"
+      },
+      {
+        "entropy": 5.230536799302454,
+        "vowels": 4,
+        "word": "WILAYAS"
+      }
+    ],
     "entropy": 5.446900124845029,
     "vowels": 4,
     "word": "WALOISE"
   },
   "W_8": {
+    "alternatives": [
+      {
+        "entropy": 5.811891640885051,
+        "vowels": 4,
+        "word": "WATERZOI"
+      },
+      {
+        "entropy": 6.231057204631751,
+        "vowels": 4,
+        "word": "WICROISE"
+      },
+      {
+        "entropy": 6.1330179889454755,
+        "vowels": 4,
+        "word": "WASNOISE"
+      },
+      {
+        "entropy": 6.093802302670967,
+        "vowels": 3,
+        "word": "WIPERONS"
+      },
+      {
+        "entropy": 6.183461587256523,
+        "vowels": 3,
+        "word": "WISHBONE"
+      },
+      {
+        "entropy": 5.647471053304982,
+        "vowels": 4,
+        "word": "WALKYRIE"
+      },
+      {
+        "entropy": 5.588078685754557,
+        "vowels": 4,
+        "word": "WEMOTACI"
+      },
+      {
+        "entropy": 6.059392743805017,
+        "vowels": 3,
+        "word": "WIPERONT"
+      },
+      {
+        "entropy": 5.9529735970180235,
+        "vowels": 4,
+        "word": "WALLONIE"
+      }
+    ],
     "entropy": 5.984788425428185,
     "vowels": 5,
     "word": "WEYEROIS"
   },
   "W_9": {
+    "alternatives": [
+      {
+        "entropy": 6.595088850604771,
+        "vowels": 4,
+        "word": "WARLUSIEN"
+      },
+      {
+        "entropy": 6.607264455478376,
+        "vowels": 4,
+        "word": "WARHEMOIS"
+      },
+      {
+        "entropy": 6.474278770029399,
+        "vowels": 5,
+        "word": "WAMINOISE"
+      },
+      {
+        "entropy": 6.270373830391139,
+        "vowels": 4,
+        "word": "WALCKOISE"
+      },
+      {
+        "entropy": 6.184969875021922,
+        "vowels": 4,
+        "word": "WARCQUINE"
+      },
+      {
+        "entropy": 6.500449032108726,
+        "vowels": 5,
+        "word": "WOIRELOIS"
+      },
+      {
+        "entropy": 6.165563649565739,
+        "vowels": 4,
+        "word": "WYLDEROIS"
+      },
+      {
+        "entropy": 6.5527895562673795,
+        "vowels": 4,
+        "word": "WIZERNOIS"
+      },
+      {
+        "entropy": 6.4882734272351215,
+        "vowels": 4,
+        "word": "WANGENOIS"
+      }
+    ],
     "entropy": 6.593269798272653,
     "vowels": 5,
     "word": "WAZIEROIS"
   },
   "X_5": {
+    "alternatives": [
+      {
+        "entropy": 3.521640636343318,
+        "vowels": 2,
+        "word": "XVIES"
+      },
+      {
+        "entropy": 3.378783493486175,
+        "vowels": 3,
+        "word": "XIIES"
+      },
+      {
+        "entropy": 3.3248629576173565,
+        "vowels": 3,
+        "word": "XVIIE"
+      },
+      {
+        "entropy": 3.039148671903071,
+        "vowels": 4,
+        "word": "XIIIE"
+      },
+      {
+        "entropy": 3.521640636343318,
+        "vowels": 2,
+        "word": "XIXES"
+      },
+      {
+        "entropy": 3.3787834934861753,
+        "vowels": 2,
+        "word": "XXIES"
+      },
+      {
+        "entropy": 2.556656707462823,
+        "vowels": 2,
+        "word": "XYSTE"
+      },
+      {
+        "entropy": 2.610577243331642,
+        "vowels": 2,
+        "word": "XIPHO"
+      },
+      {
+        "entropy": 2.4956029237290127,
+        "vowels": 2,
+        "word": "XERES"
+      }
+    ],
     "entropy": 3.521640636343318,
     "vowels": 2,
     "word": "XIVES"
   },
   "X_6": {
+    "alternatives": [
+      {
+        "entropy": 3.0220552088742005,
+        "vowels": 3,
+        "word": "XYLITE"
+      },
+      {
+        "entropy": 3.188721875540867,
+        "vowels": 4,
+        "word": "XIIIES"
+      },
+      {
+        "entropy": 3.188721875540867,
+        "vowels": 3,
+        "word": "XVIIES"
+      },
+      {
+        "entropy": 3.2516291673878226,
+        "vowels": 2,
+        "word": "XIPHOS"
+      },
+      {
+        "entropy": 3.0220552088742005,
+        "vowels": 2,
+        "word": "XANTHE"
+      },
+      {
+        "entropy": 3.0220552088742005,
+        "vowels": 3,
+        "word": "XYLENE"
+      },
+      {
+        "entropy": 2.9182958340544896,
+        "vowels": 4,
+        "word": "XVIIIE"
+      },
+      {
+        "entropy": 2.625814583693911,
+        "vowels": 3,
+        "word": "XYLOSE"
+      },
+      {
+        "entropy": 3.0220552088742005,
+        "vowels": 2,
+        "word": "XAMMES"
+      }
+    ],
     "entropy": 3.418295834054489,
     "vowels": 3,
     "word": "XIAMEN"
   },
   "X_7": {
+    "alternatives": [
+      {
+        "entropy": 3.169925001442312,
+        "vowels": 3,
+        "word": "XANTHIE"
+      },
+      {
+        "entropy": 2.9477027792200903,
+        "vowels": 4,
+        "word": "XYLOIDE"
+      },
+      {
+        "entropy": 3.169925001442312,
+        "vowels": 3,
+        "word": "XAMMOIS"
+      },
+      {
+        "entropy": 3.169925001442312,
+        "vowels": 3,
+        "word": "XIPHIAS"
+      },
+      {
+        "entropy": 2.94770277922009,
+        "vowels": 4,
+        "word": "XVIIIES"
+      },
+      {
+        "entropy": 2.94770277922009,
+        "vowels": 3,
+        "word": "XENISME"
+      },
+      {
+        "entropy": 2.94770277922009,
+        "vowels": 3,
+        "word": "XYLEMES"
+      },
+      {
+        "entropy": 2.725480556997868,
+        "vowels": 3,
+        "word": "XOCOATL"
+      }
+    ],
     "entropy": 3.169925001442312,
     "vowels": 4,
     "word": "XYLODIE"
   },
   "X_8": {
+    "alternatives": [
+      {
+        "entropy": 3.640223928941852,
+        "vowels": 4,
+        "word": "XENOLITE"
+      },
+      {
+        "entropy": 3.6402239289418525,
+        "vowels": 3,
+        "word": "XERTIGNY"
+      },
+      {
+        "entropy": 3.640223928941852,
+        "vowels": 3,
+        "word": "XANTHOME"
+      },
+      {
+        "entropy": 3.506890595608519,
+        "vowels": 4,
+        "word": "XAMMOISE"
+      },
+      {
+        "entropy": 3.5898980954642874,
+        "vowels": 4,
+        "word": "XYLOCOPE"
+      },
+      {
+        "entropy": 3.773557262275186,
+        "vowels": 3,
+        "word": "XANTHINE"
+      },
+      {
+        "entropy": 3.456564762130954,
+        "vowels": 4,
+        "word": "XIPHOIDE"
+      },
+      {
+        "entropy": 3.4565647621309545,
+        "vowels": 4,
+        "word": "XYLOMYCE"
+      },
+      {
+        "entropy": 3.3232314287976203,
+        "vowels": 4,
+        "word": "XENOFUGE"
+      }
+    ],
     "entropy": 3.773557262275186,
     "vowels": 4,
     "word": "XYLOTOME"
   },
   "X_9": {
+    "alternatives": [
+      {
+        "entropy": 4.316827716832515,
+        "vowels": 5,
+        "word": "XENOFUGIE"
+      },
+      {
+        "entropy": 4.316827716832514,
+        "vowels": 4,
+        "word": "XYLOCARPE"
+      },
+      {
+        "entropy": 4.436605434317883,
+        "vowels": 4,
+        "word": "XERTINOIS"
+      },
+      {
+        "entropy": 4.349648912578752,
+        "vowels": 4,
+        "word": "XYLOPHAGE"
+      },
+      {
+        "entropy": 4.523561956057013,
+        "vowels": 4,
+        "word": "XYLOPHORE"
+      },
+      {
+        "entropy": 4.523561956057013,
+        "vowels": 4,
+        "word": "XYLOPHONE"
+      },
+      {
+        "entropy": 4.088779347361361,
+        "vowels": 5,
+        "word": "XYLOIDINE"
+      },
+      {
+        "entropy": 4.349648912578752,
+        "vowels": 4,
+        "word": "XYLOLATRE"
+      },
+      {
+        "entropy": 4.349648912578752,
+        "vowels": 4,
+        "word": "XEROPHAGE"
+      }
+    ],
     "entropy": 4.523561956057013,
     "vowels": 5,
     "word": "XENELASIE"
   },
   "Y_5": {
+    "alternatives": [
+      {
+        "entropy": 3.5737610799896142,
+        "vowels": 4,
+        "word": "YOLAI"
+      },
+      {
+        "entropy": 3.972895908687182,
+        "vowels": 3,
+        "word": "YOLES"
+      },
+      {
+        "entropy": 3.9449630543523853,
+        "vowels": 3,
+        "word": "YOLAS"
+      },
+      {
+        "entropy": 3.7413407239719767,
+        "vowels": 3,
+        "word": "YALIS"
+      },
+      {
+        "entropy": 3.720493090501895,
+        "vowels": 3,
+        "word": "YOLER"
+      },
+      {
+        "entropy": 3.591152385409054,
+        "vowels": 3,
+        "word": "YUANS"
+      },
+      {
+        "entropy": 3.541808785743097,
+        "vowels": 3,
+        "word": "YOLAT"
+      },
+      {
+        "entropy": 3.423790723760906,
+        "vowels": 4,
+        "word": "YEUSE"
+      },
+      {
+        "entropy": 3.399196425043992,
+        "vowels": 3,
+        "word": "YODLE"
+      }
+    ],
     "entropy": 3.634888822103677,
     "vowels": 4,
     "word": "YAUDE"
   },
   "Y_6": {
+    "alternatives": [
+      {
+        "entropy": 4.8180438460722765,
+        "vowels": 4,
+        "word": "YAUDES"
+      },
+      {
+        "entropy": 4.794930575019537,
+        "vowels": 4,
+        "word": "YOURTE"
+      },
+      {
+        "entropy": 4.815342255311939,
+        "vowels": 4,
+        "word": "YODISE"
+      },
+      {
+        "entropy": 4.863205936271678,
+        "vowels": 4,
+        "word": "YODISA"
+      },
+      {
+        "entropy": 4.785256960826374,
+        "vowels": 4,
+        "word": "YOLAIS"
+      },
+      {
+        "entropy": 4.754107214434733,
+        "vowels": 4,
+        "word": "YOUTRE"
+      },
+      {
+        "entropy": 4.754530682450518,
+        "vowels": 4,
+        "word": "YAOURT"
+      },
+      {
+        "entropy": 4.739408903742278,
+        "vowels": 4,
+        "word": "YOLIEZ"
+      },
+      {
+        "entropy": 4.69192370780392,
+        "vowels": 4,
+        "word": "YOLAIT"
+      }
+    ],
     "entropy": 4.891654091902981,
     "vowels": 4,
     "word": "YOLERA"
   },
   "Y_7": {
+    "alternatives": [
+      {
+        "entropy": 5.1838428816966236,
+        "vowels": 5,
+        "word": "YOLERAI"
+      },
+      {
+        "entropy": 5.657575159678482,
+        "vowels": 4,
+        "word": "YODISER"
+      },
+      {
+        "entropy": 5.638361188707821,
+        "vowels": 4,
+        "word": "YODISAT"
+      },
+      {
+        "entropy": 5.084122167534535,
+        "vowels": 5,
+        "word": "YOUPINE"
+      },
+      {
+        "entropy": 5.5325053382190035,
+        "vowels": 5,
+        "word": "YODISEE"
+      },
+      {
+        "entropy": 5.531078688646006,
+        "vowels": 4,
+        "word": "YOURTES"
+      },
+      {
+        "entropy": 5.507714802597439,
+        "vowels": 4,
+        "word": "YOLERAS"
+      },
+      {
+        "entropy": 5.503933909647575,
+        "vowels": 4,
+        "word": "YOLATES"
+      },
+      {
+        "entropy": 4.861166503080562,
+        "vowels": 5,
+        "word": "YAKOUTE"
+      }
+    ],
     "entropy": 5.309510474298477,
     "vowels": 6,
     "word": "YEUSAIE"
   },
   "Y_8": {
+    "alternatives": [
+      {
+        "entropy": 6.03478516246566,
+        "vowels": 5,
+        "word": "YOLERAIT"
+      },
+      {
+        "entropy": 5.901341019081329,
+        "vowels": 5,
+        "word": "YOLAIENT"
+      },
+      {
+        "entropy": 5.838010271905157,
+        "vowels": 5,
+        "word": "YODISERA"
+      },
+      {
+        "entropy": 5.77323473140631,
+        "vowels": 5,
+        "word": "YZEUROIS"
+      },
+      {
+        "entropy": 5.640938466988759,
+        "vowels": 5,
+        "word": "YAKOUTES"
+      },
+      {
+        "entropy": 5.599448346592933,
+        "vowels": 5,
+        "word": "YMAROISE"
+      },
+      {
+        "entropy": 5.5361175994167615,
+        "vowels": 5,
+        "word": "YODLERAI"
+      },
+      {
+        "entropy": 5.911165765889068,
+        "vowels": 4,
+        "word": "YODLATES"
+      },
+      {
+        "entropy": 5.9243295248284555,
+        "vowels": 4,
+        "word": "YPORTAIS"
+      }
+    ],
     "entropy": 6.043462030306619,
     "vowels": 5,
     "word": "YOLERAIS"
   },
   "Y_9": {
+    "alternatives": [
+      {
+        "entropy": 5.910025007700783,
+        "vowels": 5,
+        "word": "YODLERAIS"
+      },
+      {
+        "entropy": 5.933356846257559,
+        "vowels": 5,
+        "word": "YODLAIENT"
+      },
+      {
+        "entropy": 5.844467957368671,
+        "vowels": 5,
+        "word": "YTRACOISE"
+      },
+      {
+        "entropy": 5.821136118811895,
+        "vowels": 5,
+        "word": "YODLERAIT"
+      },
+      {
+        "entropy": 5.782138618763818,
+        "vowels": 6,
+        "word": "YODISERAI"
+      },
+      {
+        "entropy": 6.155579068479782,
+        "vowels": 5,
+        "word": "YMAROISES"
+      },
+      {
+        "entropy": 5.808411151837153,
+        "vowels": 6,
+        "word": "YZEUROISE"
+      },
+      {
+        "entropy": 5.62981077493552,
+        "vowels": 7,
+        "word": "YOYOTERAI"
+      },
+      {
+        "entropy": 6.039021012972302,
+        "vowels": 5,
+        "word": "YODISATES"
+      }
+    ],
     "entropy": 6.141744485170487,
     "vowels": 5,
     "word": "YPORTAISE"
   },
   "Z_5": {
+    "alternatives": [
+      {
+        "entropy": 4.328743611616975,
+        "vowels": 3,
+        "word": "ZAINE"
+      },
+      {
+        "entropy": 4.006125864121823,
+        "vowels": 3,
+        "word": "ZONAI"
+      },
+      {
+        "entropy": 3.7488631340858967,
+        "vowels": 3,
+        "word": "ZOILE"
+      },
+      {
+        "entropy": 3.67968660494477,
+        "vowels": 3,
+        "word": "ZEUBI"
+      },
+      {
+        "entropy": 3.487461847994098,
+        "vowels": 3,
+        "word": "ZUANI"
+      },
+      {
+        "entropy": 4.050270505936242,
+        "vowels": 2,
+        "word": "ZAPES"
+      },
+      {
+        "entropy": 4.032782459694055,
+        "vowels": 2,
+        "word": "ZAINS"
+      },
+      {
+        "entropy": 3.960126386751529,
+        "vowels": 2,
+        "word": "ZONES"
+      },
+      {
+        "entropy": 3.929811925513064,
+        "vowels": 2,
+        "word": "ZARBE"
+      }
+    ],
     "entropy": 4.37761688568512,
     "vowels": 3,
     "word": "ZAIRE"
   },
   "Z_6": {
+    "alternatives": [
+      {
+        "entropy": 5.139569967941442,
+        "vowels": 5,
+        "word": "ZAOUIA"
+      },
+      {
+        "entropy": 5.504036285754295,
+        "vowels": 3,
+        "word": "ZONAIS"
+      },
+      {
+        "entropy": 5.2965159181897965,
+        "vowels": 3,
+        "word": "ZAIRES"
+      },
+      {
+        "entropy": 5.336653025079128,
+        "vowels": 3,
+        "word": "ZAINES"
+      },
+      {
+        "entropy": 4.764644138560142,
+        "vowels": 4,
+        "word": "ZOUAVE"
+      },
+      {
+        "entropy": 5.454408177781251,
+        "vowels": 3,
+        "word": "ZONAIT"
+      },
+      {
+        "entropy": 5.319373859117844,
+        "vowels": 3,
+        "word": "ZONIER"
+      },
+      {
+        "entropy": 5.16845643963746,
+        "vowels": 3,
+        "word": "ZONERA"
+      },
+      {
+        "entropy": 4.603095047438384,
+        "vowels": 4,
+        "word": "ZOUKAI"
+      }
+    ],
     "entropy": 5.139044049932457,
     "vowels": 4,
     "word": "ZIEUTA"
   },
   "Z_7": {
+    "alternatives": [
+      {
+        "entropy": 6.219900750270742,
+        "vowels": 4,
+        "word": "ZEROTAI"
+      },
+      {
+        "entropy": 6.2237975501409615,
+        "vowels": 4,
+        "word": "ZIEUTAS"
+      },
+      {
+        "entropy": 5.976864983734359,
+        "vowels": 4,
+        "word": "ZONERAI"
+      },
+      {
+        "entropy": 5.432727264230273,
+        "vowels": 5,
+        "word": "ZYEUTAI"
+      },
+      {
+        "entropy": 6.488628290448044,
+        "vowels": 3,
+        "word": "ZONATES"
+      },
+      {
+        "entropy": 6.362551421329605,
+        "vowels": 3,
+        "word": "ZONURES"
+      },
+      {
+        "entropy": 5.627165009505312,
+        "vowels": 5,
+        "word": "ZIEUTAI"
+      },
+      {
+        "entropy": 6.263598583729451,
+        "vowels": 4,
+        "word": "ZONIERE"
+      },
+      {
+        "entropy": 6.218054091884732,
+        "vowels": 3,
+        "word": "ZEROTAS"
+      }
+    ],
     "entropy": 6.120273794126047,
     "vowels": 5,
     "word": "ZOISEAU"
   },
   "Z_8": {
+    "alternatives": [
+      {
+        "entropy": 6.964252354137534,
+        "vowels": 4,
+        "word": "ZEROTAIS"
+      },
+      {
+        "entropy": 6.429483407081859,
+        "vowels": 5,
+        "word": "ZYEUTAIS"
+      },
+      {
+        "entropy": 6.803218554321173,
+        "vowels": 4,
+        "word": "ZONERAIS"
+      },
+      {
+        "entropy": 6.740721861050304,
+        "vowels": 4,
+        "word": "ZONERAIT"
+      },
+      {
+        "entropy": 6.787148717540136,
+        "vowels": 4,
+        "word": "ZIGUATES"
+      },
+      {
+        "entropy": 6.692263593974961,
+        "vowels": 5,
+        "word": "ZOOIATRE"
+      },
+      {
+        "entropy": 6.240613405174487,
+        "vowels": 5,
+        "word": "ZOISEAUX"
+      },
+      {
+        "entropy": 6.668614484471247,
+        "vowels": 5,
+        "word": "ZEDOAIRE"
+      },
+      {
+        "entropy": 6.611793643863437,
+        "vowels": 5,
+        "word": "ZAIROISE"
+      }
+    ],
     "entropy": 6.588999164750857,
     "vowels": 5,
     "word": "ZIGOTEAU"
   },
   "Z_9": {
+    "alternatives": [
+      {
+        "entropy": 7.279929650565817,
+        "vowels": 5,
+        "word": "ZEDOAIRES"
+      },
+      {
+        "entropy": 6.9266353511456185,
+        "vowels": 5,
+        "word": "ZYEUTIONS"
+      },
+      {
+        "entropy": 7.33508624494335,
+        "vowels": 4,
+        "word": "ZONALITES"
+      },
+      {
+        "entropy": 7.293301844817648,
+        "vowels": 5,
+        "word": "ZIEUTERAS"
+      },
+      {
+        "entropy": 6.852048880523448,
+        "vowels": 5,
+        "word": "ZOUKERAIT"
+      },
+      {
+        "entropy": 7.311556833178644,
+        "vowels": 5,
+        "word": "ZIEUTAMES"
+      },
+      {
+        "entropy": 7.1932635114673475,
+        "vowels": 5,
+        "word": "ZEDOARINE"
+      },
+      {
+        "entropy": 6.789101182100209,
+        "vowels": 5,
+        "word": "ZOUKAIENT"
+      },
+      {
+        "entropy": 7.140675630941006,
+        "vowels": 6,
+        "word": "ZOOIATRIE"
+      }
+    ],
     "entropy": 6.916297701893784,
     "vowels": 5,
     "word": "ZOUKERAIS"

@@ -166,3 +166,58 @@ def test_solver_falls_back_to_dynamic_when_key_missing():
     solver_without_cache = Solver(letter="R", length=5, corpus=corpus)
 
     assert solver_with_empty_cache.suggest(top_n=1) == solver_without_cache.suggest(top_n=1)
+
+
+def test_top_guesses_composite_first_is_best_guess_and_sorted():
+    from motus_solver.tree import top_guesses_composite
+
+    corpus = make_corpus()
+    candidates = corpus.subset("R", 5)
+    gf, pf = letter_frequencies(corpus), positional_frequencies(corpus, 5)
+    ranked = top_guesses_composite(candidates, candidates, gf, pf, k=3)
+    best = best_guess_composite(candidates, candidates, gf, pf)
+    assert (ranked[0][0], ranked[0][2], ranked[0][3]) == best
+    assert len(ranked) == 3
+    assert [r[1] for r in ranked] == sorted((r[1] for r in ranked), reverse=True)
+
+
+def test_root_cache_entry_stores_distinct_fallback_moves():
+    corpus = make_corpus()
+    entry = build_root_cache(corpus)[cache_key("R", 5)]
+    alts = [a["word"] for a in entry["alternatives"]]
+    assert entry["word"] not in alts
+    assert len(alts) == len(set(alts)) == len(corpus.subset("R", 5)) - 1  # groupe plus petit que 10
+
+
+def test_solver_uses_precomputed_fallback_without_dynamic_recompute(monkeypatch):
+    """Run d'amélioration n° 1 : chaque rejet du coup 1 relançait un calcul complet
+    (~290 s sur R,9). Le repli précalculé doit être pris sans aucun scoring."""
+    import motus_solver.solver as solver_module
+
+    corpus = make_corpus()
+    cache = build_root_cache(corpus)
+    entry = cache[cache_key("R", 5)]
+    solver = Solver(letter="R", length=5, corpus=corpus, root_cache=cache)
+    solver.candidates.remove(entry["word"])  # coup 1 refusé par le jeu
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("recalcul dynamique du coup 1 alors qu'un repli était précalculé")
+
+    monkeypatch.setattr(solver_module, "score_guess", forbidden)
+    assert solver.suggest(top_n=1)[0][0] == entry["alternatives"][0]["word"]
+
+
+def test_solver_prefers_known_valid_word_among_first_move_options():
+    """Run d'amélioration n° 2 : au coup 1, un mot déjà accepté par le jeu est
+    préféré aux autres coups du classement (scores quasi égaux), pour éviter les
+    rejets ; sans mot connu valide, l'ordre du classement est conservé."""
+    corpus = make_corpus()
+    cache = build_root_cache(corpus)
+    entry = cache[cache_key("R", 5)]
+    validated = entry["alternatives"][1]["word"]
+
+    solver = Solver(letter="R", length=5, corpus=corpus, root_cache=cache, known_valid={validated})
+    assert solver.suggest(top_n=1)[0][0] == validated
+
+    plain = Solver(letter="R", length=5, corpus=corpus, root_cache=cache)
+    assert plain.suggest(top_n=1)[0][0] == entry["word"]

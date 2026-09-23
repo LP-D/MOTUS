@@ -1,0 +1,60 @@
+{
+  "run": 3,
+  "commit": "b7489fa",
+  "games": 10,
+  "solved": 10,
+  "unsolved": [],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 20.18,
+  "total_time_s": 201.8,
+  "mean_attempts_solved": 3.3,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 1,
+    "3": 6,
+    "4": 2,
+    "5": 1,
+    "6": 0
+  },
+  "rejections": 8,
+  "root_rejections": 3,
+  "time_breakdown_mean_s": {
+    "load": 10.08,
+    "solver": 0.02,
+    "typing": 6.39,
+    "enter_and_rate_wait": 1.8,
+    "server_roundtrip": 0.75,
+    "reveal_wait": 0.06
+  },
+  "max_solver_s": 0.0478,
+  "max_latency_s": 1.0639,
+  "words": [
+    "REMBALLEE (9, 3 essais, 10.714s)",
+    "RECRUE (6, 5 essais, 28.899s)",
+    "PASTORALE (9, 2 essais, 16.587s)",
+    "LICORNE (7, 3 essais, 17.257s)",
+    "SAVEUR (6, 4 essais, 18.723s)",
+    "DETERGENT (9, 3 essais, 22.198s)",
+    "ASSAINIES (9, 3 essais, 18.728s)",
+    "SECANTES (8, 4 essais, 22.896s)",
+    "GRANULEUX (9, 3 essais, 22.499s)",
+    "FAMEUSE (7, 3 essais, 23.262s)"
+  ],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 10,
+    "mean_attempts_trio_then_bot": 4.2,
+    "mean_attempts_bot_only_sim": 3.1,
+    "trio_better": 0,
+    "trio_worse": 8,
+    "mean_remaining_after_3_trio": 1.9,
+    "mean_remaining_after_3_bot": 1.38,
+    "trio_words_blocklisted": []
+  },
+  "vs_previous": {
+    "previous_mean_time_per_word_s": 11.64,
+    "faster": false
+  },
+  "stop_criterion_met": false
+}

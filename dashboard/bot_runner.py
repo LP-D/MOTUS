@@ -49,7 +49,13 @@ DEFAULT_ROOT_CACHE = ROOT_DIR / "data" / "root_cache.json"
 DEFAULT_AUTH_STATE = ROOT_DIR / "data" / "tuzmo_auth_state.json"
 DEFAULT_LOG = ROOT_DIR / "data" / "dashboard_bot_log.jsonl"
 DEFAULT_BLOCKLIST = ROOT_DIR / "data" / "known_invalid_words.json"
+# mots acceptés par le serveur (même format que la liste noire, cf. motus_solver.blocklist)
+DEFAULT_KNOWN_VALID = ROOT_DIR / "data" / "known_valid_words.json"
 URL = "https://www.tusmo.xyz/infinite"
+API_ME_URL = "https://www.tusmo.xyz/api/me"
+GUEST_COOKIE = "tusmo_token"
+START_BUTTON_SELECTOR = "button:has-text(\"C'est parti\")"
+PAGE_READY_SELECTOR = f"{START_BUTTON_SELECTOR}, .board.board--stage"
 MAX_ATTEMPTS = 6
 REJECT_TIMEOUT_MS = 6000
 MAX_SUGGEST_RETRIES = 20
@@ -165,6 +171,29 @@ class BotRunner:
             context_kwargs["storage_state"] = str(DEFAULT_AUTH_STATE)
         return browser.new_context(**context_kwargs)
 
+    def _ensure_guest(self, context: BrowserContext) -> None:
+        """Crée l'invité AVANT le 1er chargement de page du contexte.
+
+        Au chargement, le site envoie GET /api/me et POST /api/game au même instant
+        (0 à 8 ms d'écart, mesuré sur 22 chargements). Sur un invité neuf, les deux
+        partent sans cookie et chacun peut créer un invité : si le navigateur garde
+        le cookie de l'autre, la partie n'appartient pas à l'invité courant et le 1er
+        coup renvoie NOT_FOUND (H8, puis 1er mot du run d'amélioration n° 4). Un seul
+        GET /api/me préalable, qui partage les cookies du contexte, supprime la
+        course. Sans effet si le cookie existe déjà (session sauvegardée)."""
+        if any(c.get("name") == GUEST_COOKIE for c in context.cookies(API_ME_URL)):
+            return
+        started = time.time()
+        response = context.request.get(API_ME_URL, timeout=10000)
+        latency = time.time() - started
+        retry_after = {k.lower(): v for k, v in response.headers.items()}.get("retry-after")
+        if response.status == 429 or retry_after is not None or latency > 10.0:
+            raise ThrottlingDetectedError(
+                f"création d'invité : HTTP {response.status}, Retry-After={retry_after}, {latency:.1f}s"
+            )
+        self._emit("guest_ready", status=response.status)
+        time.sleep(random.uniform(*INTER_GAME_DELAY_S))  # débit validé avant le 1er chargement
+
     def _open_game_page(self, context: BrowserContext) -> Page:
         """Ouvre /infinite dans `context` et démarre une partie.
 
@@ -183,7 +212,16 @@ class BotRunner:
                 page.close()
                 raise ThrottlingDetectedError(f"{reason} sur {call.method} {call.url}", call)
 
-        page.goto(URL, wait_until="networkidle", timeout=20000)
+        # "domcontentloaded" + attente explicite, au lieu de "networkidle" (500 ms de
+        # silence réseau imposées à chaque partie). On attend le bouton de départ OU
+        # le plateau : avec l'invité conservé, l'écran "C'est parti" ne s'affiche
+        # qu'au 1er chargement du contexte — attendre le bouton seul coûtait 10 s
+        # (timeout) à chaque partie suivante (régression mesurée au run n° 3).
+        page.goto(URL, wait_until="domcontentloaded", timeout=20000)
+        try:
+            page.wait_for_selector(PAGE_READY_SELECTOR, timeout=10000)
+        except PlaywrightTimeoutError:
+            check_throttle()  # ni bouton ni plateau : 429 au chargement ?
         check_throttle()
         start_button = page.locator("button", has_text="C'est parti")
         if start_button.count():
@@ -236,7 +274,9 @@ class BotRunner:
         length = client.get_word_length()
         self._emit("game_started", letter=letter, length=length)
 
-        solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist)
+        known_valid = load_blocklist(DEFAULT_KNOWN_VALID)
+        solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist,
+                        known_valid=known_valid)
         solved = False
         confirmed_solution: str | None = None
         guesses_played: list[str] = []
@@ -297,12 +337,15 @@ class BotRunner:
             while solver.candidates and retries < MAX_SUGGEST_RETRIES:
                 if self._stop_event.is_set():
                     break
+                t_suggest = time.perf_counter()
                 guess = solver.suggest(top_n=1)[0][0]
+                solver_s = round(time.perf_counter() - t_suggest, 4)
                 retries += 1
                 timer = CycleTimer(attempt=attempt, log_path=DEFAULT_LOG)
                 timer.set_cycle_start()
                 timer.mark("solver_suggest")
-                self._emit("guess_proposed", attempt=attempt, guess=guess)
+                self._emit("guess_proposed", attempt=attempt, guess=guess, solver_s=solver_s,
+                           candidates=len(solver.candidates))
                 letter_delay_s, enter_delay_s = bot_config.get_typing_delay_s()
                 try:
                     client.submit_guess(
@@ -363,6 +406,8 @@ class BotRunner:
                 break
 
             guesses_played.append(accepted_guess)
+            if accepted_guess not in known_valid:
+                known_valid = add_to_blocklist(accepted_guess, DEFAULT_KNOWN_VALID)  # même format de fichier
             solver.play(accepted_guess)
             pattern = client.read_feedback(timer=accepted_timer)
             record = accepted_timer.finish({"outcome": "completed", "guess": accepted_guess, "pattern": pattern})
@@ -444,6 +489,12 @@ class BotRunner:
         context = self._new_context(browser)
         previous_resumed = False
         try:
+            try:
+                self._ensure_guest(context)
+            except ThrottlingDetectedError as exc:
+                self._emit("throttled", reason=exc.reason)
+                self.status = "throttled"
+                return
             for i in range(1, iterations + 1):
                 if self._stop_event.is_set():
                     break

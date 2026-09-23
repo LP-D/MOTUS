@@ -123,6 +123,41 @@ def best_guess_composite(
     return guess, entropy, vowels
 
 
+def top_guesses_composite(
+    candidates: list[str],
+    guess_pool: list[str],
+    global_freq: dict[str, float],
+    positional_freq: np.ndarray,
+    k: int,
+) -> list[tuple[str, float, float, int]]:
+    """Les `k` meilleurs coups selon le MÊME scoring composite que
+    `best_guess_composite` (inchangé), classés par score décroissant, égalités
+    départagées par l'ordre de `guess_pool` : le 1er élément est toujours
+    identique au résultat de `best_guess_composite`.
+
+    Sert au cache racine : si le meilleur coup 1 est refusé par le dictionnaire
+    du jeu, le suivant est disponible immédiatement au lieu d'un recalcul complet
+    (mesuré : ~290 s par rejet sur R,9). Retourne [(mot, score, entropie, voyelles)]."""
+    if not candidates:
+        raise ValueError("aucun candidat restant")
+    candidates_arr = words_to_matrix(candidates)
+    letter_counts = candidate_letter_counts(candidates_arr)
+    batch_size = _batch_size_for(len(candidates), len(candidates[0]))
+    pool: list[tuple[float, int, str, float, int]] = []
+    for start in range(0, len(guess_pool), batch_size):
+        chunk = guess_pool[start : start + batch_size]
+        scores, entropies, vowels = score_guesses_batch(
+            chunk, candidates, candidates_arr, global_freq, positional_freq, letter_counts
+        )
+        keep = np.argsort(-scores, kind="stable")[:k]
+        pool.extend(
+            (float(scores[i]), start + int(i), chunk[int(i)], float(entropies[i]), int(vowels[i])) for i in keep
+        )
+        pool.sort(key=lambda item: (-item[0], item[1]))
+        del pool[k:]
+    return [(word, score, entropy, vowels) for score, _, word, entropy, vowels in pool]
+
+
 def _entropy_batch(
     guesses: list[str], candidates_arr: np.ndarray, n: int, length: int, letter_counts: np.ndarray
 ) -> np.ndarray:

@@ -1,0 +1,56 @@
+{
+  "run": 1,
+  "commit": "b7489fa",
+  "games": 10,
+  "solved": 10,
+  "unsolved": [],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 100.37,
+  "total_time_s": 1003.7,
+  "mean_attempts_solved": 2.8,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 2,
+    "3": 8,
+    "4": 0,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 12,
+  "root_rejections": 3,
+  "time_breakdown_mean_s": {
+    "load": 1.52,
+    "solver": 90.35,
+    "typing": 5.97,
+    "enter_and_rate_wait": 1.69,
+    "server_roundtrip": 0.29,
+    "reveal_wait": 0.01
+  },
+  "max_solver_s": 293.8901,
+  "max_latency_s": 0.1501,
+  "words": [
+    "AMORCES (7, 3 essais, 48.938s)",
+    "NASALISEE (9, 3 essais, 7.33s)",
+    "ORALISES (8, 2 essais, 9.563s)",
+    "ARGENTINE (9, 3 essais, 10.4s)",
+    "VIVANTE (7, 3 essais, 7.23s)",
+    "RECALES (7, 3 essais, 9.172s)",
+    "ENTOURES (8, 2 essais, 4.86s)",
+    "AMBIANTS (8, 3 essais, 6.832s)",
+    "ROTATOIRE (9, 3 essais, 892.352s)",
+    "PACTOLE (7, 3 essais, 6.974s)"
+  ],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 10,
+    "mean_attempts_trio_then_bot": 4,
+    "mean_attempts_bot_only_sim": 3,
+    "trio_better": 0,
+    "trio_worse": 8,
+    "mean_remaining_after_3_trio": 1,
+    "mean_remaining_after_3_bot": 1.62,
+    "trio_words_blocklisted": []
+  },
+  "stop_criterion_met": false
+}

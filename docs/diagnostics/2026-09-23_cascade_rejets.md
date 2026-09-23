@@ -192,3 +192,21 @@ Deux défauts trouvés et corrigés pendant la validation :
 
 Les nouveaux mots racine invalides découverts (RETOUAI, GUIORE, FAURIONES) ont été
 recalculés dans le cache ; leurs remplaçants avaient déjà été acceptés en direct.
+
+## Boucle finale (reste du plafond de 40)
+
+Run de 13 parties sur le chemin de production, dans un seul contexte (un seul invité).
+Preuve brute : [`2026-09-23_boucle_finale.jsonl`](2026-09-23_boucle_finale.jsonl).
+Arrêt sur « plan terminé » ; plafond de session atteint (40/40 en comptant les 2 sondes
+de chargement).
+
+- **13 parties sur 13 résolues**, en 2,54 coups acceptés en moyenne. Cas A 13/13 ;
+  B, C (5 et 9 lettres), D et E tous validés. Aucune partie reprise, aucune erreur,
+  0 coup mal transmis.
+- **Débit** : 76 appels API, 0 × 429, aucun `Retry-After`. Latence : médiane 0,35 s,
+  p95 1,87 s, max 2,70 s. Elle a été plus élevée sur les 5 premières parties (`/api/me`
+  et `/api/game` compris), puis est revenue sous 1,4 s. C'est une charge serveur
+  passagère, loin du seuil de 10 s.
+- **5 mots racine invalides découverts** (NIOUE, FAOUINES, AROUTINE, GUANIER, RESUAI).
+  Le repli dynamique a coûté jusqu'à 20,9 s (A8). Les entrées ont été recalculées
+  ensuite. Liste noire : 166 mots.

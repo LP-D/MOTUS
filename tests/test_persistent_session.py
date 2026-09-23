@@ -84,6 +84,7 @@ def make_client_cls(target, give_up_answer="?", give_up_raises=None):
 def runner(monkeypatch, tmp_path):
     monkeypatch.setattr(bot_runner, "DEFAULT_LOG", tmp_path / "log.jsonl")
     monkeypatch.setattr(bot_runner, "DEFAULT_BLOCKLIST", tmp_path / "blocklist.json")
+    monkeypatch.setattr(bot_runner, "DEFAULT_KNOWN_VALID", tmp_path / "known_valid.json")
     recorded = []
     monkeypatch.setattr(bot_runner, "record_game", lambda **kw: recorded.append(kw))
     r = bot_runner.BotRunner()
@@ -151,6 +152,9 @@ def test_failed_abandon_is_flagged(runner, monkeypatch):
 class _Ctx:
     def __init__(self):
         self.closed = False
+
+    def cookies(self, url=None):
+        return [{"name": "tusmo_token", "value": "existing"}]  # invité déjà créé
 
     def new_page(self):
         return _Page()
@@ -291,6 +295,8 @@ class FakeLoadPage:
         self.buttons = {"Rejouer"}
         self.clicks = []
         self.handlers = {}
+        self.waits = []
+        self.timeouts = 0
 
     def on(self, event, handler):
         self.handlers[event] = handler
@@ -317,8 +323,14 @@ class FakeLoadPage:
     def locator(self, selector, has_text=None):
         return _ReplayLocator(self, has_text)
 
-    def wait_for_selector(self, *a, **kw):
-        pass
+    def wait_for_selector(self, selector, timeout=None, **kw):
+        # comportement réel : un sélecteur qui ne peut trouver que le bouton de
+        # départ attend jusqu'au timeout quand l'écran d'accueil n'est plus affiché
+        self.waits.append(selector)
+        if "C'est parti" in selector and ".board" not in selector and "C'est parti" not in self.buttons:
+            from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+            self.timeouts += 1
+            raise PlaywrightTimeoutError(f"Timeout {timeout}ms exceeded")
 
     def wait_for_timeout(self, ms):
         pass
@@ -347,4 +359,30 @@ def test_finished_session_on_load_triggers_single_replay(runner, monkeypatch):
 def test_playing_session_on_load_is_left_untouched(runner, monkeypatch):
     page = FakeLoadPage(load_status="playing")
     runner._open_game_page(_LoadCtx(page))
+    assert page.clicks == []
+
+
+def test_page_load_does_not_wait_for_network_idle(runner):
+    """Run d'amélioration n° 2 : "networkidle" imposait 500 ms de silence réseau
+    à chaque chargement ; le bot attend désormais le bouton de départ."""
+    page = FakeLoadPage(load_status="playing")
+    calls = []
+    original_goto = page.goto
+
+    def goto(url, **kw):
+        calls.append(kw.get("wait_until"))
+        original_goto(url, **kw)
+
+    page.goto = goto
+    runner._open_game_page(_LoadCtx(page))
+    assert calls == ["domcontentloaded"]
+
+
+def test_page_load_without_intro_screen_never_hits_a_timeout(runner):
+    """Régression du run n° 3 : avec l'invité conservé, l'écran "C'est parti" n'est
+    affiché qu'au 1er chargement ; l'attente du seul bouton faisait perdre 10 s
+    (timeout) à chaque partie suivante."""
+    page = FakeLoadPage(load_status="playing")  # pas de bouton "C'est parti"
+    runner._open_game_page(_LoadCtx(page))
+    assert page.timeouts == 0
     assert page.clicks == []

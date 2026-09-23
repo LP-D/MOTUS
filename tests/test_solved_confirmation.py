@@ -61,6 +61,7 @@ def _patch_runner_io(monkeypatch, tmp_path):
     ni data/known_invalid_words.json ne doivent être touchés par ces tests)."""
     monkeypatch.setattr(bot_runner, "DEFAULT_LOG", tmp_path / "log.jsonl")
     monkeypatch.setattr(bot_runner, "DEFAULT_BLOCKLIST", tmp_path / "blocklist.json")
+    monkeypatch.setattr(bot_runner, "DEFAULT_KNOWN_VALID", tmp_path / "known_valid.json")
 
 
 def test_solved_requires_actual_winning_pattern_not_just_candidate_elimination(monkeypatch, tmp_path):
@@ -159,3 +160,15 @@ def test_input_error_is_retried_and_never_blocklisted(monkeypatch, tmp_path):
     assert not (tmp_path / "blocklist.json").exists()
     assert result["solved"] is True
     assert recorded_calls[0]["solution"] == true_target
+
+
+def test_accepted_words_are_remembered_as_known_valid(monkeypatch, tmp_path):
+    true_target = "RIVER"
+    monkeypatch.setattr(bot_runner, "TuzmoClient", make_client_cls(true_target))
+    _patch_runner_io(monkeypatch, tmp_path)
+    monkeypatch.setattr(bot_runner, "record_game", lambda **kw: None)
+    runner = bot_runner.BotRunner()
+    runner._play_one_game(page=None, corpus=Corpus(["RATER", "RIVER"]), root_cache=None, blocklist=set())
+    import json
+    remembered = set(json.loads((tmp_path / "known_valid.json").read_text(encoding="utf-8")))
+    assert true_target in remembered

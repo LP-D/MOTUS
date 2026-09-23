@@ -263,6 +263,7 @@ def main() -> None:
         # UN seul contexte (donc un seul invité Tuzmo) pour tout le run : un contexte
         # par partie déclenchait le 429 "guest creation rate limited" (23/09/2026)
         context = runner._new_context(browser)
+        runner._ensure_guest(context)  # invité créé avant le 1er chargement (course /api/me <-> /api/game)
         try:
             while True:
                 if args.max_games and games_run >= args.max_games:

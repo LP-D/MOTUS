@@ -78,8 +78,11 @@ def main() -> None:
         f"précalculer, workers={args.workers}."
     )
 
+    # la liste noire (mots refusés par le vrai jeu) est toujours exclue : ni coup 1
+    # ni coup de repli ne doit être un mot déjà connu comme refusé
+    blocklist = load_blocklist(DEFAULT_BLOCKLIST)
     start = time.time()
-    cache = build_root_cache(corpus, workers=args.workers, strategy=args.strategy)
+    cache = build_root_cache(corpus, workers=args.workers, strategy=args.strategy, blocklist=blocklist)
     elapsed = time.time() - start
 
     save_cache(cache, output)

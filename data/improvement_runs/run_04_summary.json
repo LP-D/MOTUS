@@ -1,0 +1,75 @@
+{
+  "run": 4,
+  "commit": "b7489fa",
+  "games": 10,
+  "solved": 8,
+  "unsolved": [
+    {
+      "group": "A7",
+      "outcome": "game_error"
+    },
+    {
+      "group": "P8",
+      "outcome": "candidates_exhausted"
+    }
+  ],
+  "errors": 1,
+  "error_details": [
+    {
+      "type": "error",
+      "timestamp": 1790177956.3438907,
+      "message": "erreur serveur : NOT_FOUND"
+    }
+  ],
+  "mean_time_per_word_s": 9.77,
+  "total_time_s": 97.7,
+  "mean_attempts_solved": 3,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 2,
+    "3": 4,
+    "4": 2,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 6,
+  "root_rejections": 0,
+  "time_breakdown_mean_s": {
+    "load": 1.58,
+    "solver": 0.04,
+    "typing": 4.54,
+    "enter_and_rate_wait": 1.31,
+    "server_roundtrip": 0.86,
+    "reveal_wait": 0.04
+  },
+  "max_solver_s": 0.1112,
+  "max_latency_s": 1.0768,
+  "words": [
+    "? (7, 0 essais, 4.396s)",
+    "ISRAELIEN (9, 2 essais, 6.587s)",
+    "RENVOI (6, 3 essais, 7.729s)",
+    "LISSES (6, 4 essais, 11.554s)",
+    "STYLISER (8, 3 essais, 15.421s)",
+    "PARTIR (6, 4 essais, 13.692s)",
+    "FLECHIR (7, 3 essais, 7.829s)",
+    "? (8, 2 essais, 8.963s)",
+    "POSSESSIF (9, 3 essais, 14.396s)",
+    "LOUTRES (7, 2 essais, 7.135s)"
+  ],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 8,
+    "mean_attempts_trio_then_bot": 4.25,
+    "mean_attempts_bot_only_sim": 3.38,
+    "trio_better": 1,
+    "trio_worse": 6,
+    "mean_remaining_after_3_trio": 1.5,
+    "mean_remaining_after_3_bot": 1.5,
+    "trio_words_blocklisted": []
+  },
+  "vs_previous": {
+    "previous_mean_time_per_word_s": 20.18,
+    "faster": true
+  },
+  "stop_criterion_met": false
+}

@@ -1,0 +1,60 @@
+{
+  "run": 5,
+  "commit": "b7489fa",
+  "games": 10,
+  "solved": 10,
+  "unsolved": [],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 8.02,
+  "total_time_s": 80.2,
+  "mean_attempts_solved": 2.9,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 3,
+    "3": 5,
+    "4": 2,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 1,
+  "root_rejections": 0,
+  "time_breakdown_mean_s": {
+    "load": 1.16,
+    "solver": 0.01,
+    "typing": 4.02,
+    "enter_and_rate_wait": 1.31,
+    "server_roundtrip": 0.74,
+    "reveal_wait": 0.05
+  },
+  "max_solver_s": 0.019,
+  "max_latency_s": 1.0554,
+  "words": [
+    "HENNE (5, 3 essais, 8.818s)",
+    "CHARLOTS (8, 3 essais, 8.262s)",
+    "AUREOLEES (9, 2 essais, 6.39s)",
+    "FARCIS (6, 3 essais, 7.281s)",
+    "CANIN (5, 4 essais, 10.813s)",
+    "BAVARDS (7, 3 essais, 7.337s)",
+    "PARSEMEES (9, 3 essais, 8.617s)",
+    "QUOTIENTS (9, 2 essais, 6.286s)",
+    "CLOITRES (8, 4 essais, 10.219s)",
+    "MOCASSINS (9, 2 essais, 6.174s)"
+  ],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 10,
+    "mean_attempts_trio_then_bot": 4.4,
+    "mean_attempts_bot_only_sim": 3,
+    "trio_better": 0,
+    "trio_worse": 9,
+    "mean_remaining_after_3_trio": 1.6,
+    "mean_remaining_after_3_bot": 1.14,
+    "trio_words_blocklisted": []
+  },
+  "vs_previous": {
+    "previous_mean_time_per_word_s": 9.77,
+    "faster": true
+  },
+  "stop_criterion_met": true
+}
