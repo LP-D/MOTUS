@@ -141,6 +141,24 @@ def test_build_root_cache_default_strategy_still_composite():
     assert default_call == explicit_composite
 
 
+def test_refresh_blocklisted_entries_recomputes_only_stale_groups():
+    """Un coup 1 en cache refusé par le vrai jeu (liste noire) est recalculé pour
+    son groupe seulement, à l'identique d'un build complet avec cette liste noire."""
+    from motus_solver.cache import refresh_blocklisted_entries
+
+    corpus = make_corpus()
+    cache = build_root_cache(corpus)
+    stale_word = cache[cache_key("R", 5)]["word"]
+    untouched = dict(cache[cache_key("R", 6)])
+
+    refreshed = refresh_blocklisted_entries(cache, corpus, {stale_word})
+
+    assert refreshed == [cache_key("R", 5)]
+    assert cache[cache_key("R", 5)]["word"] != stale_word
+    assert cache[cache_key("R", 5)] == build_root_cache(corpus, blocklist={stale_word})[cache_key("R", 5)]
+    assert cache[cache_key("R", 6)] == untouched
+
+
 def test_solver_falls_back_to_dynamic_when_key_missing():
     corpus = make_corpus()
     empty_cache: dict[str, dict] = {}

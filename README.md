@@ -151,6 +151,16 @@ filtre les candidats dès la construction, et `build_root_cache(..., blocklist=.
 permet de régénérer un cache racine qui ne recommande plus ces mots. La liste
 noire grandit organiquement au fil du jeu, sans opération de masse.
 
+**Seul un rejet confirmé par le serveur alimente la liste noire.** Depuis le
+23/09/2026, le client lit la réponse de `POST /api/game/{id}/guess` et vérifie le mot
+réellement envoyé. Seul un `INVALID_WORD` portant sur ce mot exact compte comme rejet.
+Avant ce correctif, une ligne non vidée après un vrai rejet faisait renvoyer l'ancien
+mot : chaque nouveau mot était alors faussement rejeté, en cascade. Détail et preuve :
+`docs/diagnostics/2026-09-23_cascade_rejets.md`. Les entrées douteuses sont en
+quarantaine dans `data/known_invalid_words_quarantine.json`. Les entrées du cache
+racine devenues invalides se recalculent avec
+`python scripts/build_root_cache.py --refresh-blocklisted`.
+
 ## Origine de l'algorithme
 
 `feedback.py` (pattern_codes, entropy_from_codes) est adapté de `encoder_retours()`

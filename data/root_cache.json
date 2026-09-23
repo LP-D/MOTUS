@@ -1,18 +1,18 @@
 {
   "A_5": {
-    "entropy": 4.182578560094953,
+    "entropy": 4.054622576775183,
     "vowels": 4,
-    "word": "ALOIE"
+    "word": "AIEUL"
   },
   "A_6": {
-    "entropy": 5.437394794628917,
-    "vowels": 5,
-    "word": "AINOUE"
+    "entropy": 6.062060990478181,
+    "vowels": 4,
+    "word": "ANURIE"
   },
   "A_7": {
-    "entropy": 6.9856120554898915,
+    "entropy": 7.01516032606111,
     "vowels": 5,
-    "word": "AUROISE"
+    "word": "AUTOIRE"
   },
   "A_8": {
     "entropy": 8.635140821054437,
@@ -40,9 +40,9 @@
     "word": "BOULAIE"
   },
   "B_8": {
-    "entropy": 8.481773468364427,
+    "entropy": 8.491231752028558,
     "vowels": 5,
-    "word": "BOUERAIS"
+    "word": "BOURIATE"
   },
   "B_9": {
     "entropy": 9.54482581779812,
@@ -60,14 +60,14 @@
     "word": "COUIER"
   },
   "C_7": {
-    "entropy": 7.310356859460706,
-    "vowels": 5,
-    "word": "COURAIE"
+    "entropy": 7.449075603087266,
+    "vowels": 4,
+    "word": "CAIROTE"
   },
   "C_8": {
-    "entropy": 8.701247236606264,
+    "entropy": 8.584298727386837,
     "vowels": 5,
-    "word": "COURAIES"
+    "word": "COUTAINE"
   },
   "C_9": {
     "entropy": 9.848037588693352,
@@ -100,9 +100,9 @@
     "word": "DETOURAIS"
   },
   "E_5": {
-    "entropy": 4.140555924267763,
+    "entropy": 3.890818227271759,
     "vowels": 4,
-    "word": "ELUAI"
+    "word": "ENOUA"
   },
   "E_6": {
     "entropy": 5.316379455664126,
@@ -170,9 +170,9 @@
     "word": "GEAUNOIS"
   },
   "G_9": {
-    "entropy": 9.015752156387697,
+    "entropy": 8.98610763687622,
     "vowels": 5,
-    "word": "GUIORATES"
+    "word": "GURATEOIS"
   },
   "H_5": {
     "entropy": 4.147160735077685,
@@ -185,9 +185,9 @@
     "word": "HAROUE"
   },
   "H_7": {
-    "entropy": 7.435724768475463,
-    "vowels": 4,
-    "word": "HAURIET"
+    "entropy": 6.598911103083285,
+    "vowels": 5,
+    "word": "HOUERAI"
   },
   "H_8": {
     "entropy": 7.925413564967723,
@@ -320,9 +320,9 @@
     "word": "MALOUINE"
   },
   "M_9": {
-    "entropy": 9.82417096059823,
+    "entropy": 9.799658306260415,
     "vowels": 5,
-    "word": "MATOURINE"
+    "word": "MARSOUINE"
   },
   "N_5": {
     "entropy": 4.486856810300101,
@@ -335,9 +335,9 @@
     "word": "NOUAIS"
   },
   "N_7": {
-    "entropy": 6.692267824136576,
+    "entropy": 6.645674257276057,
     "vowels": 5,
-    "word": "NOISEAU"
+    "word": "NOUERAI"
   },
   "N_8": {
     "entropy": 7.808978843232832,
@@ -380,9 +380,9 @@
     "word": "PARIE"
   },
   "P_6": {
-    "entropy": 5.932598214237158,
+    "entropy": 5.839975011839424,
     "vowels": 4,
-    "word": "PIAUTE"
+    "word": "PINEAU"
   },
   "P_7": {
     "entropy": 6.967674880606537,
@@ -445,9 +445,9 @@
     "word": "RETOUAIS"
   },
   "R_9": {
-    "entropy": 8.972592311899378,
+    "entropy": 8.895693580831633,
     "vowels": 5,
-    "word": "RECOUINAS"
+    "word": "RESOUCIAT"
   },
   "S_5": {
     "entropy": 4.856845098016926,
@@ -460,9 +460,9 @@
     "word": "SAURIE"
   },
   "S_7": {
-    "entropy": 7.630670428738254,
+    "entropy": 7.611733999230073,
     "vowels": 4,
-    "word": "SAUTIER"
+    "word": "SAURIEN"
   },
   "S_8": {
     "entropy": 8.234425912196723,

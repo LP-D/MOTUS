@@ -10,7 +10,17 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "dashboard"))
 
+import bot_runner  # noqa: E402
+import pytest  # noqa: E402
 from bot_runner import BotRunner  # noqa: E402
+
+
+@pytest.fixture(autouse=True)
+def isolated_lifecycle_log(monkeypatch, tmp_path):
+    """`start()` journalise `start_requested` dans DEFAULT_LOG : sans cette
+    isolation, chaque exécution des tests polluait le vrai journal de diagnostic
+    data/dashboard_bot_log.jsonl (constaté le 23/09/2026)."""
+    monkeypatch.setattr(bot_runner, "DEFAULT_LOG", tmp_path / "lifecycle.jsonl")
 
 
 def test_fresh_runner_has_no_implicit_start():

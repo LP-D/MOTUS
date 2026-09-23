@@ -1,0 +1,176 @@
+{
+  "stop_reason": "couverture complète de la matrice",
+  "games_this_run": 12,
+  "session_games_total": 15,
+  "coverage": {
+    "A_detection": [
+      {
+        "game": 1,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 2,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 3,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 4,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 5,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 6,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 7,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 8,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 9,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 10,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 11,
+        "status": "pass",
+        "case": "A_detection"
+      },
+      {
+        "game": 12,
+        "status": "pass",
+        "case": "A_detection"
+      }
+    ],
+    "B_repeated_letters": [
+      {
+        "game": 1,
+        "status": "pass",
+        "case": "B_repeated_letters"
+      },
+      {
+        "game": 3,
+        "status": "pass",
+        "case": "B_repeated_letters"
+      },
+      {
+        "game": 4,
+        "status": "not_applicable",
+        "case": "B_repeated_letters"
+      },
+      {
+        "game": 5,
+        "status": "pass",
+        "case": "B_repeated_letters"
+      },
+      {
+        "game": 7,
+        "status": "pass",
+        "case": "B_repeated_letters"
+      },
+      {
+        "game": 8,
+        "status": "pass",
+        "case": "B_repeated_letters"
+      },
+      {
+        "game": 9,
+        "status": "not_applicable",
+        "case": "B_repeated_letters"
+      },
+      {
+        "game": 11,
+        "status": "pass",
+        "case": "B_repeated_letters"
+      },
+      {
+        "game": 12,
+        "status": "pass",
+        "case": "B_repeated_letters"
+      }
+    ],
+    "C_short_5": [
+      {
+        "game": 5,
+        "status": "pass",
+        "case": "C_short_5"
+      }
+    ],
+    "C_long_9plus": [
+      {
+        "game": 12,
+        "status": "pass",
+        "case": "C_long_9plus"
+      }
+    ],
+    "D_root_rejected": [
+      {
+        "game": 4,
+        "status": "pass",
+        "case": "D_root_rejected"
+      },
+      {
+        "game": 6,
+        "status": "pass",
+        "case": "D_root_rejected"
+      },
+      {
+        "game": 9,
+        "status": "pass",
+        "case": "D_root_rejected"
+      }
+    ],
+    "E_cascade": [
+      {
+        "game": 2,
+        "status": "pass",
+        "case": "E_cascade"
+      },
+      {
+        "game": 9,
+        "status": "pass",
+        "case": "E_cascade"
+      },
+      {
+        "game": 11,
+        "status": "pass",
+        "case": "E_cascade"
+      }
+    ],
+    "F_real_loss": [
+      {
+        "game": 2,
+        "status": "pass",
+        "case": "F_real_loss"
+      },
+      {
+        "game": 3,
+        "status": "pass",
+        "case": "F_next_game_clean"
+      }
+    ]
+  }
+}

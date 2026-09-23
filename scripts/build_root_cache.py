@@ -20,13 +20,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from motus_solver.cache import STRATEGIES, build_root_cache, save_cache  # noqa: E402
+from motus_solver.blocklist import load_blocklist  # noqa: E402
+from motus_solver.cache import STRATEGIES, build_root_cache, load_cache, refresh_blocklisted_entries, save_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_CORPUS = ROOT_DIR / "data" / "corpus_fr.txt"
 DEFAULT_OUTPUT = ROOT_DIR / "data" / "root_cache.json"
 DEFAULT_OUTPUT_ENTROPY_PURE = ROOT_DIR / "data" / "root_cache_entropy_pure.json"
+DEFAULT_BLOCKLIST = ROOT_DIR / "data" / "known_invalid_words.json"
 
 
 def main() -> None:
@@ -50,10 +52,26 @@ def main() -> None:
         default=max(1, (mp.cpu_count() or 2) - 1),
         help="1 = séquentiel (comportement d'origine). >1 = un process par groupe (lettre, longueur).",
     )
+    parser.add_argument(
+        "--refresh-blocklisted",
+        action="store_true",
+        help="Ne recalcule que les entrées du cache existant dont le mot est dans la liste "
+        "noire (data/known_invalid_words.json), au lieu de tout reconstruire.",
+    )
     args = parser.parse_args()
     output = args.output or (str(DEFAULT_OUTPUT) if args.strategy == "composite" else str(DEFAULT_OUTPUT_ENTROPY_PURE))
 
     corpus = Corpus.from_file(args.corpus_path)
+    if args.refresh_blocklisted:
+        cache = load_cache(output)
+        blocklist = load_blocklist(DEFAULT_BLOCKLIST)
+        start = time.time()
+        refreshed = refresh_blocklisted_entries(cache, corpus, blocklist, workers=args.workers, strategy=args.strategy)
+        save_cache(cache, output)
+        print(f"[{args.strategy}] {len(refreshed)} entrée(s) recalculée(s) en {time.time() - start:.1f}s : "
+              + ", ".join(f"{k} -> {cache.get(k, {}).get('word')}" for k in refreshed))
+        return
+
     n_groups = len({(w[0], len(w)) for w in corpus})
     print(
         f"[{args.strategy}] {len(corpus)} mot(s), {n_groups} groupe(s) (lettre, longueur) à "

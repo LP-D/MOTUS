@@ -132,6 +132,47 @@ def _build_root_cache_parallel(
     return cache
 
 
+def refresh_blocklisted_entries(
+    cache: dict[str, dict],
+    corpus: Corpus,
+    blocklist: set[str],
+    workers: int = 1,
+    strategy: str = "composite",
+) -> list[str]:
+    """Recalcule uniquement les entrées dont le mot est en liste noire (mot refusé
+    par le vrai dictionnaire du jeu) — même calcul que `build_root_cache` avec
+    `blocklist`, limité à ces groupes. Évite qu'un groupe dont le coup 1 en cache
+    est invalide retombe à chaque partie sur le repli dynamique, très lent sur
+    les groupes denses (mesuré : ~93s sur E,9 ; davantage sur R,9).
+
+    Modifie `cache` en place, retourne les clés recalculées."""
+    stale = sorted(key for key, entry in cache.items() if entry["word"] in blocklist)
+    if not stale:
+        return []
+    items = [(key.split("_")[0], int(key.split("_")[1])) for key in stale]
+    if workers <= 1:
+        global_freq = letter_frequencies(corpus)
+        results = [
+            (letter, length, _compute_entry(
+                letter, length, corpus, global_freq, positional_frequencies(corpus, length), blocklist, strategy
+            ))
+            for letter, length in items
+        ]
+    else:
+        with mp.Pool(
+            processes=min(workers, len(items)), initializer=_init_worker,
+            initargs=(corpus.words, blocklist, strategy),
+        ) as pool:
+            results = list(pool.imap_unordered(_compute_group, items))
+    for letter, length, entry in results:
+        key = cache_key(letter, length)
+        if entry is None:
+            cache.pop(key, None)
+        else:
+            cache[key] = entry
+    return stale
+
+
 def save_cache(cache: dict[str, dict], path: str | Path) -> None:
     Path(path).write_text(
         json.dumps(cache, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8"

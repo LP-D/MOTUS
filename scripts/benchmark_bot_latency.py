@@ -44,7 +44,7 @@ from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
 
 from bot.timing import CycleTimer  # noqa: E402
-from bot.tuzmo_client import TuzmoClient, WordRejectedError  # noqa: E402
+from bot.tuzmo_client import GuessInputError, GuessNotSentError, TuzmoClient, WordRejectedError  # noqa: E402
 
 URL = "https://www.tusmo.xyz/infinite"
 MAX_ATTEMPTS = 6
@@ -119,7 +119,13 @@ def play_one_game(
             timer.set_cycle_start()
             timer.mark("solver_suggest")
             try:
-                client.submit_guess(guess, timer=timer, timeout=REJECT_TIMEOUT_MS)
+                try:
+                    client.submit_guess(guess, timer=timer, timeout=REJECT_TIMEOUT_MS)
+                except (GuessInputError, GuessNotSentError):
+                    # le serveur n'a pas jugé ce mot (autre mot reçu / rien envoyé) :
+                    # une seule nouvelle tentative, ligne vidée par le client, jamais
+                    # de liste noire sur ce motif
+                    client.submit_guess(guess, timer=timer, timeout=REJECT_TIMEOUT_MS)
             except WordRejectedError:
                 timer.finish({"game": game_index, "outcome": "rejected", "guess": guess})
                 add_to_blocklist(guess, blocklist_path)
@@ -144,7 +150,9 @@ def play_one_game(
         )
         solver.update(pattern)
 
-        if solver.is_solved():
+        # victoire confirmée par le pattern serveur du coup joué, pas par
+        # l'élimination locale des candidats (cf. tests/test_solved_confirmation.py)
+        if pattern == "2" * length:
             return {"solved": True, "attempts": attempt, "outcome": "solved"}
 
     return {"solved": False, "attempts": MAX_ATTEMPTS, "outcome": "not_solved"}

@@ -10,12 +10,13 @@ from __future__ import annotations
 
 import json
 import queue
+import random
 import sys
 import threading
 import time
 from pathlib import Path
 
-from playwright.sync_api import Browser, Page
+from playwright.sync_api import Browser, BrowserContext, Page
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 from playwright.sync_api import sync_playwright
 
@@ -28,9 +29,17 @@ from motus_solver.cache import load_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
 
+from bot.network_monitor import NetworkMonitor  # noqa: E402
 from bot.parser import CORRECT  # noqa: E402
 from bot.timing import CycleTimer  # noqa: E402
-from bot.tuzmo_client import TuzmoClient, WordRejectedError  # noqa: E402
+from bot.tuzmo_client import (  # noqa: E402
+    GameStateError,
+    GuessInputError,
+    GuessNotSentError,
+    ThrottlingDetectedError,
+    TuzmoClient,
+    WordRejectedError,
+)
 
 from bot_config import config as bot_config  # noqa: E402
 from stats_store import record_game  # noqa: E402
@@ -44,6 +53,12 @@ URL = "https://www.tusmo.xyz/infinite"
 MAX_ATTEMPTS = 6
 REJECT_TIMEOUT_MS = 6000
 MAX_SUGGEST_RETRIES = 20
+# Coups non transmis correctement (mot envoyé != mot voulu, ou aucune requête) :
+# retentés après nettoyage de la ligne, mais plafonnés pour ne jamais boucler.
+MAX_INPUT_FAILURES_PER_ATTEMPT = 3
+# Pause entre deux parties : la création de session (POST /api/game) compte aussi
+# dans le débit validé (1.5-2.5s entre requêtes) — jamais d'enchaînement plus rapide.
+INTER_GAME_DELAY_S = (1.5, 2.5)
 
 # Sous-ensemble d'événements de cycle de vie (démarrage/arrêt d'une partie ou d'une
 # boucle) persistés dans DEFAULT_LOG en plus d'être poussés sur le WebSocket — pour
@@ -59,6 +74,8 @@ _LIFECYCLE_EVENT_TYPES = {
     "error",
     "auth_loaded",
     "auth_missing",
+    "throttled",
+    "guess_not_submitted",
 }
 
 
@@ -81,9 +98,10 @@ class BotRunner:
         self._stop_event = threading.Event()
         self._lock = threading.Lock()
         self.events: queue.Queue[dict] = queue.Queue()
-        self.status = "idle"  # idle | running | stopped | error
+        self.status = "idle"  # idle | running | stopped | error | throttled
         self.current_iteration = 0
         self.total_iterations = 0
+        self.page_monitor: NetworkMonitor | None = None
 
     def is_running(self) -> bool:
         return self._thread is not None and self._thread.is_alive()
@@ -137,15 +155,41 @@ class BotRunner:
         except OSError:
             pass
 
-    def _open_game_page(self, browser: Browser) -> Page:
+    def _new_context(self, browser: Browser) -> BrowserContext:
         context_kwargs = {"viewport": {"width": 1280, "height": 900}}
         if DEFAULT_AUTH_STATE.exists():
             context_kwargs["storage_state"] = str(DEFAULT_AUTH_STATE)
-        context = browser.new_context(**context_kwargs)
+        return browser.new_context(**context_kwargs)
+
+    def _open_game_page(self, context: BrowserContext) -> Page:
+        """Ouvre /infinite dans `context` et démarre une partie.
+
+        Un 429 (ou tout signal de throttling) pendant le chargement lève
+        `ThrottlingDetectedError` au lieu d'un simple timeout Playwright — c'est
+        ainsi que se manifestait le "guest creation rate limited" du 23/09/2026
+        (plateau jamais affiché, cause invisible sans lecture réseau)."""
         page = context.new_page()
+        monitor = NetworkMonitor(page)  # avant goto : voit /api/me et POST /api/game
+        self.page_monitor = monitor  # exposé pour l'instrumentation (scripts/run_case_matrix.py)
+
+        def check_throttle() -> None:
+            signal = monitor.first_throttle_signal()
+            if signal:
+                call, reason = signal
+                page.close()
+                raise ThrottlingDetectedError(f"{reason} sur {call.method} {call.url}", call)
+
         page.goto(URL, wait_until="networkidle", timeout=20000)
-        page.locator("button", has_text="C'est parti").first.click()
-        page.wait_for_selector(".board.board--stage", timeout=10000)
+        check_throttle()
+        start_button = page.locator("button", has_text="C'est parti")
+        if start_button.count():
+            start_button.first.click()
+        try:
+            page.wait_for_selector(".board.board--stage", timeout=10000)
+        except PlaywrightTimeoutError:
+            check_throttle()
+            raise
+        check_throttle()
         page.wait_for_timeout(400)
         return page
 
@@ -194,6 +238,7 @@ class BotRunner:
             accepted_timer: CycleTimer | None = None
             accepted_guess: str | None = None
             retries = 0
+            input_failures = 0
             while solver.candidates and retries < MAX_SUGGEST_RETRIES:
                 if self._stop_event.is_set():
                     break
@@ -213,12 +258,37 @@ class BotRunner:
                         enter_delay=enter_delay_s,
                     )
                 except WordRejectedError:
+                    # INVALID_WORD confirmé par le serveur pour CE mot exact (corps de
+                    # la requête vérifié par le client) : seul cas de mise en liste noire.
                     record = timer.finish({"outcome": "rejected", "guess": guess})
                     blocklist = add_to_blocklist(guess, DEFAULT_BLOCKLIST)
                     self._emit("guess_rejected", attempt=attempt, guess=guess, record=record)
                     if guess in solver.candidates:
                         solver.candidates.remove(guess)
                     continue
+                except (GuessInputError, GuessNotSentError) as exc:
+                    # Le serveur n'a pas jugé CE mot (autre mot reçu, ou rien d'envoyé) :
+                    # jamais de liste noire ici — c'est la cause de la cascade de faux
+                    # rejets diagnostiquée le 23/09/2026. Même mot retenté (ligne vidée).
+                    record = timer.finish({"outcome": "not_submitted", "guess": guess, "error": str(exc)})
+                    self._emit("guess_not_submitted", attempt=attempt, guess=guess, reason=str(exc), record=record)
+                    input_failures += 1
+                    if input_failures >= MAX_INPUT_FAILURES_PER_ATTEMPT:
+                        self._emit("error", message=f"saisie impossible après {input_failures} essais : {exc}")
+                        result["outcome"] = "error"
+                        result["exception"] = exc
+                        return result, blocklist
+                    continue
+                except ThrottlingDetectedError as exc:
+                    self._emit("throttled", reason=exc.reason)
+                    result["outcome"] = "throttled"
+                    result["exception"] = exc
+                    return result, blocklist
+                except GameStateError as exc:
+                    self._emit("error", message=str(exc))
+                    save_stats("game_error")
+                    result["exception"] = exc
+                    return result, blocklist
                 except PlaywrightTimeoutError as exc:
                     self._emit("error", message=str(exc))
                     result["outcome"] = "error"
@@ -268,6 +338,64 @@ class BotRunner:
 
         return result, blocklist
 
+    def _run_games(
+        self, browser: Browser, iterations: int, corpus: Corpus, root_cache: dict, blocklist: set[str]
+    ) -> None:
+        """Boucle de N parties dans UN SEUL contexte navigateur.
+
+        Correctif du 23/09/2026 : l'ancienne version ouvrait un contexte neuf (sans
+        cookie) par partie, donc Tuzmo créait un nouvel invité anonyme à chaque
+        partie, jusqu'au 429 "guest creation rate limited" (GET /api/me, POST
+        /api/game) après une quinzaine de parties. Le contexte, et donc l'invité,
+        est désormais conservé pendant toute la boucle ; seule la page change à
+        chaque partie. Ce chemin n'a pas pu être revalidé en direct (le serveur
+        limitait déjà la création d'invités au moment du correctif)."""
+        if DEFAULT_AUTH_STATE.exists():
+            self._emit("auth_loaded", path=str(DEFAULT_AUTH_STATE))
+        else:
+            self._emit("auth_missing")
+        context = self._new_context(browser)
+        try:
+            for i in range(1, iterations + 1):
+                if self._stop_event.is_set():
+                    break
+
+                self.current_iteration = i
+                self._emit("loop_progress", current=i, total=iterations)
+
+                try:
+                    page = self._open_game_page(context)
+                except ThrottlingDetectedError as exc:
+                    self._emit("throttled", reason=exc.reason)
+                    self.status = "throttled"
+                    return
+                try:
+                    result, blocklist = self._play_one_game(page, corpus, root_cache, blocklist)
+                finally:
+                    page.close()
+
+                if result["outcome"] == "error":
+                    self.status = "error"
+                    return
+                if result["outcome"] == "throttled":
+                    # Arrêt d'urgence de toute la boucle (429 / Retry-After / latence
+                    # > 10s) : ne jamais enchaîner de partie suivante dans ce cas.
+                    self.status = "throttled"
+                    return
+                if result["outcome"] == "stopped":
+                    break
+                if i < iterations and self._stop_event.wait(random.uniform(*INTER_GAME_DELAY_S)):
+                    break
+
+            if self._stop_event.is_set():
+                self._emit("stopped")
+                self.status = "stopped"
+            else:
+                self._emit("loop_finished", completed=self.current_iteration, total=iterations)
+                self.status = "idle"
+        finally:
+            context.close()
+
     def _run(self, iterations: int) -> None:
         try:
             corpus = Corpus.from_file(DEFAULT_CORPUS)
@@ -275,45 +403,11 @@ class BotRunner:
             blocklist = load_blocklist(DEFAULT_BLOCKLIST)
 
             with sync_playwright() as playwright:
-                # Un seul navigateur pour toute la boucle (évite de relancer Chromium
-                # à chaque partie) ; une page/contexte frais PAR partie — plus simple
-                # et plus robuste que de tenter de réutiliser l'enchaînement de mot
-                # côté serveur en cas de victoire (comportement non vérifié en cas
-                # d'échec, cf. docs/tuzmo_site_notes.md) : chaque partie redémarre
-                # proprement, indépendamment du résultat de la précédente.
                 browser = playwright.chromium.launch(headless=True)
-                if DEFAULT_AUTH_STATE.exists():
-                    self._emit("auth_loaded", path=str(DEFAULT_AUTH_STATE))
-                else:
-                    self._emit("auth_missing")
-
-                for i in range(1, iterations + 1):
-                    if self._stop_event.is_set():
-                        break
-
-                    self.current_iteration = i
-                    self._emit("loop_progress", current=i, total=iterations)
-
-                    page = self._open_game_page(browser)
-                    try:
-                        result, blocklist = self._play_one_game(page, corpus, root_cache, blocklist)
-                    finally:
-                        page.context.close()
-
-                    if result["outcome"] == "error":
-                        self.status = "error"
-                        browser.close()
-                        return
-                    if result["outcome"] == "stopped":
-                        break
-
-                if self._stop_event.is_set():
-                    self._emit("stopped")
-                    self.status = "stopped"
-                else:
-                    self._emit("loop_finished", completed=self.current_iteration, total=iterations)
-                    self.status = "idle"
-                browser.close()
+                try:
+                    self._run_games(browser, iterations, corpus, root_cache, blocklist)
+                finally:
+                    browser.close()
         except Exception as exc:  # le thread ne doit jamais planter en silence
             self._emit("error", message=f"{exc.__class__.__name__}: {exc}")
             self.status = "error"

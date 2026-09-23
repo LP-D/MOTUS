@@ -20,7 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 import bot_runner  # noqa: E402
 
-from bot.tuzmo_client import WordRejectedError  # noqa: E402
+from bot.tuzmo_client import GuessInputError, WordRejectedError  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.feedback import pattern_string  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
@@ -128,3 +128,34 @@ def test_rejected_guess_never_recorded_as_solution_and_fallback_still_confirms_c
     # ...et n'est jamais le mot enregistré comme solution ni comme coup accepté
     assert call["solution"] != first_pick
     assert first_pick not in call["guesses"]
+
+
+def test_input_error_is_retried_and_never_blocklisted(monkeypatch, tmp_path):
+    """Correctif du 23/09/2026 : quand le serveur a reçu un AUTRE mot que celui
+    voulu (ligne restée pleine après un rejet), le mot voulu ne doit jamais être
+    mis en liste noire — il est retenté et la partie se poursuit normalement."""
+    true_target = "RIVER"
+    corpus = Corpus(["RATER", "RIVER"])
+    base_cls = make_client_cls(true_target)
+
+    class FlakyInputClient(base_cls):
+        failed_once = False
+
+        def submit_guess(self, word, **kwargs):
+            if not FlakyInputClient.failed_once:
+                FlakyInputClient.failed_once = True
+                raise GuessInputError(word.upper(), "RATER")
+            return super().submit_guess(word, **kwargs)
+
+    monkeypatch.setattr(bot_runner, "TuzmoClient", FlakyInputClient)
+    _patch_runner_io(monkeypatch, tmp_path)
+    recorded_calls = []
+    monkeypatch.setattr(bot_runner, "record_game", lambda **kwargs: recorded_calls.append(kwargs))
+
+    runner = bot_runner.BotRunner()
+    result, blocklist = runner._play_one_game(page=None, corpus=corpus, root_cache=None, blocklist=set())
+
+    assert blocklist == set()
+    assert not (tmp_path / "blocklist.json").exists()
+    assert result["solved"] is True
+    assert recorded_calls[0]["solution"] == true_target

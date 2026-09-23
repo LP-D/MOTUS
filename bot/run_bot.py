@@ -23,7 +23,12 @@ from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
 
 from bot.parser import CORRECT  # noqa: E402
-from bot.tuzmo_client import TuzmoClient, WordRejectedError  # noqa: E402
+from bot.tuzmo_client import (  # noqa: E402
+    GuessInputError,
+    GuessNotSentError,
+    TuzmoClient,
+    WordRejectedError,
+)
 
 URL = "https://www.tusmo.xyz/daily"
 CORPUS_PATH = ROOT_DIR / "data" / "corpus_fr.txt"
@@ -38,15 +43,24 @@ def play_move(client: TuzmoClient, solver: Solver, attempt: int) -> str | None:
     """Propose un mot (recalcul dynamique à chaque rejet) et le soumet, jusqu'à
     acceptation ou épuisement des candidats. Retourne le mot joué, ou None."""
     retries = 0
+    input_failures = 0
     while solver.candidates and retries < MAX_SUGGEST_RETRIES:
         guess = solver.suggest(top_n=1)[0][0]
         retries += 1
         try:
             client.submit_guess(guess, timeout=REJECT_TIMEOUT_MS)
         except WordRejectedError:
+            # INVALID_WORD confirmé serveur pour ce mot exact -> liste noire légitime
             print(f"  essai {attempt} : {guess!r} rejeté (Mot inconnu), nouvelle proposition...")
             add_to_blocklist(guess, BLOCKLIST_PATH)
             solver.candidates.remove(guess)
+            continue
+        except (GuessInputError, GuessNotSentError) as exc:
+            # le serveur n'a pas jugé ce mot : jamais de liste noire, on retente
+            input_failures += 1
+            print(f"  essai {attempt} : {guess!r} non transmis correctement ({exc}), nouvel essai...")
+            if input_failures >= 3:
+                raise
             continue
         return guess
     return None

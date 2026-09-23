@@ -44,7 +44,7 @@
   }
   .status-pill[data-status="running"] { background: var(--accent); }
   .status-pill[data-status="solved"], .status-pill[data-status="idle"] { background: var(--correct); }
-  .status-pill[data-status="error"] { background: var(--error); }
+  .status-pill[data-status="error"], .status-pill[data-status="throttled"] { background: var(--error); }
   .auth-pill { font-size: 12px; color: var(--muted); margin-left: auto; }
   button {
     background: var(--panel);
@@ -291,6 +291,14 @@ function handleEvent(ev) {
     case 'error':
       setStatus('error');
       addEvent(ev, 'error');
+      break;
+    case 'throttled':
+      // arrêt d'urgence (429 / Retry-After / latence > 10s) — distinct d'une erreur de jeu
+      setStatus('throttled');
+      addEvent(ev, 'error');
+      break;
+    case 'guess_not_submitted':
+      addEvent(ev, 'rejected');
       break;
     default:
       addEvent(ev);
