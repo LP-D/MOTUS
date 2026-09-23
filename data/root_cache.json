@@ -145,9 +145,9 @@
     "word": "FAOUINES"
   },
   "F_9": {
-    "entropy": 9.464055460535235,
+    "entropy": 9.386913299949084,
     "vowels": 5,
-    "word": "FAURIONES"
+    "word": "FOUINATES"
   },
   "G_5": {
     "entropy": 4.361406127702535,
@@ -155,9 +155,9 @@
     "word": "GUEAI"
   },
   "G_6": {
-    "entropy": 5.810001974994572,
+    "entropy": 5.720826942057523,
     "vowels": 4,
-    "word": "GUIORE"
+    "word": "GUEAIS"
   },
   "G_7": {
     "entropy": 7.326565322170277,
@@ -435,9 +435,9 @@
     "word": "RESUAI"
   },
   "R_7": {
-    "entropy": 6.570256085949381,
+    "entropy": 6.413371132669778,
     "vowels": 5,
-    "word": "RETOUAI"
+    "word": "RENOUAI"
   },
   "R_8": {
     "entropy": 7.752707456878384,

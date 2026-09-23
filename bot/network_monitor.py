@@ -86,7 +86,23 @@ def classify_kind(method: str, url: str) -> str:
         return "guess"
     if method == "POST" and path.endswith("/api/game"):
         return "create_session"
+    if method == "POST" and path.endswith("/giveup"):
+        return "give_up"
+    if method == "POST" and path.endswith("/reset"):
+        return "reset"
     return "other"
+
+
+# Requêtes qui font avancer une partie : comptées dans l'écart minimal entre requêtes.
+GAME_ACTION_KINDS = {"guess", "give_up", "reset"}
+
+
+def session_from_body(body: dict | None) -> dict | None:
+    """Objet session d'une réponse /api/game (au premier niveau ou sous `session`)."""
+    if not isinstance(body, dict):
+        return None
+    session = body.get("session", body)
+    return session if isinstance(session, dict) and ("id" in session or "firstLetter" in session) else None
 
 
 def is_throttle_signal(call: ApiCall) -> str | None:
@@ -158,7 +174,8 @@ class NetworkMonitor:
         return [c for c in self.calls if c.kind == "guess" and c.t_sent >= t]
 
     def last_guess_sent_at(self) -> float | None:
-        sent = [c.t_sent for c in self.calls if c.kind == "guess"]
+        """Dernier envoi d'une requête de jeu (coup, abandon, reset)."""
+        sent = [c.t_sent for c in self.calls if c.kind in GAME_ACTION_KINDS]
         return max(sent) if sent else None
 
     def first_throttle_signal(self) -> tuple[ApiCall, str] | None:

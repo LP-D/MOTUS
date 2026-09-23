@@ -77,6 +77,16 @@ class LosingSolver(Solver):
         return super().suggest(top_n)
 
 
+class AbandonSolver(Solver):
+    """Force le chemin "partie impossible à gagner" après le 1er coup accepté
+    (vide les candidats, comme une solution hors corpus) : exerce l'abandon réel
+    (bouton ↻ run-reset de /infinite) et la reprise éventuelle au chargement suivant."""
+
+    def update(self, pattern: str) -> None:
+        super().update(pattern)
+        self.candidates = []
+
+
 class MatrixRunner(BotRunner):
     """Chemin de production inchangé ; le moniteur réseau de la page (branché avant
     le chargement par `BotRunner._open_game_page`) sert à évaluer la matrice."""
@@ -220,9 +230,16 @@ def main() -> None:
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--force-loss-game", type=int, default=2, help="N° de partie (dans ce run) à perdre exprès (0 = aucune).")
     parser.add_argument("--max-games", type=int, default=0, help="Plafond de parties pour CE run (0 = seul le plafond de session).")
+    parser.add_argument("--plan", default="",
+                        help="Scénarios successifs dans UN seul contexte, ex. normal,abandon,normal,loss,normal "
+                             "(remplace --force-loss-game et la couverture ; s'arrête à la 1re anomalie).")
     parser.add_argument("--until-game-error", action="store_true",
                         help="Mode investigation : ignore la couverture, s'arrête à la 1re partie en game_error.")
     args = parser.parse_args()
+    plan = [m.strip() for m in args.plan.split(",") if m.strip()]
+    assert all(m in {"normal", "abandon", "loss"} for m in plan), plan
+    if plan:
+        args.max_games, args.force_loss_game = len(plan), 0
     ledger, out_dir = Path(args.ledger), Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     games_path, summary_path = out_dir / "matrix_games.jsonl", out_dir / "matrix_summary.json"
@@ -234,6 +251,7 @@ def main() -> None:
     coverage = {case: [] for case in CASES}
     stop_reason = None
     loss_needs_followup = False
+    previous_resumed = False
     games_run = 0
     real_solver, real_record = bot_runner.Solver, bot_runner.record_game
 
@@ -254,7 +272,8 @@ def main() -> None:
                     stop_reason = f"plafond de {SESSION_GAME_CAP} parties de session atteint"
                     break
                 games_run += 1
-                forced = games_run == args.force_loss_game
+                mode = plan[games_run - 1] if plan else ("loss" if games_run == args.force_loss_game else "normal")
+                forced = mode == "loss"
                 with ledger.open("a", encoding="utf-8") as f:
                     f.write(json.dumps({"t": time.time(), "script": "run_case_matrix", "forced_loss": forced}) + "\n")
 
@@ -264,9 +283,9 @@ def main() -> None:
                     stop_reason = f"THROTTLING au chargement : {exc.reason}"
                     break
                 drain(runner.events)
-                if forced:
-                    bot_runner.Solver = LosingSolver
-                    # partie perdue volontairement : hors des stats réelles du bot
+                if mode in {"loss", "abandon"}:
+                    bot_runner.Solver = LosingSolver if mode == "loss" else AbandonSolver
+                    # partie perdue/abandonnée volontairement : hors des stats réelles du bot
                     bot_runner.record_game = lambda **kw: None
                 try:
                     result, blocklist = runner._play_one_game(page, corpus, root_cache, blocklist)
@@ -286,6 +305,15 @@ def main() -> None:
                     loss_needs_followup = False
                 if forced:
                     loss_needs_followup = True
+                report["mode"] = mode
+                report["session"] = {
+                    "info": [e for e in events if e["type"] == "session_info"],
+                    "resumed": bool(result.get("resumed")),
+                    "abandoned": bool(result.get("abandoned")),
+                    "abandon_failed": bool(result.get("abandon_failed")),
+                    "create_calls": len([c for c in calls if c.kind == "create_session"]),
+                    "api_me_statuses": [c.status for c in calls if c.url.split("?")[0].endswith("/api/me")],
+                }
                 report["events"] = [{k: v for k, v in e.items() if k != "record"} for e in events]
                 with games_path.open("a", encoding="utf-8") as f:
                     f.write(json.dumps(report, ensure_ascii=False) + "\n")
@@ -293,8 +321,9 @@ def main() -> None:
                 for case, check in report["checks"].items():
                     key = "F_real_loss" if case == "F_next_game_clean" else case
                     coverage.setdefault(key, []).append({"game": games_run, "status": check["status"], "case": case})
-                print(json.dumps({"game": games_run, "group": f"{report['letter']}{report['length']}",
-                                  "outcome": report["outcome"],
+                print(json.dumps({"game": games_run, "mode": mode, "group": f"{report['letter']}{report['length']}",
+                                  "outcome": report["outcome"], "session": {k: report["session"][k] for k in
+                                  ("resumed", "abandoned", "create_calls", "api_me_statuses")},
                                   "checks": {k: v["status"] for k, v in report["checks"].items()},
                                   "net": {k: report["network"][k] for k in ("guess_requests", "max_latency_s", "not_submitted")}},
                                  ensure_ascii=False), flush=True)
@@ -309,6 +338,16 @@ def main() -> None:
                 if failures:
                     stop_reason = f"cas en échec : {failures} (partie {games_run})"
                     break
+                if result["outcome"] == "session_not_playable" or result.get("abandon_failed"):
+                    stop_reason = f"contexte persistant : {result['outcome']} / abandon_failed={result.get('abandon_failed')} (partie {games_run})"
+                    break
+                if result.get("resumed") and previous_resumed:
+                    stop_reason = f"deux parties reprises d'affilée (partie {games_run})"
+                    break
+                previous_resumed = bool(result.get("resumed"))
+                if plan and result.get("resumed") and games_run > 1 and plan[games_run - 2] != "normal":
+                    stop_reason = f"partie reprise après un '{plan[games_run - 2]}' : clôture serveur inefficace (partie {games_run})"
+                    break
                 if result["outcome"] == "game_error":
                     stop_reason = f"partie en game_error : {result.get('exception')} (partie {games_run})"
                     break
@@ -318,6 +357,12 @@ def main() -> None:
                 if result["outcome"] == "error":
                     stop_reason = f"erreur de partie : {result.get('exception')}"
                     break
+                if plan:
+                    if games_run >= len(plan):
+                        stop_reason = "plan de validation terminé"
+                        break
+                    time.sleep(random.uniform(*bot_runner.INTER_GAME_DELAY_S))
+                    continue
                 covered = {
                     c: any(r["status"] == "pass" for r in coverage.get(c, []))
                     for c in CASES

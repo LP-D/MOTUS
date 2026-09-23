@@ -29,7 +29,7 @@ from motus_solver.cache import load_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
 
-from bot.network_monitor import NetworkMonitor  # noqa: E402
+from bot.network_monitor import NetworkMonitor, session_from_body  # noqa: E402
 from bot.parser import CORRECT  # noqa: E402
 from bot.timing import CycleTimer  # noqa: E402
 from bot.tuzmo_client import (  # noqa: E402
@@ -56,6 +56,7 @@ MAX_SUGGEST_RETRIES = 20
 # Coups non transmis correctement (mot envoyé != mot voulu, ou aucune requête) :
 # retentés après nettoyage de la ligne, mais plafonnés pour ne jamais boucler.
 MAX_INPUT_FAILURES_PER_ATTEMPT = 3
+API_PATTERN_CODE = {"correct": "2", "present": "1", "absent": "0"}
 # Pause entre deux parties : la création de session (POST /api/game) compte aussi
 # dans le débit validé (1.5-2.5s entre requêtes) — jamais d'enchaînement plus rapide.
 INTER_GAME_DELAY_S = (1.5, 2.5)
@@ -76,6 +77,9 @@ _LIFECYCLE_EVENT_TYPES = {
     "auth_missing",
     "throttled",
     "guess_not_submitted",
+    "session_info",
+    "game_resumed",
+    "gave_up",
 }
 
 
@@ -190,8 +194,36 @@ class BotRunner:
             check_throttle()
             raise
         check_throttle()
+        self._restart_if_finished(page, monitor)
+        check_throttle()
         page.wait_for_timeout(400)
         return page
+
+    def _restart_if_finished(self, page: Page, monitor: NetworkMonitor) -> None:
+        """Si le chargement renvoie une partie déjà TERMINÉE (invité conservé après
+        une défaite ou un abandon), clique une fois "Rejouer" : le site relance alors
+        POST /api/game (cf. `onPlayAgain` de la vue /infinite). Sinon, rien. Si ça ne
+        suffit pas, `_play_one_game` refusera la session et la boucle s'arrêtera."""
+        monitor.resolve_bodies()
+        creates = [session_from_body(c.body) for c in monitor.calls if c.kind == "create_session" and c.body]
+        creates = [c for c in creates if c]
+        if not creates or creates[-1].get("status") in (None, "playing"):
+            return
+        replay = page.locator("button", has_text="Rejouer")
+        if not replay.count():
+            return
+        self._emit("session_info", session_id=creates[-1].get("id"), status=creates[-1].get("status"),
+                   action="rejouer")
+        time.sleep(random.uniform(*INTER_GAME_DELAY_S))  # débit validé : nouvelle requête de création
+        n_before = len(creates)
+        replay.first.click(timeout=5000)
+        deadline = time.time() + 5.0
+        while time.time() < deadline:
+            monitor.resolve_bodies()
+            done = [c for c in monitor.calls if c.kind == "create_session" and c.status is not None]
+            if len(done) > n_before:
+                break
+            page.wait_for_timeout(100)
 
     def _play_one_game(
         self, page: Page, corpus: Corpus, root_cache: dict, blocklist: set[str]
@@ -211,6 +243,29 @@ class BotRunner:
         stats_saved = False
         result = {"outcome": "unknown", "solved": False, "letter": letter, "length": length}
 
+        # Avec un contexte (donc un invité) conservé d'une partie à l'autre, le
+        # serveur peut renvoyer la partie /infinite en cours de cet invité au lieu
+        # d'une nouvelle (cf. startGame du site : il rejoue `session.guesses`).
+        session, n_create_calls = self._current_session()
+        if session is not None:
+            prior = session.get("guesses") or []
+            self._emit("session_info", session_id=session.get("id"), status=session.get("status"),
+                       prior_guesses=len(prior), create_calls=n_create_calls)
+            if session.get("status") not in (None, "playing"):
+                self._emit("error", message=f"session renvoyée non jouable (status={session.get('status')!r})")
+                result["outcome"] = "session_not_playable"
+                return result, blocklist
+            if prior:
+                for g in prior:
+                    word = g["word"].upper()
+                    solver.play(word)
+                    solver.update("".join(API_PATTERN_CODE[r] for r in g["result"]))
+                    guesses_played.append(word)
+                client.resume_from(len(prior))
+                result["resumed"] = True
+                self._emit("game_resumed", prior_guesses=[g["word"] for g in prior])
+        first_attempt = len(guesses_played) + 1
+
         def save_stats(outcome: str) -> None:
             nonlocal stats_saved
             record_game(
@@ -226,7 +281,7 @@ class BotRunner:
             result["outcome"] = outcome
             result["solved"] = solved
 
-        for attempt in range(1, MAX_ATTEMPTS + 1):
+        for attempt in range(first_attempt, MAX_ATTEMPTS + 1):
             if self._stop_event.is_set():
                 result["outcome"] = "stopped"
                 return result, blocklist
@@ -336,7 +391,39 @@ class BotRunner:
             if not stats_saved:
                 save_stats("not_solved")
 
+        if result["outcome"] == "candidates_exhausted" and page is not None and not self._stop_event.is_set():
+            self._abandon(client, result)
+
         return result, blocklist
+
+    def _current_session(self) -> tuple[dict | None, int]:
+        """Session renvoyée par le dernier POST /api/game de la page (moniteur
+        branché par `_open_game_page`), et nombre d'appels de création observés
+        (plusieurs appels concurrents = piste du NOT_FOUND de H8)."""
+        if self.page_monitor is None:
+            return None, 0
+        self.page_monitor.resolve_bodies()
+        creates = [c for c in self.page_monitor.calls if c.kind == "create_session"]
+        bodies = [session_from_body(c.body) for c in creates if c.body]
+        bodies = [b for b in bodies if b]
+        return (bodies[-1] if bodies else None), len(creates)
+
+    def _abandon(self, client: TuzmoClient, result: dict) -> None:
+        """Mot que le bot ne peut plus trouver (solution hors corpus) : le clore côté
+        serveur (bouton ↻ de /infinite), sinon le même invité le retrouverait au
+        chargement suivant et la boucle rejouerait sans fin une partie insoluble."""
+        try:
+            client.abandon_current_word()
+        except ThrottlingDetectedError as exc:
+            self._emit("throttled", reason=exc.reason)
+            result["outcome"] = "throttled"
+            return
+        except (GameStateError, PlaywrightTimeoutError) as exc:
+            self._emit("error", message=f"abandon impossible : {exc}")
+            result["abandon_failed"] = True
+            return
+        result["abandoned"] = True
+        self._emit("gave_up")
 
     def _run_games(
         self, browser: Browser, iterations: int, corpus: Corpus, root_cache: dict, blocklist: set[str]
@@ -355,6 +442,7 @@ class BotRunner:
         else:
             self._emit("auth_missing")
         context = self._new_context(browser)
+        previous_resumed = False
         try:
             for i in range(1, iterations + 1):
                 if self._stop_event.is_set():
@@ -384,6 +472,16 @@ class BotRunner:
                     return
                 if result["outcome"] == "stopped":
                     break
+                # Garde-fous du contexte persistant : jamais de boucle sur une partie
+                # que le bot ne sait pas mener à terme.
+                if result["outcome"] == "session_not_playable" or result.get("abandon_failed"):
+                    self.status = "error"
+                    return
+                if result.get("resumed") and previous_resumed:
+                    self._emit("error", message="deux parties reprises d'affilée : arrêt pour éviter une boucle")
+                    self.status = "error"
+                    return
+                previous_resumed = bool(result.get("resumed"))
                 if i < iterations and self._stop_event.wait(random.uniform(*INTER_GAME_DELAY_S)):
                     break
 

@@ -22,6 +22,8 @@ REQUEST_SENT_TIMEOUT_S = 3.0  # Entrée pressée sans requête /guess dans ce d�
 RESPONSE_TIMEOUT_S = 10.0  # au-delà : signal de throttling (latence > 10s), arrêt d'urgence
 CLICK_TIMEOUT_MS = 5000  # un clavier bloqué remonte vite en erreur au lieu de pendre 30s
 REVEAL_TIMEOUT_MS = 5000
+# Bouton ↻ de /infinite : 1er clic = armement d'une confirmation valable 3 s (score > 0)
+RESET_ARM_WAIT_S = 0.5
 API_CODE = {"correct": "2", "present": "1", "absent": "0"}
 
 
@@ -127,11 +129,13 @@ class TuzmoClient:
         if wait > 0:
             time.sleep(wait)
 
-    def _wait_for_new_guess_call(self, known_ids: set[int]) -> ApiCall | None:
-        deadline = time.time() + REQUEST_SENT_TIMEOUT_S
+    def _wait_for_new_call(
+        self, known_ids: set[int], kind: str = "guess", timeout_s: float | None = None
+    ) -> ApiCall | None:
+        deadline = time.time() + (REQUEST_SENT_TIMEOUT_S if timeout_s is None else timeout_s)
         while time.time() < deadline:
             for call in self.monitor.calls:
-                if call.kind == "guess" and id(call) not in known_ids:
+                if call.kind == kind and id(call) not in known_ids:
                     return call
             self.page.wait_for_timeout(50)
         return None
@@ -199,7 +203,7 @@ class TuzmoClient:
         if timer is not None:
             timer.mark("guess_submitted")
 
-        call = self._wait_for_new_guess_call(known_ids)
+        call = self._wait_for_new_call(known_ids)
         if call is None:
             self._row_dirty = True
             raise GuessNotSentError(f"aucune requête /guess après Entrée pour {word!r}")
@@ -228,6 +232,47 @@ class TuzmoClient:
         self._wait_for_row_reveal(self._attempt_count, len(word))
         self._attempt_count += 1
         return self.last_pattern
+
+    def resume_from(self, n_accepted: int) -> None:
+        """Partie reprise côté serveur avec `n_accepted` coups déjà joués : la
+        prochaine saisie va dans la ligne `n_accepted` (pas dans la 1re)."""
+        self._attempt_count = n_accepted
+
+    def abandon_current_word(self) -> None:
+        """Clôt côté serveur un mot que le bot ne peut plus trouver, via le bouton
+        ↻ de /infinite (`button.run-reset` : POST /api/game/{id}/reset, puis le
+        site relance lui-même une partie). Sans cela, l'invité conservé d'une
+        partie à l'autre retrouverait ce mot au chargement suivant.
+
+        Vérifié en direct le 23/09/2026 : /infinite n'affiche PAS de bouton
+        "Abandonner" (le libellé existe dans le code du site, pas dans ce mode).
+        Le bouton ↻ demande une confirmation quand le score est > 0 : le 1er clic
+        l'arme, un 2e clic dans les 3 s déclenche la réinitialisation.
+
+        Lève `GameStateError` si la réinitialisation n'a pas été transmise,
+        `ThrottlingDetectedError` sur throttling."""
+        self._respect_request_gap()
+        known_ids = {id(c) for c in self.monitor.calls}
+        button = self.page.locator("button.run-reset")
+        if button.count() == 0:
+            raise GameStateError("bouton de réinitialisation (run-reset) introuvable")
+        button.first.click(timeout=CLICK_TIMEOUT_MS)
+        # Attente COURTE : si le 1er clic n'a fait qu'armer la confirmation, le 2e
+        # clic doit tomber dans la fenêtre de 3 s du site. Attendre ici le délai
+        # standard (3 s) laissait expirer la fenêtre : le 2e clic ré-armait
+        # simplement le bouton (constaté en direct le 23/09/2026).
+        call = self._wait_for_new_call(known_ids, kind="reset", timeout_s=RESET_ARM_WAIT_S)
+        if call is None:
+            button.first.click(timeout=CLICK_TIMEOUT_MS)
+            call = self._wait_for_new_call(known_ids, kind="reset")
+        if call is None:
+            raise GameStateError("réinitialisation non transmise (aucune requête /reset)")
+        self._wait_for_response(call)
+        throttle = is_throttle_signal(call)
+        if throttle:
+            raise ThrottlingDetectedError(throttle, call)
+        if call.server_error:
+            raise GameStateError(call.server_error)
 
     def read_feedback(self, timer: CycleTimer | None = None) -> str:
         """Pattern du dernier coup accepté, tel que renvoyé par le SERVEUR.

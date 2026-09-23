@@ -148,3 +148,47 @@ au chargement lève `ThrottlingDetectedError` (statut `throttled`) au lieu d'un 
 Playwright muet. Tests : `tests/test_guest_rate_limit.py`. À valider en direct une fois
 la limite levée : le rechargement de `/infinite` avec le même invité démarre-t-il bien
 une nouvelle partie après une victoire ou une défaite ?
+
+## Contexte persistant : analyse de H8 et validation en faible volume
+
+**Code du site** (modules JS publics, lus sans jouer). `startGame` appelle
+`POST /api/game`, puis rejoue les `session.guesses` renvoyés. Si la session n'est
+pas `playing`, il affiche la fenêtre de fin, dont le bouton « Rejouer » relance
+`POST /api/game`. Le mode `/infinite` ne propose pas « Abandonner » ; il a un bouton
+↻ (`run-reset` → `POST /api/game/{id}/reset`), avec une confirmation de 3 s quand
+le score est > 0.
+
+Conséquence : avec un invité conservé, le serveur peut renvoyer la partie en cours.
+Une partie insoluble (solution hors corpus) serait donc reprise sans fin. Garde-fous
+ajoutés (`tests/test_persistent_session.py`) :
+- une session reprise est rejouée dans le solveur ;
+- une session terminée au chargement déclenche un seul clic « Rejouer », sinon arrêt ;
+- sur « candidats épuisés », le mot est clos via ↻ ;
+- la boucle s'arrête si l'abandon échoue ou si deux parties reprises se suivent.
+
+**H8** (`NOT_FOUND` sur le 1er coup) s'est produit avec un contexte neuf, donc
+**avant** le contexte persistant, qui n'en est pas la cause. Sur les 9 chargements de
+la validation : `/api/me` toujours en 200, un seul `POST /api/game` par chargement
+(l'hypothèse de deux créations concurrentes n'est pas étayée), aucun `NOT_FOUND`.
+L'explication la plus cohérente reste une création d'invité déjà dégradée : H8 était
+le 13e invité neuf, trois chargements avant le 429. Elle n'est pas prouvée. Avec le
+contexte persistant, un run ne crée plus qu'un seul invité.
+
+**Validation** (3 runs, 9 parties en tout, preuve :
+[`2026-09-23_validation_contexte_persistant.jsonl`](2026-09-23_validation_contexte_persistant.jsonl)) :
+
+| Constat | Preuve |
+|---|---|
+| Après une victoire, la même session continue avec le mot suivant | même `session_id` d'une partie à l'autre, 0 coup repris |
+| L'abandon via ↻ fonctionne, confirmation comprise | `POST …/reset` 200 ; la partie suivante a une nouvelle session, non reprise |
+| Après une défaite réelle, le chargement donne directement une nouvelle partie | nouvelle session `playing` ; « Rejouer » n'a pas été nécessaire |
+| Cas A (9/9), B, C (5 et 9 lettres), D, E, F | tous validés |
+| Débit | 0 × 429, latence max 0,95 s |
+
+Deux défauts trouvés et corrigés pendant la validation :
+1. Il n'y a pas de bouton « Abandonner » sur `/infinite`. L'abandon passe désormais par ↻.
+2. L'attente de 3 s entre les deux clics de ↻ laissait expirer la confirmation. Elle
+   est maintenant de 0,5 s ; le test échoue avec l'ancienne attente (contre-épreuve).
+
+Les nouveaux mots racine invalides découverts (RETOUAI, GUIORE, FAURIONES) ont été
+recalculés dans le cache ; leurs remplaçants avaient déjà été acceptés en direct.
