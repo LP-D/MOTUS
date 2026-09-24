@@ -653,3 +653,5 @@
 {"t": 1790276359.0247834, "letter": "E", "length": 6, "answer": "EXPRES", "source": "validate_root_candidates"}
 {"t": 1790276362.3499448, "letter": "A", "length": 7, "answer": "ANNUELS", "source": "validate_root_candidates"}
 {"t": 1790276367.36249, "letter": "D", "length": 8, "answer": "DEROUTER", "source": "validate_root_candidates"}
+{"t": 1790277744.0579307, "letter": "O", "length": 9, "answer": "OISIVETES", "was_in_corpus": false}
+{"t": 1790278155.8049188, "letter": "I", "length": 7, "answer": "INDIGOS", "was_in_corpus": false}

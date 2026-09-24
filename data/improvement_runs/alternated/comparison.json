@@ -1,0 +1,4327 @@
+{
+  "live": {
+    "composite": {
+      "runs": [
+        1,
+        3,
+        5
+      ],
+      "words": 30,
+      "solved": 29,
+      "resolution_rate_pct": 96.7,
+      "mean_time_per_word_s": 7.81,
+      "mean_attempts_solved": 2.86,
+      "rejections": 15,
+      "rejection_rate_per_submitted_pct": 15.0,
+      "rejections_per_word": 0.5,
+      "root_rejections": 0,
+      "rejections_pre_validated": 0,
+      "mean_solver_s_per_word": 0.092,
+      "max_latency_s": 0.2686,
+      "errors": 0
+    },
+    "entropy_pure": {
+      "runs": [
+        2,
+        4
+      ],
+      "words": 20,
+      "solved": 19,
+      "resolution_rate_pct": 95.0,
+      "mean_time_per_word_s": 7.87,
+      "mean_attempts_solved": 3,
+      "rejections": 8,
+      "rejection_rate_per_submitted_pct": 12.1,
+      "rejections_per_word": 0.4,
+      "root_rejections": 0,
+      "rejections_pre_validated": 0,
+      "mean_solver_s_per_word": 0.005,
+      "max_latency_s": 0.1546,
+      "errors": 0
+    }
+  },
+  "paired_offline": {
+    "words": 50,
+    "compared": 50,
+    "failures_over_6": {
+      "composite": 0,
+      "entropy_pure": 0
+    },
+    "mean_attempts_composite": 2.92,
+    "mean_attempts_entropy_pure": 3.08,
+    "entropy_pure_better": 8,
+    "composite_better": 13,
+    "equal": 29,
+    "sign_test_p": 0.3833,
+    "le2_pct": {
+      "composite": 24.0,
+      "entropy_pure": 14.0
+    },
+    "by_length": {
+      "5": {
+        "words": 4,
+        "composite": 2.75,
+        "entropy_pure": 4
+      },
+      "6": {
+        "words": 7,
+        "composite": 3.14,
+        "entropy_pure": 3.14
+      },
+      "7": {
+        "words": 10,
+        "composite": 2.9,
+        "entropy_pure": 2.9
+      },
+      "8": {
+        "words": 15,
+        "composite": 3.07,
+        "entropy_pure": 3.2
+      },
+      "9": {
+        "words": 14,
+        "composite": 2.71,
+        "entropy_pure": 2.79
+      }
+    },
+    "rows": [
+      {
+        "word": "ACCUSEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ALIZES",
+        "composite": 4,
+        "entropy_pure": 5
+      },
+      {
+        "word": "ALOUETTE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AMITIES",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ARABES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BAILLEURS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BALIVERNE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BEAUFORT",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BLAIRER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BOUCAN",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "BOUSILLES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CADEAUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CINGLANTS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "COMMUNS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "COSTAUDE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CULBUTES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEGAINEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DELABRER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEVOREUSE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DIGERER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "EMPATTEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FAUBOURG",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FLINGUEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FONDUES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GALERES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GRACE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "HOMICIDES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "INDIGOS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "INFEODER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "JUBILE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MANOIR",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "OISIVETES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PACEMAKER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PARURE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PELLE",
+        "composite": 3,
+        "entropy_pure": 6
+      },
+      {
+        "word": "PERCU",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PETARDS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PHALANGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POULETTES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PRETENDRE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RAVIS",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "RECEVEUR",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RECONNUES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REPARLER",
+        "composite": 4,
+        "entropy_pure": 5
+      },
+      {
+        "word": "SATURE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SCHEMAS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SERPENTS",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SINUSITE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SOUBRETTE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TRUQUEES",
+        "composite": 3,
+        "entropy_pure": 4
+      }
+    ]
+  },
+  "paired_offline_all_known_solutions": {
+    "words": 788,
+    "compared": 788,
+    "failures_over_6": {
+      "composite": 7,
+      "entropy_pure": 3
+    },
+    "mean_attempts_composite": 3.12,
+    "mean_attempts_entropy_pure": 3.02,
+    "entropy_pure_better": 237,
+    "composite_better": 169,
+    "equal": 382,
+    "sign_test_p": 0.0009,
+    "le2_pct": {
+      "composite": 20.3,
+      "entropy_pure": 22.8
+    },
+    "by_length": {
+      "5": {
+        "words": 64,
+        "composite": 3.95,
+        "entropy_pure": 3.64
+      },
+      "6": {
+        "words": 125,
+        "composite": 3.32,
+        "entropy_pure": 3.22
+      },
+      "7": {
+        "words": 174,
+        "composite": 3.16,
+        "entropy_pure": 3.12
+      },
+      "8": {
+        "words": 199,
+        "composite": 3.02,
+        "entropy_pure": 2.91
+      },
+      "9": {
+        "words": 226,
+        "composite": 2.84,
+        "entropy_pure": 2.73
+      }
+    },
+    "rows": [
+      {
+        "word": "ABAISSEE",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ABEILLE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ABORD",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ABRUTI",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ABSCONSES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ACAJOU",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ACCOUDOIR",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ACCUSATIF",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ACCUSEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ACCUSES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ACIDULEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ACQUISES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "AFFECTES",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "AFFLOUEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AFFUBLER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AGITATION",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AIDER",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ALANGUIR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ALARMANT",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ALCADE",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ALIMENTER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ALIMENTS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ALIZES",
+        "composite": 4,
+        "entropy_pure": 5
+      },
+      {
+        "word": "ALLONGE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ALMANACH",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ALOUETTE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ALVEOLES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AMBIANTS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AMENEE",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "AMERES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "AMITIES",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "AMMONIAC",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AMORCES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AMOUR",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "AMOUREUSE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AMPHORE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "AMPLIFIER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AMUSANTES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ANCIENNE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ANGORA",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ANNUELS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ANODINES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "APPRETER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AQUILIN",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ARABES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ARBORISER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ARGENTINE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ARROGANTS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ASSAINIES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ASSASSINE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ASSERVIES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ASSIMILEE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ASSORTIE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ASTRAL",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ATROCITE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ATROPHIER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ATTAQUES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ATTENTATS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ATTITRER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ATTRISTEE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ATTROUPER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AUREOLEES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "AUTONOMES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AUTRUCHES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AVALANT",
+        "composite": 4,
+        "entropy_pure": 5
+      },
+      {
+        "word": "AVALEUSE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "AVARIEE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "AVATAR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "AVIRONS",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "BAGARRER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BAILLES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BAILLEURS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BALIVERNE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BALLADE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BAMBOUS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BARAQUEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BASILIC",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BATIR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BAVARDAGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BAVARDS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BAZOOKAS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BEAUFORT",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BELGES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "BELLATRE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BERNER",
+        "composite": 5,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BILES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "BINOCLARD",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "BLAIRER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BLASER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "BLOQUER",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "BOITES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "BOREALES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BOUCAN",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "BOUCLER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "BOUILLI",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BOULOCHES",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "BOURRAGES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BOURREAUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BOUSILLES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BOUTONS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BOUZOUKI",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BOXERS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BRANCHAGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BREBIS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "BRETONS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BRUSHING",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BRUTALES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "BRUTAUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BRUTES",
+        "composite": 3,
+        "entropy_pure": 6
+      },
+      {
+        "word": "BRUYANTE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BRUYANTES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "BUCHEE",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "BUTTEE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CADEAUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CAHIER",
+        "composite": 9,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CAMBOUIS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CAMELOTES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CAMPEE",
+        "composite": 4,
+        "entropy_pure": 5
+      },
+      {
+        "word": "CANCRES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CANIN",
+        "composite": 4,
+        "entropy_pure": 5
+      },
+      {
+        "word": "CANNETTES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CANTIQUE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CANTONAIS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CARRE",
+        "composite": 8,
+        "entropy_pure": 7
+      },
+      {
+        "word": "CARTOUCHE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CASSEROLE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CASTAGNER",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CATALAN",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CAUSER",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CENDREES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CENSEUR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CENTRISTE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CERAMIQUE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CERNE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CERTIFIE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CESARS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CHAGRINS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CHARGES",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CHARIOT",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CHARITE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CHARITES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CHARLOTS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CHAUX",
+        "composite": 6,
+        "entropy_pure": 5
+      },
+      {
+        "word": "CHAVIRAGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CHEVRES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CHICOREE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CHIENS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CHIQUE",
+        "composite": 5,
+        "entropy_pure": 5
+      },
+      {
+        "word": "CHOMER",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CINGLANTS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CINGLE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CINTRES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CLAMS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CLARISSES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CLIGNER",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CLOAQUE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CLOITRES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CLOTUREES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CODETENUE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "COLOREE",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "COLPORTER",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "COMBINEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "COMICS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "COMMUNS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "COMPRESSE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CONCRETEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CONDAMNER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CONFUS",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CONTENIR",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CONVIER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CONVOYEUR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "COPIEUR",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "COQUINE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CORDELIER",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CORTEX",
+        "composite": 3,
+        "entropy_pure": 5
+      },
+      {
+        "word": "COSTAUDE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "COUPABLES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "COUTURIER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "COVALENTS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CRABE",
+        "composite": 7,
+        "entropy_pure": 2
+      },
+      {
+        "word": "CRAQUEE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "CREANCE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CREATIF",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CREATINES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CROUTONS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CRUCIFIE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CRUSTACE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CRUSTACES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CUIVREE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CULASSE",
+        "composite": 3,
+        "entropy_pure": 5
+      },
+      {
+        "word": "CULBUTES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "CYCLES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DATCHA",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEBAT",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEBAUCHES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEBILITES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEBOURBER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEBRIEFER",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DECENTES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DECHAINER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DECIDEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DECOUSUES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DECRYPTER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEFINI",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DEFLOREES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DEFRONCES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DEGAINEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEGONFLEE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEGROUPEE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DELABRER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DELAISSEE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DELAVEE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DELICATS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DELIVRER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEMENCES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DENEIGEE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DENTELEE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DEPAYSEES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DEPLOYER",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DEPOLIE",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DEPORTER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEPOURVU",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DERACINE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEROUTER",
+        "composite": 5,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DESABUSER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DESARMEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DESCENTES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DESEMPARE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DESSOUDER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DETAILLEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DETERGENT",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DETESTEE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DETRACTES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DEVOREUSE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DIAPASON",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DIGERER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DIGRESSER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DIRECTES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DISCORDE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DISPARU",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DISPENSER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DISPERSES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DIVAS",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DIVORCEES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DOCTEURS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DOCUMENTE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DODELINEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "DOPER",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "DROIT",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "DULCINEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EBAUCHER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EBOUEUSE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ECAILLEES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ECARTELEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ECLAIR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ECLUSES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ECOULEE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ECURIES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "EFFEMINEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EFFRAYER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ELECTIFS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ELECTION",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ELOGIEUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ELUCUBREE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMBOLIE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMBRASSE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMECHEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMMAILLER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMMENAGER",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "EMOUVOIR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMPATTEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMPEREUR",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMPETREE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "EMPETREES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMPLOYE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMPUANTIR",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EMULSIF",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ENCASTRER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENCEINTER",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ENCHANTE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENERVANT",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENERVANTE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ENFIEVREE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENFILADE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ENFILEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENGAGE",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ENGELURES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENGOBEES",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ENGOURDIS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ENGRANGER",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ENJEUX",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENNOYAGE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ENROLE",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ENROLES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENROUEE",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ENTAMES",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ENTOURES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENTRAIDEE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ENTRAIDER",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ENTRELACE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EPINCER",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "EPONGES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "EPRISE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EQUINOXE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EQUIPAGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EQUIPEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EROTISMES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ERUDITS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ESPAGNOL",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ESPECES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ESSEULE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ESTOMACS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ESTOMPEE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ETAIENT",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ETAIT",
+        "composite": 5,
+        "entropy_pure": 5
+      },
+      {
+        "word": "ETATIQUE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ETIEZ",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ETOILE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EVENTEES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "EXCLUE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "EXPRES",
+        "composite": 3,
+        "entropy_pure": 5
+      },
+      {
+        "word": "EXTRADER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FACHEUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FACTIONS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "FAGOTINS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FAMEUSE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "FARCIS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FATAL",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FAUBOURG",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FEMINISTE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FENDU",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FEUTRER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FIGES",
+        "composite": 7,
+        "entropy_pure": 4
+      },
+      {
+        "word": "FILOUS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FIXATIF",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FLAMBEE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "FLAMBOYER",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "FLECHIR",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "FLEMARDE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FLINGUEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FLINGUEUR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FLOQUES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FLOTTANT",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FLOUZE",
+        "composite": 5,
+        "entropy_pure": 5
+      },
+      {
+        "word": "FLUET",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FOLIE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FONDUES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FORMOL",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FOULEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FOURNILS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FRAUDEUR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FRELE",
+        "composite": 5,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FRIABLES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FRIAND",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "FRIQUE",
+        "composite": 3,
+        "entropy_pure": 5
+      },
+      {
+        "word": "FROISSER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FROISSES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FROMENTS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FURIBONDS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "FURTIFS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "FUSELAGE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "FUTURISME",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GAFFES",
+        "composite": 6,
+        "entropy_pure": 6
+      },
+      {
+        "word": "GAGES",
+        "composite": 8,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GAGNANTE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GAGNES",
+        "composite": 5,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GALAXIE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GALERES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GALONNEE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GANGS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GARAGISTE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GAZES",
+        "composite": 4,
+        "entropy_pure": 9
+      },
+      {
+        "word": "GELEES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GESTE",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "GLORIEUSE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GNANGNAN",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GOBELIN",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "GOELETTE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GOMINER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GOUDRON",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GOUJATS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GOURER",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "GRACE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GRADUER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GRADUES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GRAINE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GRANULEUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GRAPHIQUE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GRATINES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GRELOTTER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GRILL",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GRILLEES",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "GRIMPANTE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GRINCER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "GRIPPAL",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "GROSSIER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "GUERIS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "HABIT",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "HABITES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "HAMSTERS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "HARPES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "HAUTES",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "HENNE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "HERETIQUE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "HERITIERS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "HIBOU",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "HISSER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "HOMICIDES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "HOMOGENE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "HOULE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "HUITIEMES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "HURLEUSE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "HYSTERIE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "IGNORANTS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "IMBIBER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "IMITES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "IMMEDIATE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "IMMERGEES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "IMMINENTS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "IMMISCER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "INCULTE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "INDIENNES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "INDIGOS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "INEGALES",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "INEXACTE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "INFECTEES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "INFEODER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "INSOLITE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "INTERNEES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "INTIMES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "INTRANETS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "INUSUELLE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "INVETERER",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ISRAELIEN",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "IVOIRE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "JACKS",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "JARDINAGE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "JARRET",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "JOINTES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "JONCHEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "JOUEUR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "JOUIR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "JOURNEES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "JUBILE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "JUNKIES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "JUPONS",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LADITE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LAGON",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "LAICISMES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LAIDE",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LAITIERES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LAMANTIN",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LANGOUSTE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LARMOYANT",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LAVETTE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LEGALISME",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LEGITIME",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LEGITIMER",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LESINER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LEZARDEES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LICORNE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LIFTER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LIGOTAGES",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "LIQUEUR",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "LISSES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LIVING",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LOUCHEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LOUTRES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "LUDDISME",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MACHEURS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "MAESTRO",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "MALABARS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MALPROPRE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MANDOLINE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MANOIR",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MARDIS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MARIJUANA",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MARKETING",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MARQUANTE",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "MATINS",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "MAUDITE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MEDISANCE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MEMBRE",
+        "composite": 5,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MENEE",
+        "composite": 5,
+        "entropy_pure": 5
+      },
+      {
+        "word": "MENTAUX",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "MENUET",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "MEUNIER",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MINAUDES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MINCIR",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MIOCHE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "MISEREUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MITER",
+        "composite": 4,
+        "entropy_pure": 5
+      },
+      {
+        "word": "MIXEURS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MOCASSINS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MOCHE",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "MODALISEE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MODIQUE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MOLDAVE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MONETISES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MONSIEUR",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "MORPION",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MORTS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MOTEURS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "MOULES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MOUTARD",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MULOTS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "MUNIS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MURIERS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "MUSCLEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MUSCLER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "MUTER",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "MUTINES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "NABOT",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "NACRES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NAIFS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NAPPAGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "NASALISEE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NASILLES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "NAVRER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "NEFASTE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NEGATIONS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NEGLIGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "NEONATALE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NEVRITES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NIAISES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NIHILISME",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NODULES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NOMMER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "NOTER",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "NOTICES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NOTIFIEE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NOUILLE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NOURRICES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NUTRITIFS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "NUTRITIVE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "OBLIGEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "OBSCURES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ODORANT",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "OISIVETE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "OISIVETES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "OLFACTION",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ONCLES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "OPACITE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "OPPOSER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "OPPRESSE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "OPTICIENS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "OPTIMAUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ORALISES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ORANGE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ORBITE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ORDRE",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ORGASMES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "ORIENTEE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "OSMOSE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "OUBLIES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "OURSINS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "OUVRANTS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "OXYGENER",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PACEMAKER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PACTOLE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PALEURS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PARAMETRE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PARAS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PARKING",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PARLES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PARLEUR",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PAROISSE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PAROLES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "PARSEMEES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PARTIELLE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PARTIR",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PARTISAN",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PARURE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PARVENUS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PASSEPORT",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PASTICHEE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PASTORALE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PATIENTER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PATIENTS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PATINEUSE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PATRONNES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PAUVRETES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PAYSAGEES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "PELLE",
+        "composite": 3,
+        "entropy_pure": 6
+      },
+      {
+        "word": "PELLETER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PENITENTE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PENTAGONE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PERCU",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PERDRE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PERFORE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PETARDS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PHALANGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PHARYNX",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PHILTRE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PIEGE",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "PILONNER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PISTAGE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PIZZAS",
+        "composite": 5,
+        "entropy_pure": 6
+      },
+      {
+        "word": "PLUMITIF",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POIVREE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POLLUEUR",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POMMELE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POSITIONS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POSSEDES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POSSESSIF",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POULETTES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POURPOINT",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "POUVOIRS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PRATIQUER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PREFEREES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "PREJUGES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "PREPARER",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "PRESENTE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "PRETENDRE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PRIMITIVE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PROBATION",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PROCHAIN",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PRODUIT",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PROGRES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PROHIBES",
+        "composite": 5,
+        "entropy_pure": 5
+      },
+      {
+        "word": "PROVENUS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PUCERON",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "PUDICITE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "PYGMEES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "PYRAMIDE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "QUILLE",
+        "composite": 5,
+        "entropy_pure": 2
+      },
+      {
+        "word": "QUINTES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "QUOTIENTS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "RAMASSEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RAMOLLIES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RANCARD",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RAPATRIE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "RAPES",
+        "composite": 7,
+        "entropy_pure": 8
+      },
+      {
+        "word": "RAPPER",
+        "composite": 6,
+        "entropy_pure": 5
+      },
+      {
+        "word": "RAPPROCHE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RATATINER",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "RAVIS",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "RAVISSANT",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REBORD",
+        "composite": 5,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RECALES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "RECENSEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RECEVEUR",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RECLOUES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RECONNUES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RECRUE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RECTAUX",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REDRESSER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REEDITER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REFRAIN",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REFRAINS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REINSERES",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "REJUGEE",
+        "composite": 5,
+        "entropy_pure": 5
+      },
+      {
+        "word": "RELACHES",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "RELANCE",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "RELAXER",
+        "composite": 8,
+        "entropy_pure": 6
+      },
+      {
+        "word": "RELIEES",
+        "composite": 3,
+        "entropy_pure": 5
+      },
+      {
+        "word": "REMBALLEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RENCONTRE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RENFONCER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RENOMMEES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RENOUEE",
+        "composite": 2,
+        "entropy_pure": 5
+      },
+      {
+        "word": "RENVOI",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "REPARLER",
+        "composite": 4,
+        "entropy_pure": 5
+      },
+      {
+        "word": "REPENTIS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REPUDIER",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "RESILIES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "RESPECTER",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RESPECTES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RESSORT",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "RETOUCHES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RETRECI",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REVEILLON",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "REVERENDE",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "REVULSES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "RINGARDS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RODEUR",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RONDES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "RONGEUR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ROSSIGNOL",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ROTATOIRE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ROTOR",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "ROUBLES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "ROUGEOLE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "RUCHE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SABLONNES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SALACE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SALAMI",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SANGUINE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SAQUER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SATURE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SAUVETAGE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SAVEUR",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SAVEURS",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SCANNER",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SCELLES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SCHEMAS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SECANTES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SEDUIT",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SEINS",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SEMINAIRE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SENTIER",
+        "composite": 2,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SEQUENCER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SEQUENCES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SEREINE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SERPENTS",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SERRURES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SEVERE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SEVERITES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SIFFLOTES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SIGNAL",
+        "composite": 5,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SINUSITE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SITUES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SLALOM",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SODIUM",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SORTIR",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SOUBRETTE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SOUCIEUSE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SOUDE",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SOUDER",
+        "composite": 4,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SOUPAPES",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SOUTENUES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "SOUVENT",
+        "composite": 6,
+        "entropy_pure": 6
+      },
+      {
+        "word": "SOVIET",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "STANDING",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "STERLING",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "STICK",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "STUPIDE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "STYLISER",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SUBSIDE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "SUICIDEE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SUINTANTS",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SURES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SURGELEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SURMONTER",
+        "composite": 5,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SUSPENS",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SUSURRER",
+        "composite": 5,
+        "entropy_pure": 3
+      },
+      {
+        "word": "SYNDICAT",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "TACTILE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TACTILES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TANDEM",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TAQUINES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TARTINES",
+        "composite": 3,
+        "entropy_pure": 1
+      },
+      {
+        "word": "TAUPES",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "TAVERNE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "TAXIS",
+        "composite": 5,
+        "entropy_pure": 5
+      },
+      {
+        "word": "TECHNO",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TELEPHONE",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TENORS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TENUES",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TERMINALE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TERRIFIEE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TERRORISE",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TETEE",
+        "composite": 4,
+        "entropy_pure": 4
+      },
+      {
+        "word": "TIREES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TONNELLE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TORDANTES",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TOTALISER",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TOUAREG",
+        "composite": 2,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TOURS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TOXINES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "TRACAGE",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TRAINS",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TRAITS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TRAVESTIE",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "TRIANGLES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TRISTE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TROTTER",
+        "composite": 5,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TROUEE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "TRUQUEES",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "TUBERCULE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "TYPHOIDE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "USANT",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "VAINCUES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VALSE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VEINES",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "VENDUS",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VENIEL",
+        "composite": 2,
+        "entropy_pure": 2
+      },
+      {
+        "word": "VERBAUX",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VETEMENT",
+        "composite": 4,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VEUVAGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VICTOIRE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VIEILLOTS",
+        "composite": 3,
+        "entropy_pure": 2
+      },
+      {
+        "word": "VIGUEUR",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VIRILITE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VIVANTE",
+        "composite": 3,
+        "entropy_pure": 4
+      },
+      {
+        "word": "VIVIDITES",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VOLAGE",
+        "composite": 3,
+        "entropy_pure": 3
+      },
+      {
+        "word": "VOLEES",
+        "composite": 3,
+        "entropy_pure": 3
+      }
+    ]
+  }
+}

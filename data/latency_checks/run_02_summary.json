@@ -1,0 +1,92 @@
+{
+  "run": 2,
+  "commit": "be53551",
+  "games": 1,
+  "solved": 1,
+  "unsolved": [],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 12.68,
+  "total_time_s": 12.7,
+  "mean_attempts_solved": 4,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 1,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 0,
+  "root_rejections": 0,
+  "time_breakdown_mean_s": {
+    "load": 4.33,
+    "solver": 0.01,
+    "typing": 5.38,
+    "enter_and_rate_wait": 2.01,
+    "server_roundtrip": 0.65,
+    "reveal_wait": 0.03
+  },
+  "max_solver_s": 0.008,
+  "max_latency_s": 0.0797,
+  "words": [
+    "PREPARER (8, 4 essais, 12.677s)"
+  ],
+  "rejection_causes": [],
+  "unobserved_groups_drawn": [],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 1,
+    "mean_attempts_trio_then_bot": 5,
+    "mean_attempts_bot_only_sim": 4,
+    "trio_better": 0,
+    "trio_worse": 1,
+    "mean_remaining_after_3_trio": 2,
+    "mean_remaining_after_3_bot": 1,
+    "trio_words_blocklisted": []
+  },
+  "h8": {
+    "not_found_games": [],
+    "guest_precreated": true,
+    "session_id_mismatch_games": []
+  },
+  "cycle": {
+    "cycle_start_run": 2,
+    "runs_in_cycle": 1
+  },
+  "trio_vs_bot_cumulative": {
+    "words_compared": 2,
+    "trio_better": 0,
+    "trio_worse": 2,
+    "equal": 0,
+    "mean_attempts_trio_then_bot": 4.5,
+    "mean_attempts_bot_only": 3
+  },
+  "vs_previous": {
+    "previous_total_time_s": 8.6,
+    "previous_mean_time_per_word_s": 8.56,
+    "faster": false
+  },
+  "stop_criterion_met": false,
+  "guest": {
+    "info": {
+      "created": true,
+      "status": 200,
+      "latency_s": 0.21,
+      "t_ready": 1790277710.9128559,
+      "cookie_set": true
+    },
+    "events": [
+      {
+        "type": "guest_ready",
+        "timestamp": 1790277710.9128559,
+        "created": true,
+        "status": 200,
+        "latency_s": 0.21,
+        "t_ready": 1790277710.9128559,
+        "cookie_set": true
+      }
+    ]
+  },
+  "strategy": "composite"
+}

@@ -1,0 +1,129 @@
+{
+  "run": 2,
+  "commit": "be53551",
+  "games": 10,
+  "solved": 10,
+  "unsolved": [],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 7.97,
+  "total_time_s": 79.7,
+  "mean_attempts_solved": 3.1,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 0,
+    "3": 9,
+    "4": 1,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 3,
+  "root_rejections": 0,
+  "time_breakdown_mean_s": {
+    "load": 0.79,
+    "solver": 0.01,
+    "typing": 4.59,
+    "enter_and_rate_wait": 1.86,
+    "server_roundtrip": 0.36,
+    "reveal_wait": 0.02
+  },
+  "max_solver_s": 0.0097,
+  "max_latency_s": 0.1546,
+  "words": [
+    "PACEMAKER (9, 3 essais, 8.085s)",
+    "DELABRER (8, 3 essais, 7.145s)",
+    "PARURE (6, 3 essais, 8.185s)",
+    "RECONNUES (9, 3 essais, 13.089s)",
+    "FONDUES (7, 3 essais, 6.807s)",
+    "JUBILE (6, 3 essais, 6.359s)",
+    "SERPENTS (8, 4 essais, 9.308s)",
+    "EMPATTEES (9, 3 essais, 6.895s)",
+    "PETARDS (7, 3 essais, 6.909s)",
+    "COSTAUDE (8, 3 essais, 6.918s)"
+  ],
+  "rejection_causes": [
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "PAREAU",
+      "game": 3,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "RECONCLUS",
+      "game": 4,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "RECONCUES",
+      "game": 4,
+      "attempt": 3
+    }
+  ],
+  "unobserved_groups_drawn": [],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 10,
+    "mean_attempts_trio_then_bot": 4,
+    "mean_attempts_bot_only_sim": 3,
+    "trio_better": 0,
+    "trio_worse": 9,
+    "mean_remaining_after_3_trio": 1.2,
+    "mean_remaining_after_3_bot": 1,
+    "trio_words_blocklisted": []
+  },
+  "h8": {
+    "not_found_games": [],
+    "guest_precreated": true,
+    "session_id_mismatch_games": []
+  },
+  "cycle": {
+    "cycle_start_run": 1,
+    "runs_in_cycle": 2
+  },
+  "trio_vs_bot_cumulative": {
+    "words_compared": 19,
+    "trio_better": 1,
+    "trio_worse": 16,
+    "equal": 2,
+    "mean_attempts_trio_then_bot": 4,
+    "mean_attempts_bot_only": 3.05
+  },
+  "vs_previous": {
+    "previous_total_time_s": 72.6,
+    "previous_mean_time_per_word_s": 7.26,
+    "faster": false
+  },
+  "stop_criterion_met": false,
+  "guest": {
+    "info": {
+      "created": true,
+      "status": 200,
+      "latency_s": 0.167,
+      "t_ready": 1790277850.7554026,
+      "cookie_set": true
+    },
+    "events": [
+      {
+        "type": "guest_ready",
+        "timestamp": 1790277850.7554026,
+        "created": true,
+        "status": 200,
+        "latency_s": 0.167,
+        "t_ready": 1790277850.7554026,
+        "cookie_set": true
+      }
+    ]
+  },
+  "strategy": "entropy_pure"
+}

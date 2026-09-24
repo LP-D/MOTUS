@@ -118,3 +118,12 @@ def test_compare_strategies_live_metrics_split_by_strategy():
     assert comp["rejections"] == 1 and comp["root_rejections"] == 1
     assert comp["rejection_rate_per_submitted_pct"] == round(100 / 7, 1)
     assert ep["resolution_rate_pct"] == 50.0 and ep["mean_attempts_solved"] == 2
+
+
+def test_sign_test_p_value():
+    import compare_strategies as cs
+
+    assert cs.sign_test_p(0, 0) is None
+    assert cs.sign_test_p(5, 5) == 1.0
+    assert cs.sign_test_p(8, 13) == 0.3833  # 2 x P(X <= 8), X ~ B(21, 1/2)
+    assert cs.sign_test_p(0, 10) == 0.002

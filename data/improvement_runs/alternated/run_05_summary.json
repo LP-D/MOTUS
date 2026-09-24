@@ -1,0 +1,101 @@
+{
+  "run": 5,
+  "commit": "be53551",
+  "games": 10,
+  "solved": 10,
+  "unsolved": [],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 7.17,
+  "total_time_s": 71.7,
+  "mean_attempts_solved": 3.1,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 2,
+    "3": 5,
+    "4": 3,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 0,
+  "root_rejections": 0,
+  "time_breakdown_mean_s": {
+    "load": 0.78,
+    "solver": 0.01,
+    "typing": 3.69,
+    "enter_and_rate_wait": 2.05,
+    "server_roundtrip": 0.33,
+    "reveal_wait": 0.02
+  },
+  "max_solver_s": 0.025,
+  "max_latency_s": 0.1075,
+  "words": [
+    "DIGERER (7, 3 essais, 7.442s)",
+    "MANOIR (6, 2 essais, 4.775s)",
+    "DEVOREUSE (9, 3 essais, 7.23s)",
+    "PELLE (5, 3 essais, 6.454s)",
+    "GALERES (7, 4 essais, 8.454s)",
+    "SINUSITE (8, 3 essais, 7.131s)",
+    "RECEVEUR (8, 4 essais, 9.496s)",
+    "ARABES (6, 4 essais, 8.812s)",
+    "TRUQUEES (8, 3 essais, 6.616s)",
+    "SOUBRETTE (9, 2 essais, 5.277s)"
+  ],
+  "rejection_causes": [],
+  "unobserved_groups_drawn": [],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 10,
+    "mean_attempts_trio_then_bot": 4.3,
+    "mean_attempts_bot_only_sim": 3.1,
+    "trio_better": 0,
+    "trio_worse": 7,
+    "mean_remaining_after_3_trio": 1.9,
+    "mean_remaining_after_3_bot": 1.12,
+    "trio_words_blocklisted": []
+  },
+  "h8": {
+    "not_found_games": [],
+    "guest_precreated": true,
+    "session_id_mismatch_games": []
+  },
+  "cycle": {
+    "cycle_start_run": 1,
+    "runs_in_cycle": 5
+  },
+  "trio_vs_bot_cumulative": {
+    "words_compared": 48,
+    "trio_better": 1,
+    "trio_worse": 41,
+    "equal": 6,
+    "mean_attempts_trio_then_bot": 4.12,
+    "mean_attempts_bot_only": 3.02
+  },
+  "vs_previous": {
+    "previous_total_time_s": 77.6,
+    "previous_mean_time_per_word_s": 7.76,
+    "faster": true
+  },
+  "stop_criterion_met": true,
+  "guest": {
+    "info": {
+      "created": true,
+      "status": 200,
+      "latency_s": 0.214,
+      "t_ready": 1790278212.9542348,
+      "cookie_set": true
+    },
+    "events": [
+      {
+        "type": "guest_ready",
+        "timestamp": 1790278212.9542348,
+        "created": true,
+        "status": 200,
+        "latency_s": 0.214,
+        "t_ready": 1790278212.9542348,
+        "cookie_set": true
+      }
+    ]
+  },
+  "strategy": "composite"
+}

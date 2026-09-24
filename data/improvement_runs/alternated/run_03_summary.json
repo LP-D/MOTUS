@@ -1,0 +1,201 @@
+{
+  "run": 3,
+  "commit": "be53551",
+  "games": 10,
+  "solved": 10,
+  "unsolved": [],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 9.0,
+  "total_time_s": 90.0,
+  "mean_attempts_solved": 2.6,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 5,
+    "3": 4,
+    "4": 1,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 11,
+  "root_rejections": 0,
+  "time_breakdown_mean_s": {
+    "load": 0.78,
+    "solver": 0.26,
+    "typing": 5.54,
+    "enter_and_rate_wait": 1.67,
+    "server_roundtrip": 0.31,
+    "reveal_wait": 0.01
+  },
+  "max_solver_s": 0.3899,
+  "max_latency_s": 0.2686,
+  "words": [
+    "GRACE (5, 3 essais, 7.679s)",
+    "DEGAINEE (8, 3 essais, 6.926s)",
+    "RAVIS (5, 2 essais, 4.417s)",
+    "FAUBOURG (8, 2 essais, 5.074s)",
+    "HOMICIDES (9, 2 essais, 15.842s)",
+    "POULETTES (9, 2 essais, 5.096s)",
+    "REPARLER (8, 4 essais, 24.584s)",
+    "AMITIES (7, 2 essais, 5.977s)",
+    "BALIVERNE (9, 3 essais, 7.656s)",
+    "BOUSILLES (9, 3 essais, 6.71s)"
+  ],
+  "rejection_causes": [
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "HOULMOISE",
+      "game": 5,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "HOLQUOISE",
+      "game": 5,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "HOULLOISE",
+      "game": 5,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "HUISMOISE",
+      "game": 5,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "RECALTEE",
+      "game": 7,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "RETACLEE",
+      "game": 7,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "RELACTEE",
+      "game": 7,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "RECALMEE",
+      "game": 7,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "REMACLEE",
+      "game": 7,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "REMALTEE",
+      "game": 7,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "AERTIEZ",
+      "game": 8,
+      "attempt": 2
+    }
+  ],
+  "unobserved_groups_drawn": [],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 10,
+    "mean_attempts_trio_then_bot": 4.3,
+    "mean_attempts_bot_only_sim": 2.9,
+    "trio_better": 0,
+    "trio_worse": 10,
+    "mean_remaining_after_3_trio": 1.9,
+    "mean_remaining_after_3_bot": 1,
+    "trio_words_blocklisted": []
+  },
+  "h8": {
+    "not_found_games": [],
+    "guest_precreated": true,
+    "session_id_mismatch_games": []
+  },
+  "cycle": {
+    "cycle_start_run": 1,
+    "runs_in_cycle": 3
+  },
+  "trio_vs_bot_cumulative": {
+    "words_compared": 29,
+    "trio_better": 1,
+    "trio_worse": 26,
+    "equal": 2,
+    "mean_attempts_trio_then_bot": 4.1,
+    "mean_attempts_bot_only": 3
+  },
+  "vs_previous": {
+    "previous_total_time_s": 79.7,
+    "previous_mean_time_per_word_s": 7.97,
+    "faster": false
+  },
+  "stop_criterion_met": false,
+  "guest": {
+    "info": {
+      "created": true,
+      "status": 200,
+      "latency_s": 0.174,
+      "t_ready": 1790277965.1880422,
+      "cookie_set": true
+    },
+    "events": [
+      {
+        "type": "guest_ready",
+        "timestamp": 1790277965.1880422,
+        "created": true,
+        "status": 200,
+        "latency_s": 0.174,
+        "t_ready": 1790277965.1880422,
+        "cookie_set": true
+      }
+    ]
+  },
+  "strategy": "composite"
+}

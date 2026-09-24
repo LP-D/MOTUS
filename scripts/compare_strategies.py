@@ -9,15 +9,20 @@
    la liste noire et les mots valides actuels. Les runs tirent des mots différents :
    ce volet compare les stratégies sur exactement les mêmes mots. Il mesure
    l'efficacité de résolution seule (rejets exclus, la liste noire les évite).
+3. (`--all-known-solutions`) même rejeu apparié sur toutes les solutions réelles
+   connues du serveur (révélées par giveup ou trouvées par le bot) : un échantillon
+   de la vraie distribution des tirages, bien plus large que 5 runs.
 
-    python scripts/compare_strategies.py --out-dir data/improvement_runs/alternated
+    python scripts/compare_strategies.py --out-dir data/improvement_runs/alternated --all-known-solutions
 """
 from __future__ import annotations
 
 import argparse
 import json
+import math
 import statistics
 import sys
+from collections import defaultdict
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -82,13 +87,32 @@ def simulate(strategy: str, solution: str, corpus: Corpus, cache: dict, blocklis
     return None
 
 
-def paired(games: list[dict]) -> dict:
+def sign_test_p(wins: int, losses: int) -> float | None:
+    """p-valeur bilatérale du test du signe (égalités exclues)."""
+    n = wins + losses
+    if not n:
+        return None
+    k = min(wins, losses)
+    return round(min(1.0, 2 * sum(math.comb(n, i) for i in range(k + 1)) / 2 ** n), 4)
+
+
+def known_solutions() -> list[str]:
+    """Solutions réelles connues : révélées (giveup) et trouvées par le bot."""
+    words = {json.loads(line)["answer"].upper()
+             for line in (DATA / "revealed_solutions.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()}
+    words |= {g["solution"].upper() for g in json.loads((DATA / "dashboard_stats.json").read_text(encoding="utf-8"))
+              if g.get("solution")}
+    return sorted(words)
+
+
+def paired(games: list[dict], words: list[str] | None = None) -> dict:
     corpus = Corpus.from_file(DATA / "corpus_fr.txt")
     blocklist = load_blocklist(DATA / "known_invalid_words.json")
     known_valid = load_blocklist(DATA / "known_valid_words.json")
     caches = {s: load_cache(p) for s, p in CACHES.items()}
-    words = sorted({(g["solution"] or g.get("revealed_answer")) for g in games
-                    if g["solution"] or g.get("revealed_answer")})
+    if words is None:
+        words = sorted({(g["solution"] or g.get("revealed_answer")) for g in games
+                        if g["solution"] or g.get("revealed_answer")})
     rows = []
     for word in words:
         row = {"word": word, **{s: simulate(s, word, corpus, caches[s], blocklist, known_valid) for s in STRATEGIES}}
@@ -101,6 +125,13 @@ def paired(games: list[dict]) -> dict:
         out["entropy_pure_better"] = sum(1 for r in both if r["entropy_pure"] < r["composite"])
         out["composite_better"] = sum(1 for r in both if r["composite"] < r["entropy_pure"])
         out["equal"] = sum(1 for r in both if r["composite"] == r["entropy_pure"])
+        out["sign_test_p"] = sign_test_p(out["entropy_pure_better"], out["composite_better"])
+        out[f"le2_pct"] = {s: round(100 * sum(1 for r in both if r[s] <= 2) / len(both), 1) for s in STRATEGIES}
+        by_len = defaultdict(list)
+        for r in both:
+            by_len[len(r["word"])].append(r)
+        out["by_length"] = {n: {"words": len(rs), **{s: round(statistics.mean(r[s] for r in rs), 2) for s in STRATEGIES}}
+                            for n, rs in sorted(by_len.items())}
     out["rows"] = rows
     return out
 
@@ -109,16 +140,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--no-paired", action="store_true")
+    parser.add_argument("--all-known-solutions", action="store_true")
     args = parser.parse_args()
     out_dir = Path(args.out_dir)
     games = load_games(out_dir)
     report = {"live": {s: live_metrics([g for g in games if g.get("strategy") == s]) for s in STRATEGIES}}
     if not args.no_paired:
         report["paired_offline"] = paired(games)
+    if args.all_known_solutions:
+        report["paired_offline_all_known_solutions"] = paired(games, known_solutions())
     (out_dir / "comparison.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"live": report["live"],
-                      "paired_offline": {k: v for k, v in report.get("paired_offline", {}).items() if k != "rows"}},
-                     ensure_ascii=False, indent=1))
+    print(json.dumps({"live": report["live"], **{
+        key: {k: v for k, v in report[key].items() if k != "rows"}
+        for key in ("paired_offline", "paired_offline_all_known_solutions") if key in report}},
+        ensure_ascii=False, indent=1))
 
 
 if __name__ == "__main__":
