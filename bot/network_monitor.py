@@ -21,7 +21,9 @@ RATE_LIMIT_HEADER_PREFIXES = ("x-ratelimit", "retry-after")
 # Seuils d'arrêt d'urgence (contrainte utilisateur) : tout signal de throttling
 # arrête la boucle, distinctement d'un échec de correction.
 THROTTLE_STATUS_CODES = {429}
-THROTTLE_LATENCY_S = 10.0
+# 5 s depuis le 24/09/2026 (consigne : "latence anormale > 5-10 s") ; latence API
+# maximale jamais mesurée : 1,08 s en jeu, 0,49 s sur 2 000 requêtes de validation.
+THROTTLE_LATENCY_S = 5.0
 
 
 @dataclass

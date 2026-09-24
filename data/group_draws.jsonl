@@ -1,0 +1,759 @@
+{"t": 1787300728.8656983, "letter": "S", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1787316187.7375748, "letter": "T", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1787316195.1924505, "letter": "P", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1787316201.8643548, "letter": "L", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1787338252.3690224, "letter": "G", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1787338280.5271661, "letter": "P", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1787338287.8866117, "letter": "E", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1787338296.7329118, "letter": "P", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790146978.8712602, "letter": "P", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790147027.8274121, "letter": "L", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790147041.5291944, "letter": "N", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790147059.6761045, "letter": "M", "length": 5, "source": "historique:dashboard_stats"}
+{"t": 1790147072.6079333, "letter": "A", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790147082.0809386, "letter": "P", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790147095.8590467, "letter": "D", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790147169.0708368, "letter": "C", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790147176.286306, "letter": "H", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790147192.2119858, "letter": "E", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790147201.3111823, "letter": "N", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790159712.3070416, "letter": "A", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790159874.1317875, "letter": "D", "length": 5, "source": "historique:dashboard_stats"}
+{"t": 1790160025.878646, "letter": "R", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790160049.5831034, "letter": "A", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790160104.6692598, "letter": "E", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790160486.8160436, "letter": "N", "length": 5, "source": "historique:dashboard_stats"}
+{"t": 1790160506.8973017, "letter": "B", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790160543.9294329, "letter": "F", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790160602.5406008, "letter": "A", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790160612.947242, "letter": "U", "length": 5, "source": "historique:dashboard_stats"}
+{"t": 1790160623.7201614, "letter": "A", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790160632.8051312, "letter": "N", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790160645.7829425, "letter": "D", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790160674.7716274, "letter": "G", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790160685.7918005, "letter": "E", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790160694.1912098, "letter": "D", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790160707.142058, "letter": "J", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790160729.2464159, "letter": "R", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790163977.033037, "letter": "A", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790163987.2405639, "letter": "N", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790163999.8420653, "letter": "O", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790164013.0510213, "letter": "A", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790164022.9706109, "letter": "V", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790164034.4471502, "letter": "R", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790164042.2474048, "letter": "E", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790164051.5149453, "letter": "A", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790164946.4893494, "letter": "R", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790164956.2782495, "letter": "P", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790177230.060879, "letter": "T", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790177240.4416156, "letter": "R", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790177254.5387673, "letter": "E", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790177267.6296313, "letter": "R", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790177278.019875, "letter": "M", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790177291.916605, "letter": "C", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790177302.0432515, "letter": "E", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790177330.3128476, "letter": "B", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790177350.1271648, "letter": "C", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790177362.148543, "letter": "S", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790177641.1669652, "letter": "R", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790177674.460956, "letter": "R", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790177694.066757, "letter": "P", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790177714.9970698, "letter": "L", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790177737.2678916, "letter": "S", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790177762.814116, "letter": "D", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790177785.32661, "letter": "A", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790177811.6253998, "letter": "S", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790177837.370621, "letter": "G", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790177863.9738488, "letter": "F", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790177956.3643205, "letter": "A", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790177965.2868516, "letter": "I", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790177976.6524942, "letter": "R", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790177991.0266533, "letter": "L", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790178009.883411, "letter": "S", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790178026.7762592, "letter": "P", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790178037.9733577, "letter": "F", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790178047.4726813, "letter": "P", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790178066.1901932, "letter": "P", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790178077.2017002, "letter": "L", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790178239.9448476, "letter": "H", "length": 5, "source": "historique:dashboard_stats"}
+{"t": 1790178251.5751832, "letter": "C", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790178261.5196457, "letter": "A", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790178272.0483098, "letter": "F", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790178286.1946018, "letter": "C", "length": 5, "source": "historique:dashboard_stats"}
+{"t": 1790178296.252359, "letter": "B", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790178308.2020457, "letter": "P", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790178318.4227319, "letter": "Q", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790178332.0034938, "letter": "C", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790178341.9703572, "letter": "M", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790196574.6949794, "letter": "G", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790196598.2412474, "letter": "R", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790196610.4841728, "letter": "R", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790196630.3871522, "letter": "C", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790196641.7766948, "letter": "C", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790196651.2212195, "letter": "E", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790236140.8703763, "letter": "S", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790236161.5462816, "letter": "D", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790236172.7151225, "letter": "E", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790236180.2210608, "letter": "V", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790236189.3694682, "letter": "G", "length": 5, "source": "historique:dashboard_stats"}
+{"t": 1790236199.6939807, "letter": "S", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790236209.3458047, "letter": "B", "length": 7, "source": "historique:dashboard_stats"}
+{"t": 1790236219.7439184, "letter": "I", "length": 9, "source": "historique:dashboard_stats"}
+{"t": 1790236226.9800966, "letter": "G", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790236234.4123523, "letter": "C", "length": 8, "source": "historique:dashboard_stats"}
+{"t": 1790236246.8329117, "letter": "I", "length": 6, "source": "historique:dashboard_stats"}
+{"t": 1790236293.623918, "letter": "F", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790236324.5404513, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790236345.2705555, "letter": "B", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790236369.5373669, "letter": "R", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236396.872951, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790236413.5066726, "letter": "E", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790236429.705801, "letter": "I", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790236449.3251812, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236465.9551125, "letter": "I", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790236480.2940383, "letter": "M", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790236502.0705938, "letter": "C", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790236517.253204, "letter": "C", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790236551.8137128, "letter": "M", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236572.0134134, "letter": "G", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790236590.735086, "letter": "M", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790236610.7633438, "letter": "A", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790236637.3969421, "letter": "B", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790236654.9615803, "letter": "S", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790236674.204046, "letter": "T", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236689.4297013, "letter": "H", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790236705.1254575, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790236733.07999, "letter": "R", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790236748.3013864, "letter": "O", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790236763.6296644, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236778.1839302, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236792.5178967, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236806.347132, "letter": "A", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790236824.4655168, "letter": "N", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236840.568926, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236855.4202526, "letter": "O", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236870.348907, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790236896.7736554, "letter": "R", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790236912.6170352, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236934.3123534, "letter": "B", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236953.2704408, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790236965.095677, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790236983.5290425, "letter": "H", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790236997.943858, "letter": "E", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790237018.9623098, "letter": "A", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237023.0670278, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237036.5678475, "letter": "C", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790237056.259693, "letter": "G", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237070.9850724, "letter": "T", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790237087.397005, "letter": "L", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237101.6048594, "letter": "I", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237116.523438, "letter": "F", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237132.1067235, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237154.5721042, "letter": "G", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237179.6796415, "letter": "M", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237192.262049, "letter": "B", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237208.4341235, "letter": "E", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237222.866877, "letter": "T", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237240.269343, "letter": "I", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237243.7190423, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237248.8036256, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237253.1544132, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237271.6590245, "letter": "V", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237287.9924104, "letter": "S", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237302.8684814, "letter": "E", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237331.5627377, "letter": "R", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237345.3287532, "letter": "S", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237361.2520535, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237364.4727857, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237380.7314148, "letter": "T", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237384.629281, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237417.6034915, "letter": "P", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237421.9171355, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237433.7449465, "letter": "P", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237447.0342162, "letter": "M", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237466.3982239, "letter": "C", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237489.163237, "letter": "Q", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237511.1260948, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237515.723904, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237532.2013316, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237555.083366, "letter": "R", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237572.4370627, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237593.900995, "letter": "G", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237615.4577532, "letter": "T", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237619.6503613, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237635.1752682, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237639.6894774, "letter": "P", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237657.4292517, "letter": "V", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237676.94597, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237693.1534002, "letter": "S", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237712.6008186, "letter": "R", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237716.9706938, "letter": "P", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237732.4988606, "letter": "N", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237747.2361634, "letter": "D", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237751.3670826, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237755.2318895, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237771.3516214, "letter": "T", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237787.6149883, "letter": "S", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790237811.7470186, "letter": "B", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237821.4153903, "letter": "G", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237826.0335793, "letter": "P", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237843.7251492, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237858.246574, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237880.5791318, "letter": "A", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237897.891371, "letter": "J", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790237906.1500998, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237910.0762274, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790237922.4919271, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790237944.0107157, "letter": "J", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790237956.1388042, "letter": "T", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237964.9550166, "letter": "A", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790237981.93875, "letter": "S", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238002.644134, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238031.7371838, "letter": "M", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238049.9878113, "letter": "L", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238064.9977775, "letter": "E", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238079.3566391, "letter": "V", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790238093.622294, "letter": "I", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238117.7076967, "letter": "B", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238161.8673728, "letter": "L", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238178.9988031, "letter": "O", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238193.0061405, "letter": "P", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790238197.595007, "letter": "G", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238206.0320222, "letter": "B", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238228.0473185, "letter": "A", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238232.556469, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238249.6482582, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238264.298481, "letter": "M", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238268.496545, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238282.888799, "letter": "S", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238300.294589, "letter": "T", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238304.4351103, "letter": "R", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238308.1502848, "letter": "P", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238312.8166625, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238330.9878619, "letter": "D", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238334.9347923, "letter": "M", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238351.667296, "letter": "S", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238356.0251782, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238367.811394, "letter": "C", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790238383.8282647, "letter": "T", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238398.32943, "letter": "I", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238412.8286543, "letter": "D", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238428.2499042, "letter": "S", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238447.3048546, "letter": "T", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238451.5449972, "letter": "R", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238457.233756, "letter": "A", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238461.6313922, "letter": "S", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238475.496694, "letter": "N", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238501.8405066, "letter": "B", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790238505.9512885, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238520.6123378, "letter": "O", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238545.496552, "letter": "P", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238561.790331, "letter": "I", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238577.3011358, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238591.874232, "letter": "P", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238609.6500585, "letter": "C", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238624.393079, "letter": "S", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238640.073736, "letter": "N", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238656.7361875, "letter": "B", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238672.6919544, "letter": "M", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790238676.6074083, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238699.2719026, "letter": "S", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238703.3795652, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238708.8140106, "letter": "S", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238722.4055738, "letter": "S", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238745.429912, "letter": "A", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238750.2555156, "letter": "S", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238767.3079388, "letter": "E", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238788.5315983, "letter": "O", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238791.776273, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238814.3351493, "letter": "B", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238819.2307894, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238849.653198, "letter": "G", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238853.9478376, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238869.993233, "letter": "T", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238886.9191196, "letter": "R", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238891.6078734, "letter": "B", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238910.800957, "letter": "F", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238915.3933, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238922.1475182, "letter": "E", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790238925.8137228, "letter": "R", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790238929.9187899, "letter": "B", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790238947.9781382, "letter": "F", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238967.503585, "letter": "G", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790238989.427079, "letter": "L", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239005.9908276, "letter": "E", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239009.9280674, "letter": "A", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239014.3254282, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239018.7446203, "letter": "C", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239022.5774865, "letter": "C", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239040.7147079, "letter": "G", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239044.844054, "letter": "E", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239059.2673569, "letter": "F", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239075.0154407, "letter": "L", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239099.939911, "letter": "N", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239104.124348, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239118.3044257, "letter": "T", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239122.4432268, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239127.1749923, "letter": "T", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239130.5778666, "letter": "B", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239152.3780205, "letter": "O", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239156.0536194, "letter": "M", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239174.5413976, "letter": "R", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239177.734388, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239184.8213363, "letter": "L", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239192.1961675, "letter": "O", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239196.3185368, "letter": "R", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239200.5827007, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239204.2135534, "letter": "P", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239209.2778966, "letter": "A", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239220.2099674, "letter": "G", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239223.708311, "letter": "F", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239235.6384263, "letter": "P", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239239.074306, "letter": "L", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239255.4968364, "letter": "F", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239272.8857582, "letter": "M", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239282.8633106, "letter": "M", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239287.0189428, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239300.5337892, "letter": "N", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239305.3891182, "letter": "P", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239308.8488307, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239312.8031504, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239317.4555526, "letter": "A", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239329.9669507, "letter": "I", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239334.2447262, "letter": "E", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239339.1008368, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239342.9729366, "letter": "S", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239346.9803522, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239351.86482, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239356.8700094, "letter": "L", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239360.7476044, "letter": "G", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239364.4220881, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239368.5944397, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239372.5580752, "letter": "R", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239384.9250207, "letter": "G", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239389.022918, "letter": "O", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239392.7839158, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239397.4653118, "letter": "A", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239400.7898376, "letter": "F", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239405.236387, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239409.2320127, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239413.265939, "letter": "C", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239418.066287, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239421.7224061, "letter": "A", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239437.3514314, "letter": "O", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239455.2916384, "letter": "H", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239459.0846155, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239463.2169003, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239470.9077563, "letter": "O", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239475.017782, "letter": "B", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239489.705238, "letter": "D", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239493.4794025, "letter": "P", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239497.2531562, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239507.7144978, "letter": "O", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239511.2103245, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239514.552993, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239518.74356, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239522.6922386, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239538.8047724, "letter": "F", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239542.3999863, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239555.575472, "letter": "M", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239578.0741096, "letter": "E", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239582.8279963, "letter": "C", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239587.3045278, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239590.6623194, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239606.5972476, "letter": "I", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239610.6960385, "letter": "G", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239615.403694, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239619.0624893, "letter": "T", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239623.218667, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239641.7518914, "letter": "S", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239646.2688475, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239649.8341804, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239653.9590547, "letter": "O", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239671.1226573, "letter": "D", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239675.44373, "letter": "M", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239680.0716941, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239694.2887862, "letter": "H", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239709.3797176, "letter": "S", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239713.140571, "letter": "R", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239717.6460574, "letter": "S", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239721.2587123, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239735.5610175, "letter": "O", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239757.2053149, "letter": "L", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239760.677587, "letter": "S", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239776.9582446, "letter": "O", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239781.6043549, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239795.672768, "letter": "I", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239800.241533, "letter": "G", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239805.1883507, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239809.3167977, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239813.4376996, "letter": "M", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239817.848897, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239821.899793, "letter": "C", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239825.6095638, "letter": "O", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239829.7509837, "letter": "E", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239833.2901542, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239837.434374, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239853.1064913, "letter": "M", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239856.8580925, "letter": "C", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239861.1231248, "letter": "L", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239865.1373608, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239869.1738203, "letter": "P", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239873.150111, "letter": "C", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239876.684225, "letter": "M", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239883.042001, "letter": "B", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239887.6707666, "letter": "B", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239892.1074305, "letter": "E", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790239896.4844341, "letter": "S", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239915.2328026, "letter": "N", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239930.7343407, "letter": "F", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239934.576244, "letter": "R", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239938.865387, "letter": "F", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790239943.3764842, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239947.7174387, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239966.3921125, "letter": "F", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790239971.0517151, "letter": "R", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790239986.485614, "letter": "V", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790239991.0089297, "letter": "R", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240005.6509726, "letter": "F", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240029.1346111, "letter": "C", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240052.9179084, "letter": "H", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240057.3176677, "letter": "P", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240061.6301465, "letter": "R", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240066.1403437, "letter": "S", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240081.6360536, "letter": "N", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240085.2639213, "letter": "C", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240089.3771753, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240094.005599, "letter": "D", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240111.5859177, "letter": "M", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240116.214041, "letter": "R", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790240120.1791134, "letter": "T", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240124.4484131, "letter": "C", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790240128.5101767, "letter": "I", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240151.438651, "letter": "R", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790240154.5899868, "letter": "C", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240159.0462675, "letter": "B", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790240163.498303, "letter": "R", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240168.145022, "letter": "G", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240172.6939259, "letter": "P", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240190.1236694, "letter": "T", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240205.0110636, "letter": "J", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790240209.2918024, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240231.021886, "letter": "G", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790240234.9032989, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240238.668118, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240254.84454, "letter": "G", "length": 6, "source": "historique:revealed_solutions"}
+{"t": 1790240258.874631, "letter": "G", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790240262.9829118, "letter": "C", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240267.0275614, "letter": "A", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240271.8569257, "letter": "P", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240276.7538276, "letter": "C", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240281.4994688, "letter": "B", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240285.2453902, "letter": "T", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240289.6139727, "letter": "E", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240302.243947, "letter": "B", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790240305.9921916, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790240310.2503393, "letter": "M", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790240314.7249467, "letter": "C", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790240324.5744026, "letter": "T", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790240329.0008104, "letter": "A", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240333.5327575, "letter": "E", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790240337.1095757, "letter": "T", "length": 9, "source": "historique:revealed_solutions"}
+{"t": 1790240340.6098611, "letter": "M", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790240366.7008176, "letter": "V", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790240370.24298, "letter": "P", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790240388.9834611, "letter": "D", "length": 5, "source": "historique:revealed_solutions"}
+{"t": 1790240407.2459826, "letter": "F", "length": 7, "source": "historique:revealed_solutions"}
+{"t": 1790240411.604407, "letter": "D", "length": 8, "source": "historique:revealed_solutions"}
+{"t": 1790273492.5456817, "letter": "N", "length": 7, "source": "validate_root_candidates", "session_id": "ef1932f4-cb7c-45f0-bec7-d5c62e62d1cd", "continuation": false, "first_observation": false}
+{"t": 1790273513.1289768, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "e5dd9ffd-f00a-4f12-9dd4-9e7625ada6f2", "continuation": false, "first_observation": false}
+{"t": 1790273528.4464283, "letter": "A", "length": 8, "source": "validate_root_candidates", "session_id": "3c6c14cc-b60f-4ac9-a406-c8cd5fc883b2", "continuation": false, "first_observation": false}
+{"t": 1790273550.4285548, "letter": "C", "length": 5, "source": "validate_root_candidates", "session_id": "7a70b3de-0eff-4c8c-9ffa-2ac9ddca795c", "continuation": false, "first_observation": false}
+{"t": 1790273566.8633075, "letter": "J", "length": 6, "source": "validate_root_candidates", "session_id": "7ff0cd01-0c2d-4716-9690-5c40fe8c26ab", "continuation": false, "first_observation": false}
+{"t": 1790273582.9683816, "letter": "R", "length": 6, "source": "validate_root_candidates", "session_id": "314e5e1b-02c9-43cd-bf98-c6f4b7513f5c", "continuation": false, "first_observation": false}
+{"t": 1790273598.5281477, "letter": "R", "length": 9, "source": "validate_root_candidates", "session_id": "71804c34-1983-4dc9-984a-f8b95d269757", "continuation": false, "first_observation": false}
+{"t": 1790273616.8192575, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "175edd39-687e-4f7e-b997-a23fb056c985", "continuation": false, "first_observation": false}
+{"t": 1790273626.8468075, "letter": "T", "length": 8, "source": "validate_root_candidates", "session_id": "1b2d3234-786e-4d85-91c6-aee6a20817a8", "continuation": false, "first_observation": false}
+{"t": 1790273646.7446167, "letter": "C", "length": 7, "source": "validate_root_candidates", "session_id": "9c53280b-1430-4063-9323-55a63055f0d9", "continuation": false, "first_observation": false}
+{"t": 1790273662.0949116, "letter": "L", "length": 9, "source": "validate_root_candidates", "session_id": "6491dc83-64a9-4c00-a9e9-6837c65fb77d", "continuation": false, "first_observation": false}
+{"t": 1790273708.3042777, "letter": "G", "length": 6, "source": "validate_root_candidates", "session_id": "d211b17b-1a37-40b0-94fc-1364e46cb54c", "continuation": false, "first_observation": false}
+{"t": 1790273726.6684113, "letter": "P", "length": 9, "source": "validate_root_candidates", "session_id": "f56c6cdd-3e6b-4b0e-b218-2a7ac3ad20df", "continuation": false, "first_observation": false}
+{"t": 1790273756.9138715, "letter": "E", "length": 6, "source": "validate_root_candidates", "session_id": "56f8f4ed-c283-4997-93b4-1b4005c98895", "continuation": false, "first_observation": false}
+{"t": 1790273769.1072543, "letter": "M", "length": 7, "source": "validate_root_candidates", "session_id": "9eb61b37-7333-4128-b363-b6e7505f6260", "continuation": false, "first_observation": false}
+{"t": 1790273788.90031, "letter": "S", "length": 8, "source": "validate_root_candidates", "session_id": "c751f432-fe20-43b9-a107-261a3c4241bb", "continuation": false, "first_observation": false}
+{"t": 1790273795.6067276, "letter": "T", "length": 6, "source": "validate_root_candidates", "session_id": "80d4885d-11c1-4161-ada0-7870ce61b6c2", "continuation": false, "first_observation": false}
+{"t": 1790273806.4316473, "letter": "L", "length": 5, "source": "validate_root_candidates", "session_id": "e155ccc3-636c-4fb5-ad68-688fa7cfc941", "continuation": false, "first_observation": false}
+{"t": 1790273827.9011161, "letter": "T", "length": 8, "source": "validate_root_candidates", "session_id": "c6469919-9a6d-44c7-a511-c2ce91c25d0d", "continuation": false, "first_observation": false}
+{"t": 1790273843.211008, "letter": "E", "length": 7, "source": "validate_root_candidates", "session_id": "dc75f172-0440-4c9c-881d-42bcba2fc19c", "continuation": false, "first_observation": false}
+{"t": 1790273852.3403869, "letter": "P", "length": 9, "source": "validate_root_candidates", "session_id": "eddc54f8-73a7-400c-8bb7-ca2c705687fc", "continuation": false, "first_observation": false}
+{"t": 1790273873.4204319, "letter": "F", "length": 8, "source": "validate_root_candidates", "session_id": "6953b42b-aa31-4704-b09f-276073acbf6c", "continuation": false, "first_observation": false}
+{"t": 1790273887.8186507, "letter": "E", "length": 9, "source": "validate_root_candidates", "session_id": "54a91dd6-39f0-453c-90c6-fe154ff7a560", "continuation": false, "first_observation": false}
+{"t": 1790273891.427718, "letter": "R", "length": 8, "source": "validate_root_candidates", "session_id": "9d44e073-b98c-40a8-acbd-8c3ea1803e45", "continuation": false, "first_observation": false}
+{"t": 1790273918.846521, "letter": "S", "length": 6, "source": "validate_root_candidates", "session_id": "e7938b7d-d83f-4bc6-8922-2ae3cd06b95a", "continuation": false, "first_observation": false}
+{"t": 1790273929.4588938, "letter": "M", "length": 7, "source": "validate_root_candidates", "session_id": "8ab94d9d-9d41-44c9-b673-d29ace51bcc0", "continuation": false, "first_observation": false}
+{"t": 1790273935.8440797, "letter": "P", "length": 8, "source": "validate_root_candidates", "session_id": "e6eeb996-a08b-40ba-b3d3-d3838b17e92d", "continuation": false, "first_observation": false}
+{"t": 1790273961.5949044, "letter": "G", "length": 5, "source": "validate_root_candidates", "session_id": "1ac78ea0-3f2d-4cf9-9da0-6db3275b38da", "continuation": false, "first_observation": false}
+{"t": 1790273978.0104406, "letter": "B", "length": 9, "source": "validate_root_candidates", "session_id": "e0fa2241-e691-4748-99ee-524b8ce6249b", "continuation": false, "first_observation": false}
+{"t": 1790274004.2441413, "letter": "N", "length": 6, "source": "validate_root_candidates", "session_id": "8bef1fdf-cef7-4a7d-b7f3-33b3991dacd8", "continuation": false, "first_observation": true}
+{"t": 1790274018.2127156, "letter": "N", "length": 8, "source": "validate_root_candidates", "session_id": "5384e97f-e405-40e4-a7e2-0b503d7ca77c", "continuation": false, "first_observation": false}
+{"t": 1790274033.9124687, "letter": "L", "length": 8, "source": "validate_root_candidates", "session_id": "302c6d47-644e-4aeb-9371-c68caf103d4e", "continuation": false, "first_observation": false}
+{"t": 1790274057.6111796, "letter": "C", "length": 8, "source": "validate_root_candidates", "session_id": "84577cf8-dc00-4879-b4e2-40d491940a6c", "continuation": false, "first_observation": false}
+{"t": 1790274072.3611078, "letter": "S", "length": 5, "source": "validate_root_candidates", "session_id": "5c0eb791-631a-4fce-bebb-3ed06cd980f5", "continuation": false, "first_observation": false}
+{"t": 1790274082.261004, "letter": "C", "length": 9, "source": "validate_root_candidates", "session_id": "33fe26d2-ec7b-4280-ad6a-11c5f80114fe", "continuation": false, "first_observation": false}
+{"t": 1790274103.620774, "letter": "P", "length": 9, "source": "validate_root_candidates", "session_id": "2e659a27-c4df-4637-b95e-0acca4c230d9", "continuation": false, "first_observation": false}
+{"t": 1790274109.8380134, "letter": "C", "length": 9, "source": "validate_root_candidates", "session_id": "d28a1a19-f626-43cf-88a9-86d6f37996b0", "continuation": false, "first_observation": false}
+{"t": 1790274114.548549, "letter": "M", "length": 9, "source": "validate_root_candidates", "session_id": "cea23308-c54d-496b-aae7-749961ece55a", "continuation": false, "first_observation": false}
+{"t": 1790274137.3898318, "letter": "P", "length": 8, "source": "validate_root_candidates", "session_id": "81c9d7b6-0e76-4d25-a889-ffd3e0770485", "continuation": false, "first_observation": false}
+{"t": 1790274141.8354554, "letter": "M", "length": 7, "source": "validate_root_candidates", "session_id": "9b0c90e6-84e9-4911-9210-0ec195d97201", "continuation": false, "first_observation": false}
+{"t": 1790274146.4900954, "letter": "M", "length": 6, "source": "validate_root_candidates", "session_id": "0f2ee7db-987c-4d11-bb50-06c6c4023f93", "continuation": false, "first_observation": false}
+{"t": 1790274151.9181771, "letter": "C", "length": 6, "source": "validate_root_candidates", "session_id": "087b55f8-ea3f-4b16-bf1b-183f3f7ddfb4", "continuation": false, "first_observation": false}
+{"t": 1790274164.535047, "letter": "D", "length": 8, "source": "validate_root_candidates", "session_id": "d7ddf38e-0e6e-4329-baef-83a28afd78a0", "continuation": false, "first_observation": false}
+{"t": 1790274177.6029117, "letter": "V", "length": 7, "source": "validate_root_candidates", "session_id": "12ababd3-4156-4bfa-b0b8-379fe44aef0b", "continuation": false, "first_observation": false}
+{"t": 1790274193.3386996, "letter": "P", "length": 8, "source": "validate_root_candidates", "session_id": "0274ac98-b476-4181-ab04-cc5fe6e19ec8", "continuation": false, "first_observation": false}
+{"t": 1790274197.3187792, "letter": "S", "length": 6, "source": "validate_root_candidates", "session_id": "f26b6080-a58a-45f4-9713-05f0ebe3f892", "continuation": false, "first_observation": false}
+{"t": 1790274201.1358545, "letter": "J", "length": 6, "source": "validate_root_candidates", "session_id": "b05667e4-77bb-49f0-bfe8-686dbfab5737", "continuation": false, "first_observation": false}
+{"t": 1790274215.3845031, "letter": "H", "length": 9, "source": "validate_root_candidates", "session_id": "ba7ba2b4-d1ba-46ad-a797-24b8c4560933", "continuation": false, "first_observation": true}
+{"t": 1790274245.5832975, "letter": "C", "length": 9, "source": "validate_root_candidates", "session_id": "2bc051f8-d206-4152-a635-c87dd4b7afa0", "continuation": false, "first_observation": false}
+{"t": 1790274250.2186506, "letter": "V", "length": 6, "source": "validate_root_candidates", "session_id": "e625bc54-537d-4c76-8049-83d802082fd9", "continuation": false, "first_observation": false}
+{"t": 1790274266.3682022, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "9dec7923-6df7-4f1a-b514-6dec3efd3936", "continuation": false, "first_observation": false}
+{"t": 1790274270.5706263, "letter": "F", "length": 7, "source": "validate_root_candidates", "session_id": "d2f4e8fe-6ff8-429d-a22e-71ccc8f57bab", "continuation": false, "first_observation": false}
+{"t": 1790274288.9742029, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "8b37e3fc-4e28-4f37-b3ff-6af52e3fa934", "continuation": false, "first_observation": false}
+{"t": 1790274292.8267715, "letter": "P", "length": 8, "source": "validate_root_candidates", "session_id": "cf443bbc-ea7a-471b-95fd-4ba1b85436b7", "continuation": false, "first_observation": false}
+{"t": 1790274297.3052027, "letter": "S", "length": 9, "source": "validate_root_candidates", "session_id": "d943410a-05c2-4783-b5c8-cf7133a69ac2", "continuation": false, "first_observation": false}
+{"t": 1790274313.467193, "letter": "J", "length": 7, "source": "validate_root_candidates", "session_id": "105bd83f-e053-4fc9-8cb3-b335d83739e6", "continuation": false, "first_observation": true}
+{"t": 1790274330.2290254, "letter": "S", "length": 8, "source": "validate_root_candidates", "session_id": "f3cc1cc3-fa35-44dd-89d5-b03f1f8723ab", "continuation": false, "first_observation": false}
+{"t": 1790274334.2501416, "letter": "D", "length": 5, "source": "validate_root_candidates", "session_id": "ae01cbd5-7089-4058-9e08-004b3f0fdfc9", "continuation": false, "first_observation": false}
+{"t": 1790274352.7338982, "letter": "S", "length": 7, "source": "validate_root_candidates", "session_id": "ef5e9b27-a801-467c-939c-1e44b9962372", "continuation": false, "first_observation": false}
+{"t": 1790274363.0176141, "letter": "A", "length": 6, "source": "validate_root_candidates", "session_id": "32c8b5fd-31d4-4290-88f1-173813bc8bde", "continuation": false, "first_observation": false}
+{"t": 1790274380.8251562, "letter": "S", "length": 7, "source": "validate_root_candidates", "session_id": "e48fcdac-84ed-4aeb-8225-2794267f5f77", "continuation": false, "first_observation": false}
+{"t": 1790274385.8568475, "letter": "N", "length": 7, "source": "validate_root_candidates", "session_id": "87f2cbb9-ea86-43a1-9a11-05b0a81af69d", "continuation": false, "first_observation": false}
+{"t": 1790274393.56523, "letter": "E", "length": 9, "source": "validate_root_candidates", "session_id": "7911fdb9-32be-4106-b6fe-f35d4f45ea46", "continuation": false, "first_observation": false}
+{"t": 1790274397.1836915, "letter": "L", "length": 9, "source": "validate_root_candidates", "session_id": "7a6b1138-4956-42f5-8177-e4239fd75834", "continuation": false, "first_observation": false}
+{"t": 1790274425.784485, "letter": "D", "length": 8, "source": "validate_root_candidates", "session_id": "9761937b-4f02-4f69-acf9-e35dd05dea7e", "continuation": false, "first_observation": false}
+{"t": 1790274429.161689, "letter": "P", "length": 9, "source": "validate_root_candidates", "session_id": "801591de-bde5-489c-882f-926db1ce024e", "continuation": false, "first_observation": false}
+{"t": 1790274433.6346498, "letter": "P", "length": 9, "source": "validate_root_candidates", "session_id": "0d705d19-0392-4718-adb2-0f9492889831", "continuation": false, "first_observation": false}
+{"t": 1790274438.050882, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "1a24fd73-814a-49cf-8e0d-3d49468f9f87", "continuation": false, "first_observation": false}
+{"t": 1790274441.8338015, "letter": "M", "length": 8, "source": "validate_root_candidates", "session_id": "1d326f6f-34b7-4286-a388-988e5faef51b", "continuation": false, "first_observation": false}
+{"t": 1790274465.266986, "letter": "F", "length": 7, "source": "validate_root_candidates", "session_id": "60f0fea5-5712-4141-bba9-7fb15ff96fdc", "continuation": false, "first_observation": false}
+{"t": 1790274481.2001975, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "a4495eec-0b04-43b5-abd1-186fed3167e2", "continuation": false, "first_observation": false}
+{"t": 1790274484.6859186, "letter": "P", "length": 5, "source": "validate_root_candidates", "session_id": "46e5938b-4499-4071-8340-9bde323576c1", "continuation": false, "first_observation": true}
+{"t": 1790274499.100043, "letter": "C", "length": 7, "source": "validate_root_candidates", "session_id": "147d44c7-f02c-40b5-9af9-44eeef2d1f59", "continuation": false, "first_observation": false}
+{"t": 1790274513.7008586, "letter": "S", "length": 6, "source": "validate_root_candidates", "session_id": "2c9af100-9f0b-4be8-a4f2-fa1a6e5fbb03", "continuation": false, "first_observation": false}
+{"t": 1790274517.7600915, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "e2bd8e99-70bc-4734-95d7-ff478243e3f4", "continuation": false, "first_observation": false}
+{"t": 1790274522.3878376, "letter": "V", "length": 8, "source": "validate_root_candidates", "session_id": "89cdcb9b-7cd2-41c7-88c9-943952d6a7da", "continuation": false, "first_observation": false}
+{"t": 1790274537.7182138, "letter": "R", "length": 5, "source": "validate_root_candidates", "session_id": "c0046151-b0a1-4232-b001-75f4e4f9a14f", "continuation": false, "first_observation": false}
+{"t": 1790274559.516175, "letter": "T", "length": 5, "source": "validate_root_candidates", "session_id": "6da9a21a-e6cf-42fa-91d3-35dc13c8a4dd", "continuation": false, "first_observation": false}
+{"t": 1790274572.6185, "letter": "B", "length": 6, "source": "validate_root_candidates", "session_id": "4052bc8a-0916-4fb9-b90c-bf81b97462c7", "continuation": false, "first_observation": false}
+{"t": 1790274600.191254, "letter": "G", "length": 9, "source": "validate_root_candidates", "session_id": "74b610b0-4253-4e88-b141-ae8dd81441eb", "continuation": false, "first_observation": false}
+{"t": 1790274624.9432268, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "1884c875-df5e-46aa-8c49-c7d0e7f25ff5", "continuation": false, "first_observation": false}
+{"t": 1790274634.6161819, "letter": "R", "length": 8, "source": "validate_root_candidates", "session_id": "a8fb606a-68a9-49f1-b1b9-a553f9385fcf", "continuation": false, "first_observation": false}
+{"t": 1790274654.6673012, "letter": "F", "length": 6, "source": "validate_root_candidates", "session_id": "99223719-78dc-430a-b73e-4f078a6706e3", "continuation": false, "first_observation": false}
+{"t": 1790274668.349491, "letter": "R", "length": 9, "source": "validate_root_candidates", "session_id": "5bd037a9-2db9-45d5-9504-8c40ec5d1515", "continuation": false, "first_observation": false}
+{"t": 1790274693.2987103, "letter": "M", "length": 9, "source": "validate_root_candidates", "session_id": "71d625d8-62d1-40d1-a8f4-a935c5b54c4b", "continuation": false, "first_observation": false}
+{"t": 1790274716.1311293, "letter": "I", "length": 9, "source": "validate_root_candidates", "session_id": "9ed03744-3f16-4d92-a75a-aa7e2041a764", "continuation": false, "first_observation": false}
+{"t": 1790274723.1089013, "letter": "Q", "length": 6, "source": "validate_root_candidates", "session_id": "97f81bc6-3939-424b-bcf7-16186a837a0e", "continuation": false, "first_observation": true}
+{"t": 1790274736.8987799, "letter": "R", "length": 9, "source": "validate_root_candidates", "session_id": "f9cd0731-5320-43af-900f-8bd20dea87b9", "continuation": false, "first_observation": false}
+{"t": 1790274742.0821223, "letter": "M", "length": 8, "source": "validate_root_candidates", "session_id": "9e2ad101-0827-45cd-9236-074e2c27d3f3", "continuation": false, "first_observation": false}
+{"t": 1790274752.4987514, "letter": "G", "length": 6, "source": "validate_root_candidates", "session_id": "d8d54f02-3e36-4351-ba48-80ebf0e7c05b", "continuation": false, "first_observation": false}
+{"t": 1790274755.8730142, "letter": "C", "length": 7, "source": "validate_root_candidates", "session_id": "ea8225d8-ff48-42c7-878d-51e50292f02d", "continuation": false, "first_observation": false}
+{"t": 1790274759.8652694, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "28e89940-8123-4cdb-b560-5ffd66451c02", "continuation": false, "first_observation": false}
+{"t": 1790274763.7656698, "letter": "F", "length": 6, "source": "validate_root_candidates", "session_id": "e58e3f54-1bf6-4db7-b083-b3f003b6fd39", "continuation": false, "first_observation": false}
+{"t": 1790274768.24859, "letter": "C", "length": 9, "source": "validate_root_candidates", "session_id": "4ad409c5-e022-41c9-b274-cf7344313d56", "continuation": false, "first_observation": false}
+{"t": 1790274772.2489536, "letter": "T", "length": 6, "source": "validate_root_candidates", "session_id": "fdcc651c-ea31-46fe-8b9b-610764348bd7", "continuation": false, "first_observation": false}
+{"t": 1790274776.129222, "letter": "L", "length": 7, "source": "validate_root_candidates", "session_id": "dcb8cf1a-61f2-4eee-aad9-62efb488697a", "continuation": false, "first_observation": false}
+{"t": 1790274798.0482209, "letter": "F", "length": 7, "source": "validate_root_candidates", "session_id": "04ab62aa-1abc-4001-a41e-e29f5336bcc1", "continuation": false, "first_observation": false}
+{"t": 1790274812.081902, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "3e0975c2-7d5b-4476-bc5f-3fbbda3d2cbb", "continuation": false, "first_observation": false}
+{"t": 1790274816.2649362, "letter": "M", "length": 7, "source": "validate_root_candidates", "session_id": "483358c6-f319-4421-a219-83feb5ec25b1", "continuation": false, "first_observation": false}
+{"t": 1790274820.6451688, "letter": "E", "length": 9, "source": "validate_root_candidates", "session_id": "655f6e5a-cd57-45ca-86bd-37cc85a50284", "continuation": false, "first_observation": false}
+{"t": 1790274824.431514, "letter": "C", "length": 6, "source": "validate_root_candidates", "session_id": "8cc0dfdc-9d5f-41c7-9107-df1d85afb483", "continuation": false, "first_observation": false}
+{"t": 1790274829.4648867, "letter": "O", "length": 8, "source": "validate_root_candidates", "session_id": "ee0fdb90-844b-4aa0-8e79-20bfc9f6291d", "continuation": false, "first_observation": false}
+{"t": 1790274844.4648845, "letter": "G", "length": 9, "source": "validate_root_candidates", "session_id": "f6980cf0-f655-4c65-9174-34b10272b281", "continuation": false, "first_observation": false}
+{"t": 1790274866.6980438, "letter": "F", "length": 7, "source": "validate_root_candidates", "session_id": "3f657bf8-810a-4654-90e6-2ba052cc35b9", "continuation": false, "first_observation": false}
+{"t": 1790274870.582596, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "efaf679d-3373-475b-9f82-1b4615c6f1e3", "continuation": false, "first_observation": false}
+{"t": 1790274874.2821772, "letter": "B", "length": 7, "source": "validate_root_candidates", "session_id": "f982a9c3-bd02-4d19-88da-986ea50596e3", "continuation": false, "first_observation": false}
+{"t": 1790274904.431498, "letter": "H", "length": 8, "source": "validate_root_candidates", "session_id": "79c03b4b-cf5a-42c6-ad20-5eee498a0e1c", "continuation": false, "first_observation": false}
+{"t": 1790274927.4316914, "letter": "N", "length": 8, "source": "validate_root_candidates", "session_id": "102b106f-bae4-4bf7-a493-eedb86f9e475", "continuation": false, "first_observation": false}
+{"t": 1790274942.3482642, "letter": "S", "length": 6, "source": "validate_root_candidates", "session_id": "81d2f0f6-75e0-46b7-a39d-e0caa52f2801", "continuation": false, "first_observation": false}
+{"t": 1790274946.948365, "letter": "T", "length": 8, "source": "validate_root_candidates", "session_id": "6457fc24-dd9d-428d-936d-235b21eb6abe", "continuation": false, "first_observation": false}
+{"t": 1790274951.0976844, "letter": "L", "length": 9, "source": "validate_root_candidates", "session_id": "985e21b0-befb-46e7-91b0-9582af2a835a", "continuation": false, "first_observation": false}
+{"t": 1790274962.1142778, "letter": "S", "length": 6, "source": "validate_root_candidates", "session_id": "7748c1f9-601a-4cce-a389-dbcf7cf4916a", "continuation": false, "first_observation": false}
+{"t": 1790274965.9314356, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "ba099419-1048-46ac-8edf-4fa07138bb49", "continuation": false, "first_observation": false}
+{"t": 1790274970.6343668, "letter": "R", "length": 7, "source": "validate_root_candidates", "session_id": "3dca85f4-41e5-4e85-9cf6-15de01238943", "continuation": false, "first_observation": false}
+{"t": 1790274987.7812665, "letter": "O", "length": 8, "source": "validate_root_candidates", "session_id": "74fd25d7-97f0-40af-bceb-2b99f5cf6a84", "continuation": false, "first_observation": false}
+{"t": 1790274992.0024137, "letter": "R", "length": 9, "source": "validate_root_candidates", "session_id": "f979fbe1-aab7-4602-a89e-359bdd748641", "continuation": false, "first_observation": false}
+{"t": 1790274996.0992785, "letter": "B", "length": 6, "source": "validate_root_candidates", "session_id": "f6a237f4-8289-48d9-b5d0-f23f92e52c81", "continuation": false, "first_observation": false}
+{"t": 1790275004.5308735, "letter": "S", "length": 7, "source": "validate_root_candidates", "session_id": "00303fc6-43e0-4ce3-b434-ed58cc5863bf", "continuation": false, "first_observation": false}
+{"t": 1790275008.7864695, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "bb2be90e-c425-4580-ab9e-38c80c373b5d", "continuation": false, "first_observation": false}
+{"t": 1790275012.5640435, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "b7102385-60e8-466d-a341-dbb2a893572e", "continuation": false, "first_observation": false}
+{"t": 1790275016.8315978, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "6aa1c2f7-e90e-4cdf-bd34-df4a43d78987", "continuation": false, "first_observation": false}
+{"t": 1790275020.7481897, "letter": "M", "length": 7, "source": "validate_root_candidates", "session_id": "299263c4-2a4b-471e-bac2-16d8af177e1d", "continuation": false, "first_observation": false}
+{"t": 1790275025.6674418, "letter": "H", "length": 5, "source": "validate_root_candidates", "session_id": "26e5a541-1f05-4da0-bc85-db8594f29ae1", "continuation": false, "first_observation": false}
+{"t": 1790275049.198076, "letter": "B", "length": 7, "source": "validate_root_candidates", "session_id": "8de0918d-cee9-4f69-bc3e-bc07ca3d0735", "continuation": false, "first_observation": false}
+{"t": 1790275062.8476028, "letter": "G", "length": 8, "source": "validate_root_candidates", "session_id": "44b58581-f8db-4e88-bc05-dd643738f43c", "continuation": false, "first_observation": false}
+{"t": 1790275081.530807, "letter": "C", "length": 7, "source": "validate_root_candidates", "session_id": "d1c658ab-1e8f-416f-9b04-6a9b646036b4", "continuation": false, "first_observation": false}
+{"t": 1790275085.780364, "letter": "M", "length": 7, "source": "validate_root_candidates", "session_id": "1868169c-79fd-44af-a403-447eb139aef3", "continuation": false, "first_observation": false}
+{"t": 1790275090.253217, "letter": "L", "length": 6, "source": "validate_root_candidates", "session_id": "d1b36d6f-da6c-4489-8739-1dddb5a95d82", "continuation": false, "first_observation": false}
+{"t": 1790275103.5139747, "letter": "S", "length": 7, "source": "validate_root_candidates", "session_id": "2a09c2a2-dce2-4aa6-9a77-378fcf4166ad", "continuation": false, "first_observation": false}
+{"t": 1790275107.381115, "letter": "S", "length": 6, "source": "validate_root_candidates", "session_id": "67f6aea4-1ea4-4ae9-90e9-861213da8a93", "continuation": false, "first_observation": false}
+{"t": 1790275111.6640117, "letter": "S", "length": 6, "source": "validate_root_candidates", "session_id": "5e83e986-5cab-41e7-bfe1-1bd4a0022311", "continuation": false, "first_observation": false}
+{"t": 1790275115.5800843, "letter": "N", "length": 9, "source": "validate_root_candidates", "session_id": "d7b1316d-00bc-453e-87a8-4bbf6c670b7b", "continuation": false, "first_observation": false}
+{"t": 1790275131.3972461, "letter": "C", "length": 9, "source": "validate_root_candidates", "session_id": "bf3569f2-96be-47ae-9e7a-362fea9699fc", "continuation": false, "first_observation": false}
+{"t": 1790275135.4176564, "letter": "F", "length": 8, "source": "validate_root_candidates", "session_id": "9ce2a5c7-6538-4693-8cb7-c13e11c4d5cd", "continuation": false, "first_observation": false}
+{"t": 1790275145.8495114, "letter": "M", "length": 9, "source": "validate_root_candidates", "session_id": "b8580b19-8c9a-4f34-a1f2-4741faa7cc02", "continuation": false, "first_observation": false}
+{"t": 1790275150.1637857, "letter": "O", "length": 8, "source": "validate_root_candidates", "session_id": "ccf0588f-6a76-44e0-b605-ac921b9ddfeb", "continuation": false, "first_observation": false}
+{"t": 1790275154.5695384, "letter": "S", "length": 9, "source": "validate_root_candidates", "session_id": "87d9bcae-324f-4b6f-a92b-824eab09f27c", "continuation": false, "first_observation": false}
+{"t": 1790275167.5565493, "letter": "E", "length": 7, "source": "validate_root_candidates", "session_id": "532e0538-7b7c-4111-9981-85c83e44ad49", "continuation": false, "first_observation": false}
+{"t": 1790275170.8806038, "letter": "I", "length": 8, "source": "validate_root_candidates", "session_id": "8d68faca-7806-4416-99df-65af677f11f4", "continuation": false, "first_observation": false}
+{"t": 1790275183.633023, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "f7142fd2-c174-42ad-af2f-a706220c8b95", "continuation": false, "first_observation": false}
+{"t": 1790275187.2827702, "letter": "E", "length": 9, "source": "validate_root_candidates", "session_id": "a1553dc8-53f3-4e84-b19f-dee46fb6bd4a", "continuation": false, "first_observation": false}
+{"t": 1790275192.294263, "letter": "A", "length": 8, "source": "validate_root_candidates", "session_id": "e04bf77e-3ce8-48f7-8ba8-d2aee781c685", "continuation": false, "first_observation": false}
+{"t": 1790275209.892398, "letter": "R", "length": 8, "source": "validate_root_candidates", "session_id": "2249b094-6b2c-4a64-bb1c-b830a53c8286", "continuation": false, "first_observation": false}
+{"t": 1790275220.0955787, "letter": "P", "length": 5, "source": "validate_root_candidates", "session_id": "a8d14561-59e1-42d9-b76f-1176df046434", "continuation": false, "first_observation": false}
+{"t": 1790275235.4808898, "letter": "R", "length": 7, "source": "validate_root_candidates", "session_id": "a53fa884-9c11-464b-a1ce-5fcd45a67a3f", "continuation": false, "first_observation": false}
+{"t": 1790275258.3685107, "letter": "V", "length": 6, "source": "validate_root_candidates", "session_id": "8dce986f-2228-4d26-a2f8-4542ca02fdf6", "continuation": false, "first_observation": false}
+{"t": 1790275262.3173032, "letter": "N", "length": 5, "source": "validate_root_candidates", "session_id": "47e799e0-44c6-4f71-815b-b6e4c45b785f", "continuation": false, "first_observation": false}
+{"t": 1790275280.3838959, "letter": "R", "length": 7, "source": "validate_root_candidates", "session_id": "ee2213f0-a84d-4b9c-ab37-c7ce9ec20b38", "continuation": false, "first_observation": false}
+{"t": 1790275286.7460542, "letter": "T", "length": 9, "source": "validate_root_candidates", "session_id": "d5707f2c-973c-4da9-ab26-e91b62610d2b", "continuation": false, "first_observation": false}
+{"t": 1790275312.6819832, "letter": "P", "length": 6, "source": "validate_root_candidates", "session_id": "8a4b3e05-2724-4c38-b6a3-2dd199096fc8", "continuation": false, "first_observation": false}
+{"t": 1790275326.745087, "letter": "F", "length": 8, "source": "validate_root_candidates", "session_id": "5cf20b4e-239d-482e-895d-d3a9c7ba47eb", "continuation": false, "first_observation": false}
+{"t": 1790275330.3989863, "letter": "M", "length": 6, "source": "validate_root_candidates", "session_id": "305256c8-5836-4855-832e-fa427f60aa3f", "continuation": false, "first_observation": false}
+{"t": 1790275334.7963488, "letter": "I", "length": 9, "source": "validate_root_candidates", "session_id": "7fcad39b-2c07-4acf-8b1c-f69ed40fff95", "continuation": false, "first_observation": false}
+{"t": 1790275339.3647954, "letter": "D", "length": 8, "source": "validate_root_candidates", "session_id": "7829ed64-d631-4ee3-9097-2a352b1eac2e", "continuation": false, "first_observation": false}
+{"t": 1790275343.1662886, "letter": "E", "length": 7, "source": "validate_root_candidates", "session_id": "955412fd-d80e-42d6-9e8b-4812db4601c3", "continuation": false, "first_observation": false}
+{"t": 1790275347.0673234, "letter": "R", "length": 6, "source": "validate_root_candidates", "session_id": "5cda8903-9711-458d-a8c6-e1befa773952", "continuation": false, "first_observation": false}
+{"t": 1790275364.5798357, "letter": "C", "length": 5, "source": "validate_root_candidates", "session_id": "7bad61a0-ecba-4891-94a1-b9bd670cfccb", "continuation": false, "first_observation": false}
+{"t": 1790275379.8834007, "letter": "P", "length": 8, "source": "validate_root_candidates", "session_id": "f0f225ae-597a-4f3d-9816-d55537940654", "continuation": false, "first_observation": false}
+{"t": 1790275384.2975168, "letter": "P", "length": 8, "source": "validate_root_candidates", "session_id": "52b90f15-acda-4f4f-aef1-0f4c5bc3ec98", "continuation": false, "first_observation": false}
+{"t": 1790275388.08664, "letter": "L", "length": 8, "source": "validate_root_candidates", "session_id": "e1cec234-44bd-4ce5-8b50-878b4d560116", "continuation": false, "first_observation": false}
+{"t": 1790275403.149475, "letter": "F", "length": 8, "source": "validate_root_candidates", "session_id": "116ed9e3-a82a-403a-ab9d-7e3d9a9a782e", "continuation": false, "first_observation": false}
+{"t": 1790275407.22856, "letter": "H", "length": 5, "source": "validate_root_candidates", "session_id": "4ec40adb-d73b-4088-8f03-68bcb9bbf119", "continuation": false, "first_observation": false}
+{"t": 1790275425.53234, "letter": "I", "length": 9, "source": "validate_root_candidates", "session_id": "a390b159-7e30-4012-8d06-b29c00e977e4", "continuation": false, "first_observation": false}
+{"t": 1790275429.463863, "letter": "J", "length": 7, "source": "validate_root_candidates", "session_id": "02eefac5-10f6-4806-ad99-ba2687c262d1", "continuation": false, "first_observation": false}
+{"t": 1790275449.617632, "letter": "P", "length": 6, "source": "validate_root_candidates", "session_id": "cc08fa3f-3ec9-4d95-8dec-6184ca6194c6", "continuation": false, "first_observation": false}
+{"t": 1790275465.9784214, "letter": "C", "length": 9, "source": "validate_root_candidates", "session_id": "4c226314-00cf-461e-903a-22aa1261fb9b", "continuation": false, "first_observation": false}
+{"t": 1790275470.098158, "letter": "D", "length": 7, "source": "validate_root_candidates", "session_id": "65c92883-b154-458b-85f2-5e6532518905", "continuation": false, "first_observation": false}
+{"t": 1790275485.1949196, "letter": "B", "length": 8, "source": "validate_root_candidates", "session_id": "7ac4aea9-86b4-40cf-9c95-c889f98003d9", "continuation": false, "first_observation": false}
+{"t": 1790275505.2474675, "letter": "G", "length": 7, "source": "validate_root_candidates", "session_id": "68123282-99a0-4924-9650-2dca5e965987", "continuation": false, "first_observation": false}
+{"t": 1790275525.062486, "letter": "M", "length": 9, "source": "validate_root_candidates", "session_id": "fb85a614-e3de-418f-8021-02a5e3a113bd", "continuation": false, "first_observation": false}
+{"t": 1790275528.6165621, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "9859735f-6a85-4731-8707-7856634e3ca8", "continuation": false, "first_observation": false}
+{"t": 1790275532.745426, "letter": "J", "length": 5, "source": "validate_root_candidates", "session_id": "1bf7c581-c407-4a4c-bf4d-7e5973602185", "continuation": false, "first_observation": false}
+{"t": 1790275546.1122692, "letter": "M", "length": 8, "source": "validate_root_candidates", "session_id": "12b984c6-fd1d-4408-92cc-f201257dd4fb", "continuation": false, "first_observation": false}
+{"t": 1790275550.5783856, "letter": "G", "length": 6, "source": "validate_root_candidates", "session_id": "a4e217e8-93d1-4de4-8e0c-fcf566e03f3e", "continuation": false, "first_observation": false}
+{"t": 1790275555.0804777, "letter": "A", "length": 8, "source": "validate_root_candidates", "session_id": "8fe34b9c-8399-4eb3-89b5-dc2a80f44fc9", "continuation": false, "first_observation": false}
+{"t": 1790275561.1946685, "letter": "B", "length": 7, "source": "validate_root_candidates", "session_id": "522ea5e7-e40f-45e3-a065-792209ad0956", "continuation": false, "first_observation": false}
+{"t": 1790275565.8801253, "letter": "H", "length": 9, "source": "validate_root_candidates", "session_id": "d6940c9f-4f39-426d-a766-05a9a461bf89", "continuation": false, "first_observation": false}
+{"t": 1790275578.413841, "letter": "E", "length": 7, "source": "validate_root_candidates", "session_id": "c5bcba5f-068d-4dfb-a464-861241501df8", "continuation": false, "first_observation": false}
+{"t": 1790275582.8437865, "letter": "O", "length": 7, "source": "validate_root_candidates", "session_id": "cdc009bd-1853-4898-85d8-6a10f65ab2a9", "continuation": false, "first_observation": false}
+{"t": 1790275596.194623, "letter": "G", "length": 9, "source": "validate_root_candidates", "session_id": "7aadebcb-904d-4d1e-87ad-fc3e248f1b90", "continuation": false, "first_observation": false}
+{"t": 1790275603.4818285, "letter": "G", "length": 5, "source": "validate_root_candidates", "session_id": "cce3ecc9-bf78-4f58-bbde-9cceaeceec42", "continuation": false, "first_observation": false}
+{"t": 1790275617.6759012, "letter": "C", "length": 8, "source": "validate_root_candidates", "session_id": "eb6c847c-0f9a-452a-91fc-c6d903334081", "continuation": false, "first_observation": false}
+{"t": 1790275626.9785087, "letter": "B", "length": 9, "source": "validate_root_candidates", "session_id": "5b1c2a53-11b4-4ca5-a55f-52b6e41fa74b", "continuation": false, "first_observation": false}
+{"t": 1790275644.3619711, "letter": "P", "length": 7, "source": "validate_root_candidates", "session_id": "0eae75a0-56ed-4d17-b647-628d93bc1c0c", "continuation": false, "first_observation": false}
+{"t": 1790275666.1834357, "letter": "I", "length": 9, "source": "validate_root_candidates", "session_id": "0da40a46-3c2e-4170-8c6c-854b0e777180", "continuation": false, "first_observation": false}
+{"t": 1790275669.8109, "letter": "S", "length": 6, "source": "validate_root_candidates", "session_id": "4135fb58-4a7c-4d25-a1a4-a2506dfbeb14", "continuation": false, "first_observation": false}
+{"t": 1790275673.4779937, "letter": "R", "length": 7, "source": "validate_root_candidates", "session_id": "e44f0b42-9c30-4635-951d-25968a50513f", "continuation": false, "first_observation": false}
+{"t": 1790275677.6293924, "letter": "P", "length": 8, "source": "validate_root_candidates", "session_id": "b0dd471c-08f5-48b6-9fb2-1f446d91ea6e", "continuation": false, "first_observation": false}
+{"t": 1790275681.6773186, "letter": "B", "length": 6, "source": "validate_root_candidates", "session_id": "46961b8a-df8e-4d9e-b10f-e20434f5f5b1", "continuation": false, "first_observation": false}
+{"t": 1790275685.7787328, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "efc2ebda-11cf-422b-8ae0-308f0ac1bf85", "continuation": false, "first_observation": false}
+{"t": 1790275690.5488315, "letter": "S", "length": 6, "source": "validate_root_candidates", "session_id": "82e43625-3d9f-4803-9471-a97d3cf38685", "continuation": false, "first_observation": false}
+{"t": 1790275694.8294592, "letter": "B", "length": 6, "source": "validate_root_candidates", "session_id": "3d3d174c-2d61-4b73-a94d-d02feb0e69cb", "continuation": false, "first_observation": false}
+{"t": 1790275699.0291939, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "e400ddaa-de81-4739-8de4-80b5e8b5fb23", "continuation": false, "first_observation": false}
+{"t": 1790275703.28982, "letter": "D", "length": 8, "source": "validate_root_candidates", "session_id": "70a0f2fc-da88-4a25-81ef-6a7904f06320", "continuation": false, "first_observation": false}
+{"t": 1790275707.8988578, "letter": "B", "length": 6, "source": "validate_root_candidates", "session_id": "1157acc6-9a3e-4b20-ab27-394edbcd3743", "continuation": false, "first_observation": false}
+{"t": 1790275712.24733, "letter": "B", "length": 7, "source": "validate_root_candidates", "session_id": "71201a28-8d97-4bb2-86b6-a371a6e2f1bc", "continuation": false, "first_observation": false}
+{"t": 1790275715.4533348, "letter": "T", "length": 6, "source": "validate_root_candidates", "session_id": "9cec1c6d-c2a1-46ac-9916-f029649b342a", "continuation": false, "first_observation": false}
+{"t": 1790275719.129902, "letter": "N", "length": 6, "source": "validate_root_candidates", "session_id": "fc76763d-d0a1-4bfc-9869-1c981dbf0b79", "continuation": false, "first_observation": false}
+{"t": 1790275734.2280815, "letter": "C", "length": 8, "source": "validate_root_candidates", "session_id": "dd0bcad8-e2f7-4da0-9821-29a2932d5bd6", "continuation": false, "first_observation": false}
+{"t": 1790275738.427893, "letter": "M", "length": 6, "source": "validate_root_candidates", "session_id": "0f389d36-4b5a-4e3e-a218-f279b969da04", "continuation": false, "first_observation": false}
+{"t": 1790275742.3946116, "letter": "O", "length": 8, "source": "validate_root_candidates", "session_id": "a0fdf87a-f72e-4c19-92e5-0ca866e01d19", "continuation": false, "first_observation": false}
+{"t": 1790275746.5443056, "letter": "C", "length": 9, "source": "validate_root_candidates", "session_id": "c65441b8-6444-4681-8057-c6357d2acfa9", "continuation": false, "first_observation": false}
+{"t": 1790275749.9608722, "letter": "T", "length": 9, "source": "validate_root_candidates", "session_id": "2383cfa2-6d31-46fd-b347-24e6323e9cb3", "continuation": false, "first_observation": false}
+{"t": 1790275754.3442447, "letter": "F", "length": 6, "source": "validate_root_candidates", "session_id": "5dfbe69a-aefe-4a4f-b6e4-a02aa2df11a4", "continuation": false, "first_observation": false}
+{"t": 1790275758.3780518, "letter": "J", "length": 7, "source": "validate_root_candidates", "session_id": "f4052717-e776-4124-a550-2b9de885bb17", "continuation": false, "first_observation": false}
+{"t": 1790275764.4273367, "letter": "R", "length": 9, "source": "validate_root_candidates", "session_id": "650ca5c5-0833-4681-8534-6eeefeb14160", "continuation": false, "first_observation": false}
+{"t": 1790275769.0312033, "letter": "B", "length": 9, "source": "validate_root_candidates", "session_id": "3ac0649f-34c8-4ddd-babf-25bf9c18f663", "continuation": false, "first_observation": false}
+{"t": 1790275773.0103521, "letter": "P", "length": 7, "source": "validate_root_candidates", "session_id": "477af753-aeb4-41cb-8508-d339bb270c96", "continuation": false, "first_observation": false}
+{"t": 1790275776.810879, "letter": "E", "length": 6, "source": "validate_root_candidates", "session_id": "b8a1017e-774b-4101-ba81-0bd58dfee294", "continuation": false, "first_observation": false}
+{"t": 1790275780.677624, "letter": "N", "length": 7, "source": "validate_root_candidates", "session_id": "f1172fd8-3973-4bd9-8c04-571f9a2a1dca", "continuation": false, "first_observation": false}
+{"t": 1790275784.8785887, "letter": "B", "length": 7, "source": "validate_root_candidates", "session_id": "1832a05a-f71b-4d08-bd10-1f137471a39c", "continuation": false, "first_observation": false}
+{"t": 1790275788.2287629, "letter": "I", "length": 6, "source": "validate_root_candidates", "session_id": "a630934a-34cd-4301-93ee-421df8fe2ccc", "continuation": false, "first_observation": false}
+{"t": 1790275792.7378643, "letter": "N", "length": 7, "source": "validate_root_candidates", "session_id": "a630934a-34cd-4301-93ee-421df8fe2ccc", "continuation": true, "first_observation": false}
+{"t": 1790275796.1444397, "letter": "E", "length": 7, "source": "validate_root_candidates", "session_id": "edc6e4c4-270e-4b98-8aea-5553bf97b766", "continuation": false, "first_observation": false}
+{"t": 1790275800.4114892, "letter": "D", "length": 8, "source": "validate_root_candidates", "session_id": "3dc5072e-d9fd-4334-82ec-5aaa572c6690", "continuation": false, "first_observation": false}
+{"t": 1790275804.479399, "letter": "M", "length": 7, "source": "validate_root_candidates", "session_id": "f7a80423-c968-4238-8cae-06704e584e10", "continuation": false, "first_observation": false}
+{"t": 1790275808.8275735, "letter": "C", "length": 9, "source": "validate_root_candidates", "session_id": "bac816f3-2d09-413d-9809-3bd18b2a4863", "continuation": false, "first_observation": false}
+{"t": 1790275812.6783185, "letter": "S", "length": 9, "source": "validate_root_candidates", "session_id": "ad23bc42-b01d-446f-8c2e-a2dcfbf3c1e2", "continuation": false, "first_observation": false}
+{"t": 1790275817.496508, "letter": "T", "length": 7, "source": "validate_root_candidates", "session_id": "0b709793-cf9d-4ccc-b57c-918f3dcf4259", "continuation": false, "first_observation": false}
+{"t": 1790275829.3220806, "letter": "P", "length": 9, "source": "validate_root_candidates", "session_id": "daafe145-17b7-41d4-b4b6-89a1eb597498", "continuation": false, "first_observation": false}
+{"t": 1790275833.7936673, "letter": "O", "length": 7, "source": "validate_root_candidates", "session_id": "9a2802d9-15f0-4a46-aae0-13860785610e", "continuation": false, "first_observation": false}
+{"t": 1790275837.4435954, "letter": "P", "length": 8, "source": "validate_root_candidates", "session_id": "31c05299-4765-427d-a549-14c579f52504", "continuation": false, "first_observation": false}
+{"t": 1790275841.7105591, "letter": "T", "length": 6, "source": "validate_root_candidates", "session_id": "eff761cd-dcac-4828-b4d1-3742dbc71830", "continuation": false, "first_observation": false}
+{"t": 1790275844.946926, "letter": "H", "length": 9, "source": "validate_root_candidates", "session_id": "af4416f4-7122-435c-9c53-9f62e8d27446", "continuation": false, "first_observation": false}
+{"t": 1790275849.0463085, "letter": "H", "length": 8, "source": "validate_root_candidates", "session_id": "d667ad3a-ade2-4a62-958f-e9baea09a608", "continuation": false, "first_observation": false}
+{"t": 1790275863.5935166, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "36f3f812-d6da-427a-9010-47a86a0602c1", "continuation": false, "first_observation": false}
+{"t": 1790275867.0088656, "letter": "T", "length": 9, "source": "validate_root_candidates", "session_id": "ef31cb6e-2fdf-450e-8f28-84b50feab1c1", "continuation": false, "first_observation": false}
+{"t": 1790275871.4099402, "letter": "S", "length": 5, "source": "validate_root_candidates", "session_id": "29b4fa70-0f4f-4ae9-80ef-1aeff598fcc8", "continuation": false, "first_observation": false}
+{"t": 1790275875.9433036, "letter": "C", "length": 7, "source": "validate_root_candidates", "session_id": "20cf904c-fb07-46b2-b466-8aa3ac39fdb3", "continuation": false, "first_observation": false}
+{"t": 1790275880.4430945, "letter": "I", "length": 9, "source": "validate_root_candidates", "session_id": "8a59fb0b-e592-40bf-87bd-311f16c43787", "continuation": false, "first_observation": false}
+{"t": 1790275885.1270187, "letter": "C", "length": 7, "source": "validate_root_candidates", "session_id": "75d077a1-af93-4f99-af1a-7512ee7e7659", "continuation": false, "first_observation": false}
+{"t": 1790275888.7129803, "letter": "A", "length": 7, "source": "validate_root_candidates", "session_id": "cb252c5e-16bf-475a-8dc2-017c7360ee88", "continuation": false, "first_observation": false}
+{"t": 1790275909.4791493, "letter": "A", "length": 8, "source": "validate_root_candidates", "session_id": "c89d824f-61de-4c20-b946-49d69685c6b3", "continuation": false, "first_observation": false}
+{"t": 1790275913.915285, "letter": "G", "length": 7, "source": "validate_root_candidates", "session_id": "fcc7a039-67d6-49dd-8e47-152525ae04fb", "continuation": false, "first_observation": false}
+{"t": 1790275917.1102536, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "9a3831a9-23e2-4c52-a007-089d8c9edc9b", "continuation": false, "first_observation": false}
+{"t": 1790275921.4441133, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "69e43a90-914f-405f-86e3-6ec31a26789c", "continuation": false, "first_observation": false}
+{"t": 1790275925.2431965, "letter": "V", "length": 5, "source": "validate_root_candidates", "session_id": "d1752ba8-325e-4593-9845-6192c101b9cf", "continuation": false, "first_observation": true}
+{"t": 1790275941.9106247, "letter": "L", "length": 7, "source": "validate_root_candidates", "session_id": "b7125ab6-79d3-4c95-a246-297394dc4227", "continuation": false, "first_observation": false}
+{"t": 1790275967.143768, "letter": "R", "length": 9, "source": "validate_root_candidates", "session_id": "d4ad2e54-09c3-477b-b093-05ef237a3793", "continuation": false, "first_observation": false}
+{"t": 1790275971.5765069, "letter": "P", "length": 7, "source": "validate_root_candidates", "session_id": "1c268849-f819-46f5-a79b-fec670bc9c80", "continuation": false, "first_observation": false}
+{"t": 1790275975.5574636, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "6323f6d8-582e-4458-9b31-d25fdbb86484", "continuation": false, "first_observation": false}
+{"t": 1790275980.4949052, "letter": "A", "length": 8, "source": "validate_root_candidates", "session_id": "1224199b-94ad-4e6b-84db-2c49b60b5ae7", "continuation": false, "first_observation": false}
+{"t": 1790275984.6091478, "letter": "T", "length": 7, "source": "validate_root_candidates", "session_id": "fbaa55ae-84c3-4ce2-9f81-7ac8e3141495", "continuation": false, "first_observation": false}
+{"t": 1790275988.5229673, "letter": "F", "length": 8, "source": "validate_root_candidates", "session_id": "87975aae-39d4-4dfe-a3e3-e1a7ce92fda6", "continuation": false, "first_observation": false}
+{"t": 1790275992.2612298, "letter": "E", "length": 9, "source": "validate_root_candidates", "session_id": "21701949-d032-4190-ada5-9e18b6ed6a8a", "continuation": false, "first_observation": false}
+{"t": 1790275996.1933188, "letter": "V", "length": 9, "source": "validate_root_candidates", "session_id": "cbc69f95-02f4-477d-8776-b3326c41ff05", "continuation": false, "first_observation": true}
+{"t": 1790276021.78716, "letter": "E", "length": 7, "source": "validate_root_candidates", "session_id": "6212477a-05ff-4024-9ed6-d840d31e7bee", "continuation": false, "first_observation": false}
+{"t": 1790276026.291883, "letter": "V", "length": 8, "source": "validate_root_candidates", "session_id": "2728c280-e3cd-4afc-ad0b-840e08b10b10", "continuation": false, "first_observation": false}
+{"t": 1790276045.9388232, "letter": "M", "length": 9, "source": "validate_root_candidates", "session_id": "cbe887b7-4747-410e-9e02-932f824ab02a", "continuation": false, "first_observation": false}
+{"t": 1790276050.0598183, "letter": "R", "length": 9, "source": "validate_root_candidates", "session_id": "feb599ee-fa42-4d84-b72b-b703b76d6572", "continuation": false, "first_observation": false}
+{"t": 1790276054.4604695, "letter": "F", "length": 9, "source": "validate_root_candidates", "session_id": "44f93b1a-c3c0-47ed-8d00-3f886bbca94a", "continuation": false, "first_observation": false}
+{"t": 1790276068.5596108, "letter": "R", "length": 8, "source": "validate_root_candidates", "session_id": "118678d5-311a-45b6-bc06-629c6e8292c8", "continuation": false, "first_observation": false}
+{"t": 1790276072.6943061, "letter": "F", "length": 5, "source": "validate_root_candidates", "session_id": "d3c748e3-0c50-4493-b1c3-fd2026c1a864", "continuation": false, "first_observation": false}
+{"t": 1790276084.8089886, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "47e55190-b7c9-4a3c-b62a-eb9a2b35a0ea", "continuation": false, "first_observation": false}
+{"t": 1790276088.7670202, "letter": "F", "length": 8, "source": "validate_root_candidates", "session_id": "aa4472ad-98ae-4624-8a69-87c5e6b33a0f", "continuation": false, "first_observation": false}
+{"t": 1790276093.494834, "letter": "S", "length": 8, "source": "validate_root_candidates", "session_id": "cb71da0c-bd1f-4aae-8654-a7dbbdbc50c9", "continuation": false, "first_observation": false}
+{"t": 1790276097.6977983, "letter": "F", "length": 7, "source": "validate_root_candidates", "session_id": "2d4da42f-1d60-45c5-bcec-01ba853b93eb", "continuation": false, "first_observation": false}
+{"t": 1790276101.0495036, "letter": "N", "length": 6, "source": "validate_root_candidates", "session_id": "2d66a1d6-0881-4ed1-898c-af7f29d79765", "continuation": false, "first_observation": false}
+{"t": 1790276118.192353, "letter": "E", "length": 7, "source": "validate_root_candidates", "session_id": "3198a161-857f-4e21-ad79-855bbee90512", "continuation": false, "first_observation": false}
+{"t": 1790276122.4952252, "letter": "H", "length": 7, "source": "validate_root_candidates", "session_id": "7db3f838-af86-4ec0-8ffd-a163003b4633", "continuation": false, "first_observation": true}
+{"t": 1790276150.125696, "letter": "B", "length": 8, "source": "validate_root_candidates", "session_id": "88d96099-742c-4975-aaa8-b9320e8e0df9", "continuation": false, "first_observation": false}
+{"t": 1790276160.5091908, "letter": "A", "length": 6, "source": "validate_root_candidates", "session_id": "e821e293-69a6-4f0f-96ed-e92c5f78ce7b", "continuation": false, "first_observation": false}
+{"t": 1790276167.7588406, "letter": "H", "length": 6, "source": "validate_root_candidates", "session_id": "770dbe88-35e1-4f6b-9349-596fdbcd9b35", "continuation": false, "first_observation": false}
+{"t": 1790276182.8432, "letter": "R", "length": 9, "source": "validate_root_candidates", "session_id": "a62db68d-fac4-4ab5-89e5-33f3e9cd09da", "continuation": false, "first_observation": false}
+{"t": 1790276186.5438495, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "af36fb8b-ffbb-4a71-a742-08d1858f0d82", "continuation": false, "first_observation": false}
+{"t": 1790276190.392464, "letter": "A", "length": 8, "source": "validate_root_candidates", "session_id": "2818df07-93d5-439b-9671-37d5e78acbaf", "continuation": false, "first_observation": false}
+{"t": 1790276195.0260482, "letter": "B", "length": 8, "source": "validate_root_candidates", "session_id": "d0b017d6-d186-404f-9adb-1e8c6732206c", "continuation": false, "first_observation": false}
+{"t": 1790276198.6151068, "letter": "D", "length": 6, "source": "validate_root_candidates", "session_id": "07c965c1-fc0d-44dc-9176-c869414ead06", "continuation": false, "first_observation": false}
+{"t": 1790276216.7088296, "letter": "E", "length": 7, "source": "validate_root_candidates", "session_id": "608f2592-ae85-4350-871f-a4c7c9b99ace", "continuation": false, "first_observation": false}
+{"t": 1790276220.7584808, "letter": "P", "length": 9, "source": "validate_root_candidates", "session_id": "dcb54ef6-330b-4d3f-949d-09a6e34f8914", "continuation": false, "first_observation": false}
+{"t": 1790276225.2579274, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "e55f8229-1889-4d8c-a298-f9ea014f2554", "continuation": false, "first_observation": false}
+{"t": 1790276230.0262775, "letter": "F", "length": 8, "source": "validate_root_candidates", "session_id": "9e2010d5-605a-4ac8-b230-8d1832fc06df", "continuation": false, "first_observation": false}
+{"t": 1790276234.9582088, "letter": "A", "length": 5, "source": "validate_root_candidates", "session_id": "3d8a578b-ffb5-438c-b0af-86452ff9a752", "continuation": false, "first_observation": false}
+{"t": 1790276269.2752073, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "5ae6d9ac-01ff-4d11-bffd-4e61fe699dfb", "continuation": false, "first_observation": false}
+{"t": 1790276273.8490365, "letter": "F", "length": 9, "source": "validate_root_candidates", "session_id": "73530861-081f-46b6-a5c6-728977940ed5", "continuation": false, "first_observation": false}
+{"t": 1790276277.4958506, "letter": "M", "length": 6, "source": "validate_root_candidates", "session_id": "c09c2258-f6db-4610-889e-e51b9cf41026", "continuation": false, "first_observation": false}
+{"t": 1790276282.0451272, "letter": "V", "length": 9, "source": "validate_root_candidates", "session_id": "c04a81de-0467-4d85-a811-17640fc6a6c6", "continuation": false, "first_observation": false}
+{"t": 1790276299.8747356, "letter": "M", "length": 7, "source": "validate_root_candidates", "session_id": "7ebc6830-c3dd-41ec-9846-c73ea87aa728", "continuation": false, "first_observation": false}
+{"t": 1790276304.3915439, "letter": "A", "length": 7, "source": "validate_root_candidates", "session_id": "4288bdfd-022a-4769-825f-532bf8e10b57", "continuation": false, "first_observation": false}
+{"t": 1790276320.4252288, "letter": "F", "length": 8, "source": "validate_root_candidates", "session_id": "767e6cbc-a632-441b-a057-61dc6787c888", "continuation": false, "first_observation": false}
+{"t": 1790276324.5926929, "letter": "M", "length": 7, "source": "validate_root_candidates", "session_id": "30b06a1c-9c45-4e54-bb62-182bc5464b2a", "continuation": false, "first_observation": false}
+{"t": 1790276328.9245033, "letter": "C", "length": 8, "source": "validate_root_candidates", "session_id": "44f84135-ed32-4f6b-9262-9e6bc69a3877", "continuation": false, "first_observation": false}
+{"t": 1790276332.322459, "letter": "D", "length": 9, "source": "validate_root_candidates", "session_id": "c188ede3-b916-4480-8e33-82a749b8ae24", "continuation": false, "first_observation": false}
+{"t": 1790276335.963546, "letter": "R", "length": 8, "source": "validate_root_candidates", "session_id": "980cdab6-c9a0-4e5f-9720-b46f410e7dc7", "continuation": false, "first_observation": false}
+{"t": 1790276340.8250513, "letter": "E", "length": 8, "source": "validate_root_candidates", "session_id": "35781871-3e91-4e53-bde6-386f1e5401ba", "continuation": false, "first_observation": false}
+{"t": 1790276345.7465384, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "7857e5d0-2ef5-4b36-917a-1f7f2b8df92b", "continuation": false, "first_observation": false}
+{"t": 1790276349.492686, "letter": "S", "length": 9, "source": "validate_root_candidates", "session_id": "d2a2688d-a102-4922-8c50-1c25034a31c2", "continuation": false, "first_observation": false}
+{"t": 1790276353.0761287, "letter": "R", "length": 9, "source": "validate_root_candidates", "session_id": "a237f1aa-8d33-4ba7-998a-b8a19ce0c387", "continuation": false, "first_observation": false}
+{"t": 1790276357.056502, "letter": "E", "length": 6, "source": "validate_root_candidates", "session_id": "9fd1dd7b-eaba-47bf-be4e-e8ff67d3a141", "continuation": false, "first_observation": false}
+{"t": 1790276360.610754, "letter": "A", "length": 7, "source": "validate_root_candidates", "session_id": "43f0ebac-632c-44c6-983d-66c8d4d873bc", "continuation": false, "first_observation": false}
+{"t": 1790276364.8912914, "letter": "D", "length": 8, "source": "validate_root_candidates", "session_id": "c5d11cd8-6729-4e6c-bf66-550e9fe61e9e", "continuation": false, "first_observation": false}
+{"t": 1790276369.477931, "letter": "A", "length": 9, "source": "validate_root_candidates", "session_id": "fe37982d-f639-444b-b335-962ae16ba299", "continuation": false, "first_observation": false}

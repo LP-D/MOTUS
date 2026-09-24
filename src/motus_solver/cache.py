@@ -29,6 +29,7 @@ def _compute_entry(
     positional_freq,
     blocklist: set[str] | None = None,
     strategy: str = "composite",
+    depth: int = ROOT_ALTERNATIVES + 1,
 ) -> dict | None:
     candidates = corpus.subset(letter, length)
     if blocklist:
@@ -41,13 +42,13 @@ def _compute_entry(
         # coup 1 ne dépend que de (lettre, longueur), donc calculable une fois pour
         # toutes), mais un fichier séparé (cf. build_root_cache) puisque les deux
         # stratégies ne choisissent pas forcément le même mot.
-        ranked = top_guesses_entropy_pure(candidates, k=ROOT_ALTERNATIVES + 1)
+        ranked = top_guesses_entropy_pure(candidates, k=depth)
         (guess, entropy), rest = ranked[0], ranked[1:]
         # mêmes coups de repli que le composite (parité : un coup 1 refusé ne doit
         # jamais relancer un recalcul complet, quelle que soit la stratégie)
         return {"word": guess, "entropy": entropy,
                 "alternatives": [{"word": w, "entropy": e} for w, e in rest]}
-    ranked = top_guesses_composite(candidates, candidates, global_freq, positional_freq, k=ROOT_ALTERNATIVES + 1)
+    ranked = top_guesses_composite(candidates, candidates, global_freq, positional_freq, k=depth)
     (guess, _score, entropy, vowels), rest = ranked[0], ranked[1:]
     return {
         "word": guess, "entropy": entropy, "vowels": vowels,
@@ -106,14 +107,19 @@ _GLOBAL_FREQ: dict[str, float] | None = None
 _POSITIONAL_FREQ_CACHE: dict[int, object] = {}
 _BLOCKLIST: set[str] | None = None
 _STRATEGY: str = "composite"
+_DEPTH: int = ROOT_ALTERNATIVES + 1
 
 
-def _init_worker(words: list[str], blocklist: set[str] | None = None, strategy: str = "composite") -> None:
-    global _CORPUS, _GLOBAL_FREQ, _BLOCKLIST, _STRATEGY
+def _init_worker(
+    words: list[str], blocklist: set[str] | None = None, strategy: str = "composite",
+    depth: int = ROOT_ALTERNATIVES + 1,
+) -> None:
+    global _CORPUS, _GLOBAL_FREQ, _BLOCKLIST, _STRATEGY, _DEPTH
     _CORPUS = Corpus(words)
     _GLOBAL_FREQ = letter_frequencies(_CORPUS)
     _BLOCKLIST = blocklist
     _STRATEGY = strategy
+    _DEPTH = depth
 
 
 def _positional_freq_cached(length: int):
@@ -125,7 +131,7 @@ def _positional_freq_cached(length: int):
 def _compute_group(item: tuple[str, int]) -> tuple[str, int, dict | None]:
     letter, length = item
     entry = _compute_entry(
-        letter, length, _CORPUS, _GLOBAL_FREQ, _positional_freq_cached(length), _BLOCKLIST, _STRATEGY
+        letter, length, _CORPUS, _GLOBAL_FREQ, _positional_freq_cached(length), _BLOCKLIST, _STRATEGY, _DEPTH
     )
     return letter, length, entry
 
@@ -168,30 +174,64 @@ def refresh_blocklisted_entries(
         key for key, entry in cache.items()
         if entry["word"] in blocklist or any(a["word"] in blocklist for a in entry.get("alternatives", ()))
     )
-    if not stale:
-        return []
-    items = [(key.split("_")[0], int(key.split("_")[1])) for key in stale]
+    refresh_entries(cache, corpus, blocklist, stale, workers=workers, strategy=strategy)
+    return stale
+
+
+def refresh_entries(
+    cache: dict[str, dict],
+    corpus: Corpus,
+    blocklist: set[str],
+    keys: list[str],
+    workers: int = 1,
+    strategy: str = "composite",
+    depth: int = ROOT_ALTERNATIVES + 1,
+) -> dict[str, list[str]]:
+    """Recalcule les entrées `keys` de `cache` (en place, coup 1 + ROOT_ALTERNATIVES
+    replis) et retourne, pour chacune, le classement jusqu'à `depth` mots : un seul
+    calcul sert à la fois au cache et au classement profond de la validation ciblée."""
+    items = [(key.split("_")[0], int(key.split("_")[1])) for key in keys]
+    if not items:
+        return {}
     if workers <= 1:
         global_freq = letter_frequencies(corpus)
         results = [
             (letter, length, _compute_entry(
-                letter, length, corpus, global_freq, positional_frequencies(corpus, length), blocklist, strategy
+                letter, length, corpus, global_freq, positional_frequencies(corpus, length), blocklist, strategy, depth
             ))
             for letter, length in items
         ]
     else:
         with mp.Pool(
             processes=min(workers, len(items)), initializer=_init_worker,
-            initargs=(corpus.words, blocklist, strategy),
+            initargs=(corpus.words, blocklist, strategy, depth),
         ) as pool:
             results = list(pool.imap_unordered(_compute_group, items))
+    rankings = {}
     for letter, length, entry in results:
         key = cache_key(letter, length)
         if entry is None:
             cache.pop(key, None)
-        else:
-            cache[key] = entry
-    return stale
+            continue
+        rankings[key] = [e["word"] for e in (entry, *entry.get("alternatives", ()))]
+        entry["alternatives"] = entry.get("alternatives", [])[:ROOT_ALTERNATIVES]
+        cache[key] = entry
+    return rankings
+
+
+def rank_groups(
+    corpus: Corpus,
+    keys: list[str],
+    blocklist: set[str] | None = None,
+    strategy: str = "composite",
+    depth: int = 25,
+    workers: int = 1,
+) -> dict[str, list[str]]:
+    """Les `depth` meilleurs coups 1 de chaque groupe de `keys`, dans l'ordre du
+    classement : même calcul que le cache racine, en plus profond. Sert à la
+    validation ciblée : quand un candidat est refusé, le suivant du classement est
+    testé dans la même partie, sans attendre un recalcul du cache."""
+    return refresh_entries({}, corpus, blocklist or set(), keys, workers=workers, strategy=strategy, depth=depth)
 
 
 def save_cache(cache: dict[str, dict], path: str | Path) -> None:

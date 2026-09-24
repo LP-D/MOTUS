@@ -2,169 +2,177 @@
   "A_5": {
     "alternatives": [
       {
-        "entropy": 4.640258419422395,
-        "word": "AIRES"
-      },
-      {
-        "entropy": 4.6393590922156775,
+        "entropy": 4.617733703616446,
         "word": "ARISE"
       },
       {
-        "entropy": 4.629903826117241,
+        "entropy": 4.614763813651539,
+        "word": "AIRES"
+      },
+      {
+        "entropy": 4.598276572273541,
         "word": "ANIER"
       },
       {
-        "entropy": 4.5582628629782205,
+        "entropy": 4.5415582322686046,
         "word": "ARIAS"
       },
       {
-        "entropy": 4.532540647498158,
+        "entropy": 4.509884671424292,
         "word": "ANISE"
       },
       {
-        "entropy": 4.523140033005733,
+        "entropy": 4.48799551062498,
         "word": "AINES"
       },
       {
-        "entropy": 4.510721818928285,
-        "word": "AITRE"
-      },
-      {
-        "entropy": 4.5047853462463765,
-        "word": "AISNE"
-      },
-      {
-        "entropy": 4.492548152486493,
+        "entropy": 4.477192755133971,
         "word": "ARASE"
+      },
+      {
+        "entropy": 4.454296426964444,
+        "word": "ANTRE"
+      },
+      {
+        "entropy": 4.4451164446488045,
+        "word": "AIRAS"
       }
     ],
-    "entropy": 4.769701122220625,
+    "draw_status": "observe",
+    "draws_observed": 3,
+    "entropy": 4.736076835227792,
     "word": "ARIEN"
   },
   "A_6": {
     "alternatives": [
       {
-        "entropy": 6.182532860060711,
+        "entropy": 6.178571553992596,
         "word": "ARIENS"
       },
       {
-        "entropy": 6.155913268489844,
+        "entropy": 6.1535865575344495,
         "word": "ARSINE"
       },
       {
-        "entropy": 6.091919061370351,
+        "entropy": 6.08587774396277,
         "word": "ANIERS"
       },
       {
-        "entropy": 6.051052543586511,
+        "entropy": 6.047720532664155,
         "word": "ANISER"
       },
       {
-        "entropy": 6.04963250946359,
+        "entropy": 6.043404814295332,
         "word": "ANURIE"
       },
       {
-        "entropy": 6.032718031215685,
+        "entropy": 6.03123561020197,
         "word": "AITRES"
       },
       {
-        "entropy": 6.025797346866289,
+        "entropy": 6.023726690362506,
         "word": "ALAIRE"
       },
       {
-        "entropy": 6.019504094026452,
+        "entropy": 6.017907790208816,
         "word": "ARTIEN"
       },
       {
-        "entropy": 6.0002206460144,
-        "word": "ASINER"
+        "entropy": 5.995831813214172,
+        "word": "ARISAT"
       }
     ],
-    "entropy": 6.2538317744128875,
+    "draw_status": "observe",
+    "draws_observed": 9,
+    "entropy": 6.252396875755688,
     "word": "ARAINE"
   },
   "A_7": {
     "alternatives": [
       {
-        "entropy": 7.384170427953554,
+        "entropy": 7.379638792274166,
         "word": "ANIERES"
       },
       {
-        "entropy": 7.3771975436733825,
+        "entropy": 7.371884852907287,
         "word": "ARTIENS"
       },
       {
-        "entropy": 7.338382796658067,
+        "entropy": 7.334104008367079,
         "word": "ANUITES"
       },
       {
-        "entropy": 7.31776484604805,
+        "entropy": 7.3127708431600045,
         "word": "ARTISAN"
       },
       {
-        "entropy": 7.30732142137491,
-        "word": "ARETINS"
-      },
-      {
-        "entropy": 7.304705541006582,
+        "entropy": 7.302848506705935,
         "word": "ARENAIS"
       },
       {
-        "entropy": 7.299375395279833,
-        "word": "ALAISER"
+        "entropy": 7.299622274714515,
+        "word": "ARETINS"
       },
       {
-        "entropy": 7.296240761207847,
+        "entropy": 7.293744774175324,
         "word": "ARSENIE"
       },
       {
-        "entropy": 7.293814813054625,
-        "word": "ANERIES"
+        "entropy": 7.288956105914023,
+        "word": "ALIENAS"
+      },
+      {
+        "entropy": 7.288099192006071,
+        "word": "ARAIENT"
       }
     ],
-    "entropy": 7.390815829415764,
+    "draw_status": "observe",
+    "draws_observed": 11,
+    "entropy": 7.389070418070613,
     "word": "AIRATES"
   },
   "A_8": {
     "alternatives": [
       {
-        "entropy": 8.607175537433843,
+        "entropy": 8.605905928623013,
         "word": "ALTERAIS"
       },
       {
-        "entropy": 8.56778919500615,
+        "entropy": 8.565987788321756,
         "word": "ALTERNAS"
       },
       {
-        "entropy": 8.54053581747407,
+        "entropy": 8.538985736069273,
         "word": "ARTESIEN"
       },
       {
-        "entropy": 8.525407019726089,
+        "entropy": 8.5245194506943,
         "word": "ANSERAIT"
       },
       {
-        "entropy": 8.523409085983932,
+        "entropy": 8.52167312637873,
         "word": "ARSENITE"
       },
       {
-        "entropy": 8.52222064423813,
-        "word": "ANUERAIS"
-      },
-      {
-        "entropy": 8.504807295647844,
+        "entropy": 8.502054713701467,
         "word": "ATOURNES"
       },
       {
-        "entropy": 8.500420199829591,
-        "word": "ASTERIEN"
+        "entropy": 8.496226260510822,
+        "word": "ASTURIEN"
       },
       {
-        "entropy": 8.49956534684926,
-        "word": "ASTURIEN"
+        "entropy": 8.487916174319434,
+        "word": "ARETINES"
+      },
+      {
+        "entropy": 8.487272514938256,
+        "word": "ANUITEES"
       }
     ],
-    "entropy": 8.733622795832446,
+    "draw_status": "observe",
+    "draws_observed": 19,
+    "entropy": 8.732788881928203,
     "word": "ARTISANE"
   },
   "A_9": {
@@ -206,6 +214,8 @@
         "word": "AUTOGIRES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 26,
     "entropy": 9.620908976371025,
     "word": "ALTERIONS"
   },
@@ -248,259 +258,273 @@
         "word": "BRASE"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 2,
     "entropy": 4.888570399276796,
     "word": "BRAIE"
   },
   "B_6": {
     "alternatives": [
       {
-        "entropy": 6.281909007025041,
+        "entropy": 6.278263630283264,
         "word": "BRUIES"
       },
       {
-        "entropy": 6.234971433092488,
+        "entropy": 6.2345316107820885,
         "word": "BASTIE"
       },
       {
-        "entropy": 6.229967684030454,
+        "entropy": 6.227719036303281,
         "word": "BRAIES"
       },
       {
-        "entropy": 6.2102447713077344,
+        "entropy": 6.209284394149709,
         "word": "BATIES"
       },
       {
-        "entropy": 6.208065761056855,
+        "entropy": 6.204361126073582,
         "word": "BORIES"
       },
       {
-        "entropy": 6.19481937245121,
-        "word": "BARLES"
-      },
-      {
-        "entropy": 6.184042079968329,
-        "word": "BATIER"
-      },
-      {
-        "entropy": 6.175036940912556,
+        "entropy": 6.173382538825522,
         "word": "BAILES"
       },
       {
-        "entropy": 6.1542540514107875,
+        "entropy": 6.152818466352587,
         "word": "BRUTES"
+      },
+      {
+        "entropy": 6.139243169043256,
+        "word": "BASTER"
+      },
+      {
+        "entropy": 6.134657289451468,
+        "word": "BRUNIE"
       }
     ],
-    "entropy": 6.296104901870722,
+    "draw_status": "observe",
+    "draws_observed": 9,
+    "entropy": 6.294911687983622,
     "word": "BAISER"
   },
   "B_7": {
     "alternatives": [
       {
-        "entropy": 7.677774270027929,
+        "entropy": 7.671574247892089,
         "word": "BRUNIES"
       },
       {
-        "entropy": 7.645618870501582,
-        "word": "BRUINES"
-      },
-      {
-        "entropy": 7.64086517591422,
+        "entropy": 7.640907808435155,
         "word": "BRIATES"
       },
       {
-        "entropy": 7.616307535053091,
+        "entropy": 7.6407965433644875,
+        "word": "BRUINES"
+      },
+      {
+        "entropy": 7.612433204437838,
         "word": "BRUITAS"
       },
       {
-        "entropy": 7.5974162575576205,
+        "entropy": 7.594001354956134,
         "word": "BROUIES"
       },
       {
-        "entropy": 7.576542876382205,
+        "entropy": 7.570680465928406,
         "word": "BOUSIER"
       },
       {
-        "entropy": 7.553252865513287,
+        "entropy": 7.548966755596774,
         "word": "BOUTRES"
       },
       {
-        "entropy": 7.544834811226919,
+        "entropy": 7.5367396247371286,
         "word": "BORAINS"
       },
       {
-        "entropy": 7.539485567050169,
-        "word": "BARIONS"
+        "entropy": 7.503029606918995,
+        "word": "BRULAIS"
       }
     ],
-    "entropy": 7.712566039352607,
+    "draw_status": "observe",
+    "draws_observed": 12,
+    "entropy": 7.7074047254905516,
     "word": "BRUITES"
   },
   "B_8": {
     "alternatives": [
       {
-        "entropy": 8.850906573693994,
+        "entropy": 8.849885715989647,
         "word": "BORAINES"
       },
       {
-        "entropy": 8.844599865904197,
+        "entropy": 8.842867078711286,
         "word": "BIROUTES"
       },
       {
-        "entropy": 8.841425828755629,
+        "entropy": 8.839815045211264,
         "word": "BROUITES"
       },
       {
-        "entropy": 8.793563205941137,
+        "entropy": 8.793428639232676,
         "word": "BRUITEES"
       },
       {
-        "entropy": 8.73913337355147,
+        "entropy": 8.735366755390103,
         "word": "BATIRONS"
       },
       {
-        "entropy": 8.72810067611626,
+        "entropy": 8.725610551001843,
         "word": "BORNATES"
       },
       {
-        "entropy": 8.725466074130026,
-        "word": "BROUAINS"
-      },
-      {
-        "entropy": 8.711123966475569,
+        "entropy": 8.710476340500477,
         "word": "BRULATES"
       },
       {
-        "entropy": 8.704694949512772,
-        "word": "BRONTIAS"
+        "entropy": 8.70127655887374,
+        "word": "BARIOLES"
+      },
+      {
+        "entropy": 8.67205206931797,
+        "word": "BATOURNE"
       }
     ],
-    "entropy": 8.927785256669692,
+    "draw_status": "observe",
+    "draws_observed": 8,
+    "entropy": 8.926315936842359,
     "word": "BRUNITES"
   },
   "B_9": {
     "alternatives": [
       {
-        "entropy": 9.717749749119001,
+        "entropy": 9.714067792023625,
         "word": "BRULANTES"
       },
       {
-        "entropy": 9.65620156693676,
+        "entropy": 9.656217390971555,
         "word": "BARIOLEES"
       },
       {
-        "entropy": 9.632000071445837,
+        "entropy": 9.628023904954164,
         "word": "BATOURNEE"
       },
       {
-        "entropy": 9.601769467760073,
+        "entropy": 9.599303096227894,
         "word": "BARONISEE"
       },
       {
-        "entropy": 9.597836713429377,
-        "word": "BEROUTINE"
-      },
-      {
-        "entropy": 9.593579597606341,
-        "word": "BREAUTINS"
-      },
-      {
-        "entropy": 9.570316904422834,
-        "word": "BIROTANES"
-      },
-      {
-        "entropy": 9.569821945294118,
+        "entropy": 9.567044294329632,
         "word": "BARETIONS"
       },
       {
-        "entropy": 9.568414944117624,
-        "word": "BARTAINES"
+        "entropy": 9.555809586977336,
+        "word": "BAUDIRONS"
+      },
+      {
+        "entropy": 9.553733348429713,
+        "word": "BRULAIENT"
+      },
+      {
+        "entropy": 9.552815342520544,
+        "word": "BANLIEUES"
+      },
+      {
+        "entropy": 9.551454059424842,
+        "word": "BALUSTREE"
       }
     ],
-    "entropy": 9.829229902715664,
+    "draw_status": "observe",
+    "draws_observed": 8,
+    "entropy": 9.826218477329508,
     "word": "BATOURNES"
   },
   "C_5": {
     "alternatives": [
       {
-        "entropy": 4.822907262580073,
+        "entropy": 4.822372864581309,
         "word": "CARTE"
       },
       {
-        "entropy": 4.8206532271937546,
+        "entropy": 4.819886676181673,
         "word": "CARNE"
       },
       {
-        "entropy": 4.7853908075118206,
+        "entropy": 4.779490619586323,
         "word": "CRAIE"
       },
       {
-        "entropy": 4.686448473024878,
+        "entropy": 4.676140927860126,
         "word": "CROIE"
       },
       {
-        "entropy": 4.68595861208777,
+        "entropy": 4.675160944536988,
         "word": "CORSE"
       },
       {
-        "entropy": 4.672330380917585,
-        "word": "CORAS"
-      },
-      {
-        "entropy": 4.6604609951827225,
+        "entropy": 4.657933017655131,
         "word": "CASER"
       },
       {
-        "entropy": 4.654010917872825,
+        "entropy": 4.648529703528144,
         "word": "CRASE"
       },
       {
-        "entropy": 4.650131377168573,
+        "entropy": 4.644599099315033,
+        "word": "CORNE"
+      },
+      {
+        "entropy": 4.644187126021125,
         "word": "COURE"
       }
     ],
-    "entropy": 5.000267266028752,
+    "draw_status": "observe",
+    "draws_observed": 6,
+    "entropy": 4.993289642534519,
     "word": "CARIE"
   },
   "C_6": {
     "alternatives": [
       {
-        "entropy": 6.296473943606868,
+        "entropy": 6.297278766435879,
         "word": "CARTES"
       },
       {
-        "entropy": 6.255910458603603,
+        "entropy": 6.255217943086377,
         "word": "CARNES"
       },
       {
-        "entropy": 6.230219938460449,
+        "entropy": 6.228134120748267,
         "word": "CRAIES"
       },
       {
-        "entropy": 6.202514654799199,
+        "entropy": 6.201503765937892,
         "word": "CARNET"
       },
       {
-        "entropy": 6.185888797313829,
+        "entropy": 6.1860362804754265,
         "word": "CASIER"
       },
       {
-        "entropy": 6.158323219388947,
+        "entropy": 6.158679086541186,
         "word": "CORTES"
       },
       {
-        "entropy": 6.150452362603139,
+        "entropy": 6.1508009855245565,
         "word": "CORSET"
       },
       {
-        "entropy": 6.14024041612134,
+        "entropy": 6.138886243231944,
         "word": "CORNES"
       },
       {
-        "entropy": 6.130343982971727,
-        "word": "CRANIE"
+        "entropy": 6.117567678525318,
+        "word": "CASTRE"
       }
     ],
-    "entropy": 6.415720206663426,
+    "draw_status": "observe",
+    "draws_observed": 12,
+    "entropy": 6.415945944353518,
     "word": "CARIES"
   },
   "C_7": {
@@ -542,6 +566,8 @@
         "word": "CONITES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 19,
     "entropy": 7.633245558691547,
     "word": "CORTINE"
   },
@@ -584,133 +610,141 @@
         "word": "CALORIES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 14,
     "entropy": 9.083673941718756,
     "word": "CORTINES"
   },
   "C_9": {
     "alternatives": [
       {
-        "entropy": 9.960380202610656,
+        "entropy": 9.960228219394224,
         "word": "CAROTINES"
       },
       {
-        "entropy": 9.955304761445603,
+        "entropy": 9.955635015814728,
         "word": "CAROLINES"
       },
       {
-        "entropy": 9.939376826677204,
+        "entropy": 9.939496178523683,
         "word": "COURTINES"
       },
       {
-        "entropy": 9.91057020350609,
+        "entropy": 9.9100457491977,
         "word": "CLATIRONS"
       },
       {
-        "entropy": 9.840640391063369,
+        "entropy": 9.83987950800323,
         "word": "COURANTES"
       },
       {
-        "entropy": 9.832345821479539,
-        "word": "COUTIERES"
-      },
-      {
-        "entropy": 9.829391857851135,
-        "word": "CORTENAIS"
-      },
-      {
-        "entropy": 9.829118700670321,
+        "entropy": 9.828506184458488,
         "word": "CORSAIENT"
       },
       {
-        "entropy": 9.814384381488717,
+        "entropy": 9.813408342837661,
         "word": "COUSIRENT"
+      },
+      {
+        "entropy": 9.791087801587857,
+        "word": "COURTISEE"
+      },
+      {
+        "entropy": 9.787825407484334,
+        "word": "CONTERAIS"
       }
     ],
-    "entropy": 10.007388987611447,
+    "draw_status": "observe",
+    "draws_observed": 23,
+    "entropy": 10.007568200047206,
     "word": "COLTINEES"
   },
   "D_5": {
     "alternatives": [
       {
-        "entropy": 4.578892731327087,
+        "entropy": 4.571954993373768,
         "word": "DORAI"
       },
       {
-        "entropy": 4.572884366227547,
+        "entropy": 4.563327381395623,
         "word": "DARNE"
       },
       {
-        "entropy": 4.569833586005357,
+        "entropy": 4.560093888782729,
         "word": "DIANE"
       },
       {
-        "entropy": 4.551558723428297,
-        "word": "DROUE"
-      },
-      {
-        "entropy": 4.541244539403768,
+        "entropy": 4.54569519852545,
         "word": "DIRAS"
       },
       {
-        "entropy": 4.536853596036909,
+        "entropy": 4.533107605387198,
         "word": "DORES"
       },
       {
-        "entropy": 4.525007107039803,
+        "entropy": 4.519359948978011,
+        "word": "DENIA"
+      },
+      {
+        "entropy": 4.5182810531917745,
         "word": "DARSE"
       },
       {
-        "entropy": 4.523612775690795,
+        "entropy": 4.513645389747405,
         "word": "DAINE"
       },
       {
-        "entropy": 4.52291641490568,
+        "entropy": 4.506937675049806,
         "word": "DOUER"
       }
     ],
-    "entropy": 4.645258485579708,
+    "draw_status": "observe",
+    "draws_observed": 4,
+    "entropy": 4.637347277524974,
     "word": "DRAIE"
   },
   "D_6": {
     "alternatives": [
       {
-        "entropy": 6.079607767197487,
+        "entropy": 6.0779275939790764,
         "word": "DERAIE"
       },
       {
-        "entropy": 6.074095743401655,
+        "entropy": 6.073371800999668,
         "word": "DENIAS"
       },
       {
-        "entropy": 6.0662634532037,
-        "word": "DORINE"
-      },
-      {
-        "entropy": 6.040896347942322,
+        "entropy": 6.040495369059754,
         "word": "DETIRA"
       },
       {
-        "entropy": 6.029943289032695,
+        "entropy": 6.029180065087676,
         "word": "DENIAT"
       },
       {
-        "entropy": 6.0075851518937595,
+        "entropy": 6.0058409016154695,
         "word": "DINARS"
       },
       {
-        "entropy": 5.978644103872181,
+        "entropy": 5.973662681420887,
         "word": "DRAINE"
       },
       {
-        "entropy": 5.9700692871574095,
+        "entropy": 5.96796734662882,
         "word": "DORAIS"
       },
       {
-        "entropy": 5.949430877852594,
+        "entropy": 5.9476348888963315,
         "word": "DAROIS"
+      },
+      {
+        "entropy": 5.945667412258648,
+        "word": "DRIATE"
       }
     ],
-    "entropy": 6.095287474743194,
+    "draw_status": "observe",
+    "draws_observed": 3,
+    "entropy": 6.0951254770216075,
     "word": "DESIRA"
   },
   "D_7": {
@@ -752,6 +786,8 @@
         "word": "DECIRAS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 3,
     "entropy": 7.378069586713687,
     "word": "DERAIES"
   },
@@ -794,6 +830,8 @@
         "word": "DEPARTIS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 19,
     "entropy": 8.351135141058418,
     "word": "DENITRES"
   },
@@ -836,6 +874,8 @@
         "word": "DERACINES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 27,
     "entropy": 9.398430073488194,
     "word": "DECINTRES"
   },
@@ -878,6 +918,8 @@
         "word": "ETIRA"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 2,
     "entropy": 4.632120293601863,
     "word": "ETAIE"
   },
@@ -920,49 +962,53 @@
         "word": "ECARNE"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 8,
     "entropy": 6.0377033437934395,
     "word": "ETAIES"
   },
   "E_7": {
     "alternatives": [
       {
-        "entropy": 7.470717139155432,
+        "entropy": 7.469185231693144,
         "word": "ENCIRES"
       },
       {
-        "entropy": 7.431643094784732,
+        "entropy": 7.430622244386722,
         "word": "ENCIRAS"
       },
       {
-        "entropy": 7.34663333615633,
+        "entropy": 7.3459148320546985,
         "word": "ECRITES"
       },
       {
-        "entropy": 7.3340555019592735,
+        "entropy": 7.3336212890261505,
         "word": "ECARNES"
       },
       {
-        "entropy": 7.312070146755335,
+        "entropy": 7.311822450743344,
         "word": "ENTURES"
       },
       {
-        "entropy": 7.296209006968704,
+        "entropy": 7.295925807890949,
         "word": "ENCIRAT"
       },
       {
-        "entropy": 7.292936749440239,
+        "entropy": 7.292437922264729,
         "word": "ENROUES"
       },
       {
-        "entropy": 7.288744600209723,
+        "entropy": 7.28883842687281,
         "word": "ECARTES"
       },
       {
-        "entropy": 7.278431333296673,
-        "word": "ENRIMES"
+        "entropy": 7.273583414490202,
+        "word": "ENROLES"
       }
     ],
-    "entropy": 7.544772574910113,
+    "draw_status": "observe",
+    "draws_observed": 18,
+    "entropy": 7.543259967795952,
     "word": "ENRAIES"
   },
   "E_8": {
@@ -1004,6 +1050,8 @@
         "word": "ENTIERES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 24,
     "entropy": 8.77983921243343,
     "word": "ENCARTES"
   },
@@ -1046,133 +1094,141 @@
         "word": "ECARTIONS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 20,
     "entropy": 9.765456177536427,
     "word": "ENCIRATES"
   },
   "F_5": {
     "alternatives": [
       {
-        "entropy": 4.943197757581667,
+        "entropy": 4.939373439760233,
         "word": "FURIE"
       },
       {
-        "entropy": 4.90177620845904,
+        "entropy": 4.893627405026791,
         "word": "FRAIE"
       },
       {
-        "entropy": 4.8567680975219085,
+        "entropy": 4.844834027587529,
         "word": "FARTE"
       },
       {
-        "entropy": 4.837140732356607,
+        "entropy": 4.821893288025352,
         "word": "FERAS"
       },
       {
-        "entropy": 4.819282349779057,
-        "word": "FERAI"
-      },
-      {
-        "entropy": 4.814274908470888,
+        "entropy": 4.810445470415997,
         "word": "FAITE"
       },
       {
-        "entropy": 4.810588552404644,
+        "entropy": 4.808035482300846,
+        "word": "FERAI"
+      },
+      {
+        "entropy": 4.803668206016713,
         "word": "FAINE"
       },
       {
-        "entropy": 4.792932224045581,
-        "word": "FAREN"
+        "entropy": 4.744618189315896,
+        "word": "FIERA"
       },
       {
-        "entropy": 4.748138296027043,
-        "word": "FIERA"
+        "entropy": 4.741274551548634,
+        "word": "FAUTE"
       }
     ],
-    "entropy": 5.017450627718766,
+    "draw_status": "observe",
+    "draws_observed": 6,
+    "entropy": 5.010880890761472,
     "word": "FAIRE"
   },
   "F_6": {
     "alternatives": [
       {
-        "entropy": 6.310980598938601,
-        "word": "FERIAS"
+        "entropy": 6.309844108048374,
+        "word": "FURIES"
       },
       {
-        "entropy": 6.294152262080455,
+        "entropy": 6.293952198122376,
         "word": "FRAIES"
       },
       {
-        "entropy": 6.286250772829152,
+        "entropy": 6.283191552070699,
         "word": "FARINE"
       },
       {
-        "entropy": 6.271880399727463,
+        "entropy": 6.271241909443639,
         "word": "FARTES"
       },
       {
-        "entropy": 6.212516510178893,
+        "entropy": 6.211637237027945,
         "word": "FAITES"
       },
       {
-        "entropy": 6.205893314030034,
+        "entropy": 6.206215345154758,
         "word": "FOIRES"
       },
       {
-        "entropy": 6.2010253929673755,
-        "word": "FERIAT"
-      },
-      {
-        "entropy": 6.18629061499918,
+        "entropy": 6.18406539562452,
         "word": "FAUTER"
       },
       {
-        "entropy": 6.181047482586085,
+        "entropy": 6.180444010743105,
         "word": "FRITES"
+      },
+      {
+        "entropy": 6.173783638215356,
+        "word": "FIERAS"
       }
     ],
-    "entropy": 6.311124653687111,
-    "word": "FURIES"
+    "draw_status": "observe",
+    "draws_observed": 7,
+    "entropy": 6.309886061839898,
+    "word": "FERIAS"
   },
   "F_7": {
     "alternatives": [
       {
-        "entropy": 7.663894336157488,
+        "entropy": 7.661377266337482,
         "word": "FARINES"
       },
       {
-        "entropy": 7.595422590008869,
+        "entropy": 7.590559642270784,
         "word": "FRUITAS"
       },
       {
-        "entropy": 7.589060853920362,
-        "word": "FARINET"
-      },
-      {
-        "entropy": 7.539645137705618,
-        "word": "FAREINS"
-      },
-      {
-        "entropy": 7.486291672881211,
-        "word": "FLIRTES"
-      },
-      {
-        "entropy": 7.48365066758018,
+        "entropy": 7.4831448281944715,
         "word": "FOUIRAS"
       },
       {
-        "entropy": 7.471220807127013,
+        "entropy": 7.481045303335487,
+        "word": "FLIRTES"
+      },
+      {
+        "entropy": 7.469707477181897,
         "word": "FLAIRES"
       },
       {
-        "entropy": 7.471133017120691,
+        "entropy": 7.467284554764226,
         "word": "FILTRES"
       },
       {
-        "entropy": 7.468324291231423,
-        "word": "FRITEES"
+        "entropy": 7.4596688247569185,
+        "word": "FARTEES"
+      },
+      {
+        "entropy": 7.457992775373669,
+        "word": "FRUITEE"
+      },
+      {
+        "entropy": 7.440577136344049,
+        "word": "FOUTRAS"
       }
     ],
-    "entropy": 7.674214312422515,
+    "draw_status": "observe",
+    "draws_observed": 8,
+    "entropy": 7.667125422110563,
     "word": "FRUITES"
   },
   "F_8": {
@@ -1214,6 +1270,8 @@
         "word": "FAUSTIEN"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 11,
     "entropy": 8.768648402506466,
     "word": "FRUITEES"
   },
@@ -1256,6 +1314,8 @@
         "word": "FRUITIONS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 5,
     "entropy": 9.558650754954328,
     "word": "FORTUNEES"
   },
@@ -1298,91 +1358,97 @@
         "word": "GAIES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 5,
     "entropy": 4.873240149169187,
     "word": "GARES"
   },
   "G_6": {
     "alternatives": [
       {
-        "entropy": 6.278983585450905,
+        "entropy": 6.276950445360924,
         "word": "GRAINE"
       },
       {
-        "entropy": 6.2549845861504965,
+        "entropy": 6.2538259314406695,
         "word": "GAINER"
       },
       {
-        "entropy": 6.209958377208732,
+        "entropy": 6.206343348043638,
         "word": "GAINES"
       },
       {
-        "entropy": 6.193680628065671,
+        "entropy": 6.184907534248762,
         "word": "GARNIS"
       },
       {
-        "entropy": 6.1798526651395065,
+        "entropy": 6.176691472336739,
         "word": "GANSER"
       },
       {
-        "entropy": 6.118089152602311,
+        "entropy": 6.110181156746451,
         "word": "GRENAS"
       },
       {
-        "entropy": 6.092830927666352,
+        "entropy": 6.085774268718506,
         "word": "GREAIS"
       },
       {
-        "entropy": 6.083184927512976,
-        "word": "GIRASE"
+        "entropy": 6.068628225504146,
+        "word": "GRAINS"
       },
       {
-        "entropy": 6.079891882326597,
-        "word": "GAURES"
+        "entropy": 6.0467656076766385,
+        "word": "GRESAI"
       }
     ],
-    "entropy": 6.3873389047407,
+    "draw_status": "observe",
+    "draws_observed": 6,
+    "entropy": 6.383360965874524,
     "word": "GARNIE"
   },
   "G_7": {
     "alternatives": [
       {
-        "entropy": 7.564316269707638,
+        "entropy": 7.565174819995899,
         "word": "GRAINES"
       },
       {
-        "entropy": 7.512939060245272,
+        "entropy": 7.5131041207185865,
         "word": "GRUSINE"
       },
       {
-        "entropy": 7.479748010768386,
+        "entropy": 7.477216788735211,
         "word": "GRATINE"
       },
       {
-        "entropy": 7.4575774723268005,
+        "entropy": 7.457928940459548,
         "word": "GAINEES"
       },
       {
-        "entropy": 7.422024636490522,
+        "entropy": 7.419890465406526,
         "word": "GANTIER"
       },
       {
-        "entropy": 7.416356942263658,
+        "entropy": 7.4144397326557545,
         "word": "GRATINS"
       },
       {
-        "entropy": 7.412788120671887,
+        "entropy": 7.409801316776264,
         "word": "GARIONS"
       },
       {
-        "entropy": 7.402169129102912,
-        "word": "GRUSINA"
+        "entropy": 7.4021001567547895,
+        "word": "GRENAIS"
       },
       {
-        "entropy": 7.401308433929131,
-        "word": "GANTIES"
+        "entropy": 7.40101829577044,
+        "word": "GRUSINA"
       }
     ],
-    "entropy": 7.710543508777845,
+    "draw_status": "observe",
+    "draws_observed": 9,
+    "entropy": 7.708255081352377,
     "word": "GARNIES"
   },
   "G_8": {
@@ -1424,6 +1490,8 @@
         "word": "GRELIONS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 7,
     "entropy": 8.66596354389118,
     "word": "GARNITES"
   },
@@ -1466,134 +1534,142 @@
         "word": "GRAINATES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 8,
     "entropy": 9.514696512053154,
     "word": "GRANITEES"
   },
   "H_5": {
     "alternatives": [
       {
-        "entropy": 4.671113199743501,
+        "entropy": 4.631026433823456,
         "word": "HARLE"
       },
       {
-        "entropy": 4.6637315872356355,
-        "word": "HARTE"
-      },
-      {
-        "entropy": 4.660903798529063,
-        "word": "HARET"
-      },
-      {
-        "entropy": 4.572709987137596,
+        "entropy": 4.542467199658285,
         "word": "HAIES"
       },
       {
-        "entropy": 4.511259362570837,
-        "word": "HATER"
-      },
-      {
-        "entropy": 4.499497726567948,
-        "word": "HAUTE"
-      },
-      {
-        "entropy": 4.495084695872236,
-        "word": "HALER"
-      },
-      {
-        "entropy": 4.488769283169924,
+        "entropy": 4.499161994900183,
         "word": "HALES"
       },
       {
-        "entropy": 4.4718978628165535,
+        "entropy": 4.478216395217896,
+        "word": "HALER"
+      },
+      {
+        "entropy": 4.478167687285696,
+        "word": "HAUTE"
+      },
+      {
+        "entropy": 4.470217442242308,
+        "word": "HATER"
+      },
+      {
+        "entropy": 4.4665801504831535,
+        "word": "HALTE"
+      },
+      {
+        "entropy": 4.455695630375919,
         "word": "HASTE"
+      },
+      {
+        "entropy": 4.445615205835605,
+        "word": "HATES"
       }
     ],
-    "entropy": 4.723698646226083,
+    "draw_status": "observe",
+    "draws_observed": 4,
+    "entropy": 4.666000363396775,
     "word": "HAIRE"
   },
   "H_6": {
     "alternatives": [
       {
-        "entropy": 6.037232298432694,
+        "entropy": 6.03257894704462,
         "word": "HATIER"
       },
       {
-        "entropy": 5.996415037985625,
+        "entropy": 5.996807665026972,
         "word": "HAITES"
       },
       {
-        "entropy": 5.950612066642968,
+        "entropy": 5.952597118098544,
         "word": "HAUTES"
       },
       {
-        "entropy": 5.888569017888463,
+        "entropy": 5.886698480203041,
         "word": "HERSAT"
       },
       {
-        "entropy": 5.875097561886398,
+        "entropy": 5.870135382428712,
         "word": "HERSAI"
       },
       {
-        "entropy": 5.843239053266696,
-        "word": "HURIEN"
-      },
-      {
-        "entropy": 5.83876364585546,
+        "entropy": 5.837351562805125,
         "word": "HANTES"
       },
       {
-        "entropy": 5.835031530062783,
+        "entropy": 5.833612338220462,
         "word": "HERAUT"
       },
       {
-        "entropy": 5.82552501260753,
+        "entropy": 5.82247642192969,
+        "word": "HALTES"
+      },
+      {
+        "entropy": 5.816658885436933,
         "word": "HANTER"
       }
     ],
-    "entropy": 6.1699467134290895,
+    "draw_status": "observe",
+    "draws_observed": 3,
+    "entropy": 6.166984032359416,
     "word": "HAIRES"
   },
   "H_7": {
     "alternatives": [
       {
-        "entropy": 7.280367980616433,
-        "word": "HAUTINE"
-      },
-      {
-        "entropy": 7.271397730629888,
-        "word": "HAUTINS"
-      },
-      {
-        "entropy": 7.266818958068411,
-        "word": "HURIENS"
-      },
-      {
-        "entropy": 7.248276167993608,
+        "entropy": 7.239236627918762,
         "word": "HERITAS"
       },
       {
-        "entropy": 7.2248532883754235,
+        "entropy": 7.214339087819719,
         "word": "HUITRES"
       },
       {
-        "entropy": 7.173043371265756,
-        "word": "HARNOIS"
-      },
-      {
-        "entropy": 7.169625109489086,
+        "entropy": 7.162102095243076,
         "word": "HERSAIT"
       },
       {
-        "entropy": 7.155357579249105,
+        "entropy": 7.155969579858464,
+        "word": "HARNOIS"
+      },
+      {
+        "entropy": 7.1520117621082155,
         "word": "HALITES"
       },
       {
-        "entropy": 7.148560453277881,
+        "entropy": 7.13916129873188,
+        "word": "HEURTAS"
+      },
+      {
+        "entropy": 7.136775620509339,
         "word": "HANTISE"
+      },
+      {
+        "entropy": 7.129887638111686,
+        "word": "HURLAIS"
+      },
+      {
+        "entropy": 7.071630020308885,
+        "word": "HAIRONS"
       }
     ],
-    "entropy": 7.295718424900401,
-    "word": "HARLINE"
+    "draw_status": "observe",
+    "draws_observed": 1,
+    "entropy": 7.256115483345364,
+    "word": "HAUTINS"
   },
   "H_8": {
     "alternatives": [
@@ -1634,49 +1710,53 @@
         "word": "HALTIONS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 5,
     "entropy": 8.164615250369984,
     "word": "HEROINES"
   },
   "H_9": {
     "alternatives": [
       {
-        "entropy": 8.936945219013346,
+        "entropy": 8.926817142303703,
         "word": "HEURTIONS"
       },
       {
-        "entropy": 8.926680019551082,
+        "entropy": 8.92134124046785,
         "word": "HORTENSIA"
       },
       {
-        "entropy": 8.92095673560601,
-        "word": "HARICOTES"
-      },
-      {
-        "entropy": 8.90930567547314,
+        "entropy": 8.911890053143985,
         "word": "HEROISENT"
       },
       {
-        "entropy": 8.90289002788337,
+        "entropy": 8.89850745826574,
         "word": "HARMONIES"
       },
       {
-        "entropy": 8.88635691861887,
-        "word": "HEROISANT"
-      },
-      {
-        "entropy": 8.877734290213942,
+        "entropy": 8.883603544997404,
         "word": "HERITAMES"
       },
       {
-        "entropy": 8.877310698792533,
+        "entropy": 8.881005208455525,
+        "word": "HEROISANT"
+      },
+      {
+        "entropy": 8.879686883245,
         "word": "HERODIENS"
       },
       {
-        "entropy": 8.874463260334378,
+        "entropy": 8.8744044971731,
         "word": "HERITIONS"
+      },
+      {
+        "entropy": 8.859975445954468,
+        "word": "HURLANTES"
       }
     ],
-    "entropy": 9.018786145666917,
+    "draw_status": "observe",
+    "draws_observed": 3,
+    "entropy": 9.027520483214733,
     "word": "HERSAIENT"
   },
   "I_5": {
@@ -1718,6 +1798,8 @@
         "word": "IRINE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 4.612117952001691,
     "word": "INDES"
   },
@@ -1760,6 +1842,8 @@
         "word": "INSERT"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 3,
     "entropy": 5.735464747886212,
     "word": "INOUIE"
   },
@@ -1802,6 +1886,8 @@
         "word": "INSERAI"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 3,
     "entropy": 7.087718156788711,
     "word": "INOUIES"
   },
@@ -1844,6 +1930,8 @@
         "word": "INTERIMS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 4,
     "entropy": 8.27738366221898,
     "word": "INCURIES"
   },
@@ -1886,6 +1974,8 @@
         "word": "INDUSTRIE"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 11,
     "entropy": 9.047510764323718,
     "word": "INCERATES"
   },
@@ -1928,91 +2018,97 @@
         "word": "JARET"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 2,
     "entropy": 4.723072333789862,
     "word": "JUTES"
   },
   "J_6": {
     "alternatives": [
       {
-        "entropy": 5.840901213313602,
+        "entropy": 5.829141700176221,
         "word": "JAUNES"
       },
       {
-        "entropy": 5.828471038814927,
-        "word": "JAUENS"
-      },
-      {
-        "entropy": 5.825350608020504,
+        "entropy": 5.821600851891517,
         "word": "JOUTES"
       },
       {
-        "entropy": 5.804939158825055,
+        "entropy": 5.793074493481567,
         "word": "JAUNET"
       },
       {
-        "entropy": 5.7646456433722255,
+        "entropy": 5.762151793766702,
         "word": "JOUTAS"
       },
       {
-        "entropy": 5.736008926770235,
+        "entropy": 5.723942711040622,
         "word": "JAUNIE"
       },
       {
-        "entropy": 5.721319337881026,
-        "word": "JAUNIS"
-      },
-      {
-        "entropy": 5.718740607899413,
+        "entropy": 5.718027802143541,
         "word": "JOUTER"
       },
       {
-        "entropy": 5.6973014097073,
+        "entropy": 5.709210170137118,
+        "word": "JAUNIS"
+      },
+      {
+        "entropy": 5.685263727639339,
+        "word": "JAUNIT"
+      },
+      {
+        "entropy": 5.685122014103234,
         "word": "JEUNAS"
       }
     ],
-    "entropy": 5.8637011145320175,
+    "draw_status": "observe",
+    "draws_observed": 3,
+    "entropy": 5.857856220988843,
     "word": "JUNTES"
   },
   "J_7": {
     "alternatives": [
       {
-        "entropy": 7.053898543730542,
+        "entropy": 7.042034690364534,
         "word": "JOUITES"
       },
       {
-        "entropy": 7.027638599761311,
+        "entropy": 7.013269161618542,
         "word": "JAUNETS"
       },
       {
-        "entropy": 7.026651760464506,
-        "word": "JUSTINE"
-      },
-      {
-        "entropy": 7.000843124127719,
-        "word": "JAULNES"
-      },
-      {
-        "entropy": 6.946744702213451,
-        "word": "JASIONE"
-      },
-      {
-        "entropy": 6.892550602370932,
+        "entropy": 6.8901047574267835,
         "word": "JURATES"
       },
       {
-        "entropy": 6.8736402379759935,
-        "word": "JOUTAIS"
-      },
-      {
-        "entropy": 6.866704226813386,
+        "entropy": 6.856617316845639,
         "word": "JOUIRAS"
       },
       {
-        "entropy": 6.8191078039802715,
+        "entropy": 6.855793026434618,
+        "word": "JOUTAIS"
+      },
+      {
+        "entropy": 6.803397030874089,
         "word": "JOINTES"
+      },
+      {
+        "entropy": 6.801921705101961,
+        "word": "JUNIORS"
+      },
+      {
+        "entropy": 6.798124736567299,
+        "word": "JURISTE"
+      },
+      {
+        "entropy": 6.78951003920859,
+        "word": "JARTONS"
       }
     ],
-    "entropy": 7.118714309543346,
+    "draw_status": "observe",
+    "draws_observed": 3,
+    "entropy": 7.09784118876469,
     "word": "JAUNIES"
   },
   "J_8": {
@@ -2054,6 +2150,8 @@
         "word": "JOUTIMES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 1,
     "entropy": 8.107303564508584,
     "word": "JAUNITES"
   },
@@ -2096,6 +2194,8 @@
         "word": "JOUTERAIS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 1,
     "entropy": 8.340204805393315,
     "word": "JOUTIRAIS"
   },
@@ -2138,6 +2238,8 @@
         "word": "KOTES"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 4.5312457308305065,
     "word": "KITAS"
   },
@@ -2180,6 +2282,8 @@
         "word": "KASHER"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 5.507125504106309,
     "word": "KOTAIS"
   },
@@ -2222,6 +2326,8 @@
         "word": "KETAINE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.235510584540933,
     "word": "KITAMES"
   },
@@ -2264,6 +2370,8 @@
         "word": "KANTISTE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.6622933944371825,
     "word": "KERASINE"
   },
@@ -2306,218 +2414,230 @@
         "word": "KERFOTAIS"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.8842322034626235,
     "word": "KOLATIERS"
   },
   "L_5": {
     "alternatives": [
       {
-        "entropy": 4.761761630214942,
-        "word": "LARES"
-      },
-      {
-        "entropy": 4.721575874385354,
+        "entropy": 4.709569945693768,
         "word": "LESAI"
       },
       {
-        "entropy": 4.7195931678082905,
+        "entropy": 4.699795941440908,
         "word": "LASER"
       },
       {
-        "entropy": 4.697861174329023,
-        "word": "LASTE"
-      },
-      {
-        "entropy": 4.6786410781042,
+        "entropy": 4.6709632086987405,
         "word": "LAITE"
       },
       {
-        "entropy": 4.632984640853136,
+        "entropy": 4.633810057358152,
         "word": "LAINE"
       },
       {
-        "entropy": 4.617249491878026,
-        "word": "LISET"
+        "entropy": 4.598219462312765,
+        "word": "LAURE"
       },
       {
-        "entropy": 4.609039371851973,
+        "entropy": 4.592868500562847,
         "word": "LITES"
       },
       {
-        "entropy": 4.607299951228357,
+        "entropy": 4.588354429250529,
+        "word": "LIRES"
+      },
+      {
+        "entropy": 4.58526578381414,
         "word": "LESAT"
+      },
+      {
+        "entropy": 4.581274437332118,
+        "word": "LIRAS"
       }
     ],
-    "entropy": 4.8621324614397325,
+    "draw_status": "observe",
+    "draws_observed": 2,
+    "entropy": 4.8473584772784735,
     "word": "LAIES"
   },
   "L_6": {
     "alternatives": [
       {
-        "entropy": 6.172700144709216,
+        "entropy": 6.174816664011982,
         "word": "LANIER"
       },
       {
-        "entropy": 6.112782162233579,
+        "entropy": 6.112048036577056,
         "word": "LATRIE"
       },
       {
-        "entropy": 6.09571948610391,
+        "entropy": 6.097017201639986,
         "word": "LANTES"
       },
       {
-        "entropy": 6.0837934482253715,
+        "entropy": 6.087378213120123,
         "word": "LAINES"
       },
       {
-        "entropy": 6.078018482107388,
+        "entropy": 6.080451002628099,
         "word": "LAITES"
       },
       {
-        "entropy": 6.075438381172219,
+        "entropy": 6.072041188821843,
         "word": "LAURES"
       },
       {
-        "entropy": 6.06478769437736,
+        "entropy": 6.0686809528632555,
         "word": "LATINS"
       },
       {
-        "entropy": 6.051091613782429,
+        "entropy": 6.052571006383304,
         "word": "LITRES"
       },
       {
-        "entropy": 6.041810017810089,
-        "word": "LASURE"
+        "entropy": 6.040727437538275,
+        "word": "LIANES"
       }
     ],
-    "entropy": 6.200639764710494,
+    "draw_status": "observe",
+    "draws_observed": 4,
+    "entropy": 6.201588903160691,
     "word": "LATINE"
   },
   "L_7": {
     "alternatives": [
       {
-        "entropy": 7.478391132881979,
-        "word": "LAURENS"
-      },
-      {
-        "entropy": 7.462902510092762,
-        "word": "LAURINE"
-      },
-      {
-        "entropy": 7.441821583109593,
-        "word": "LANTIER"
-      },
-      {
-        "entropy": 7.368564989404366,
-        "word": "LANIERE"
-      },
-      {
-        "entropy": 7.366025244330342,
+        "entropy": 7.361149075887251,
         "word": "LANTEES"
       },
       {
-        "entropy": 7.35942412582535,
-        "word": "LASUREE"
+        "entropy": 7.360474772773163,
+        "word": "LANIERE"
       },
       {
-        "entropy": 7.349217191979519,
+        "entropy": 7.33364741380108,
         "word": "LAUREES"
       },
       {
-        "entropy": 7.336045451877986,
-        "word": "LITRONE"
+        "entropy": 7.306980729210949,
+        "word": "LITORNE"
       },
       {
-        "entropy": 7.324418279971562,
-        "word": "LORIENS"
+        "entropy": 7.305818279315902,
+        "word": "LITERAS"
+      },
+      {
+        "entropy": 7.30103200256314,
+        "word": "LITREES"
+      },
+      {
+        "entropy": 7.289879458036939,
+        "word": "LANTURE"
+      },
+      {
+        "entropy": 7.288518080130711,
+        "word": "LOTIRAS"
+      },
+      {
+        "entropy": 7.260676352984521,
+        "word": "LAURENT"
       }
     ],
-    "entropy": 7.52541802189024,
+    "draw_status": "observe",
+    "draws_observed": 6,
+    "entropy": 7.521399717146667,
     "word": "LATINES"
   },
   "L_8": {
     "alternatives": [
       {
-        "entropy": 8.47247967068662,
+        "entropy": 8.465140007746367,
         "word": "LAURIONS"
       },
       {
-        "entropy": 8.470630524239425,
+        "entropy": 8.464678547801949,
         "word": "LATRINES"
       },
       {
-        "entropy": 8.409136151650433,
+        "entropy": 8.401683019135241,
         "word": "LUNAIRES"
       },
       {
-        "entropy": 8.380632037476289,
+        "entropy": 8.373378101337067,
         "word": "LITERONS"
       },
       {
-        "entropy": 8.351138912490745,
-        "word": "LASURENT"
-      },
-      {
-        "entropy": 8.325753198057338,
+        "entropy": 8.317346021425939,
         "word": "LUSTRINE"
       },
       {
-        "entropy": 8.308181785933966,
-        "word": "LANETOIS"
-      },
-      {
-        "entropy": 8.307825226397888,
-        "word": "LANESTER"
-      },
-      {
-        "entropy": 8.306724036111298,
+        "entropy": 8.300273169441969,
         "word": "LUTINEES"
+      },
+      {
+        "entropy": 8.285943447479848,
+        "word": "LAOTIENS"
+      },
+      {
+        "entropy": 8.271387516584072,
+        "word": "LAIERONS"
+      },
+      {
+        "entropy": 8.265220957148733,
+        "word": "LOTERIES"
       }
     ],
-    "entropy": 8.489231670830039,
+    "draw_status": "observe",
+    "draws_observed": 4,
+    "entropy": 8.481039172550044,
     "word": "LANIERES"
   },
   "L_9": {
     "alternatives": [
       {
-        "entropy": 9.128869066564778,
-        "word": "LINEAIRES"
-      },
-      {
-        "entropy": 9.128301873168759,
+        "entropy": 9.12521230284182,
         "word": "LATINISEE"
       },
       {
-        "entropy": 9.075249219096037,
+        "entropy": 9.112614284182222,
+        "word": "LARGUIONS"
+      },
+      {
+        "entropy": 9.075028959889917,
         "word": "LANIAIRES"
       },
       {
-        "entropy": 9.041197576486379,
+        "entropy": 9.03065001218517,
         "word": "LANGUITES"
       },
       {
-        "entropy": 9.037774317000725,
-        "word": "LACTERONS"
-      },
-      {
-        "entropy": 9.03294375282428,
-        "word": "LAVURIONS"
-      },
-      {
-        "entropy": 9.030840035879216,
+        "entropy": 9.02867420842214,
         "word": "LAITERIES"
       },
       {
-        "entropy": 9.01673873791808,
-        "word": "LANGOTEES"
+        "entropy": 8.993105113897395,
+        "word": "LANGUETES"
       },
       {
-        "entropy": 9.015387365669488,
-        "word": "LORETAINE"
+        "entropy": 8.979674970999918,
+        "word": "LANTERONS"
+      },
+      {
+        "entropy": 8.976194363179633,
+        "word": "LATINISER"
+      },
+      {
+        "entropy": 8.96703049623041,
+        "word": "LANTERNES"
       }
     ],
-    "entropy": 9.135603468972672,
-    "word": "LARGUIONS"
+    "draw_status": "observe",
+    "draws_observed": 8,
+    "entropy": 9.132498344391301,
+    "word": "LINEAIRES"
   },
   "M_5": {
     "alternatives": [
@@ -2558,6 +2678,8 @@
         "word": "MARIS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 7,
     "entropy": 4.954874876148068,
     "word": "MARIE"
   },
@@ -2600,6 +2722,8 @@
         "word": "MARNES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 8,
     "entropy": 6.563534892915461,
     "word": "MARIES"
   },
@@ -2642,6 +2766,8 @@
         "word": "MATINES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 14,
     "entropy": 7.872266747743072,
     "word": "MARINES"
   },
@@ -2684,91 +2810,97 @@
         "word": "MERIONES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 6,
     "entropy": 9.124395606013048,
     "word": "MARTINES"
   },
   "M_9": {
     "alternatives": [
       {
-        "entropy": 9.915646680020911,
+        "entropy": 9.914656858844058,
         "word": "MARTELINE"
       },
       {
-        "entropy": 9.842356419226537,
+        "entropy": 9.83874610574388,
         "word": "MORALITES"
       },
       {
-        "entropy": 9.806598800352322,
+        "entropy": 9.805229165095875,
         "word": "MORTAISEE"
       },
       {
-        "entropy": 9.794234069208994,
+        "entropy": 9.789014846503395,
         "word": "MARSOUINE"
       },
       {
-        "entropy": 9.79324372819882,
-        "word": "MORETAINS"
-      },
-      {
-        "entropy": 9.784241154358643,
+        "entropy": 9.78038608468409,
         "word": "MARTELONS"
       },
       {
-        "entropy": 9.772571635290056,
+        "entropy": 9.768573093854744,
         "word": "MATURIONS"
       },
       {
-        "entropy": 9.766084243391255,
-        "word": "MERIOTINS"
+        "entropy": 9.714920328099836,
+        "word": "MARTINONS"
       },
       {
-        "entropy": 9.718523369256648,
-        "word": "MARTINONS"
+        "entropy": 9.709393075515992,
+        "word": "MORALISEE"
+      },
+      {
+        "entropy": 9.694796072508657,
+        "word": "MATERIONS"
       }
     ],
-    "entropy": 10.084995150343971,
+    "draw_status": "observe",
+    "draws_observed": 9,
+    "entropy": 10.084994937487345,
     "word": "MARTINEES"
   },
   "N_5": {
     "alternatives": [
       {
-        "entropy": 4.582400440082683,
+        "entropy": 4.564247726456376,
         "word": "NOIES"
       },
       {
-        "entropy": 4.555947019776501,
+        "entropy": 4.537697407174713,
         "word": "NOISE"
       },
       {
-        "entropy": 4.483662860692263,
-        "word": "NORSE"
-      },
-      {
-        "entropy": 4.466888719921062,
+        "entropy": 4.460199745407118,
         "word": "NORIA"
       },
       {
-        "entropy": 4.411599903236109,
+        "entropy": 4.400147553943697,
         "word": "NOUES"
       },
       {
-        "entropy": 4.383112346167959,
+        "entropy": 4.386629009220719,
         "word": "NAINE"
       },
       {
-        "entropy": 4.362151152131023,
-        "word": "NOTRE"
-      },
-      {
-        "entropy": 4.362020470187474,
+        "entropy": 4.358989132296338,
         "word": "NATES"
       },
       {
-        "entropy": 4.343977256893387,
+        "entropy": 4.355078523522609,
+        "word": "NOTRE"
+      },
+      {
+        "entropy": 4.33227720559972,
         "word": "NOTES"
+      },
+      {
+        "entropy": 4.329492336206846,
+        "word": "NUIRE"
       }
     ],
-    "entropy": 4.59621046693205,
+    "draw_status": "observe",
+    "draws_observed": 3,
+    "entropy": 4.589995198451112,
     "word": "NOIRE"
   },
   "N_6": {
@@ -2810,133 +2942,141 @@
         "word": "NOTRES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 3,
     "entropy": 6.058253174803685,
     "word": "NORIAS"
   },
   "N_7": {
     "alternatives": [
       {
-        "entropy": 7.227641413364845,
+        "entropy": 7.224897486721807,
         "word": "NATURES"
       },
       {
-        "entropy": 7.217755174764127,
+        "entropy": 7.213985588907255,
         "word": "NOTARIE"
       },
       {
-        "entropy": 7.209129261222454,
+        "entropy": 7.203483578179772,
         "word": "NITREES"
       },
       {
-        "entropy": 7.2084837316334145,
-        "word": "NORTAIS"
-      },
-      {
-        "entropy": 7.171610761758337,
+        "entropy": 7.164046967904776,
         "word": "NOTAIRE"
       },
       {
-        "entropy": 7.166498778178457,
-        "word": "NORIENS"
-      },
-      {
-        "entropy": 7.149817354876744,
+        "entropy": 7.1445046692648635,
         "word": "NAUTIER"
       },
       {
-        "entropy": 7.109956488782638,
+        "entropy": 7.106093307006356,
         "word": "NANTIES"
       },
       {
-        "entropy": 7.069778594730769,
+        "entropy": 7.0628698898000675,
         "word": "NASIERE"
+      },
+      {
+        "entropy": 7.026059160024929,
+        "word": "NANISER"
+      },
+      {
+        "entropy": 7.017932264389004,
+        "word": "NAVIRES"
       }
     ],
-    "entropy": 7.2483430961330235,
+    "draw_status": "observe",
+    "draws_observed": 7,
+    "entropy": 7.24394419484882,
     "word": "NARINES"
   },
   "N_8": {
     "alternatives": [
       {
-        "entropy": 8.199132181476008,
+        "entropy": 8.194220355417487,
         "word": "NOTARIES"
       },
       {
-        "entropy": 8.072146086701796,
+        "entropy": 8.06763982378627,
         "word": "NOTARIEE"
       },
       {
-        "entropy": 8.047495580002618,
+        "entropy": 8.044618861341705,
         "word": "NOTARIAS"
       },
       {
-        "entropy": 7.905982016432212,
+        "entropy": 7.90266353641541,
         "word": "NAITRONS"
       },
       {
-        "entropy": 7.896131933525796,
+        "entropy": 7.8894154564412275,
         "word": "NOTERAIS"
       },
       {
-        "entropy": 7.867165061365684,
+        "entropy": 7.863495977270009,
         "word": "NITREUSE"
       },
       {
-        "entropy": 7.858002031252023,
-        "word": "NEURONES"
-      },
-      {
-        "entropy": 7.8537793023477676,
+        "entropy": 7.8515256212609055,
         "word": "NANTIRAS"
       },
       {
-        "entropy": 7.848307533075336,
-        "word": "NEUROISE"
+        "entropy": 7.8468230924463915,
+        "word": "NEURONES"
+      },
+      {
+        "entropy": 7.821840926128404,
+        "word": "NACRIONS"
       }
     ],
-    "entropy": 8.201085826479682,
+    "draw_status": "observe",
+    "draws_observed": 4,
+    "entropy": 8.196712054575915,
     "word": "NOTAIRES"
   },
   "N_9": {
     "alternatives": [
       {
-        "entropy": 8.750408219048717,
+        "entropy": 8.748225212399587,
         "word": "NAITRIONS"
       },
       {
-        "entropy": 8.704098398016429,
+        "entropy": 8.702233305876419,
         "word": "NOTARIAIS"
       },
       {
-        "entropy": 8.664168915161742,
+        "entropy": 8.661751774655906,
         "word": "NARCOTINE"
       },
       {
-        "entropy": 8.624875224431317,
+        "entropy": 8.621224605581563,
         "word": "NESTORIEN"
       },
       {
-        "entropy": 8.592388656559805,
+        "entropy": 8.591142949744938,
         "word": "NECTAIRES"
       },
       {
-        "entropy": 8.591368005753939,
+        "entropy": 8.588070059609745,
         "word": "NARGUIONS"
       },
       {
-        "entropy": 8.586834950017494,
-        "word": "NITRILEES"
-      },
-      {
-        "entropy": 8.578130149167379,
-        "word": "NEUROISES"
-      },
-      {
-        "entropy": 8.572157406557988,
+        "entropy": 8.568807304940863,
         "word": "NAGEOIRES"
+      },
+      {
+        "entropy": 8.54152799650043,
+        "word": "NITREUSES"
+      },
+      {
+        "entropy": 8.534910395703918,
+        "word": "NAUTONIER"
       }
     ],
-    "entropy": 8.84706462831236,
+    "draw_status": "observe",
+    "draws_observed": 7,
+    "entropy": 8.844017238613416,
     "word": "NOTARIEES"
   },
   "O_5": {
@@ -2978,6 +3118,8 @@
         "word": "OSERA"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 1,
     "entropy": 4.892388374788163,
     "word": "ORIEN"
   },
@@ -3020,91 +3162,97 @@
         "word": "ORTALE"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 4,
     "entropy": 6.315736370774691,
     "word": "ORTIES"
   },
   "O_7": {
     "alternatives": [
       {
-        "entropy": 7.238442775889004,
+        "entropy": 7.235852376193721,
         "word": "OTARIES"
       },
       {
-        "entropy": 7.211005612643397,
+        "entropy": 7.204699213843689,
         "word": "ORIENTS"
       },
       {
-        "entropy": 7.204842539646302,
+        "entropy": 7.197556302215487,
         "word": "ORANTES"
       },
       {
-        "entropy": 7.194291456479162,
-        "word": "OUTRAIS"
-      },
-      {
-        "entropy": 7.192988725379447,
+        "entropy": 7.191846497179286,
         "word": "ORALITE"
       },
       {
-        "entropy": 7.168634649730923,
+        "entropy": 7.1844239902279945,
+        "word": "OUTRAIS"
+      },
+      {
+        "entropy": 7.166109189057164,
         "word": "ORALISE"
       },
       {
-        "entropy": 7.163855137823561,
+        "entropy": 7.156464207156927,
         "word": "ORTEILS"
       },
       {
-        "entropy": 7.151569366953894,
-        "word": "ORLEANS"
+        "entropy": 7.1307363520168074,
+        "word": "OURSINE"
       },
       {
-        "entropy": 7.134970761278726,
-        "word": "OURSINE"
+        "entropy": 7.074431183914755,
+        "word": "ORIENTA"
       }
     ],
-    "entropy": 7.2778548396932825,
+    "draw_status": "observe",
+    "draws_observed": 6,
+    "entropy": 7.268200817588257,
     "word": "OUARINE"
   },
   "O_8": {
     "alternatives": [
       {
-        "entropy": 8.26423195427168,
+        "entropy": 8.258183015785018,
         "word": "ORIENTAS"
       },
       {
-        "entropy": 8.133170239213559,
+        "entropy": 8.132820302231133,
         "word": "ORALISEE"
       },
       {
-        "entropy": 8.114709531370043,
+        "entropy": 8.109645929685259,
         "word": "OUATINES"
       },
       {
-        "entropy": 8.054735109086774,
+        "entropy": 8.054226979138601,
         "word": "OUTRIONS"
       },
       {
-        "entropy": 8.002115348057252,
+        "entropy": 8.001871383185886,
         "word": "ORTOLANS"
       },
       {
-        "entropy": 7.983177804579424,
+        "entropy": 7.975890809040999,
         "word": "OURLATES"
       },
       {
-        "entropy": 7.960584043794503,
+        "entropy": 7.959370514444193,
         "word": "ORALISES"
       },
       {
-        "entropy": 7.960417890197865,
-        "word": "ORRIANES"
+        "entropy": 7.936451297432197,
+        "word": "OUATINER"
       },
       {
-        "entropy": 7.943847847169536,
-        "word": "OUATINER"
+        "entropy": 7.906726682269417,
+        "word": "OUVRITES"
       }
     ],
-    "entropy": 8.277427653934083,
+    "draw_status": "observe",
+    "draws_observed": 9,
+    "entropy": 8.275129492698106,
     "word": "ORIENTES"
   },
   "O_9": {
@@ -3146,217 +3294,229 @@
         "word": "ORIENTALE"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 2,
     "entropy": 8.792775123776185,
     "word": "OUATINEES"
   },
   "P_5": {
     "alternatives": [
       {
-        "entropy": 5.006166559440187,
+        "entropy": 5.003312334630764,
         "word": "PAIES"
       },
       {
-        "entropy": 4.961477123042254,
+        "entropy": 4.952889142467877,
         "word": "PARES"
       },
       {
-        "entropy": 4.928068052611511,
+        "entropy": 4.928695128262871,
         "word": "PALIE"
       },
       {
-        "entropy": 4.925043867912643,
-        "word": "PARSE"
-      },
-      {
-        "entropy": 4.91387881707065,
+        "entropy": 4.911542169693403,
         "word": "PAIRE"
       },
       {
-        "entropy": 4.895013556126196,
+        "entropy": 4.890333168480959,
         "word": "PIRES"
       },
       {
-        "entropy": 4.8744261463127225,
+        "entropy": 4.872032154937281,
         "word": "PARTE"
       },
       {
-        "entropy": 4.830112780183526,
+        "entropy": 4.826580433521327,
         "word": "PANES"
       },
       {
-        "entropy": 4.824749787333608,
+        "entropy": 4.824393458859374,
         "word": "PAIEN"
+      },
+      {
+        "entropy": 4.8166030575454615,
+        "word": "PANSE"
       }
     ],
-    "entropy": 5.078133936444253,
+    "draw_status": "observe",
+    "draws_observed": 2,
+    "entropy": 5.076036031973072,
     "word": "PARIE"
   },
   "P_6": {
     "alternatives": [
       {
-        "entropy": 6.411580670206156,
+        "entropy": 6.41009554143946,
         "word": "PARTIE"
       },
       {
-        "entropy": 6.37409146781058,
+        "entropy": 6.373237430722607,
         "word": "PAIRES"
       },
       {
-        "entropy": 6.358587855393066,
+        "entropy": 6.357724639138475,
         "word": "PARTES"
       },
       {
-        "entropy": 6.338042642317211,
+        "entropy": 6.337669770535268,
         "word": "PALIES"
       },
       {
-        "entropy": 6.3255925458703866,
+        "entropy": 6.324911949557048,
         "word": "PAITRE"
       },
       {
-        "entropy": 6.316116954608228,
+        "entropy": 6.314575304991562,
         "word": "PARITE"
       },
       {
-        "entropy": 6.313004709570766,
-        "word": "PARIEN"
-      },
-      {
-        "entropy": 6.288980954141551,
+        "entropy": 6.2882786813381415,
         "word": "PINTES"
       },
       {
-        "entropy": 6.28560679193813,
+        "entropy": 6.2821257564952315,
         "word": "PANIER"
+      },
+      {
+        "entropy": 6.280008316045022,
+        "word": "PANTES"
       }
     ],
-    "entropy": 6.501229812640202,
+    "draw_status": "observe",
+    "draws_observed": 4,
+    "entropy": 6.499797762110589,
     "word": "PARIES"
   },
   "P_7": {
     "alternatives": [
       {
-        "entropy": 7.686720765811658,
+        "entropy": 7.684882748400682,
         "word": "PATRIES"
       },
       {
-        "entropy": 7.684905529754984,
+        "entropy": 7.683069818945762,
         "word": "PIRATES"
       },
       {
-        "entropy": 7.672743557453892,
+        "entropy": 7.673577006796949,
         "word": "PARIONS"
       },
       {
-        "entropy": 7.661781299507563,
+        "entropy": 7.6618122192157285,
         "word": "PARIEES"
       },
       {
-        "entropy": 7.640804478130367,
+        "entropy": 7.641316444345057,
         "word": "PANIERS"
       },
       {
-        "entropy": 7.6346449869427815,
+        "entropy": 7.633038829455332,
         "word": "PALITES"
       },
       {
-        "entropy": 7.624239696074119,
+        "entropy": 7.622980765308263,
         "word": "PARIENT"
       },
       {
-        "entropy": 7.594288170431733,
+        "entropy": 7.591808186198721,
         "word": "PATINES"
       },
       {
-        "entropy": 7.592545434875212,
-        "word": "PINATES"
+        "entropy": 7.587728673365613,
+        "word": "PORTAIS"
       }
     ],
-    "entropy": 7.849722387214503,
+    "draw_status": "observe",
+    "draws_observed": 16,
+    "entropy": 7.846475553435783,
     "word": "PARTIES"
   },
   "P_8": {
     "alternatives": [
       {
-        "entropy": 8.874389431997539,
+        "entropy": 8.871083803809384,
         "word": "PARLIONS"
       },
       {
-        "entropy": 8.862426290924647,
+        "entropy": 8.856654243094082,
         "word": "POLAIRES"
       },
       {
-        "entropy": 8.843661128473087,
+        "entropy": 8.842546473892423,
         "word": "PATIRONS"
       },
       {
-        "entropy": 8.82432199853265,
+        "entropy": 8.823491413085602,
         "word": "PAITRONS"
       },
       {
-        "entropy": 8.822177975137677,
+        "entropy": 8.822514239165564,
         "word": "PANIERES"
       },
       {
-        "entropy": 8.808758272187916,
-        "word": "POTIERES"
-      },
-      {
-        "entropy": 8.807866264723511,
+        "entropy": 8.809888555683616,
         "word": "PIRATEES"
       },
       {
-        "entropy": 8.80785961833178,
+        "entropy": 8.807243416438336,
         "word": "PIRATONS"
       },
       {
-        "entropy": 8.806658840596626,
+        "entropy": 8.806171819834244,
         "word": "PETOIRES"
+      },
+      {
+        "entropy": 8.805878291479972,
+        "word": "POTIERES"
       }
     ],
-    "entropy": 9.004278442150426,
+    "draw_status": "observe",
+    "draws_observed": 18,
+    "entropy": 9.002334501450818,
     "word": "PARTIONS"
   },
   "P_9": {
     "alternatives": [
       {
-        "entropy": 9.831598996278537,
+        "entropy": 9.828074320635583,
         "word": "PORTULANS"
       },
       {
-        "entropy": 9.811169086472736,
+        "entropy": 9.812096637355813,
         "word": "PROTEINAS"
       },
       {
-        "entropy": 9.802529306898846,
+        "entropy": 9.80094429937304,
         "word": "PARTIRONS"
       },
       {
-        "entropy": 9.706089663851941,
-        "word": "PIETERONS"
-      },
-      {
-        "entropy": 9.705678356440494,
+        "entropy": 9.707718237067157,
         "word": "PRALINEES"
       },
       {
-        "entropy": 9.702408885010625,
-        "word": "PORTELAIS"
+        "entropy": 9.704669699610125,
+        "word": "PIETERONS"
       },
       {
-        "entropy": 9.697480535108221,
+        "entropy": 9.695923194681065,
         "word": "PASTORIEN"
       },
       {
-        "entropy": 9.693694657085352,
+        "entropy": 9.690891585032212,
         "word": "PATURIONS"
       },
       {
-        "entropy": 9.687150876171602,
-        "word": "PARIETINE"
+        "entropy": 9.673379452407332,
+        "word": "PENALTIES"
+      },
+      {
+        "entropy": 9.668632794835563,
+        "word": "PENALITES"
       }
     ],
-    "entropy": 9.954787581298483,
+    "draw_status": "observe",
+    "draws_observed": 20,
+    "entropy": 9.955599652849385,
     "word": "PROTEINES"
   },
   "Q_5": {
@@ -3398,6 +3558,8 @@
         "word": "QATEZ"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 4.015319531114783,
     "word": "QUIET"
   },
@@ -3440,6 +3602,8 @@
         "word": "QUETER"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 1,
     "entropy": 4.982642190917253,
     "word": "QUETAS"
   },
@@ -3482,6 +3646,8 @@
         "word": "QUINTER"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 1,
     "entropy": 5.763444924105071,
     "word": "QUARTES"
   },
@@ -3524,6 +3690,8 @@
         "word": "QUINTERA"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.862909402235872,
     "word": "QUINTEES"
   },
@@ -3566,49 +3734,53 @@
         "word": "QUINTAMES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 1,
     "entropy": 7.373625849038447,
     "word": "QUINTEUSE"
   },
   "R_5": {
     "alternatives": [
       {
-        "entropy": 4.877982138429401,
+        "entropy": 4.863764534381948,
         "word": "REAIS"
       },
       {
-        "entropy": 4.868262841659832,
+        "entropy": 4.8623101507305115,
         "word": "ROSIE"
       },
       {
-        "entropy": 4.748809996631751,
+        "entropy": 4.7387062499999555,
         "word": "RATES"
       },
       {
-        "entropy": 4.693418214992287,
+        "entropy": 4.682350076558523,
         "word": "RENIA"
       },
       {
-        "entropy": 4.68298634306926,
+        "entropy": 4.670428631968712,
         "word": "ROSAI"
       },
       {
-        "entropy": 4.676301490044058,
-        "word": "RENAS"
-      },
-      {
-        "entropy": 4.674425553308353,
+        "entropy": 4.655849497257784,
         "word": "RITES"
       },
       {
-        "entropy": 4.657492192230221,
-        "word": "RISAT"
+        "entropy": 4.642940284485508,
+        "word": "ROUIE"
       },
       {
-        "entropy": 4.649203050949954,
-        "word": "RISTE"
+        "entropy": 4.628987222329945,
+        "word": "RISEE"
+      },
+      {
+        "entropy": 4.6272908980347065,
+        "word": "ROTIE"
       }
     ],
-    "entropy": 4.967010865601284,
+    "draw_status": "observe",
+    "draws_observed": 3,
+    "entropy": 4.953315652936711,
     "word": "RAIES"
   },
   "R_6": {
@@ -3650,175 +3822,185 @@
         "word": "RESUAT"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 6,
     "entropy": 6.150633782860607,
     "word": "RESAIT"
   },
   "R_7": {
     "alternatives": [
       {
-        "entropy": 7.113478988599283,
+        "entropy": 7.111524942339289,
         "word": "RETIRES"
       },
       {
-        "entropy": 7.110541114651458,
+        "entropy": 7.107734711242266,
         "word": "RETIRAS"
       },
       {
-        "entropy": 7.0125009541892815,
+        "entropy": 7.013325561715678,
         "word": "RELAIES"
       },
       {
-        "entropy": 7.007857567855147,
+        "entropy": 7.005790718356323,
         "word": "RATINES"
       },
       {
-        "entropy": 7.001451234267913,
+        "entropy": 6.999537079209489,
         "word": "RETINES"
       },
       {
-        "entropy": 6.972502783256547,
+        "entropy": 6.971127776672418,
         "word": "RESITUE"
       },
       {
-        "entropy": 6.970449818706692,
+        "entropy": 6.970689825034646,
         "word": "RESALIE"
       },
       {
-        "entropy": 6.9703130066487775,
-        "word": "RERATES"
+        "entropy": 6.966868268504637,
+        "word": "RELIRAS"
       },
       {
-        "entropy": 6.967145649024972,
-        "word": "RELIRAS"
+        "entropy": 6.962490100909791,
+        "word": "RETRIES"
       }
     ],
-    "entropy": 7.123791574637405,
+    "draw_status": "observe",
+    "draws_observed": 13,
+    "entropy": 7.119898475992269,
     "word": "ROTIRAS"
   },
   "R_8": {
     "alternatives": [
       {
-        "entropy": 8.137866299333027,
+        "entropy": 8.136721505994924,
         "word": "RACORNIS"
       },
       {
-        "entropy": 8.052648700004331,
+        "entropy": 8.051409407688606,
         "word": "RENIATES"
       },
       {
-        "entropy": 8.051559998308745,
-        "word": "RESERIAT"
-      },
-      {
-        "entropy": 8.050650834850899,
-        "word": "RETOISER"
-      },
-      {
-        "entropy": 8.049918580326015,
+        "entropy": 8.048925393715654,
         "word": "RACORNIT"
       },
       {
-        "entropy": 8.045443992309135,
-        "word": "RELAINES"
-      },
-      {
-        "entropy": 8.041694907555438,
-        "word": "REROTIES"
-      },
-      {
-        "entropy": 8.031849946637575,
+        "entropy": 8.031604282783999,
         "word": "REPAIRES"
       },
       {
-        "entropy": 8.030850163597101,
-        "word": "RETOILES"
+        "entropy": 8.02762296821586,
+        "word": "RESAUTER"
+      },
+      {
+        "entropy": 8.024991197453868,
+        "word": "RATIERES"
+      },
+      {
+        "entropy": 8.0169348734601,
+        "word": "RECRITES"
+      },
+      {
+        "entropy": 8.016466560499675,
+        "word": "RELIURES"
+      },
+      {
+        "entropy": 8.009093874272809,
+        "word": "REPARIES"
       }
     ],
-    "entropy": 8.13932813848891,
+    "draw_status": "observe",
+    "draws_observed": 13,
+    "entropy": 8.139095672721444,
     "word": "RENAITRE"
   },
   "R_9": {
     "alternatives": [
       {
-        "entropy": 9.21160919130379,
+        "entropy": 9.21088472469346,
         "word": "RURALISAT"
       },
       {
-        "entropy": 9.206799430633392,
+        "entropy": 9.206387318883491,
         "word": "RETRAINES"
       },
       {
-        "entropy": 9.190081053666836,
+        "entropy": 9.189381108696567,
         "word": "ROTARIENS"
       },
       {
-        "entropy": 9.170670594552725,
-        "word": "RELOTIRAS"
-      },
-      {
-        "entropy": 9.16438289476848,
+        "entropy": 9.164008336923095,
         "word": "RENAITRAS"
       },
       {
-        "entropy": 9.141944104169216,
+        "entropy": 9.141098892661061,
         "word": "RACORNIES"
       },
       {
-        "entropy": 9.14173864415876,
-        "word": "RECATINES"
-      },
-      {
-        "entropy": 9.141217211276118,
+        "entropy": 9.14044272777363,
         "word": "RISTOURNA"
       },
       {
-        "entropy": 9.127953000417541,
-        "word": "ROCATINES"
+        "entropy": 9.12538909437421,
+        "word": "REPARTIES"
+      },
+      {
+        "entropy": 9.124722781409206,
+        "word": "RECIRATES"
+      },
+      {
+        "entropy": 9.119095849384843,
+        "word": "RECRIATES"
       }
     ],
-    "entropy": 9.426648678224943,
+    "draw_status": "observe",
+    "draws_observed": 18,
+    "entropy": 9.425789241682075,
     "word": "RATURIONS"
   },
   "S_5": {
     "alternatives": [
       {
-        "entropy": 4.850988810296735,
+        "entropy": 4.841865419424942,
         "word": "SAITE"
       },
       {
-        "entropy": 4.818338284012372,
+        "entropy": 4.809164738722322,
         "word": "SAINE"
       },
       {
-        "entropy": 4.806577280391781,
+        "entropy": 4.797385669043943,
         "word": "SERIA"
       },
       {
-        "entropy": 4.796987725266035,
+        "entropy": 4.787781383418773,
         "word": "SANIE"
       },
       {
-        "entropy": 4.78053920327835,
+        "entropy": 4.780612210440415,
         "word": "SAUTE"
       },
       {
-        "entropy": 4.762212312789606,
+        "entropy": 4.756024749110583,
         "word": "SAUNE"
       },
       {
-        "entropy": 4.739124272979031,
+        "entropy": 4.7329012438010665,
         "word": "SERAI"
       },
       {
-        "entropy": 4.714654492169362,
+        "entropy": 4.711312668443133,
         "word": "SALIE"
       },
       {
-        "entropy": 4.687548936270451,
-        "word": "SEINA"
+        "entropy": 4.676318280676093,
+        "word": "SAULE"
       }
     ],
-    "entropy": 4.862635948054387,
+    "draw_status": "observe",
+    "draws_observed": 5,
+    "entropy": 4.862545547765427,
     "word": "SAURE"
   },
   "S_6": {
@@ -3860,6 +4042,8 @@
         "word": "SAITES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 13,
     "entropy": 6.363371217591716,
     "word": "SAURIE"
   },
@@ -3902,91 +4086,97 @@
         "word": "SERIANT"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 9,
     "entropy": 7.678911765623076,
     "word": "SAURIES"
   },
   "S_8": {
     "alternatives": [
       {
-        "entropy": 8.85991031368782,
+        "entropy": 8.86002401621148,
         "word": "SARTIONS"
       },
       {
-        "entropy": 8.779418011390733,
-        "word": "SOUTIRES"
-      },
-      {
-        "entropy": 8.778844289932357,
+        "entropy": 8.778665532956524,
         "word": "SAURIENS"
       },
       {
-        "entropy": 8.747166864528987,
+        "entropy": 8.778244722201581,
+        "word": "SOUTIRES"
+      },
+      {
+        "entropy": 8.74704163917641,
         "word": "SAURIONS"
       },
       {
-        "entropy": 8.744472491176701,
+        "entropy": 8.743290289587597,
         "word": "SOURITES"
       },
       {
-        "entropy": 8.724190692076144,
+        "entropy": 8.723003317878241,
         "word": "SOUTIREE"
       },
       {
-        "entropy": 8.715309287203432,
+        "entropy": 8.714629721879572,
         "word": "SURLIEES"
       },
       {
-        "entropy": 8.713659249247188,
+        "entropy": 8.713845532183445,
         "word": "SURINEES"
       },
       {
-        "entropy": 8.701130924320458,
+        "entropy": 8.700447742989741,
         "word": "SOUTIRAS"
       }
     ],
-    "entropy": 8.900652005071274,
+    "draw_status": "observe",
+    "draws_observed": 12,
+    "entropy": 8.899509635033784,
     "word": "SAURITES"
   },
   "S_9": {
     "alternatives": [
       {
-        "entropy": 9.781299804397815,
+        "entropy": 9.778935781354518,
         "word": "SAUTERIES"
       },
       {
-        "entropy": 9.774500782797404,
+        "entropy": 9.773188760742457,
         "word": "SURLIATES"
       },
       {
-        "entropy": 9.735500645703942,
+        "entropy": 9.735430819762335,
         "word": "SURINATES"
       },
       {
-        "entropy": 9.705955000973823,
+        "entropy": 9.704265137337611,
         "word": "SAUTERNES"
       },
       {
-        "entropy": 9.661434133195737,
+        "entropy": 9.661722541930356,
         "word": "SARCOSINE"
       },
       {
-        "entropy": 9.659669839225305,
+        "entropy": 9.658498010971824,
         "word": "SAUTERONS"
       },
       {
-        "entropy": 9.633770211912811,
-        "word": "SOULAIRES"
-      },
-      {
-        "entropy": 9.617611948560313,
+        "entropy": 9.617536957259665,
         "word": "SARCLIONS"
       },
       {
-        "entropy": 9.584883444976976,
+        "entropy": 9.58372798398863,
         "word": "SAUNIERES"
+      },
+      {
+        "entropy": 9.567897693284959,
+        "word": "SOURIANTS"
       }
     ],
-    "entropy": 9.806607100430394,
+    "draw_status": "observe",
+    "draws_observed": 12,
+    "entropy": 9.804807095994441,
     "word": "SOUTIREES"
   },
   "T_5": {
@@ -4028,6 +4218,8 @@
         "word": "TIARE"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 3,
     "entropy": 5.166235585582351,
     "word": "TARIE"
   },
@@ -4070,6 +4262,8 @@
         "word": "TARETS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 10,
     "entropy": 6.481913052254413,
     "word": "TARIES"
   },
@@ -4112,49 +4306,53 @@
         "word": "TARIONS"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 6,
     "entropy": 7.66773153846486,
     "word": "TARTIES"
   },
   "T_8": {
     "alternatives": [
       {
-        "entropy": 8.62627910899451,
+        "entropy": 8.621347375759674,
         "word": "TOITURES"
       },
       {
-        "entropy": 8.622222986046495,
+        "entropy": 8.617900382567454,
         "word": "TAURINES"
       },
       {
-        "entropy": 8.602910169643764,
+        "entropy": 8.601830537028361,
         "word": "TARTINEE"
       },
       {
-        "entropy": 8.552962928006398,
-        "word": "TATRIENS"
-      },
-      {
-        "entropy": 8.500379697483275,
+        "entropy": 8.497742204054932,
         "word": "TRAINEES"
       },
       {
-        "entropy": 8.483533523049392,
-        "word": "TORTUEES"
-      },
-      {
-        "entropy": 8.466351156205564,
-        "word": "TORTUAIS"
-      },
-      {
-        "entropy": 8.465361723381065,
+        "entropy": 8.460031684780462,
         "word": "TONTURES"
       },
       {
-        "entropy": 8.459413021324043,
+        "entropy": 8.455985833940579,
         "word": "TRAITEES"
+      },
+      {
+        "entropy": 8.44902349437824,
+        "word": "TERNITES"
+      },
+      {
+        "entropy": 8.447221480956479,
+        "word": "TANIERES"
+      },
+      {
+        "entropy": 8.44528204964054,
+        "word": "TARTINAS"
       }
     ],
-    "entropy": 8.763194571595278,
+    "draw_status": "observe",
+    "draws_observed": 5,
+    "entropy": 8.7623626790364,
     "word": "TARTINES"
   },
   "T_9": {
@@ -4196,6 +4394,8 @@
         "word": "TOURAINES"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 10,
     "entropy": 9.55691204346415,
     "word": "TARTINEES"
   },
@@ -4238,6 +4438,8 @@
         "word": "USITE"
       }
     ],
+    "draw_status": "observe",
+    "draws_observed": 1,
     "entropy": 4.7771536239797525,
     "word": "UNIES"
   },
@@ -4280,6 +4482,8 @@
         "word": "URANUS"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 5.995823710292096,
     "word": "URINES"
   },
@@ -4322,6 +4526,8 @@
         "word": "URINAIS"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.92914068512126,
     "word": "URINEES"
   },
@@ -4364,6 +4570,8 @@
         "word": "USINATES"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 7.322154030688198,
     "word": "URINATES"
   },
@@ -4406,218 +4614,230 @@
         "word": "USTENSILA"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 7.499447797991829,
     "word": "UNITAIRES"
   },
   "V_5": {
     "alternatives": [
       {
-        "entropy": 4.830754959670381,
-        "word": "VERIA"
-      },
-      {
-        "entropy": 4.755524570869134,
+        "entropy": 4.751973187167437,
         "word": "VIRES"
       },
       {
-        "entropy": 4.7397109548067995,
+        "entropy": 4.725128731257349,
         "word": "VAIRE"
       },
       {
-        "entropy": 4.726883216710258,
+        "entropy": 4.721406020653032,
         "word": "VARES"
       },
       {
-        "entropy": 4.704172160366902,
+        "entropy": 4.6996578288737805,
         "word": "VITRE"
       },
       {
-        "entropy": 4.689787068810458,
+        "entropy": 4.684205376561965,
         "word": "VARET"
       },
       {
-        "entropy": 4.687912264429413,
+        "entropy": 4.68094437556105,
         "word": "VIRAS"
       },
       {
-        "entropy": 4.656357539974156,
+        "entropy": 4.651708519409505,
         "word": "VIREE"
       },
       {
-        "entropy": 4.653665811949754,
+        "entropy": 4.6444750105331,
         "word": "VERSA"
+      },
+      {
+        "entropy": 4.644426175497198,
+        "word": "VISER"
       }
     ],
-    "entropy": 4.911348044017653,
+    "draw_status": "observe",
+    "draws_observed": 1,
+    "entropy": 4.897249305226543,
     "word": "VARIE"
   },
   "V_6": {
     "alternatives": [
       {
-        "entropy": 6.245114231863711,
+        "entropy": 6.241523720783795,
         "word": "VERINS"
       },
       {
-        "entropy": 6.212401265819812,
+        "entropy": 6.208768975728347,
         "word": "VINTES"
       },
       {
-        "entropy": 6.175815618710708,
+        "entropy": 6.1695823252385145,
         "word": "VITRES"
       },
       {
-        "entropy": 6.163452601749855,
+        "entropy": 6.15720351898397,
         "word": "VIREES"
       },
       {
-        "entropy": 6.1387715664799,
+        "entropy": 6.132490962596172,
         "word": "VAINES"
       },
       {
-        "entropy": 6.1181954285053255,
+        "entropy": 6.1118885460290375,
         "word": "VITRAS"
       },
       {
-        "entropy": 6.1133038181378385,
+        "entropy": 6.106990688394161,
         "word": "VENAIS"
       },
       {
-        "entropy": 6.11318969756782,
-        "word": "VARSIN"
+        "entropy": 6.089389754568387,
+        "word": "VANITE"
       },
       {
-        "entropy": 6.0928688879702495,
-        "word": "VERNIS"
+        "entropy": 6.088745060617066,
+        "word": "VIRALE"
       }
     ],
-    "entropy": 6.39799586076192,
+    "draw_status": "observe",
+    "draws_observed": 5,
+    "entropy": 6.392046322388132,
     "word": "VARIES"
   },
   "V_7": {
     "alternatives": [
       {
-        "entropy": 7.541675874229453,
+        "entropy": 7.539926340031787,
         "word": "VIRATES"
       },
       {
-        "entropy": 7.535372346836181,
+        "entropy": 7.533617785902158,
         "word": "VARIONS"
       },
       {
-        "entropy": 7.530408057224619,
+        "entropy": 7.528649537526951,
         "word": "VIRALES"
       },
       {
-        "entropy": 7.488480289084922,
+        "entropy": 7.485093437833713,
         "word": "VARIENT"
       },
       {
-        "entropy": 7.455075745224452,
-        "word": "VIREENS"
-      },
-      {
-        "entropy": 7.437284122196263,
+        "entropy": 7.436734945831455,
         "word": "VANITES"
       },
       {
-        "entropy": 7.432079563765563,
+        "entropy": 7.431235544868834,
         "word": "VARNOIS"
       },
       {
-        "entropy": 7.423992787885394,
+        "entropy": 7.422751391180408,
         "word": "VIROLES"
       },
       {
-        "entropy": 7.421849364233378,
+        "entropy": 7.422021280197582,
         "word": "VALINES"
+      },
+      {
+        "entropy": 7.419127426524705,
+        "word": "VINATES"
       }
     ],
-    "entropy": 7.561093827660492,
+    "draw_status": "observe",
+    "draws_observed": 3,
+    "entropy": 7.557764881942436,
     "word": "VARIEES"
   },
   "V_8": {
     "alternatives": [
       {
-        "entropy": 8.562793441429369,
+        "entropy": 8.561904317616225,
         "word": "VIROLEES"
       },
       {
-        "entropy": 8.55719079864883,
+        "entropy": 8.549150844405347,
         "word": "VARIIONS"
       },
       {
-        "entropy": 8.538775854942092,
+        "entropy": 8.535145700844275,
         "word": "VIROLANT"
       },
       {
-        "entropy": 8.499527856842487,
-        "word": "VIRAINES"
-      },
-      {
-        "entropy": 8.479792932306793,
+        "entropy": 8.474561014511629,
         "word": "VANTILES"
       },
       {
-        "entropy": 8.47349933659082,
+        "entropy": 8.468106043753128,
         "word": "VERNITES"
       },
       {
-        "entropy": 8.469544043063312,
+        "entropy": 8.466014754782186,
         "word": "VELAIRES"
       },
       {
-        "entropy": 8.456585610666838,
+        "entropy": 8.454160450144556,
         "word": "VANTILEE"
       },
       {
-        "entropy": 8.444648054094056,
-        "word": "VEROTINS"
+        "entropy": 8.437302320242654,
+        "word": "VOLIERES"
+      },
+      {
+        "entropy": 8.427566576475666,
+        "word": "VENTILES"
       }
     ],
-    "entropy": 8.595414168408242,
+    "draw_status": "observe",
+    "draws_observed": 4,
+    "entropy": 8.596389991037016,
     "word": "VARIETES"
   },
   "V_9": {
     "alternatives": [
       {
-        "entropy": 9.395971391343453,
-        "word": "VALTINOIS"
-      },
-      {
-        "entropy": 9.39096982739579,
-        "word": "VELTERONS"
-      },
-      {
-        "entropy": 9.37820738713448,
-        "word": "VERIATONS"
-      },
-      {
-        "entropy": 9.36393440400222,
+        "entropy": 9.359274362476029,
         "word": "VANTILEES"
       },
       {
-        "entropy": 9.362648345898654,
+        "entropy": 9.354351182915664,
         "word": "VIROLATES"
       },
       {
-        "entropy": 9.353924433186124,
+        "entropy": 9.350185143781871,
         "word": "VANTERIES"
       },
       {
-        "entropy": 9.353183974943098,
-        "word": "VARIOLINE"
-      },
-      {
-        "entropy": 9.352496731611602,
-        "word": "VIROTINES"
-      },
-      {
-        "entropy": 9.350236431146229,
+        "entropy": 9.347114210245234,
         "word": "VIOLENTES"
+      },
+      {
+        "entropy": 9.296885909249823,
+        "word": "VEROTINES"
+      },
+      {
+        "entropy": 9.295180738909188,
+        "word": "VOLTAIRES"
+      },
+      {
+        "entropy": 9.28737167148314,
+        "word": "VERLINOIS"
+      },
+      {
+        "entropy": 9.261616834125817,
+        "word": "VERTINOIS"
+      },
+      {
+        "entropy": 9.248012377676913,
+        "word": "VENTRALES"
       }
     ],
-    "entropy": 9.605757115842618,
-    "word": "VIRIOLANS"
+    "draw_status": "observe",
+    "draws_observed": 2,
+    "entropy": 9.385798120191378,
+    "word": "VELTERONS"
   },
   "W_5": {
     "alternatives": [
@@ -4658,6 +4878,8 @@
         "word": "WEIRD"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 3.8605295324716318,
     "word": "WIPES"
   },
@@ -4700,6 +4922,8 @@
         "word": "WITTES"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 4.65163982083488,
     "word": "WIPENT"
   },
@@ -4742,6 +4966,8 @@
         "word": "WALHEIM"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 5.730343346957444,
     "word": "WASTIEN"
   },
@@ -4784,6 +5010,8 @@
         "word": "WATCHEES"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.277673748770608,
     "word": "WISERINE"
   },
@@ -4826,6 +5054,8 @@
         "word": "WIMYENNES"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.629481290173242,
     "word": "WARRENITE"
   },
@@ -4868,6 +5098,8 @@
         "word": "XERES"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 3.521640636343318,
     "word": "XIVES"
   },
@@ -4910,6 +5142,8 @@
         "word": "XYLEME"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 3.418295834054489,
     "word": "XIAMEN"
   },
@@ -4948,6 +5182,8 @@
         "word": "XOCOATL"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 3.169925001442312,
     "word": "XAMMOIS"
   },
@@ -4990,6 +5226,8 @@
         "word": "XYLOMYCE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 3.773557262275186,
     "word": "XANTHINE"
   },
@@ -5032,6 +5270,8 @@
         "word": "XYLOCARPE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 4.523561956057013,
     "word": "XENELASIE"
   },
@@ -5074,6 +5314,8 @@
         "word": "YEUSE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 3.972895908687182,
     "word": "YOLES"
   },
@@ -5116,6 +5358,8 @@
         "word": "YODLES"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 4.891654091902981,
     "word": "YOLERA"
   },
@@ -5158,6 +5402,8 @@
         "word": "YODISAS"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 5.657575159678482,
     "word": "YODISER"
   },
@@ -5200,6 +5446,8 @@
         "word": "YTRIENNE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.043462030306619,
     "word": "YOLERAIS"
   },
@@ -5242,6 +5490,8 @@
         "word": "YTTERBINE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.158519762996342,
     "word": "YEVROISES"
   },
@@ -5284,6 +5534,8 @@
         "word": "ZARBI"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 4.37761688568512,
     "word": "ZAIRE"
   },
@@ -5326,6 +5578,8 @@
         "word": "ZONERA"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 5.504036285754295,
     "word": "ZONAIS"
   },
@@ -5368,6 +5622,8 @@
         "word": "ZONZAIS"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.488628290448044,
     "word": "ZONATES"
   },
@@ -5410,6 +5666,8 @@
         "word": "ZOOIATRE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 6.964252354137534,
     "word": "ZEROTAIS"
   },
@@ -5452,6 +5710,8 @@
         "word": "ZEDOARINE"
       }
     ],
+    "draw_status": "non_observe_incertain",
+    "draws_observed": 0,
     "entropy": 7.33508624494335,
     "word": "ZONALITES"
   }

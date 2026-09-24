@@ -23,12 +23,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from motus_solver.blocklist import load_blocklist  # noqa: E402
 from motus_solver.cache import STRATEGIES, build_root_cache, load_cache, refresh_blocklisted_entries, save_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
+from motus_solver.draws import annotate_draw_status, load_draw_counts  # noqa: E402
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_CORPUS = ROOT_DIR / "data" / "corpus_fr.txt"
 DEFAULT_OUTPUT = ROOT_DIR / "data" / "root_cache.json"
 DEFAULT_OUTPUT_ENTROPY_PURE = ROOT_DIR / "data" / "root_cache_entropy_pure.json"
 DEFAULT_BLOCKLIST = ROOT_DIR / "data" / "known_invalid_words.json"
+# statut de tirage de chaque groupe (observé / non observé, statut incertain),
+# informatif uniquement, cf. motus_solver.draws
+DEFAULT_DRAWS = ROOT_DIR / "data" / "group_draws.jsonl"
 
 
 def main() -> None:
@@ -67,6 +71,7 @@ def main() -> None:
         blocklist = load_blocklist(DEFAULT_BLOCKLIST)
         start = time.time()
         refreshed = refresh_blocklisted_entries(cache, corpus, blocklist, workers=args.workers, strategy=args.strategy)
+        annotate_draw_status(cache, load_draw_counts(DEFAULT_DRAWS))  # une entrée recalculée perd son statut
         save_cache(cache, output)
         print(f"[{args.strategy}] {len(refreshed)} entrée(s) recalculée(s) en {time.time() - start:.1f}s : "
               + ", ".join(f"{k} -> {cache.get(k, {}).get('word')}" for k in refreshed))
@@ -84,6 +89,7 @@ def main() -> None:
     start = time.time()
     cache = build_root_cache(corpus, workers=args.workers, strategy=args.strategy, blocklist=blocklist)
     elapsed = time.time() - start
+    annotate_draw_status(cache, load_draw_counts(DEFAULT_DRAWS))
 
     save_cache(cache, output)
     print(f"[{args.strategy}] {len(cache)} entrée(s) de cache écrites dans {output} en {elapsed:.1f}s.")

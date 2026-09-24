@@ -174,3 +174,27 @@ def test_accepted_words_are_remembered_as_known_valid(monkeypatch, tmp_path):
     import json
     remembered = set(json.loads((tmp_path / "known_valid.json").read_text(encoding="utf-8")))
     assert true_target in remembered
+
+
+def test_each_game_logs_its_group_draw_and_flags_unobserved_groups(monkeypatch, tmp_path):
+    """Phase 1 du 24/09/2026 : tout tirage d'un groupe jamais observé est journalisé
+    et signalé, pour accumuler la preuve avant de conclure à une exclusion."""
+    corpus = Corpus(["RATER", "RIVER"])
+    monkeypatch.setattr(bot_runner, "TuzmoClient", make_client_cls("RIVER"))
+    _patch_runner_io(monkeypatch, tmp_path)
+    monkeypatch.setattr(bot_runner, "record_game", lambda **kwargs: None)
+    draws = tmp_path / "draws.jsonl"
+    monkeypatch.setattr(bot_runner, "DEFAULT_DRAWS", draws)
+
+    runner = bot_runner.BotRunner()
+    result, _ = runner._play_one_game(page=None, corpus=corpus, root_cache=None, blocklist=set())
+    events = [runner.events.get_nowait() for _ in range(runner.events.qsize())]
+    assert result["group_draws_before"] == 0
+    assert any(e["type"] == "unobserved_group_drawn" and e["letter"] == "R" and e["length"] == 5 for e in events)
+
+    result, _ = runner._play_one_game(page=None, corpus=corpus, root_cache=None, blocklist=set())
+    events = [runner.events.get_nowait() for _ in range(runner.events.qsize())]
+    assert result["group_draws_before"] == 1
+    assert not any(e["type"] == "unobserved_group_drawn" for e in events)
+    lines = draws.read_text(encoding="utf-8").splitlines()
+    assert len(lines) == 2 and all('"source": "bot_runner"' in line for line in lines)

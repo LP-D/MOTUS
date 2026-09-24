@@ -25,11 +25,12 @@ sys.path.insert(0, str(ROOT_DIR / "src"))
 sys.path.insert(0, str(ROOT_DIR))
 
 from motus_solver.blocklist import add_to_blocklist, load_blocklist  # noqa: E402
-from motus_solver.cache import load_cache  # noqa: E402
+from motus_solver.cache import cache_key, load_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
+from motus_solver.draws import load_draw_counts, record_draw  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
 
-from bot.network_monitor import NetworkMonitor, session_from_body  # noqa: E402
+from bot.network_monitor import THROTTLE_LATENCY_S, NetworkMonitor, session_from_body  # noqa: E402
 from bot.parser import CORRECT  # noqa: E402
 from bot.timing import CycleTimer  # noqa: E402
 from bot.tuzmo_client import (  # noqa: E402
@@ -54,6 +55,9 @@ DEFAULT_BLOCKLIST = ROOT_DIR / "data" / "known_invalid_words.json"
 DEFAULT_KNOWN_VALID = ROOT_DIR / "data" / "known_valid_words.json"
 # solutions révélées par abandon (mots hors corpus) : journal + ajout au corpus
 DEFAULT_REVEALED = ROOT_DIR / "data" / "revealed_solutions.jsonl"
+# groupe (lettre, longueur) de chaque mot tiré : preuve accumulée sur les groupes
+# jamais observés (statut incertain, cf. motus_solver.draws)
+DEFAULT_DRAWS = ROOT_DIR / "data" / "group_draws.jsonl"
 URL = "https://www.tusmo.xyz/infinite"
 API_ME_URL = "https://www.tusmo.xyz/api/me"
 GUEST_COOKIE = "tusmo_token"
@@ -92,6 +96,7 @@ _LIFECYCLE_EVENT_TYPES = {
     "reveal_failed",
     "solution_revealed",
     "guest_ready",
+    "unobserved_group_drawn",
 }
 
 
@@ -196,10 +201,13 @@ class BotRunner:
         if any(c.get("name") == GUEST_COOKIE for c in context.cookies(API_ME_URL)):
             return {"created": False, "reason": "cookie invité déjà présent"}
         started = time.time()
-        response = context.request.get(API_ME_URL, timeout=10000)
+        try:
+            response = context.request.get(API_ME_URL, timeout=THROTTLE_LATENCY_S * 1000)
+        except PlaywrightTimeoutError as exc:
+            raise ThrottlingDetectedError(f"création d'invité : aucune réponse en {THROTTLE_LATENCY_S:.0f}s") from exc
         latency = time.time() - started
         retry_after = {k.lower(): v for k, v in response.headers.items()}.get("retry-after")
-        if response.status == 429 or retry_after is not None or latency > 10.0:
+        if response.status == 429 or retry_after is not None or latency > THROTTLE_LATENCY_S:
             raise ThrottlingDetectedError(
                 f"création d'invité : HTTP {response.status}, Retry-After={retry_after}, {latency:.1f}s"
             )
@@ -320,6 +328,13 @@ class BotRunner:
                 client.resume_from(len(prior))
                 result["resumed"] = True
                 self._emit("game_resumed", prior_guesses=[g["word"] for g in prior])
+        # tirage journalisé une fois par mot (une reprise ne compte pas de nouveau)
+        draws_before = load_draw_counts(DEFAULT_DRAWS).get(cache_key(letter, length), 0)
+        record_draw(DEFAULT_DRAWS, letter, length, "bot_runner", strategy=self.strategy,
+                    session_id=(session or {}).get("id"), resumed=bool(result.get("resumed")))
+        result["group_draws_before"] = draws_before
+        if not draws_before and not result.get("resumed"):
+            self._emit("unobserved_group_drawn", letter=letter, length=length)
         first_attempt = len(guesses_played) + 1
         exhausted = False
 
@@ -577,7 +592,7 @@ class BotRunner:
                     return
                 if result["outcome"] == "throttled":
                     # Arrêt d'urgence de toute la boucle (429 / Retry-After / latence
-                    # > 10s) : ne jamais enchaîner de partie suivante dans ce cas.
+                    # > THROTTLE_LATENCY_S) : ne jamais enchaîner de partie suivante dans ce cas.
                     self.status = "throttled"
                     return
                 if result["outcome"] == "stopped":

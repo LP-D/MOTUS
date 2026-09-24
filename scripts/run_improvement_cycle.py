@@ -7,7 +7,7 @@ comparé à ce que joue le bot. Produit une synthèse de run et évalue le crit�
 d'arrêt (aucune erreur + temps moyen par mot inférieur au run précédent).
 
 Garde-fous : débit imposé par le client (>= 1.5-2.5s entre requêtes, 1.5-2.5s
-entre parties), arrêt d'urgence sur throttling (429 / Retry-After / > 10s).
+entre parties), arrêt d'urgence sur throttling (429 / Retry-After / latence > 5 s).
 
     python scripts/run_improvement_cycle.py --run 1 --games 10
 """
@@ -114,9 +114,21 @@ def h8_watch(index, events, calls, guest_info, cookie_before_load) -> dict:
     }
 
 
-def game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, corpus, blocklist, root_cache):
+def move_origin(attempt: int, guess: str, root_entry: dict | None, known_valid: set[str], resumed: bool) -> dict:
+    """D'où vient un coup, pour expliquer un rejet : cache racine (rang 0 = coup 1,
+    1..9 = replis) ou calcul dynamique, et s'il était déjà prouvé valide."""
+    ranked = [e["word"] for e in (root_entry, *root_entry.get("alternatives", ()))] if root_entry else []
+    from_root = attempt == 1 and not resumed and guess in ranked
+    return {"source": "root_cache" if from_root else "dynamic",
+            "root_rank": ranked.index(guess) if from_root else None,
+            "pre_validated": guess in known_valid}
+
+
+def game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, corpus, blocklist, root_cache,
+             known_valid: set[str] | None = None):
     letter, length = report["letter"], report["length"]
     solution = report["solution"]
+    root_entry = root_cache.get(cache_key(letter, length)) if letter else None
     proposals = [e for e in events if e["type"] == "guess_proposed"]
     outcomes = [e for e in events if e["type"] in {"feedback_received", "guess_rejected", "guess_not_submitted"}]
     guess_calls = [c for c in calls if c.kind == "guess"]
@@ -125,9 +137,17 @@ def game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, cor
         out = outcomes[i] if i < len(outcomes) else {}
         rec = out.get("record") or {}
         call = next((c for c in guess_calls if c.guess == p["guess"]), None)
+        result_kind = {"feedback_received": "accepted", "guess_rejected": "rejected"}.get(out.get("type"), out.get("type"))
+        cause = None
+        if result_kind == "rejected":
+            cause = {"api_error": call.server_error if call else None,
+                     **move_origin(p["attempt"], p["guess"], root_entry, known_valid or set(), bool(result.get("resumed")))}
+        elif result_kind == "guess_not_submitted":
+            cause = {"not_submitted": out.get("reason")}
         moves.append({
             "attempt": p["attempt"], "guess": p["guess"], "candidates_before": p.get("candidates"),
-            "result": {"feedback_received": "accepted", "guess_rejected": "rejected"}.get(out.get("type"), out.get("type")),
+            "result": result_kind,
+            "rejection_cause": cause,
             "pattern": out.get("pattern"),
             "solver_s": p.get("solver_s"),
             "typing_s": rec.get("duration_solver_suggest_to_guess_typed_s"),
@@ -180,6 +200,8 @@ def game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, cor
         "max_latency_s": report["network"]["max_latency_s"],
         "root_rejected": "D_root_rejected" in report["checks"],
         "resumed": bool(result.get("resumed")), "abandoned": bool(result.get("abandoned")),
+        # tirage du groupe : 0 = groupe jamais observé jusque-là (statut incertain)
+        "group_draws_before": result.get("group_draws_before"),
         "moves": moves, "trio": trio_cmp, "errors": errors, "checks": {k: v["status"] for k, v in report["checks"].items()},
         "session_events": [{k: v for k, v in e.items() if k != "record"} for e in events
                            if e["type"] in {"session_info", "game_resumed", "gave_up", "guest_ready"}],
@@ -232,6 +254,10 @@ def summarize(run: int, games: list[dict], stop_reason: str | None, previous: di
         "max_solver_s": max((g["max_solver_s"] for g in games), default=0),
         "max_latency_s": max((g["max_latency_s"] or 0 for g in games), default=0),
         "words": [f"{g['solution'] or '?'} ({g['length']}, {g['attempts']} essais, {g['time_s']['total']}s)" for g in games],
+        "rejection_causes": [dict(m["rejection_cause"] or {}, word=m["guess"], game=g["game"], attempt=m["attempt"])
+                             for g in games for m in g.get("moves", ()) if m["result"] == "rejected"],
+        "unobserved_groups_drawn": [f"{g['letter']}_{g['length']}" for g in games
+                                    if g.get("group_draws_before") == 0 and not g.get("resumed")],
         "stop_reason": stop_reason,
     }
     if trio_rows:
@@ -329,6 +355,7 @@ def main() -> None:
                     bot_runner.Solver, bot_runner.record_game = AbandonSolver, (lambda **kw: None)
                 try:
                     blocklist_at_start = set(blocklist)
+                    known_valid_at_start = load_blocklist(bot_runner.DEFAULT_KNOWN_VALID)
                     result, blocklist = runner._play_one_game(page, corpus, root_cache, blocklist)
                 finally:
                     if forced_abandon:
@@ -341,7 +368,8 @@ def main() -> None:
                 report = evaluate_game(index, events, calls, root_cache, False, result)
                 trio = trios.get((report["letter"], report["length"]))
                 log = game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, corpus,
-                               blocklist_at_start, root_cache)
+                               blocklist_at_start, root_cache, known_valid_at_start)
+                log["strategy"] = args.strategy
                 log["h8"] = h8_watch(index, events, calls, guest_info, cookie_before_load)
                 log["forced_abandon"] = forced_abandon
                 log["revealed_answer"] = result.get("answer")

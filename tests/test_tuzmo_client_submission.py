@@ -192,8 +192,9 @@ def test_feedback_comes_from_server_result_including_repeated_letters():
         {"status": 429},
         {"headers": {"Retry-After": "30"}},
         {"latency": 11.0},
+        {"latency": 6.0},  # seuil abaissé à 5 s le 24/09/2026
     ],
-    ids=["http_429", "retry_after", "latency_over_10s"],
+    ids=["http_429", "retry_after", "latency_over_10s", "latency_over_5s"],
 )
 def test_throttling_signals_raise_emergency_stop(kwargs):
     game = FakeTusmo(target="ENTRAINES", **kwargs)
@@ -228,3 +229,9 @@ def test_client_never_sends_faster_than_validated_rate(monkeypatch):
     client.submit_guess("EGALEMENT", **FAST)
     # la 2e requête arrive juste après la 1re : le client a dû attendre ~2s
     assert any(s > 1.5 for s in slept)
+
+
+def test_normal_latency_is_not_a_throttle_signal():
+    game = FakeTusmo(target="ENTRAINES", latency=1.1)  # max observé en jeu : 1,08 s
+    client = make_client(game)
+    client.submit_guess("EGALEMENT", **FAST)

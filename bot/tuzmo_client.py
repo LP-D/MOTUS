@@ -5,7 +5,7 @@ import time
 
 from playwright.sync_api import Locator, Page
 
-from .network_monitor import ApiCall, NetworkMonitor, is_throttle_signal, result_from_body
+from .network_monitor import THROTTLE_LATENCY_S, ApiCall, NetworkMonitor, is_throttle_signal, result_from_body
 from .parser import row_pattern
 from .timing import CycleTimer
 
@@ -19,7 +19,7 @@ BACKSPACE_KEY = "⌫"
 # client attend au besoin avant d'envoyer un coup, il ne va JAMAIS plus vite.
 DEFAULT_MIN_REQUEST_GAP_S = (1.5, 2.5)
 REQUEST_SENT_TIMEOUT_S = 3.0  # Entrée pressée sans requête /guess dans ce délai -> non envoyé
-RESPONSE_TIMEOUT_S = 10.0  # au-delà : signal de throttling (latence > 10s), arrêt d'urgence
+RESPONSE_TIMEOUT_S = THROTTLE_LATENCY_S  # au-delà : signal de throttling, arrêt d'urgence
 CLICK_TIMEOUT_MS = 5000  # un clavier bloqué remonte vite en erreur au lieu de pendre 30s
 REVEAL_TIMEOUT_MS = 5000
 # Bouton ↻ de /infinite : 1er clic = armement d'une confirmation valable 3 s (score > 0)
@@ -60,7 +60,7 @@ class GameStateError(RuntimeError):
 
 
 class ThrottlingDetectedError(RuntimeError):
-    """429, Retry-After ou latence > 10s : arrêt d'urgence, distinct d'un échec
+    """429, Retry-After ou latence > THROTTLE_LATENCY_S (5 s) : arrêt d'urgence, distinct d'un échec
     de jeu ou de correction."""
 
     def __init__(self, reason: str, call: ApiCall | None = None):

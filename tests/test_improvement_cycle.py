@@ -73,3 +73,48 @@ def test_cumulative_trio_accumulates_across_runs(tmp_path):
     cumul = cumulative_trio(tmp_path, upto_run=2)
     assert cumul == {"words_compared": 3, "trio_better": 1, "trio_worse": 1, "equal": 1,
                      "mean_attempts_trio_then_bot": 3, "mean_attempts_bot_only": 3}
+
+
+def test_rejection_cause_distinguishes_root_rank_dynamic_and_pre_validated():
+    from run_improvement_cycle import move_origin
+
+    entry = {"word": "ARBRE", "alternatives": [{"word": "AVION"}, {"word": "ASTRE"}]}
+    assert move_origin(1, "AVION", entry, set(), resumed=False) == {
+        "source": "root_cache", "root_rank": 1, "pre_validated": False}
+    # coup 2, ou coup 1 d'une partie reprise : jamais attribué au cache racine
+    assert move_origin(2, "ASTRE", entry, {"ASTRE"}, resumed=False) == {
+        "source": "dynamic", "root_rank": None, "pre_validated": True}
+    assert move_origin(1, "ARBRE", entry, set(), resumed=True)["source"] == "dynamic"
+    assert move_origin(1, "ABIME", entry, set(), resumed=False)["source"] == "dynamic"
+
+
+def test_summary_lists_rejection_causes_and_unobserved_groups_drawn():
+    g1 = game(8.0) | {"resumed": False, "group_draws_before": 0, "letter": "Z", "length": 7, "moves": [
+        {"attempt": 1, "guess": "ZAPPERA", "result": "rejected",
+         "rejection_cause": {"api_error": "INVALID_WORD", "source": "root_cache", "root_rank": 0,
+                             "pre_validated": False}},
+        {"attempt": 1, "guess": "ZEBRURE", "result": "accepted", "rejection_cause": None}]}
+    g2 = game(7.0) | {"resumed": False, "group_draws_before": 4, "moves": []}
+    s = summarize(1, [g1, g2], None, None)
+    assert s["unobserved_groups_drawn"] == ["Z_7"]
+    assert s["rejection_causes"] == [{"api_error": "INVALID_WORD", "source": "root_cache", "root_rank": 0,
+                                      "pre_validated": False, "word": "ZAPPERA", "game": 1, "attempt": 1}]
+
+
+def test_compare_strategies_live_metrics_split_by_strategy():
+    import compare_strategies as cs
+
+    def g(strategy, outcome, rejected=0, attempts=3, total=6.0):
+        moves = [{"result": "rejected", "rejection_cause": {"source": "root_cache", "pre_validated": False}}] * rejected
+        moves += [{"result": "accepted"}] * attempts
+        return {"run": 1, "strategy": strategy, "outcome": outcome, "attempts": attempts, "moves": moves,
+                "time_s": {"total": total, "solver": 0.1}, "max_latency_s": 0.2, "errors": []}
+
+    games = [g("composite", "solved"), g("composite", "solved", rejected=1, total=8.0),
+             g("entropy_pure", "solved", attempts=2), g("entropy_pure", "candidates_exhausted", attempts=6)]
+    comp = cs.live_metrics([x for x in games if x["strategy"] == "composite"])
+    ep = cs.live_metrics([x for x in games if x["strategy"] == "entropy_pure"])
+    assert comp["resolution_rate_pct"] == 100.0 and comp["mean_time_per_word_s"] == 7.0
+    assert comp["rejections"] == 1 and comp["root_rejections"] == 1
+    assert comp["rejection_rate_per_submitted_pct"] == round(100 / 7, 1)
+    assert ep["resolution_rate_pct"] == 50.0 and ep["mean_attempts_solved"] == 2
