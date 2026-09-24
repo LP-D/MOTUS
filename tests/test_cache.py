@@ -123,6 +123,8 @@ def test_build_root_cache_entropy_pure_strategy_matches_dynamic_first_move():
     # pas de composante "vowels" (propre au scoring composite, non utilisée par
     # l'entropie pure) — distingue clairement les deux formats d'entrée.
     assert "vowels" not in entry
+    # parité avec le composite : coups de repli précalculés
+    assert entry["alternatives"] and entry["word"] not in [a["word"] for a in entry["alternatives"]]
 
 
 def test_build_root_cache_entropy_pure_parallel_matches_sequential():
@@ -221,3 +223,44 @@ def test_solver_prefers_known_valid_word_among_first_move_options():
 
     plain = Solver(letter="R", length=5, corpus=corpus, root_cache=cache)
     assert plain.suggest(top_n=1)[0][0] == entry["word"]
+
+
+
+def test_top_guesses_entropy_pure_first_is_best_guess_entropy_pure():
+    from motus_solver.tree import top_guesses_entropy_pure
+
+    corpus = make_corpus()
+    candidates = corpus.subset("R", 5)
+    ranked = top_guesses_entropy_pure(candidates, k=3)
+    assert ranked[0] == best_guess_entropy_pure(candidates)
+    assert [e for _, e in ranked] == sorted((e for _, e in ranked), reverse=True)
+
+
+def test_entropy_pure_solver_uses_precomputed_fallback_without_recompute(monkeypatch):
+    """Tâche 2 (parité) : avec entropy_pure, un coup 1 refusé doit lui aussi passer
+    au repli précalculé, sans le recalcul complet du run 1 (~290 s sur R9)."""
+    import motus_solver.solver as solver_module
+
+    corpus = make_corpus()
+    cache = build_root_cache(corpus, strategy="entropy_pure")
+    entry = cache[cache_key("R", 5)]
+    solver = Solver(letter="R", length=5, corpus=corpus, root_cache=cache, strategy="entropy_pure")
+    assert solver.suggest(top_n=1)[0][0] == entry["word"]
+    solver.candidates.remove(entry["word"])
+
+    def forbidden(*a, **kw):
+        raise AssertionError("recalcul dynamique du coup 1 alors qu'un repli était précalculé")
+
+    monkeypatch.setattr(solver_module, "top_guesses_entropy_pure", forbidden)
+    assert solver.suggest(top_n=1)[0][0] == entry["alternatives"][0]["word"]
+
+
+def test_entropy_pure_solver_dynamic_moves_match_reference():
+    corpus = make_corpus()
+    solver = Solver(letter="R", length=5, corpus=corpus, strategy="entropy_pure")
+    assert solver.suggest(top_n=1)[0][0] == best_guess_entropy_pure(corpus.subset("R", 5))[0]
+
+
+def test_default_strategy_is_still_composite():
+    corpus = make_corpus()
+    assert Solver(letter="R", length=5, corpus=corpus).strategy == "composite"

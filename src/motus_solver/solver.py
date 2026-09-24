@@ -6,7 +6,7 @@ from .cache import cache_key
 from .corpus import Corpus
 from .feedback import pattern_codes, pattern_to_code, words_to_matrix
 from .scoring import letter_frequencies, positional_frequencies
-from .tree import score_guess
+from .tree import score_guess, top_guesses_entropy_pure
 
 
 @dataclass
@@ -24,7 +24,13 @@ class Solver:
         root_cache: dict[str, dict] | None = None,
         blocklist: set[str] | None = None,
         known_valid: set[str] | None = None,
+        strategy: str = "composite",
     ):
+        if strategy not in ("composite", "entropy_pure"):
+            raise ValueError(f"stratégie inconnue : {strategy!r}")
+        # "composite" (défaut, poids inchangés) ou "entropy_pure" (alternative, non
+        # activée par défaut) ; `root_cache` doit être le cache de la même stratégie.
+        self.strategy = strategy
         self.letter = letter.upper()
         # Mots déjà ACCEPTÉS par le vrai jeu : au coup 1, préférés parmi le coup
         # racine et ses replis (scores quasi égaux), pour ne pas payer un rejet.
@@ -64,6 +70,9 @@ class Solver:
                 if ranked:
                     chosen = next((e for e in ranked if e["word"] in self.known_valid), ranked[0])
                     return [(chosen["word"], chosen["entropy"], chosen.get("vowels", 0))]
+
+        if self.strategy == "entropy_pure":
+            return [(w, e, 0) for w, e in top_guesses_entropy_pure(self.candidates, k=top_n)]
 
         candidates_arr = words_to_matrix(self.candidates)
         scored = []

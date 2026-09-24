@@ -574,54 +574,54 @@
   "C_6": {
     "alternatives": [
       {
-        "entropy": 5.814979095393586,
-        "vowels": 4,
-        "word": "COUINE"
-      },
-      {
-        "entropy": 5.790100229750002,
+        "entropy": 5.787004860513827,
         "vowels": 4,
         "word": "COURAI"
       },
       {
-        "entropy": 5.546179869688723,
+        "entropy": 5.545853825834103,
         "vowels": 4,
         "word": "CISEAU"
       },
       {
-        "entropy": 6.418594120194248,
+        "entropy": 6.417866895541831,
         "vowels": 3,
         "word": "CARIES"
       },
       {
-        "entropy": 5.650946540579104,
+        "entropy": 5.649866860655974,
         "vowels": 4,
         "word": "COUTAI"
       },
       {
-        "entropy": 5.609443605687287,
+        "entropy": 5.606265290342727,
         "vowels": 4,
         "word": "COUINA"
       },
       {
-        "entropy": 5.521342020763318,
+        "entropy": 5.521396520532564,
         "vowels": 4,
         "word": "COTEAU"
       },
       {
-        "entropy": 5.521953768199433,
+        "entropy": 5.520814862944631,
         "vowels": 4,
         "word": "CAHIEU"
       },
       {
-        "entropy": 5.568287501426282,
+        "entropy": 5.567086853410159,
         "vowels": 4,
         "word": "COULAI"
+      },
+      {
+        "entropy": 6.330678055590393,
+        "vowels": 3,
+        "word": "CARINE"
       }
     ],
-    "entropy": 5.950525780194996,
+    "entropy": 5.811895148960737,
     "vowels": 4,
-    "word": "COUIER"
+    "word": "COUINE"
   },
   "C_7": {
     "alternatives": [
@@ -730,54 +730,54 @@
   "C_9": {
     "alternatives": [
       {
-        "entropy": 9.818834112824991,
-        "vowels": 5,
-        "word": "COUTAINES"
-      },
-      {
-        "entropy": 9.755720972665682,
-        "vowels": 5,
-        "word": "COULAINES"
-      },
-      {
-        "entropy": 9.644664820933638,
-        "vowels": 5,
-        "word": "COUTERAIS"
-      },
-      {
-        "entropy": 9.67281400494955,
+        "entropy": 9.671123059475438,
         "vowels": 5,
         "word": "COURAIENT"
       },
       {
-        "entropy": 9.617842171040603,
+        "entropy": 9.616132009124899,
         "vowels": 5,
         "word": "COUINATES"
       },
       {
-        "entropy": 9.623084057995765,
+        "entropy": 9.622074866210669,
         "vowels": 5,
         "word": "CAOURSIEN"
       },
       {
-        "entropy": 9.591306394962652,
-        "vowels": 5,
-        "word": "COUSAIENT"
-      },
-      {
-        "entropy": 9.538520917084433,
+        "entropy": 9.537425042193021,
         "vowels": 5,
         "word": "COULERAIS"
       },
       {
-        "entropy": 9.447766245228744,
+        "entropy": 9.589820002875868,
+        "vowels": 5,
+        "word": "COUSAIENT"
+      },
+      {
+        "entropy": 9.446712280198689,
         "vowels": 5,
         "word": "COUINERAS"
+      },
+      {
+        "entropy": 9.545488851051424,
+        "vowels": 5,
+        "word": "COULAIENT"
+      },
+      {
+        "entropy": 9.507642180459278,
+        "vowels": 5,
+        "word": "COUMARINE"
+      },
+      {
+        "entropy": 9.460589016125459,
+        "vowels": 5,
+        "word": "COULERAIT"
       }
     ],
-    "entropy": 9.848447994714984,
+    "entropy": 9.643197081291262,
     "vowels": 5,
-    "word": "COURIATES"
+    "word": "COUTERAIS"
   },
   "D_5": {
     "alternatives": [
@@ -4578,54 +4578,54 @@
   "R_8": {
     "alternatives": [
       {
-        "entropy": 7.6114431814204515,
-        "vowels": 5,
-        "word": "RENOUAIS"
-      },
-      {
-        "entropy": 7.586814684975428,
+        "entropy": 7.586498509449412,
         "vowels": 5,
         "word": "RELOUAIS"
       },
       {
-        "entropy": 7.584684132231185,
+        "entropy": 7.584391956996698,
         "vowels": 5,
         "word": "RESOULAI"
       },
       {
-        "entropy": 7.506607533539547,
+        "entropy": 7.505984254590652,
         "vowels": 5,
         "word": "RENOUAIT"
       },
       {
-        "entropy": 7.503421471412092,
+        "entropy": 7.503230490965974,
         "vowels": 5,
         "word": "ROUAIENT"
       },
       {
-        "entropy": 7.515252277725701,
+        "entropy": 7.514629718272786,
         "vowels": 5,
         "word": "RELOUAIT"
       },
       {
-        "entropy": 7.511758367708138,
+        "entropy": 7.511460122913558,
         "vowels": 5,
         "word": "RESOUCIA"
       },
       {
-        "entropy": 7.487531601141374,
+        "entropy": 7.48725144608076,
         "vowels": 5,
         "word": "RECOUTAI"
       },
       {
-        "entropy": 7.449008915919415,
+        "entropy": 7.44891129399392,
         "vowels": 5,
         "word": "RECOUINA"
+      },
+      {
+        "entropy": 7.336640835682569,
+        "vowels": 5,
+        "word": "ROUTAISE"
       }
     ],
-    "entropy": 7.752181075956818,
+    "entropy": 7.611129055706874,
     "vowels": 5,
-    "word": "RETOUAIS"
+    "word": "RENOUAIS"
   },
   "R_9": {
     "alternatives": [

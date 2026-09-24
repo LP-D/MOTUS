@@ -85,6 +85,8 @@ def runner(monkeypatch, tmp_path):
     monkeypatch.setattr(bot_runner, "DEFAULT_LOG", tmp_path / "log.jsonl")
     monkeypatch.setattr(bot_runner, "DEFAULT_BLOCKLIST", tmp_path / "blocklist.json")
     monkeypatch.setattr(bot_runner, "DEFAULT_KNOWN_VALID", tmp_path / "known_valid.json")
+    monkeypatch.setattr(bot_runner, "DEFAULT_REVEALED", tmp_path / "revealed.jsonl")
+    monkeypatch.setattr(bot_runner, "DEFAULT_CORPUS", tmp_path / "corpus.txt")
     recorded = []
     monkeypatch.setattr(bot_runner, "record_game", lambda **kw: recorded.append(kw))
     r = bot_runner.BotRunner()
@@ -386,3 +388,82 @@ def test_page_load_without_intro_screen_never_hits_a_timeout(runner):
     runner._open_game_page(_LoadCtx(page))
     assert page.timeouts == 0
     assert page.clicks == []
+
+
+# --- tâche 4 : solution révélée par abandon serveur (giveup) ---
+
+def make_revealing_client_cls(target, answer=None, reveal_raises=None):
+    base = make_client_cls(target)
+
+    class RevealingClient(base):
+        def current_session_id(self):
+            return "s1"
+
+        def reveal_answer(self, session_id):
+            assert session_id == "s1"
+            if reveal_raises:
+                raise reveal_raises
+            return answer
+
+    return RevealingClient
+
+
+def test_out_of_corpus_solution_is_revealed_and_added_to_corpus(runner, monkeypatch, tmp_path):
+    """Cas A6/P8 : la solution n'est pas dans le corpus. L'abandon par giveup la
+    révèle ; elle est journalisée, ajoutée au corpus (mémoire + fichier), aux mots
+    connus valides, et inscrite dans les stats de distribution des solutions."""
+    import json
+
+    client_cls = make_revealing_client_cls("RUBAN", answer="ruban")
+    monkeypatch.setattr(bot_runner, "TuzmoClient", client_cls)
+    corpus = Corpus(["RATER", "RIVER"])
+    result, _ = runner._play_one_game(page=object(), corpus=corpus, root_cache=None, blocklist=set())
+
+    assert result["outcome"] == "candidates_exhausted" and result["answer"] == "RUBAN"
+    assert client_cls.instances[-1].gave_up is False  # pas besoin du bouton ↻
+    assert "RUBAN" in corpus.subset("R", 5)
+    assert (tmp_path / "corpus.txt").read_text(encoding="utf-8").split() == ["RUBAN"]
+    assert "RUBAN" in json.loads((tmp_path / "known_valid.json").read_text(encoding="utf-8"))
+    logged = [json.loads(l) for l in (tmp_path / "revealed.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert logged[0]["answer"] == "RUBAN" and logged[0]["was_in_corpus"] is False
+    assert runner.recorded[0]["solution"] == "RUBAN" and runner.recorded[0]["solved"] is False
+
+
+def test_reveal_failure_falls_back_to_reset_button(runner, monkeypatch):
+    client_cls = make_revealing_client_cls("RUBAN", reveal_raises=GameStateError("HTTP 404"))
+    monkeypatch.setattr(bot_runner, "TuzmoClient", client_cls)
+    result, _ = runner._play_one_game(page=object(), corpus=Corpus(["RATER", "RIVER"]), root_cache=None,
+                                      blocklist=set())
+    assert client_cls.instances[-1].gave_up is True  # repli : bouton ↻
+    assert result["abandoned"] is True and "answer" not in result
+    assert any(e["type"] == "reveal_failed" for e in events(runner))
+
+
+class FakeRevealPage:
+    def __init__(self, answer="RUBAN"):
+        self.answer = answer
+        self.monitor = NetworkMonitor(self)
+        self.evaluated = []
+
+    def on(self, event, handler):
+        pass
+
+    def wait_for_timeout(self, ms):
+        pass
+
+    def evaluate(self, script, arg):
+        self.evaluated.append(arg)
+        now = time.time()
+        self.monitor.calls.append(ApiCall(
+            kind="give_up", method="POST", url=f"https://www.tusmo.xyz/api/game/{arg}/giveup", guess=None,
+            t_sent=now, t_received=now, status=200, body={"session": {"status": "lost", "answer": self.answer}},
+        ))
+        return 200
+
+
+def test_client_reveal_answer_calls_giveup_endpoint(monkeypatch):
+    monkeypatch.setattr(tc.time, "sleep", lambda s: None)
+    page = FakeRevealPage()
+    client = TuzmoClient(page, monitor=page.monitor, min_request_gap_s=(0.0, 0.0))
+    assert client.reveal_answer("abc") == "RUBAN"
+    assert page.evaluated == ["abc"]

@@ -33,6 +33,7 @@ sys.path.insert(0, str(ROOT_DIR / "dashboard"))
 import bot_runner  # noqa: E402
 from run_case_matrix import MatrixRunner, drain, evaluate_game  # noqa: E402
 
+from bot.network_monitor import session_from_body  # noqa: E402
 from bot.tuzmo_client import ThrottlingDetectedError  # noqa: E402
 from motus_solver.blocklist import load_blocklist  # noqa: E402
 from motus_solver.cache import cache_key, load_cache  # noqa: E402
@@ -87,6 +88,30 @@ def simulate(opening: list[str], solution: str, letter: str, length: int, corpus
         if pattern == "2" * length:
             return {"valid": True, "attempts": attempts, "remaining_after": remaining}
     return {"valid": True, "attempts": None, "remaining_after": remaining}
+
+
+def h8_watch(index, events, calls, guest_info, cookie_before_load) -> dict:
+    """Surveillance dédiée de H8 ("partie introuvable", NOT_FOUND) : où en était la
+    séquence création d'invité / chargement de page quand il survient."""
+    creates = [c for c in calls if c.kind == "create_session"]
+    create_ids = [((session_from_body(c.body) or {}).get("id")) for c in creates if c.body]
+    guess_ids = sorted({c.url.split("/api/game/", 1)[1].split("/", 1)[0] for c in calls
+                        if c.kind == "guess" and "/api/game/" in c.url})
+    me = [c for c in calls if c.url.split("?")[0].endswith("/api/me")]
+    not_found = [c.url for c in calls if c.server_error == "NOT_FOUND"] + [
+        e.get("message") for e in events if e["type"] == "error" and "NOT_FOUND" in str(e.get("message"))]
+    overlap = None
+    if me and creates:
+        overlap = round(creates[0].t_sent - me[0].t_sent, 3)
+    return {
+        "not_found": bool(not_found), "not_found_detail": not_found,
+        "first_game_of_context": index == 1, "guest_precreated": bool(guest_info.get("created")),
+        "guest_info": guest_info if index == 1 else None,
+        "cookie_before_load": cookie_before_load,
+        "create_calls": len(creates), "create_session_ids": create_ids, "guess_session_ids": guess_ids,
+        "guess_session_matches_create": bool(guess_ids) and set(guess_ids) <= set(i for i in create_ids if i),
+        "create_minus_me_sent_s": overlap,
+    }
 
 
 def game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, corpus, blocklist, root_cache):
@@ -162,7 +187,30 @@ def game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, cor
     }
 
 
-def summarize(run: int, games: list[dict], stop_reason: str | None, previous: dict | None) -> dict:
+def cumulative_trio(out_dir: Path, upto_run: int) -> dict:
+    """Comparatif trio Excel vs bot cumulé sur tous les runs journalisés (1..N)."""
+    better = worse = equal = 0
+    t_att, b_att = [], []
+    for path in sorted(out_dir.glob("run_*_games.jsonl")):
+        if int(path.stem.split("_")[1]) > upto_run:
+            continue
+        for line in path.read_text(encoding="utf-8").splitlines():
+            trio = json.loads(line).get("trio") or {}
+            a = (trio.get("sim_trio_then_bot") or {}).get("attempts")
+            b = (trio.get("sim_bot_only") or {}).get("attempts")
+            if a and b:
+                t_att.append(a)
+                b_att.append(b)
+                better += a < b
+                worse += a > b
+                equal += a == b
+    return {"words_compared": len(t_att), "trio_better": better, "trio_worse": worse, "equal": equal,
+            "mean_attempts_trio_then_bot": round(statistics.mean(t_att), 2) if t_att else None,
+            "mean_attempts_bot_only": round(statistics.mean(b_att), 2) if b_att else None}
+
+
+def summarize(run: int, games: list[dict], stop_reason: str | None, previous: dict | None,
+              cycle_start: int = 1, out_dir: Path | None = None) -> dict:
     solved = [g for g in games if g["outcome"] == "solved"]
     times = [g["time_s"]["total"] for g in games]
     trio_rows = [g["trio"] for g in games if g["trio"] and g["trio"].get("sim_trio_then_bot", {}).get("valid")]
@@ -203,10 +251,20 @@ def summarize(run: int, games: list[dict], stop_reason: str | None, previous: di
             "mean_remaining_after_3_bot": round(statistics.mean(rem_b), 2) if rem_b else None,
             "trio_words_blocklisted": sorted({w for g in games if g["trio"] for w in g["trio"]["trio_words_blocklisted"]}),
         }
+    summary["h8"] = {"not_found_games": [g["game"] for g in games if (g.get("h8") or {}).get("not_found")],
+                     "guest_precreated": any((g.get("h8") or {}).get("guest_precreated") for g in games),
+                     "session_id_mismatch_games": [g["game"] for g in games
+                                                   if (g.get("h8") or {}).get("guess_session_ids")
+                                                   and not g["h8"]["guess_session_matches_create"]]}
+    summary["cycle"] = {"cycle_start_run": cycle_start, "runs_in_cycle": run - cycle_start + 1}
+    if out_dir is not None:
+        summary["trio_vs_bot_cumulative"] = cumulative_trio(out_dir, run)
     if previous:
-        faster = summary["mean_time_per_word_s"] < previous["mean_time_per_word_s"]
-        summary["vs_previous"] = {"previous_mean_time_per_word_s": previous["mean_time_per_word_s"], "faster": faster}
-        summary["stop_criterion_met"] = run >= 5 and summary["errors"] == 0 and faster
+        faster = summary["total_time_s"] < previous["total_time_s"] and len(games) >= previous.get("games", 0)
+        summary["vs_previous"] = {"previous_total_time_s": previous["total_time_s"],
+                                  "previous_mean_time_per_word_s": previous["mean_time_per_word_s"], "faster": faster}
+        summary["stop_criterion_met"] = (summary["cycle"]["runs_in_cycle"] >= 5 and summary["errors"] == 0
+                                         and faster)
     else:
         summary["stop_criterion_met"] = False
     return summary
@@ -218,6 +276,11 @@ def main() -> None:
     parser.add_argument("--games", type=int, default=10)
     parser.add_argument("--excel", default=str(DEFAULT_EXCEL))
     parser.add_argument("--out-dir", default=str(DEFAULT_OUT))
+    parser.add_argument("--cycle-start", type=int, default=None,
+                        help="1er run du cycle en cours (minimum 5 runs comptés à partir de lui).")
+    parser.add_argument("--strategy", choices=["composite", "entropy_pure"], default="composite")
+    parser.add_argument("--force-abandon-game", type=int, default=0,
+                        help="Validation : force le chemin 'solution hors corpus' (abandon + révélation) sur cette partie.")
     args = parser.parse_args()
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -230,18 +293,28 @@ def main() -> None:
 
     trios = load_excel_trios(Path(args.excel))
     corpus = Corpus.from_file(bot_runner.DEFAULT_CORPUS)
-    root_cache = load_cache(bot_runner.DEFAULT_ROOT_CACHE)
-    blocklist = load_blocklist(bot_runner.DEFAULT_BLOCKLIST)
     runner = MatrixRunner()
+    runner.strategy = args.strategy
+    root_cache = load_cache(runner.root_cache_path())
+    blocklist = load_blocklist(bot_runner.DEFAULT_BLOCKLIST)
+    cycle_start = args.cycle_start or args.run
     games: list[dict] = []
     stop_reason = None
+    real_record_game = bot_runner.record_game
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         context = runner._new_context(browser)
-        runner._ensure_guest(context)  # invité créé avant le 1er chargement (course /api/me <-> /api/game)
         try:
-            for index in range(1, args.games + 1):
+            # invité créé avant le 1er chargement (course /api/me <-> /api/game, H8)
+            guest_info = runner._ensure_guest(context)
+        except ThrottlingDetectedError as exc:
+            guest_info, stop_reason = {"error": exc.reason}, f"THROTTLING à la création d'invité : {exc.reason}"
+        guest_events = drain(runner.events)
+        try:
+            for index in range(1, args.games + 1 if stop_reason is None else 1):
+                cookie_before_load = any(c.get("name") == bot_runner.GUEST_COOKIE
+                                         for c in context.cookies(bot_runner.API_ME_URL))
                 t0 = time.time()
                 try:
                     page = runner._open_game_page(context)
@@ -250,10 +323,16 @@ def main() -> None:
                     break
                 t_ready = time.time()
                 drain(runner.events)
+                forced_abandon = index == args.force_abandon_game
+                if forced_abandon:
+                    from run_case_matrix import AbandonSolver
+                    bot_runner.Solver, bot_runner.record_game = AbandonSolver, (lambda **kw: None)
                 try:
                     blocklist_at_start = set(blocklist)
                     result, blocklist = runner._play_one_game(page, corpus, root_cache, blocklist)
                 finally:
+                    if forced_abandon:
+                        bot_runner.Solver, bot_runner.record_game = Solver, real_record_game
                     t_end = time.time()
                     events = drain(runner.events)
                     runner.monitor.resolve_bodies()
@@ -263,6 +342,15 @@ def main() -> None:
                 trio = trios.get((report["letter"], report["length"]))
                 log = game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, corpus,
                                blocklist_at_start, root_cache)
+                log["h8"] = h8_watch(index, events, calls, guest_info, cookie_before_load)
+                log["forced_abandon"] = forced_abandon
+                log["revealed_answer"] = result.get("answer")
+                if forced_abandon:
+                    log["errors"] = [e for e in log["errors"] if e.get("check") is None]
+                if log["h8"]["not_found"]:
+                    log["errors"].append({"type": "H8_NOT_FOUND", **{k: log["h8"][k] for k in (
+                        "first_game_of_context", "guest_precreated", "cookie_before_load",
+                        "create_session_ids", "guess_session_ids", "create_minus_me_sent_s")}})
                 games.append(log)
                 with games_path.open("a", encoding="utf-8") as f:
                     f.write(json.dumps(log, ensure_ascii=False) + "\n")
@@ -271,6 +359,7 @@ def main() -> None:
                     "game": index, "word": log["solution"], "len": log["length"], "outcome": log["outcome"],
                     "attempts": log["attempts"], "rej": log["rejections"], "time": log["time_s"]["total"],
                     "solver_max": log["max_solver_s"], "errors": len(log["errors"]),
+                    "h8": log["h8"]["not_found"], "revealed": log["revealed_answer"],
                     "trio_sim": (t.get("sim_trio_then_bot") or {}).get("attempts"),
                     "bot_sim": (t.get("sim_bot_only") or {}).get("attempts"),
                 }, ensure_ascii=False), flush=True)
@@ -286,10 +375,13 @@ def main() -> None:
         finally:
             context.close()
             browser.close()
-            summary = summarize(args.run, games, stop_reason, previous)
+            summary = summarize(args.run, games, stop_reason, previous, cycle_start, out)
+            summary["guest"] = {"info": guest_info, "events": [{k: v for k, v in e.items()} for e in guest_events]}
+            summary["strategy"] = args.strategy
             summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
-            print(json.dumps({k: summary[k] for k in ("run", "solved", "games", "errors", "mean_time_per_word_s",
-                                                      "mean_attempts_solved", "stop_criterion_met", "stop_reason")},
+            print(json.dumps({k: summary.get(k) for k in ("run", "solved", "games", "errors", "total_time_s",
+                                                          "mean_time_per_word_s", "mean_attempts_solved", "h8",
+                                                          "stop_criterion_met", "stop_reason")},
                              ensure_ascii=False))
 
 

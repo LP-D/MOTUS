@@ -7,7 +7,7 @@ from pathlib import Path
 from .corpus import Corpus
 from .feedback import ALPHABET
 from .scoring import letter_frequencies, positional_frequencies
-from .tree import best_guess_entropy_pure, top_guesses_composite
+from .tree import top_guesses_composite, top_guesses_entropy_pure
 
 STRATEGIES = ("composite", "entropy_pure")
 # Coups 1 de repli stockés par groupe (composite) : si le meilleur coup est refusé
@@ -41,8 +41,12 @@ def _compute_entry(
         # coup 1 ne dépend que de (lettre, longueur), donc calculable une fois pour
         # toutes), mais un fichier séparé (cf. build_root_cache) puisque les deux
         # stratégies ne choisissent pas forcément le même mot.
-        guess, entropy = best_guess_entropy_pure(candidates)
-        return {"word": guess, "entropy": entropy}
+        ranked = top_guesses_entropy_pure(candidates, k=ROOT_ALTERNATIVES + 1)
+        (guess, entropy), rest = ranked[0], ranked[1:]
+        # mêmes coups de repli que le composite (parité : un coup 1 refusé ne doit
+        # jamais relancer un recalcul complet, quelle que soit la stratégie)
+        return {"word": guess, "entropy": entropy,
+                "alternatives": [{"word": w, "entropy": e} for w, e in rest]}
     ranked = top_guesses_composite(candidates, candidates, global_freq, positional_freq, k=ROOT_ALTERNATIVES + 1)
     (guess, _score, entropy, vowels), rest = ranked[0], ranked[1:]
     return {

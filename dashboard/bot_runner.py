@@ -46,11 +46,14 @@ from stats_store import record_game  # noqa: E402
 
 DEFAULT_CORPUS = ROOT_DIR / "data" / "corpus_fr.txt"
 DEFAULT_ROOT_CACHE = ROOT_DIR / "data" / "root_cache.json"
+DEFAULT_ROOT_CACHE_ENTROPY_PURE = ROOT_DIR / "data" / "root_cache_entropy_pure.json"
 DEFAULT_AUTH_STATE = ROOT_DIR / "data" / "tuzmo_auth_state.json"
 DEFAULT_LOG = ROOT_DIR / "data" / "dashboard_bot_log.jsonl"
 DEFAULT_BLOCKLIST = ROOT_DIR / "data" / "known_invalid_words.json"
 # mots acceptés par le serveur (même format que la liste noire, cf. motus_solver.blocklist)
 DEFAULT_KNOWN_VALID = ROOT_DIR / "data" / "known_valid_words.json"
+# solutions révélées par abandon (mots hors corpus) : journal + ajout au corpus
+DEFAULT_REVEALED = ROOT_DIR / "data" / "revealed_solutions.jsonl"
 URL = "https://www.tusmo.xyz/infinite"
 API_ME_URL = "https://www.tusmo.xyz/api/me"
 GUEST_COOKIE = "tusmo_token"
@@ -86,6 +89,9 @@ _LIFECYCLE_EVENT_TYPES = {
     "session_info",
     "game_resumed",
     "gave_up",
+    "reveal_failed",
+    "solution_revealed",
+    "guest_ready",
 }
 
 
@@ -112,6 +118,9 @@ class BotRunner:
         self.current_iteration = 0
         self.total_iterations = 0
         self.page_monitor: NetworkMonitor | None = None
+        # "composite" (défaut) ou "entropy_pure" (alternative, jamais activée par
+        # défaut ; son cache racine a les mêmes coups de repli que le composite)
+        self.strategy = "composite"
 
     def is_running(self) -> bool:
         return self._thread is not None and self._thread.is_alive()
@@ -165,13 +174,16 @@ class BotRunner:
         except OSError:
             pass
 
+    def root_cache_path(self) -> Path:
+        return DEFAULT_ROOT_CACHE_ENTROPY_PURE if self.strategy == "entropy_pure" else DEFAULT_ROOT_CACHE
+
     def _new_context(self, browser: Browser) -> BrowserContext:
         context_kwargs = {"viewport": {"width": 1280, "height": 900}}
         if DEFAULT_AUTH_STATE.exists():
             context_kwargs["storage_state"] = str(DEFAULT_AUTH_STATE)
         return browser.new_context(**context_kwargs)
 
-    def _ensure_guest(self, context: BrowserContext) -> None:
+    def _ensure_guest(self, context: BrowserContext) -> dict:
         """Crée l'invité AVANT le 1er chargement de page du contexte.
 
         Au chargement, le site envoie GET /api/me et POST /api/game au même instant
@@ -182,7 +194,7 @@ class BotRunner:
         GET /api/me préalable, qui partage les cookies du contexte, supprime la
         course. Sans effet si le cookie existe déjà (session sauvegardée)."""
         if any(c.get("name") == GUEST_COOKIE for c in context.cookies(API_ME_URL)):
-            return
+            return {"created": False, "reason": "cookie invité déjà présent"}
         started = time.time()
         response = context.request.get(API_ME_URL, timeout=10000)
         latency = time.time() - started
@@ -191,8 +203,12 @@ class BotRunner:
             raise ThrottlingDetectedError(
                 f"création d'invité : HTTP {response.status}, Retry-After={retry_after}, {latency:.1f}s"
             )
-        self._emit("guest_ready", status=response.status)
+        cookie_set = any(c.get("name") == GUEST_COOKIE for c in context.cookies(API_ME_URL))
+        info = {"created": True, "status": response.status, "latency_s": round(latency, 3),
+                "t_ready": time.time(), "cookie_set": cookie_set}
+        self._emit("guest_ready", **info)
         time.sleep(random.uniform(*INTER_GAME_DELAY_S))  # débit validé avant le 1er chargement
+        return info
 
     def _open_game_page(self, context: BrowserContext) -> Page:
         """Ouvre /infinite dans `context` et démarre une partie.
@@ -276,7 +292,7 @@ class BotRunner:
 
         known_valid = load_blocklist(DEFAULT_KNOWN_VALID)
         solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist,
-                        known_valid=known_valid)
+                        known_valid=known_valid, strategy=self.strategy)
         solved = False
         confirmed_solution: str | None = None
         guesses_played: list[str] = []
@@ -305,8 +321,9 @@ class BotRunner:
                 result["resumed"] = True
                 self._emit("game_resumed", prior_guesses=[g["word"] for g in prior])
         first_attempt = len(guesses_played) + 1
+        exhausted = False
 
-        def save_stats(outcome: str) -> None:
+        def save_stats(outcome: str, revealed: str | None = None) -> None:
             nonlocal stats_saved
             record_game(
                 letter=letter,
@@ -315,7 +332,7 @@ class BotRunner:
                 solved=solved,
                 outcome=outcome,
                 guesses=guesses_played,
-                solution=confirmed_solution,
+                solution=confirmed_solution or revealed,
             )
             stats_saved = True
             result["outcome"] = outcome
@@ -327,7 +344,7 @@ class BotRunner:
                 return result, blocklist
             if not solver.candidates:
                 self._emit("candidates_exhausted", attempt=attempt)
-                save_stats("candidates_exhausted")
+                exhausted = True
                 break
 
             accepted_timer: CycleTimer | None = None
@@ -402,7 +419,7 @@ class BotRunner:
 
             if accepted_guess is None:
                 self._emit("candidates_exhausted", attempt=attempt)
-                save_stats("candidates_exhausted")
+                exhausted = True
                 break
 
             guesses_played.append(accepted_guess)
@@ -431,13 +448,18 @@ class BotRunner:
                 save_stats("solved")
                 break
 
-        if not solved and not self._stop_event.is_set():
+        if exhausted:
+            # solution hors corpus : abandon côté serveur AVANT d'enregistrer les
+            # stats, pour y inscrire la solution révélée
+            result["outcome"] = "candidates_exhausted"
+            if page is not None and not self._stop_event.is_set():
+                self._abandon(client, result, corpus, letter, length)
+            if result["outcome"] != "throttled":
+                save_stats("candidates_exhausted", revealed=result.get("answer"))
+        elif not solved and not self._stop_event.is_set():
             self._emit("not_solved")
             if not stats_saved:
                 save_stats("not_solved")
-
-        if result["outcome"] == "candidates_exhausted" and page is not None and not self._stop_event.is_set():
-            self._abandon(client, result)
 
         return result, blocklist
 
@@ -453,10 +475,31 @@ class BotRunner:
         bodies = [b for b in bodies if b]
         return (bodies[-1] if bodies else None), len(creates)
 
-    def _abandon(self, client: TuzmoClient, result: dict) -> None:
+    def _abandon(self, client: TuzmoClient, result: dict, corpus: Corpus | None = None,
+                 letter: str | None = None, length: int | None = None) -> None:
         """Mot que le bot ne peut plus trouver (solution hors corpus) : le clore côté
-        serveur (bouton ↻ de /infinite), sinon le même invité le retrouverait au
-        chargement suivant et la boucle rejouerait sans fin une partie insoluble."""
+        serveur, sinon le même invité le retrouverait au chargement suivant.
+
+        1. `giveup` (endpoint du site) : clôt la partie ET révèle la solution, qui est
+           journalisée et ajoutée au corpus pour les parties suivantes (A6, P8).
+        2. En cas d'échec, bouton ↻ (reset) : clôt sans révéler."""
+        answer = None
+        session_id = client.current_session_id() if hasattr(client, "current_session_id") else None
+        if session_id and hasattr(client, "reveal_answer"):
+            try:
+                answer = client.reveal_answer(session_id)
+            except ThrottlingDetectedError as exc:
+                self._emit("throttled", reason=exc.reason)
+                result["outcome"] = "throttled"
+                return
+            except Exception as exc:  # giveup indisponible : repli sur ↻
+                self._emit("reveal_failed", message=str(exc))
+        if answer:
+            result["answer"] = answer.upper()
+            result["abandoned"] = True
+            self._emit("gave_up", method="giveup", answer=result["answer"])
+            self._record_revealed(result["answer"], corpus, letter, length)
+            return
         try:
             client.abandon_current_word()
         except ThrottlingDetectedError as exc:
@@ -468,7 +511,23 @@ class BotRunner:
             result["abandon_failed"] = True
             return
         result["abandoned"] = True
-        self._emit("gave_up")
+        self._emit("gave_up", method="reset")
+
+    def _record_revealed(self, answer: str, corpus: Corpus | None, letter: str | None, length: int | None) -> None:
+        """Journalise une solution révélée ; si elle est hors corpus, l'ajoute au
+        corpus (fichier + mémoire) et aux mots connus valides."""
+        in_corpus = bool(corpus) and answer in set(corpus.subset(answer[0], len(answer)))
+        entry = {"t": time.time(), "letter": letter, "length": length, "answer": answer, "was_in_corpus": in_corpus}
+        try:
+            with open(DEFAULT_REVEALED, "a", encoding="utf-8") as f:
+                f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+            if corpus is not None and not in_corpus and corpus.add_word(answer):
+                with open(DEFAULT_CORPUS, "a", encoding="utf-8") as f:
+                    f.write(answer + "\n")
+            add_to_blocklist(answer, DEFAULT_KNOWN_VALID)  # même format de fichier
+        except OSError as exc:
+            self._emit("error", message=f"solution révélée non enregistrée : {exc}")
+        self._emit("solution_revealed", **entry)
 
     def _run_games(
         self, browser: Browser, iterations: int, corpus: Corpus, root_cache: dict, blocklist: set[str]
@@ -548,7 +607,7 @@ class BotRunner:
     def _run(self, iterations: int) -> None:
         try:
             corpus = Corpus.from_file(DEFAULT_CORPUS)
-            root_cache = load_cache(DEFAULT_ROOT_CACHE)
+            root_cache = load_cache(self.root_cache_path())
             blocklist = load_blocklist(DEFAULT_BLOCKLIST)
 
             with sync_playwright() as playwright:

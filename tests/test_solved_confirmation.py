@@ -62,6 +62,8 @@ def _patch_runner_io(monkeypatch, tmp_path):
     monkeypatch.setattr(bot_runner, "DEFAULT_LOG", tmp_path / "log.jsonl")
     monkeypatch.setattr(bot_runner, "DEFAULT_BLOCKLIST", tmp_path / "blocklist.json")
     monkeypatch.setattr(bot_runner, "DEFAULT_KNOWN_VALID", tmp_path / "known_valid.json")
+    monkeypatch.setattr(bot_runner, "DEFAULT_REVEALED", tmp_path / "revealed.jsonl")
+    monkeypatch.setattr(bot_runner, "DEFAULT_CORPUS", tmp_path / "corpus.txt")
 
 
 def test_solved_requires_actual_winning_pattern_not_just_candidate_elimination(monkeypatch, tmp_path):

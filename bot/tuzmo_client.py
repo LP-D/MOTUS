@@ -238,6 +238,45 @@ class TuzmoClient:
         prochaine saisie va dans la ligne `n_accepted` (pas dans la 1re)."""
         self._attempt_count = n_accepted
 
+    def current_session_id(self) -> str | None:
+        """Identifiant de la partie réellement utilisée (URL du dernier coup envoyé)."""
+        for call in reversed(self.monitor.calls):
+            if call.kind == "guess" and "/api/game/" in call.url:
+                return call.url.split("/api/game/", 1)[1].split("/", 1)[0]
+        return None
+
+    def reveal_answer(self, session_id: str) -> str | None:
+        """Abandonne le mot côté serveur et récupère la solution : POST
+        /api/game/{id}/giveup, requête identique à celle du site (`api.giveUp` :
+        fetch JSON, corps `{}`, cookies de la page). /infinite n'affiche pas ce
+        bouton ; d'après le code du site, l'endpoint renvoie `session.answer` (validation
+        en direct : docs/diagnostics/2026-09-23_cycle_amelioration_2.md). Sert aux
+        solutions hors corpus (cas A6, P8).
+
+        Lève `GameStateError` si la requête n'aboutit pas, `ThrottlingDetectedError`
+        sur throttling."""
+        self._respect_request_gap()
+        known_ids = {id(c) for c in self.monitor.calls}
+        self.page.evaluate(
+            """async (id) => {
+                const r = await fetch(`/api/game/${id}/giveup`, {
+                    method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({})
+                });
+                return r.status;
+            }""",
+            session_id,
+        )
+        call = self._wait_for_new_call(known_ids, kind="give_up")
+        if call is None:
+            raise GameStateError("abandon (giveup) non transmis")
+        self._wait_for_response(call)
+        throttle = is_throttle_signal(call)
+        if throttle:
+            raise ThrottlingDetectedError(throttle, call)
+        if call.server_error or call.status != 200:
+            raise GameStateError(call.server_error or f"HTTP {call.status}")
+        return ((call.body or {}).get("session") or {}).get("answer")
+
     def abandon_current_word(self) -> None:
         """Clôt côté serveur un mot que le bot ne peut plus trouver, via le bouton
         ↻ de /infinite (`button.run-reset` : POST /api/game/{id}/reset, puis le

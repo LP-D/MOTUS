@@ -145,7 +145,9 @@ def aggregate_solutions(games: list[dict]) -> dict:
     accumulé — ne PRÉSUME PAS d'un pool limité/cyclique, se contente de compter ce
     qui a été réellement observé ; à vérifier empiriquement au fil de
     l'accumulation (peu concluant sur un petit échantillon)."""
-    solved_with_solution = [g for g in games if g.get("solved") and g.get("solution")]
+    # parties résolues, et parties non résolues dont la solution a été révélée par
+    # l'abandon serveur (solutions hors corpus) : le mot tiré est connu dans les deux cas
+    solved_with_solution = [g for g in games if g.get("solution")]
     n = len(solved_with_solution)
 
     length_counts: dict[int, int] = {}

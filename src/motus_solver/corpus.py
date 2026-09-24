@@ -53,6 +53,16 @@ class Corpus:
             raise ValueError(f"Aucun mot exploitable dans {path}")
         return cls(sorted(words))
 
+    def add_word(self, word: str) -> bool:
+        """Ajoute un mot absent (ex. solution révélée hors corpus). Retourne True
+        s'il a été ajouté."""
+        word = normalize_word(word)
+        if not word or word in self._by_first_length.get((word[0], len(word)), []):
+            return False
+        self.words.append(word)
+        self._by_first_length[(word[0], len(word))].append(word)
+        return True
+
     def subset(self, first_letter: str, length: int) -> list[str]:
         return list(self._by_first_length.get((first_letter.upper(), length), []))
 

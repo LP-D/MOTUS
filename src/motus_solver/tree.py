@@ -219,6 +219,39 @@ def best_guess_entropy_pure(
     return best[2], best[0]
 
 
+def top_guesses_entropy_pure(
+    candidates: list[str], guess_pool: list[str] | None = None, k: int = 10
+) -> list[tuple[str, float]]:
+    """Les `k` meilleurs coups selon l'entropie pure, classés comme
+    `best_guess_entropy_pure` (inchangée) : entropie décroissante, puis mot
+    appartenant aux candidats, puis ordre de `guess_pool` — le 1er élément est
+    toujours le résultat de `best_guess_entropy_pure`.
+
+    Parité avec `top_guesses_composite` : sert au cache racine de la stratégie
+    entropie pure (repli immédiat si un coup 1 est refusé par le jeu, au lieu d'un
+    recalcul complet). Retourne [(mot, entropie)]."""
+    if not candidates:
+        raise ValueError("aucun candidat restant")
+    if guess_pool is None:
+        guess_pool = candidates
+    candidates_set = set(candidates)
+    candidates_arr = words_to_matrix(candidates)
+    letter_counts = candidate_letter_counts(candidates_arr)
+    n = len(candidates)
+    length = len(candidates[0])
+    batch_size = _batch_size_for(n, length)
+    pool: list[tuple[float, bool, int, str]] = []
+    for start in range(0, len(guess_pool), batch_size):
+        chunk = guess_pool[start : start + batch_size]
+        entropies = _entropy_batch(chunk, candidates_arr, n, length, letter_counts)
+        pool.extend(
+            (float(e), guess in candidates_set, start + i, guess) for i, (guess, e) in enumerate(zip(chunk, entropies))
+        )
+        pool.sort(key=lambda item: (-item[0], not item[1], item[2]))
+        del pool[k:]
+    return [(guess, entropy) for entropy, _in_cands, _idx, guess in pool]
+
+
 def build_tree(
     candidates: list[str],
     guess_pool: list[str],

@@ -174,3 +174,14 @@ def test_aggregate_solutions_no_repeats_reported_honestly():
     result = aggregate_solutions(games)
     assert result["has_observed_repeats"] is False
     assert result["repeated_solutions"] == []
+
+
+def test_aggregate_solutions_includes_answers_revealed_on_unsolved_games():
+    """Tâche 4 : une solution hors corpus révélée par abandon compte dans la
+    distribution des mots tirés, même si la partie n'est pas résolue."""
+    games = [
+        make_game("R", 5, 2, True, solution="RIVET"),
+        make_game("A", 6, 1, False, outcome="candidates_exhausted", solution="ABSCON"),
+    ]
+    result = aggregate_solutions(games)
+    assert result["n_solutions_recorded"] == 2

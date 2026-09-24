@@ -1,0 +1,106 @@
+{
+  "run": 6,
+  "commit": "9d4c96b",
+  "games": 6,
+  "solved": 5,
+  "unsolved": [
+    {
+      "group": "C7",
+      "outcome": "throttled"
+    }
+  ],
+  "errors": 1,
+  "error_details": [
+    {
+      "type": "throttled",
+      "timestamp": 1790196666.8739254,
+      "reason": "aucune réponse en 10s"
+    }
+  ],
+  "mean_time_per_word_s": 10.25,
+  "total_time_s": 61.5,
+  "mean_attempts_solved": 3,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 1,
+    "3": 3,
+    "4": 1,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 5,
+  "root_rejections": 3,
+  "time_breakdown_mean_s": {
+    "load": 0.87,
+    "solver": 0.0,
+    "typing": 5.2,
+    "enter_and_rate_wait": 1.64,
+    "server_roundtrip": 0.23,
+    "reveal_wait": 0.02
+  },
+  "max_solver_s": 0.0039,
+  "max_latency_s": 0.1601,
+  "words": [
+    "RAPPROCHE (9, 2 essais, 6.554s)",
+    "RECENSEE (8, 3 essais, 9.459s)",
+    "CONDAMNER (9, 4 essais, 17.207s)",
+    "CHIENS (6, 3 essais, 8.666s)",
+    "EROTISMES (9, 3 essais, 7.193s)",
+    "? (7, 0 essais, 12.411s)"
+  ],
+  "stop_reason": "THROTTLING : throttling détecté : aucune réponse en 10s",
+  "trio_vs_bot": {
+    "games_compared": 5,
+    "mean_attempts_trio_then_bot": 4.2,
+    "mean_attempts_bot_only_sim": 2.8,
+    "trio_better": 0,
+    "trio_worse": 4,
+    "mean_remaining_after_3_trio": 1.8,
+    "mean_remaining_after_3_bot": 1,
+    "trio_words_blocklisted": []
+  },
+  "h8": {
+    "not_found_games": [],
+    "guest_precreated": true,
+    "session_id_mismatch_games": []
+  },
+  "cycle": {
+    "cycle_start_run": 6,
+    "runs_in_cycle": 1
+  },
+  "trio_vs_bot_cumulative": {
+    "words_compared": 53,
+    "trio_better": 1,
+    "trio_worse": 43,
+    "equal": 9,
+    "mean_attempts_trio_then_bot": 4.19,
+    "mean_attempts_bot_only": 3.09
+  },
+  "vs_previous": {
+    "previous_total_time_s": 80.2,
+    "previous_mean_time_per_word_s": 8.02,
+    "faster": false
+  },
+  "stop_criterion_met": false,
+  "guest": {
+    "info": {
+      "created": true,
+      "status": 200,
+      "latency_s": 0.164,
+      "t_ready": 1790196590.0094044,
+      "cookie_set": true
+    },
+    "events": [
+      {
+        "type": "guest_ready",
+        "timestamp": 1790196590.0094044,
+        "created": true,
+        "status": 200,
+        "latency_s": 0.164,
+        "t_ready": 1790196590.0094044,
+        "cookie_set": true
+      }
+    ]
+  },
+  "strategy": "composite"
+}
