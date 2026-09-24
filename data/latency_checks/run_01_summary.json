@@ -1,0 +1,85 @@
+{
+  "run": 1,
+  "commit": "273e32c",
+  "games": 1,
+  "solved": 1,
+  "unsolved": [],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 8.56,
+  "total_time_s": 8.6,
+  "mean_attempts_solved": 2,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 1,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 0,
+  "root_rejections": 0,
+  "time_breakdown_mean_s": {
+    "load": 4.53,
+    "solver": 0.01,
+    "typing": 2.64,
+    "enter_and_rate_wait": 0.64,
+    "server_roundtrip": 0.35,
+    "reveal_wait": 0.01
+  },
+  "max_solver_s": 0.015,
+  "max_latency_s": 0.0744,
+  "words": [
+    "SUICIDEE (8, 2 essais, 8.559s)"
+  ],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 1,
+    "mean_attempts_trio_then_bot": 4,
+    "mean_attempts_bot_only_sim": 2,
+    "trio_better": 0,
+    "trio_worse": 1,
+    "mean_remaining_after_3_trio": 1,
+    "mean_remaining_after_3_bot": null,
+    "trio_words_blocklisted": []
+  },
+  "h8": {
+    "not_found_games": [],
+    "guest_precreated": true,
+    "session_id_mismatch_games": []
+  },
+  "cycle": {
+    "cycle_start_run": 1,
+    "runs_in_cycle": 1
+  },
+  "trio_vs_bot_cumulative": {
+    "words_compared": 1,
+    "trio_better": 0,
+    "trio_worse": 1,
+    "equal": 0,
+    "mean_attempts_trio_then_bot": 4,
+    "mean_attempts_bot_only": 2
+  },
+  "stop_criterion_met": false,
+  "guest": {
+    "info": {
+      "created": true,
+      "status": 200,
+      "latency_s": 0.224,
+      "t_ready": 1790236130.4516203,
+      "cookie_set": true
+    },
+    "events": [
+      {
+        "type": "guest_ready",
+        "timestamp": 1790236130.4516203,
+        "created": true,
+        "status": 200,
+        "latency_s": 0.224,
+        "t_ready": 1790236130.4516203,
+        "cookie_set": true
+      }
+    ]
+  },
+  "strategy": "composite"
+}

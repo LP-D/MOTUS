@@ -264,3 +264,17 @@ def test_entropy_pure_solver_dynamic_moves_match_reference():
 def test_default_strategy_is_still_composite():
     corpus = make_corpus()
     assert Solver(letter="R", length=5, corpus=corpus).strategy == "composite"
+
+
+def test_refresh_also_purges_blocklisted_fallback_moves():
+    """Validation ciblée (24/09/2026) : un coup de REPLI refusé par le jeu doit lui
+    aussi disparaître du cache, pas seulement le coup 1."""
+    from motus_solver.cache import refresh_blocklisted_entries
+
+    corpus = make_corpus()
+    cache = build_root_cache(corpus)
+    bad_fallback = cache[cache_key("R", 5)]["alternatives"][0]["word"]
+    refreshed = refresh_blocklisted_entries(cache, corpus, {bad_fallback})
+    assert refreshed == [cache_key("R", 5)]
+    words = [cache[cache_key("R", 5)]["word"]] + [a["word"] for a in cache[cache_key("R", 5)]["alternatives"]]
+    assert bad_fallback not in words

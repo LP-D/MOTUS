@@ -1,0 +1,99 @@
+{
+  "run": 1,
+  "commit": "273e32c",
+  "games": 10,
+  "solved": 9,
+  "unsolved": [
+    {
+      "group": "I9",
+      "outcome": "candidates_exhausted"
+    }
+  ],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 6.59,
+  "total_time_s": 65.9,
+  "mean_attempts_solved": 2.33,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 6,
+    "3": 3,
+    "4": 0,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 3,
+  "root_rejections": 1,
+  "time_breakdown_mean_s": {
+    "load": 0.81,
+    "solver": 0.0,
+    "typing": 3.32,
+    "enter_and_rate_wait": 1.56,
+    "server_roundtrip": 0.28,
+    "reveal_wait": 0.03
+  },
+  "max_solver_s": 0.0113,
+  "max_latency_s": 0.361,
+  "words": [
+    "DESCENTES (9, 2 essais, 6.494s)",
+    "ENROLES (7, 3 essais, 7.714s)",
+    "VENIEL (6, 2 essais, 4.897s)",
+    "GAGES (5, 2 essais, 5.998s)",
+    "SURGELEE (8, 3 essais, 7.319s)",
+    "BAILLES (7, 3 essais, 6.563s)",
+    "? (9, 2 essais, 7.359s)",
+    "GRAINE (6, 2 essais, 4.965s)",
+    "CANTIQUE (8, 2 essais, 4.87s)",
+    "IMITES (6, 2 essais, 9.726s)"
+  ],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 9,
+    "mean_attempts_trio_then_bot": 4.33,
+    "mean_attempts_bot_only_sim": 3.44,
+    "trio_better": 1,
+    "trio_worse": 7,
+    "mean_remaining_after_3_trio": 1.33,
+    "mean_remaining_after_3_bot": 2.2,
+    "trio_words_blocklisted": []
+  },
+  "h8": {
+    "not_found_games": [],
+    "guest_precreated": true,
+    "session_id_mismatch_games": []
+  },
+  "cycle": {
+    "cycle_start_run": 1,
+    "runs_in_cycle": 1
+  },
+  "trio_vs_bot_cumulative": {
+    "words_compared": 9,
+    "trio_better": 1,
+    "trio_worse": 7,
+    "equal": 1,
+    "mean_attempts_trio_then_bot": 4.33,
+    "mean_attempts_bot_only": 3.44
+  },
+  "stop_criterion_met": false,
+  "guest": {
+    "info": {
+      "created": true,
+      "status": 200,
+      "latency_s": 0.173,
+      "t_ready": 1790236152.8169427,
+      "cookie_set": true
+    },
+    "events": [
+      {
+        "type": "guest_ready",
+        "timestamp": 1790236152.8169427,
+        "created": true,
+        "status": 200,
+        "latency_s": 0.173,
+        "t_ready": 1790236152.8169427,
+        "cookie_set": true
+      }
+    ]
+  },
+  "strategy": "entropy_pure"
+}

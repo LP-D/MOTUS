@@ -218,6 +218,7 @@ def evaluate_game(index, events, calls, root_cache, forced_loss, result) -> dict
         "api_calls": [
             {"kind": c.kind, "method": c.method, "path": c.url.split("tusmo.xyz", 1)[-1], "status": c.status,
              "latency_s": c.latency_s, "guess": c.guess, "server_error": c.server_error,
+             "rate_limit_headers": c.rate_limit_headers, "failure": c.failure,
              "t_sent": round(c.t_sent, 3)}
             for c in calls
         ],

@@ -162,7 +162,12 @@ def refresh_blocklisted_entries(
     les groupes denses (mesuré : ~93s sur E,9 ; davantage sur R,9).
 
     Modifie `cache` en place, retourne les clés recalculées."""
-    stale = sorted(key for key, entry in cache.items() if entry["word"] in blocklist)
+    # le coup 1 OU un coup de repli refusé : les 10 candidats du groupe doivent tous
+    # rester jouables (validation ciblée du 24/09/2026)
+    stale = sorted(
+        key for key, entry in cache.items()
+        if entry["word"] in blocklist or any(a["word"] in blocklist for a in entry.get("alternatives", ()))
+    )
     if not stale:
         return []
     items = [(key.split("_")[0], int(key.split("_")[1])) for key in stale]
