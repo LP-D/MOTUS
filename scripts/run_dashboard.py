@@ -71,13 +71,16 @@ def open_browser_when_ready() -> None:
 
 
 def main() -> None:
+    global PORT
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--mode", choices=[m.value for m in SUPPORTED_MODES], default="infinite")
     parser.add_argument("--games", type=int, default=1, help="Parties à enchaîner (quotidien : toujours 1).")
     parser.add_argument("--strategy", choices=STRATEGIES, default=DEFAULT_STRATEGY)
     parser.add_argument("--autostart", action="store_true", help="Démarre le bot dès que le dashboard est prêt.")
     parser.add_argument("--no-browser", action="store_true")
+    parser.add_argument("--port", type=int, default=PORT, help="Port local (8765 par défaut).")
     args = parser.parse_args()
+    PORT = args.port
 
     if not args.no_browser:
         threading.Thread(target=open_browser_when_ready, daemon=True).start()

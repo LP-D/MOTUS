@@ -1,0 +1,167 @@
+{
+ "generated": "2026-09-25 20:13:44",
+ "elapsed_s": 161.0,
+ "duels_per_pair": 1000,
+ "seed": 1,
+ "ranking": [
+  {
+   "player": "entropy_pure_sondes@rapide",
+   "elo": 1533.0,
+   "duels": 5000,
+   "wins": 2774,
+   "draws": 0,
+   "losses": 2226,
+   "win_rate_pct": 55.5,
+   "solved_pct": 56.4,
+   "mean_attempts_solved": 2.889,
+   "mean_solve_time_s": 11.9,
+   "rejections_per_duel": 0.21
+  },
+  {
+   "player": "entropy_pure@rapide",
+   "elo": 1528.2,
+   "duels": 5000,
+   "wins": 2734,
+   "draws": 0,
+   "losses": 2266,
+   "win_rate_pct": 54.7,
+   "solved_pct": 55.5,
+   "mean_attempts_solved": 2.9,
+   "mean_solve_time_s": 11.9,
+   "rejections_per_duel": 0.18
+  },
+  {
+   "player": "entropy_pure_chasse@rapide",
+   "elo": 1524.8,
+   "duels": 5000,
+   "wins": 2705,
+   "draws": 0,
+   "losses": 2295,
+   "win_rate_pct": 54.1,
+   "solved_pct": 55.0,
+   "mean_attempts_solved": 2.878,
+   "mean_solve_time_s": 11.8,
+   "rejections_per_duel": 0.18
+  },
+  {
+   "player": "entropy_pure_sans_fin@rapide",
+   "elo": 1520.1,
+   "duels": 5000,
+   "wins": 2665,
+   "draws": 0,
+   "losses": 2335,
+   "win_rate_pct": 53.3,
+   "solved_pct": 54.4,
+   "mean_attempts_solved": 2.817,
+   "mean_solve_time_s": 11.7,
+   "rejections_per_duel": 0.27
+  },
+  {
+   "player": "composite@rapide",
+   "elo": 1503.6,
+   "duels": 5000,
+   "wins": 2526,
+   "draws": 0,
+   "losses": 2474,
+   "win_rate_pct": 50.5,
+   "solved_pct": 52.7,
+   "mean_attempts_solved": 2.865,
+   "mean_solve_time_s": 11.8,
+   "rejections_per_duel": 0.15
+  },
+  {
+   "player": "aleatoire@rapide",
+   "elo": 1390.3,
+   "duels": 5000,
+   "wins": 1596,
+   "draws": 0,
+   "losses": 3404,
+   "win_rate_pct": 31.9,
+   "solved_pct": 33.9,
+   "mean_attempts_solved": 2.827,
+   "mean_solve_time_s": 12.5,
+   "rejections_per_duel": 0.87
+  }
+ ],
+ "pairs": {
+  "entropy_pure@rapide vs entropy_pure_chasse@rapide": {
+   "a_wins": 516,
+   "draws": 0,
+   "b_wins": 484
+  },
+  "entropy_pure@rapide vs entropy_pure_sondes@rapide": {
+   "a_wins": 494,
+   "draws": 0,
+   "b_wins": 506
+  },
+  "entropy_pure@rapide vs entropy_pure_sans_fin@rapide": {
+   "a_wins": 501,
+   "draws": 0,
+   "b_wins": 499
+  },
+  "entropy_pure@rapide vs composite@rapide": {
+   "a_wins": 535,
+   "draws": 0,
+   "b_wins": 465
+  },
+  "entropy_pure@rapide vs aleatoire@rapide": {
+   "a_wins": 688,
+   "draws": 0,
+   "b_wins": 312
+  },
+  "entropy_pure_chasse@rapide vs entropy_pure_sondes@rapide": {
+   "a_wins": 508,
+   "draws": 0,
+   "b_wins": 492
+  },
+  "entropy_pure_chasse@rapide vs entropy_pure_sans_fin@rapide": {
+   "a_wins": 486,
+   "draws": 0,
+   "b_wins": 514
+  },
+  "entropy_pure_chasse@rapide vs composite@rapide": {
+   "a_wins": 538,
+   "draws": 0,
+   "b_wins": 462
+  },
+  "entropy_pure_chasse@rapide vs aleatoire@rapide": {
+   "a_wins": 689,
+   "draws": 0,
+   "b_wins": 311
+  },
+  "entropy_pure_sondes@rapide vs entropy_pure_sans_fin@rapide": {
+   "a_wins": 529,
+   "draws": 0,
+   "b_wins": 471
+  },
+  "entropy_pure_sondes@rapide vs composite@rapide": {
+   "a_wins": 547,
+   "draws": 0,
+   "b_wins": 453
+  },
+  "entropy_pure_sondes@rapide vs aleatoire@rapide": {
+   "a_wins": 700,
+   "draws": 0,
+   "b_wins": 300
+  },
+  "entropy_pure_sans_fin@rapide vs composite@rapide": {
+   "a_wins": 526,
+   "draws": 0,
+   "b_wins": 474
+  },
+  "entropy_pure_sans_fin@rapide vs aleatoire@rapide": {
+   "a_wins": 655,
+   "draws": 0,
+   "b_wins": 345
+  },
+  "composite@rapide vs aleatoire@rapide": {
+   "a_wins": 672,
+   "draws": 0,
+   "b_wins": 328
+  }
+ },
+ "reasons": {
+  "cannot_catch_up": 14600,
+  "fewer_attempts": 400
+ }
+}

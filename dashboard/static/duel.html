@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Duel simulé</title>
+<style>
+  :root {
+    --bg: #0f1720;
+    --panel: #17222d;
+    --border: #2a3a48;
+    --text: #e6edf3;
+    --muted: #8b98a5;
+    --cell: #10181f;
+    --correct: #d14848;   /* convention Tuzmo : bien placé en rouge */
+    --present: #e5b953;   /* mal placé : rond jaune */
+    --absent: #26333f;
+    --accent: #3b82f6;
+    --win: #4ade80;
+    --lose: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+  header { padding: 12px 20px; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  header h1 { font-size: 16px; margin: 0; }
+  header a { color: var(--muted); font-size: 12px; text-decoration: none; }
+  header a:hover { color: var(--text); }
+  label { font-size: 12px; color: var(--muted); }
+  select, button {
+    background: var(--panel); color: var(--text); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; font-size: 13px;
+  }
+  button { cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); }
+  main { max-width: 980px; margin: 0 auto; padding: 16px; }
+  #banner { min-height: 48px; margin-bottom: 14px; padding: 10px 14px; border-radius: 8px; background: var(--panel);
+            border: 1px solid var(--border); font-size: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  #banner .big { font-size: 22px; font-weight: 800; }
+  #banner.win { border-color: var(--win); }
+  #banner.lose { border-color: var(--lose); }
+  #banner .clock { font-variant-numeric: tabular-nums; font-weight: 700; }
+  .arena { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .side { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px; flex: 1 1 300px; max-width: 460px; }
+  .side h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 0 0 10px;
+             display: flex; justify-content: space-between; gap: 8px; }
+  .board { display: flex; flex-direction: column; gap: 5px; align-items: center; }
+  .row { display: flex; gap: 5px; }
+  .cell { width: clamp(28px, 7vw, 42px); height: clamp(28px, 7vw, 42px); border-radius: 5px; background: var(--cell);
+          border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+          font-weight: 800; font-size: clamp(14px, 3.4vw, 20px); position: relative; }
+  .cell[data-s="2"] { background: var(--correct); border-color: var(--correct); }
+  .cell[data-s="0"] { background: var(--absent); }
+  .cell[data-s="1"]::before { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--present); z-index: 0; }
+  .cell span { position: relative; z-index: 1; }
+  .cell.hint span { color: var(--muted); }
+  .cell.active { border-color: var(--muted); }
+  .thinking { color: var(--muted); font-size: 12px; text-transform: none; letter-spacing: 0; }
+  #toast { height: 20px; text-align: center; color: var(--present); font-size: 13px; margin: 8px 0 4px; }
+  .keyboard { display: flex; flex-direction: column; gap: 5px; margin-top: 6px; align-items: center; }
+  .krow { display: flex; gap: 4px; }
+  .key { min-width: clamp(24px, 7vw, 34px); height: 40px; padding: 0 4px; font-weight: 700; border-radius: 5px; }
+  .key[data-s="2"] { background: var(--correct); border-color: var(--correct); }
+  .key[data-s="1"] { background: #7a6526; }
+  .key[data-s="0"] { background: #0b1117; color: #53606b; }
+  section.history { margin-top: 18px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+  section.history h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 0 0 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; }
+  .muted { color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Duel classé simulé</h1>
+  <a href="/">← dashboard</a>
+  <label for="botSelect">bot</label><select id="botSelect"></select>
+  <label for="speedSelect">vitesse</label><select id="speedSelect"></select>
+  <label for="lengthSelect">longueur</label>
+  <select id="lengthSelect">
+    <option value="">aléatoire</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+  </select>
+  <button id="newBtn" class="primary">Nouveau duel</button>
+  <span class="muted">Local : aucune requête vers Tuzmo.</span>
+</header>
+<main>
+  <div id="banner"><span class="muted">Choisis un bot et sa vitesse, puis lance un duel. Même mot, 6 essais chacun ; le premier qui trouve lance un chrono de 2 min, et l'autre doit trouver en strictement moins d'essais.</span></div>
+  <div class="arena">
+    <div class="side">
+      <h2><span>Toi</span><span id="meInfo"></span></h2>
+      <div class="board" id="myBoard"></div>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <div class="keyboard" id="keyboard"></div>
+    </div>
+    <div class="side">
+      <h2><span id="botTitle">Bot</span><span id="botInfo" class="thinking"></span></h2>
+      <div class="board" id="botBoard"></div>
+      <p class="muted" style="text-align:center;margin-top:10px;">Tu vois ses couleurs, pas ses lettres (révélées à la fin).</p>
+    </div>
+  </div>
+  <section class="history">
+    <h2>Ton bilan contre les bots</h2>
+    <table id="historyTable"></table>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const REASONS = {
+  fewer_attempts: 'trouvé en moins d\'essais',
+  cannot_catch_up: 'l\'autre ne pouvait plus faire mieux',
+  chase_timeout: 'chrono de riposte écoulé',
+  only_solver: 'seul à trouver',
+  nobody: 'personne n\'a trouvé',
+};
+const LAYOUT = ['AZERTYUIOP', 'QSDFGHJKLM', '<WXCVBN>'];
+let state = null, typed = '', poll = null;
+
+function fmt(s) { const m = Math.floor(s / 60), r = Math.floor(s % 60); return `${m}:${String(r).padStart(2, '0')}`; }
+function esc(s) { return String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+
+async function loadOptions() {
+  const o = await (await fetch('/api/duel/options')).json();
+  $('botSelect').innerHTML = o.bots.map((b) => `<option value="${b.name}" title="${esc(b.description)}">${b.name}</option>`).join('');
+  $('speedSelect').innerHTML = o.speeds.map((s) => `<option value="${s.name}">${s.name} — ${esc(s.description)}</option>`).join('');
+  $('speedSelect').value = 'humain';
+}
+
+function knownCorrect() {
+  const known = {};
+  for (const r of state.me.rows) [...r.pattern].forEach((c, i) => { if (c === '2') known[i] = r.word[i]; });
+  known[0] = state.letter;
+  return known;
+}
+
+function cellHtml(letter, s, cls = '') {
+  return `<div class="cell ${cls}" ${s != null ? `data-s="${s}"` : ''}><span>${letter || ''}</span></div>`;
+}
+
+function renderBoards() {
+  const n = state.length;
+  let mine = '';
+  const playing = !state.result && !state.me.solved && !state.me.failed && state.countdown <= 0;
+  const known = knownCorrect();
+  for (let r = 0; r < 6; r++) {
+    const row = state.me.rows[r];
+    let cells = '';
+    for (let i = 0; i < n; i++) {
+      if (row) cells += cellHtml(row.word[i], row.pattern[i]);
+      else if (r === state.me.rows.length && playing) {
+        const letter = typed[i];
+        cells += letter ? cellHtml(letter, null, 'active') : cellHtml(known[i] || '', null, 'active hint');
+      } else cells += cellHtml('', null);
+    }
+    mine += `<div class="row">${cells}</div>`;
+  }
+  $('myBoard').innerHTML = mine;
+  let bot = '';
+  for (let r = 0; r < 6; r++) {
+    const row = state.bot_side.rows[r];
+    let cells = '';
+    for (let i = 0; i < n; i++) cells += row ? cellHtml(row.word ? row.word[i] : '', row.pattern[i]) : cellHtml('', null);
+    bot += `<div class="row">${cells}</div>`;
+  }
+  $('botBoard').innerHTML = bot;
+  $('botTitle').textContent = `Bot · ${state.bot} (${state.speed})`;
+  $('botInfo').textContent = state.result ? '' : state.bot_side.solved ? 'a trouvé' : state.bot_side.failed ? 'a échoué'
+    : state.bot_side.thinking ? 'réfléchit…' : '';
+  $('meInfo').textContent = `${state.letter} · ${n} lettres`;
+}
+
+function renderKeyboard() {
+  const best = {};
+  if (state) for (const r of state.me.rows) [...r.word].forEach((ch, i) => {
+    best[ch] = Math.max(best[ch] ?? -1, Number(r.pattern[i]));
+  });
+  $('keyboard').innerHTML = LAYOUT.map((line) => `<div class="krow">${[...line].map((k) => {
+    const label = k === '<' ? '⌫' : k === '>' ? '⏎' : k;
+    const s = best[k] != null ? `data-s="${best[k]}"` : '';
+    return `<button class="key" data-k="${k}" ${s}>${label}</button>`;
+  }).join('')}</div>`).join('');
+}
+
+function renderBanner() {
+  const b = $('banner');
+  b.className = '';
+  if (!state) return;
+  if (state.result) {
+    const w = state.result.winner;
+    b.className = w === 'toi' ? 'win' : w === 'bot' ? 'lose' : '';
+    const title = w === 'toi' ? 'Victoire !' : w === 'bot' ? 'Défaite' : 'Égalité';
+    b.innerHTML = `<span class="big">${title}</span><span>${REASONS[state.result.reason] || state.result.reason}.
+      Le mot était <b>${state.result.word}</b>.</span>
+      <span class="muted">Toi : ${state.me.rows.length} essai(s) · bot : ${state.bot_side.rows.length} essai(s)` +
+      (state.result.bot_rejections ? ` · ${state.result.bot_rejections} mot(s) du bot refusé(s)` : '') + `</span>`;
+    return;
+  }
+  if (state.countdown > 0) { b.innerHTML = `<span class="big">${Math.ceil(state.countdown)}</span><span>Même mot pour vous deux : <b>${state.letter}</b> en ${state.length} lettres.</span>`; return; }
+  if (state.first_solver === 'bot') {
+    const left = state.to_beat - state.me.rows.length;
+    b.innerHTML = `<span class="big clock">${fmt(state.chase_left)}</span><span>Le bot a trouvé en ${state.to_beat + 1} essais :
+      trouve en <b>${left} essai(s)</b> ou moins pour gagner.</span>`;
+    return;
+  }
+  if (state.first_solver === 'toi') {
+    b.innerHTML = `<span class="big clock">${fmt(state.chase_left)}</span><span>Tu as trouvé en ${state.me.rows.length} essais :
+      le bot doit faire mieux avant la fin du chrono.</span>`;
+    return;
+  }
+  b.innerHTML = `<span class="big clock">${fmt(Math.max(0, state.clock))}</span><span>À toi de jouer : ${state.letter} en ${state.length} lettres.</span>`;
+}
+
+function render() { renderBoards(); renderKeyboard(); renderBanner(); }
+
+async function refresh() {
+  if (!state) return;
+  const res = await fetch(`/api/duel/${state.id}`);
+  if (!res.ok) { clearInterval(poll); return; }
+  state = await res.json();
+  render();
+  if (state.result) { clearInterval(poll); poll = null; loadHistory(); }
+}
+
+async function newDuel() {
+  const body = { bot: $('botSelect').value, speed: $('speedSelect').value };
+  if ($('lengthSelect').value) body.length = Number($('lengthSelect').value);
+  const res = await fetch('/api/duel/new', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const data = await res.json();
+  if (!res.ok) { $('toast').textContent = data.error; return; }
+  state = data; typed = state.letter; $('toast').textContent = '';
+  render();
+  if (poll) clearInterval(poll);
+  poll = setInterval(refresh, 250);
+}
+
+function canType() { return state && !state.result && !state.me.solved && !state.me.failed && state.countdown <= 0; }
+
+async function press(k) {
+  if (!canType()) return;
+  $('toast').textContent = '';
+  if (k === '<') { if (typed.length > 1) typed = typed.slice(0, -1); }
+  else if (k === '>') {
+    if (typed.length < state.length) { $('toast').textContent = `${state.length} lettres`; return; }
+    const word = typed;
+    const res = await fetch(`/api/duel/${state.id}/guess`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ word }) });
+    const data = await res.json();
+    if (data.error) { $('toast').textContent = data.error; if (res.status !== 422) return; }
+    if (res.ok) typed = state.letter;
+    state = data;
+    if (state.result) { clearInterval(poll); poll = null; loadHistory(); }
+  } else if (typed.length < state.length) typed += k;
+  render();
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.target.tagName === 'SELECT') return;
+  if (e.key === 'Enter') { e.preventDefault(); press('>'); }
+  else if (e.key === 'Backspace') press('<');
+  else if (/^[a-zA-Z]$/.test(e.key)) press(e.key.toUpperCase());
+});
+$('keyboard').addEventListener('click', (e) => { const k = e.target.closest('.key'); if (k) press(k.dataset.k); });
+$('newBtn').addEventListener('click', newDuel);
+
+async function loadHistory() {
+  const h = await (await fetch('/api/duel-history')).json();
+  const rows = Object.entries(h.by_bot).map(([bot, r]) => {
+    const n = r.toi + r.nul + r.bot;
+    return `<tr><td>${esc(bot)}</td><td>${r.toi}</td><td>${r.nul}</td><td>${r.bot}</td><td>${n ? Math.round(100 * (r.toi + r.nul / 2) / n) : 0} %</td></tr>`;
+  }).join('');
+  $('historyTable').innerHTML = h.duels
+    ? `<thead><tr><th>bot</th><th>victoires</th><th>nulles</th><th>défaites</th><th>score</th></tr></thead><tbody>${rows}</tbody>`
+    : '<tbody><tr><td class="muted">Aucun duel joué pour l\'instant.</td></tr></tbody>';
+}
+
+loadOptions();
+loadHistory();
+renderKeyboard();
+</script>
+</body>
+</html>

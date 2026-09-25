@@ -467,3 +467,59 @@ def test_client_reveal_answer_calls_giveup_endpoint(monkeypatch):
     client = TuzmoClient(page, monitor=page.monitor, min_request_gap_s=(0.0, 0.0))
     assert client.reveal_answer("abc") == "RUBAN"
     assert page.evaluated == ["abc"]
+
+
+# --- solution donnée par le serveur après une défaite, ou en grillant les essais ---
+
+def make_losing_client_cls(target, answer_after=6):
+    """Client dont la réponse au 6e coup raté porte la solution (`session.answer`,
+    statut `lost`), comme le serveur Tuzmo."""
+    base = make_client_cls(target)
+
+    class LosingClient(base):
+        def answer_from_last_response(self):
+            return target.lower() if len(self.submitted) >= answer_after else None
+
+    return LosingClient
+
+
+def test_lost_game_records_the_answer_given_by_the_server(runner, monkeypatch, tmp_path):
+    """Défaite en 6 essais (PA?ES, une seule lettre inconnue, aucun mot sonde) : la
+    solution renvoyée avec le 6e coup est enregistrée (stats, journal, mots valides)."""
+    import json
+
+    words = [f"PA{c}ES" for c in "BCDFGHJKLM"]  # 10 candidats, une lettre inconnue
+    client_cls = make_losing_client_cls("PAZES")
+    monkeypatch.setattr(bot_runner, "TuzmoClient", client_cls)
+    corpus = Corpus(words)
+    result, _ = runner._play_one_game(page=object(), corpus=corpus, root_cache=None, blocklist=set())
+
+    assert result["outcome"] == "not_solved" and result["answer"] == "PAZES"
+    assert len(client_cls.instances[-1].submitted) == 6
+    assert runner.recorded[0]["solution"] == "PAZES" and runner.recorded[0]["solved"] is False
+    assert "PAZES" in corpus.subset("P", 5)  # hors corpus : ajoutée
+    logged = json.loads((tmp_path / "revealed.jsonl").read_text(encoding="utf-8").splitlines()[0])
+    assert logged["revealed_by"] == "défaite" and logged["was_in_corpus"] is False
+    lost = [e for e in events(runner) if e["type"] == "not_solved"]
+    assert lost[0]["answer"] == "PAZES"
+
+
+def test_giveup_failure_burns_remaining_attempts_to_get_the_answer(runner, monkeypatch):
+    """Candidats épuisés et giveup en échec : les essais restants sont grillés avec
+    des mots jouables ; le 6e essai raté fait donner la solution par le serveur."""
+    base = make_revealing_client_cls("RUBAN", reveal_raises=GameStateError("HTTP 404"))
+
+    class Client(base):
+        def answer_from_last_response(self):
+            return "RUBAN" if len(self.submitted) >= 6 else None
+
+    monkeypatch.setattr(bot_runner, "TuzmoClient", Client)
+    corpus = Corpus(["RATER", "RIVER", "ROBOT", "RADIO", "RENTE", "RHUME", "RIVET", "ROUGE"])
+    result, _ = runner._play_one_game(page=object(), corpus=corpus, root_cache=None, blocklist=set())
+
+    client = Client.instances[-1]
+    assert len(client.submitted) == 6 and len(set(client.submitted)) == 6
+    assert client.gave_up is False  # pas de repli ↻
+    assert result["answer"] == "RUBAN" and result["abandoned"] is True
+    assert any(e["type"] == "gave_up" and e["method"] == "essais" for e in events(runner))
+    assert runner.recorded[0]["solution"] == "RUBAN"

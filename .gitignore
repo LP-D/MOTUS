@@ -26,3 +26,8 @@ data/dashboard_stats.json
 # checkpoints de simulation (régénérables via scripts/simulate_resolution_rate.py,
 # plusieurs Mo, pas du code)
 data/simulation_checkpoint*.json
+
+# historique de tes duels simulés contre les bots (données live, comme dashboard_stats.json)
+data/duel_history.jsonl
+# détail duel par duel des tournois (plusieurs Mo, régénérable avec le même --seed)
+data/duel_runs/*_duels.jsonl

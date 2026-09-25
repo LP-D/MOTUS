@@ -13,9 +13,14 @@ dashboard web local pour piloter/observer le bot en temps réel.
     sans revalider tous les tests de non-régression).
   - `tree.py` — `best_guess_composite` (calcul du meilleur coup, vectorisé) et
     l'arbre de décision adaptatif profondeur 4.
+  - `endgame.py` — fin de partie par mot sonde : quand le coup habituel risque de
+    faire perdre (ex. PA?ES, 8 candidats pour 4 essais) ou teste les lettres une par
+    une, joue un mot (candidat ou non) qui teste plusieurs lettres possibles d'un coup.
   - `cache.py` — précalcul (parallélisable) du coup 1 par couple (lettre, longueur).
   - `solver.py` — `Solver`, la classe utilisée par la CLI, le bot et le dashboard.
   - `cli.py` — interface en ligne de commande interactive.
+  - `duel.py` / `agents.py` — simulateur local du duel classé (règles du site,
+    modèles de bot, profils de vitesse). Aucune requête vers Tuzmo.
 - **`bot/`** — intégration Tuzmo (Playwright) :
   - `tuzmo_client.py` — lecture/écriture du DOM du jeu (plateau, clavier, feedback,
     détection des mots rejetés par le dictionnaire de validation du jeu).
@@ -106,6 +111,14 @@ Dans le dashboard :
 - **Suivi en direct** : boutons Démarrer / Arrêter, plateau miroir mis à jour en
   temps réel (WebSocket), latence par étape du dernier coup, mode actif et état de
   la partie en cours.
+- **Événements** : une phrase par étape (coup proposé, retour, mot refusé, mot sonde
+  de fin de partie, solution révélée et ajoutée au dictionnaire...). Le détail brut
+  de chaque événement s'affiche au survol.
+- **Mot introuvable** : si la solution n'est pas dans le dictionnaire, le bot
+  abandonne (`giveup`) et Tuzmo révèle la solution, ajoutée au dictionnaire. Si
+  l'abandon échoue, il grille les essais restants : la réponse au 6e essai raté
+  contient la solution. Après une défaite normale (6 essais), la solution renvoyée
+  par le serveur est aussi enregistrée.
 - **Statistiques et solutions filtrées par mode** : infini, quotidien, ou tous modes
   sur demande explicite.
 
@@ -114,7 +127,37 @@ Lancer le bot directement dans un mode, sans passer par le bouton :
 ```bash
 python scripts/run_dashboard.py --mode infinite --games 10 --autostart
 python scripts/run_dashboard.py --mode daily --autostart
+python scripts/run_dashboard.py --port 8766   # second dashboard, autre port
 ```
+
+## Duel classé simulé (local)
+
+Le vrai mode classé n'est pas automatisé : les CGU de Tuzmo interdisent
+l'automatisation (voir `docs/tuzmo_site_notes.md` §4). Le simulateur reproduit ses
+règles en local, sans aucune requête vers le site. Règles relevées dans le code
+public du site :
+- même mot pour les deux joueurs, 6 essais chacun ;
+- le premier qui trouve lance un chrono de 2 minutes ;
+- l'autre doit trouver en strictement moins d'essais ;
+- si personne ne trouve, c'est une égalité ;
+- chacun voit les couleurs adverses, pas les lettres.
+
+Les mots sont tirés parmi les solutions réelles connues.
+
+- **Jouer contre un bot** : page **http://127.0.0.1:8765/duel**, lien « duel simulé »
+  du dashboard. Choisis le modèle et sa vitesse (instantané, rapide, humain, lent).
+  Ton bilan contre chaque bot est gardé dans `data/duel_history.jsonl`.
+- **Compétition entre modèles** : `scripts/duel_tournament.py`. Chaque paire joue les
+  mêmes mots ; le script sort un classement Elo, les victoires, les essais et le temps.
+  Résultats dans `data/duel_runs/`.
+
+```bash
+python scripts/duel_tournament.py --duels 1000 --speed rapide
+python scripts/duel_tournament.py --agents entropy_pure@instantane,entropy_pure_chasse@humain --duels 500
+```
+
+Pour ajouter un modèle : une classe `Agent` et une entrée dans `AGENTS`
+(`src/motus_solver/agents.py`).
 
 ## Tests
 

@@ -113,23 +113,29 @@
   table { width: 100%; border-collapse: collapse; font-size: 12px; }
   th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--border); }
   th { color: var(--muted); font-weight: 600; }
-  #events { display: flex; flex-direction: column-reverse; gap: 4px; font-size: 12px; font-family: ui-monospace, monospace; }
-  .event { padding: 4px 6px; border-radius: 4px; background: #10181f; }
-  .event .t { color: var(--muted); margin-right: 6px; }
+  #events { display: flex; flex-direction: column-reverse; gap: 4px; font-size: 12px; }
+  .event { padding: 4px 6px; border-radius: 4px; background: #10181f; line-height: 1.45; }
+  .event .t { color: var(--muted); margin-right: 6px; font-family: ui-monospace, monospace; }
+  .event.info { color: var(--muted); }
   .event.rejected { color: #f0b429; }
   .event.solved { color: #4ade80; }
   .event.error { color: var(--error); }
+  .event.endgame { color: #93c5fd; border-left: 2px solid var(--accent); }
+  .sq { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 1px; background: var(--absent); vertical-align: -1px; }
+  .sq[data-state="1"] { background: var(--present); }
+  .sq[data-state="2"] { background: var(--correct); }
 </style>
 </head>
 <body>
 <header>
   <h1>Motus bot — dashboard</h1>
+  <a href="/duel" style="font-size:12px;color:var(--muted);">duel simulé →</a>
   <span id="status" class="status-pill" data-status="idle">idle</span>
   <label for="modeSelect" style="font-size:12px;color:var(--muted);">mode</label>
   <select id="modeSelect">
     <option value="infinite">Infini</option>
     <option value="daily">Quotidien (1 partie / jour)</option>
-    <option value="ranked" disabled title="Duels contre de vrais joueurs : non automatisé">Classé (non automatisé)</option>
+    <option value="ranked" disabled title="Duels contre de vrais joueurs : non automatisé (voir « duel simulé »)">Classé (non automatisé)</option>
   </select>
   <label for="strategySelect" style="font-size:12px;color:var(--muted);">stratégie</label>
   <select id="strategySelect">
@@ -268,13 +274,101 @@ function renderBoard() {
   }
 }
 
+const pct = (p) => `${Math.round(100 * p)} %`;
+// accorde chaque mot de `words` : plural(3, 'mot possible') -> "3 mots possibles"
+const plural = (n, words) => `${n} ${words.split(' ').map((x) => x + (n > 1 ? 's' : '')).join(' ')}`;
+const num = (x) => Number(x).toLocaleString('fr-FR', { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function patternSummary(pattern) {
+  const good = [...pattern].filter((c) => c === '2').length;
+  const misplaced = [...pattern].filter((c) => c === '1').length;
+  const squares = [...pattern].map((c) => `<span class="sq" data-state="${c}"></span>`).join('');
+  const s = (n) => (n > 1 ? 's' : '');
+  return `${squares} ${good} bien placée${s(good)}, ${misplaced} mal placée${s(misplaced)}`;
+}
+
+// Phrase lisible pour chaque événement du bot ; le détail brut reste au survol.
+function describe(ev) {
+  const w = (x) => `<b>${esc(x)}</b>`;
+  switch (ev.type) {
+    case 'start_requested':
+      return ev.accepted
+        ? [`Lancement : ${plural(ev.requested_iterations, 'partie')} en mode ${MODE_LABELS[ev.mode] || ev.mode}`, 'info']
+        : ['Lancement refusé : une boucle tourne déjà', 'rejected'];
+    case 'auth_loaded': return ['Session Tuzmo sauvegardée chargée', 'info'];
+    case 'auth_missing': return ['Pas de session sauvegardée : jeu en invité anonyme', 'info'];
+    case 'guest_ready': return [`Invité Tuzmo prêt (${ev.latency_s ?? '?'} s)`, 'info'];
+    case 'loop_progress': return [`Partie ${ev.current}/${ev.total}`, 'info'];
+    case 'session_info':
+      if (ev.action === 'rejouer') return ['Partie précédente terminée : clic sur « Rejouer »', 'info'];
+      if (ev.prior_guesses) return [`Partie déjà entamée côté serveur (${plural(ev.prior_guesses, 'coup')})`, 'info'];
+      return [`Session ${esc((ev.session_id || '').slice(0, 8))}`, 'info'];
+    case 'game_started':
+      return [`Nouveau mot : ${w(ev.letter)} en ${ev.length} lettres`, ''];
+    case 'game_resumed':
+      return [`Reprise de la partie : ${(ev.prior_guesses || []).map(esc).join(', ')} déjà joués`, ''];
+    case 'unobserved_group_drawn':
+      return [`Premier tirage du groupe ${ev.letter}${ev.length} : son coup 1 n'a jamais été validé par le jeu, rejet possible`, 'rejected'];
+    case 'guess_proposed':
+      if (ev.purpose === 'reveal') return [`Coup ${ev.attempt} : ${w(ev.guess)} — essai grillé pour que Tuzmo donne la solution`, ''];
+      return [`Coup ${ev.attempt} : ${w(ev.guess)} (${plural(ev.candidates, 'mot possible')})`, ''];
+    case 'endgame_move': {
+      const kind = ev.probe ? 'mot sonde' : 'candidat';
+      const letters = (ev.letters || []).join(', ');
+      if (ev.reason === 'risque') {
+        return [`Fin de partie : ${ev.candidates} mots possibles pour ${plural(ev.attempts_left, 'essai')}. ` +
+          `${w(ev.word)} (${kind}) teste ${letters} d'un coup au lieu de ${esc(ev.default)} : ` +
+          `chances de gagner ${pct(ev.p_default)} → ${pct(ev.p_win)}`, 'endgame'];
+      }
+      return [`Fin de partie : ${w(ev.word)} (${kind}) teste ${letters} d'un coup au lieu de ${esc(ev.default)} : ` +
+        `${num(ev.expected_default)} → ${num(ev.expected_attempts)} essais en moyenne`, 'endgame'];
+    }
+    case 'guess_rejected':
+      return [`${w(ev.guess)} refusé par Tuzmo (mot inconnu) : mis en liste noire, un autre mot est calculé`, 'rejected'];
+    case 'guess_not_submitted':
+      return [`${w(ev.guess)} non transmis au serveur (${esc(ev.reason)}) : nouvel essai du même mot`, 'rejected'];
+    case 'feedback_received':
+      return [`${w(ev.guess)} : ${patternSummary(ev.pattern || '')}`, ''];
+    case 'solved':
+      return [`Trouvé : ${w(ev.solution)} en ${plural(ev.attempts, 'coup')}`, 'solved'];
+    case 'not_solved':
+      return ev.answer
+        ? [`Perdu après ${plural(ev.attempts ?? 6, 'essai')}. Tuzmo a donné la solution : ${w(ev.answer)}`, 'rejected']
+        : [`Perdu après ${plural(ev.attempts ?? 6, 'essai')} (solution non communiquée par le serveur)`, 'rejected'];
+    case 'candidates_exhausted':
+      return [`Coup ${ev.attempt} : plus aucun mot de notre dictionnaire ne correspond, la solution n'y est pas. ` +
+        `On abandonne pour que Tuzmo la donne`, 'rejected'];
+    case 'gave_up':
+      if (ev.method === 'giveup') return [`Abandon : Tuzmo révèle la solution ${w(ev.answer)}`, ''];
+      if (ev.method === 'essais') return [`Essais restants grillés : Tuzmo donne la solution ${w(ev.answer)}`, ''];
+      return ['Mot passé (bouton ↻) : solution non révélée', 'rejected'];
+    case 'solution_revealed':
+      return ev.was_in_corpus
+        ? [`${w(ev.answer)} était déjà dans notre dictionnaire`, 'info']
+        : [`${w(ev.answer)} ajouté au dictionnaire pour les prochaines parties`, 'solved'];
+    case 'reveal_failed': return [`Solution non obtenue : ${esc(ev.message)}`, 'rejected'];
+    case 'daily_limit_reached': return ['Mot du jour déjà joué : prochaine partie demain', 'rejected'];
+    case 'mode_refused': return [`Mode refusé : ${esc(ev.reason)}`, 'error'];
+    case 'loop_finished': return [`Boucle terminée : ${ev.completed}/${ev.total} parties`, 'solved'];
+    case 'stopped': return ['Arrêt demandé : boucle interrompue', ''];
+    case 'throttled':
+      return [`Arrêt d'urgence : le serveur ralentit ou limite les requêtes (${esc(ev.reason)}). Attendre avant de relancer`, 'error'];
+    case 'error': return [`Erreur : ${esc(ev.message)}`, 'error'];
+    default:
+      return [`${esc(ev.type)}`, ''];
+  }
+}
+
 function addEvent(ev, cls) {
   const div = document.createElement('div');
-  div.className = 'event' + (cls ? ' ' + cls : '');
+  const [text, kind] = describe(ev);
+  div.className = 'event' + ((cls || kind) ? ' ' + (cls || kind) : '');
   const time = new Date(ev.timestamp * 1000).toLocaleTimeString();
-  div.innerHTML = `<span class="t">${time}</span>${ev.type}: ${JSON.stringify(
-    Object.fromEntries(Object.entries(ev).filter(([k]) => !['type', 'timestamp', 'record'].includes(k)))
-  )}`;
+  div.title = JSON.stringify(
+    Object.fromEntries(Object.entries(ev).filter(([k]) => !['timestamp', 'record'].includes(k)))
+  );
+  div.innerHTML = `<span class="t">${time}</span>${text}`;
   eventsEl.prepend(div);
   while (eventsEl.children.length > 200) eventsEl.removeChild(eventsEl.lastChild);
 }

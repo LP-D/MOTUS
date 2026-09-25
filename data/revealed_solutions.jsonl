@@ -1032,3 +1032,5 @@
 {"t": 1790340261.4299934, "letter": "G", "length": 8, "answer": "GERANCES", "was_in_corpus": false}
 {"t": 1790340808.5300188, "letter": "M", "length": 9, "answer": "MACHISMES", "was_in_corpus": false}
 {"t": 1790341201.5657732, "letter": "O", "length": 7, "answer": "OPAQUES", "was_in_corpus": false}
+{"t": 1790344305.9545343, "letter": "T", "length": 9, "answer": "TREBUCHEE", "was_in_corpus": false, "revealed_by": "abandon", "mode": "infinite"}
+{"t": 1790348782.2669437, "letter": "H", "length": 8, "answer": "HEXOGENE", "was_in_corpus": false, "revealed_by": "abandon", "mode": "infinite"}

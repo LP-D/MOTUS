@@ -53,7 +53,7 @@ def play_move(client: TuzmoClient, solver: Solver, attempt: int) -> str | None:
             # INVALID_WORD confirmé serveur pour ce mot exact -> liste noire légitime
             print(f"  essai {attempt} : {guess!r} rejeté (Mot inconnu), nouvelle proposition...")
             add_to_blocklist(guess, BLOCKLIST_PATH)
-            solver.candidates.remove(guess)
+            solver.discard(guess)
             continue
         except (GuessInputError, GuessNotSentError) as exc:
             # le serveur n'a pas jugé ce mot : jamais de liste noire, on retente
@@ -119,7 +119,9 @@ def main() -> None:
 
             time.sleep(random.uniform(0.6, 1.4))
         else:
-            print(f"Non résolu après {MAX_ATTEMPTS} essais. Candidats restants: {solver.candidates[:10]}")
+            answer = client.answer_from_last_response()
+            print(f"Non résolu après {MAX_ATTEMPTS} essais. Solution donnée par Tuzmo : {answer or '?'} ; "
+                  f"candidats restants : {solver.candidates[:10]}")
 
         browser.close()
 

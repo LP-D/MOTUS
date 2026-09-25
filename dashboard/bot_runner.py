@@ -14,6 +14,7 @@ import random
 import sys
 import threading
 import time
+from dataclasses import asdict
 from pathlib import Path
 
 from playwright.sync_api import Browser, BrowserContext, Page
@@ -99,6 +100,8 @@ _LIFECYCLE_EVENT_TYPES = {
     "unobserved_group_drawn",
     "daily_limit_reached",
     "mode_refused",
+    "endgame_move",
+    "not_solved",
 }
 
 
@@ -448,6 +451,9 @@ class BotRunner:
                 timer.mark("solver_suggest")
                 self._emit("guess_proposed", attempt=attempt, guess=guess, solver_s=solver_s,
                            candidates=len(solver.candidates))
+                if solver.last_endgame is not None:
+                    # fin de partie : mot sonde (ou autre candidat) à la place du coup habituel
+                    self._emit("endgame_move", attempt=attempt, **asdict(solver.last_endgame))
                 letter_delay_s, enter_delay_s = bot_config.get_typing_delay_s()
                 try:
                     client.submit_guess(
@@ -463,8 +469,7 @@ class BotRunner:
                     record = timer.finish({"outcome": "rejected", "guess": guess})
                     blocklist = add_to_blocklist(guess, DEFAULT_BLOCKLIST)
                     self._emit("guess_rejected", attempt=attempt, guess=guess, record=record)
-                    if guess in solver.candidates:
-                        solver.candidates.remove(guess)
+                    solver.discard(guess)  # ni candidat, ni mot sonde
                     continue
                 except (GuessInputError, GuessNotSentError) as exc:
                     # Le serveur n'a pas jugé CE mot (autre mot reçu, ou rien d'envoyé) :
@@ -538,15 +543,60 @@ class BotRunner:
             # stats, pour y inscrire la solution révélée
             result["outcome"] = "candidates_exhausted"
             if page is not None and not self._stop_event.is_set():
-                self._abandon(client, result, corpus, letter, length)
+                self._abandon(client, result, corpus, letter, length,
+                              burn=lambda: self._burn_attempts(client, solver, guesses_played, known_valid, result))
             if result["outcome"] != "throttled":
                 save_stats("candidates_exhausted", revealed=result.get("answer"))
         elif not solved and not self._stop_event.is_set():
-            self._emit("not_solved")
+            # 6 essais ratés : la réponse du serveur au dernier coup contient la solution
+            answer_of = getattr(client, "answer_from_last_response", None)
+            answer = answer_of() if callable(answer_of) else None
+            if answer:
+                result["answer"] = answer.upper()
+                self._record_revealed(result["answer"], corpus, letter, length, revealed_by="défaite")
+            self._emit("not_solved", attempts=len(guesses_played), answer=result.get("answer"))
             if not stats_saved:
-                save_stats("not_solved")
+                save_stats("not_solved", revealed=result.get("answer"))
 
         return result, blocklist
+
+    def _burn_attempts(self, client: TuzmoClient, solver: Solver, played: list[str], known_valid: set[str],
+                       result: dict) -> str | None:
+        """Repli quand l'abandon serveur (giveup) échoue : jouer les essais restants
+        avec des mots jouables (déjà acceptés par le jeu d'abord) jusqu'au 6e essai
+        raté, dont la réponse contient la solution. None si impossible."""
+        answer_of = getattr(client, "answer_from_last_response", None)
+        if not callable(answer_of):
+            return None
+        words = sorted((w for w in solver.pool if w not in played), key=lambda w: w not in known_valid)
+        for attempt in range(len(played) + 1, MAX_ATTEMPTS + 1):
+            while words:
+                if self._stop_event.is_set():
+                    return None
+                guess = words.pop(0)
+                self._emit("guess_proposed", attempt=attempt, guess=guess, candidates=0, purpose="reveal")
+                letter_delay_s, enter_delay_s = bot_config.get_typing_delay_s()
+                try:
+                    pattern = client.submit_guess(guess, timeout=REJECT_TIMEOUT_MS, letter_delay=letter_delay_s,
+                                                  enter_delay=enter_delay_s)
+                except WordRejectedError:
+                    add_to_blocklist(guess, DEFAULT_BLOCKLIST)
+                    solver.discard(guess)
+                    self._emit("guess_rejected", attempt=attempt, guess=guess)
+                    continue
+                except ThrottlingDetectedError as exc:
+                    self._emit("throttled", reason=exc.reason)
+                    result["outcome"] = "throttled"
+                    return None
+                except (GuessInputError, GuessNotSentError, GameStateError, PlaywrightTimeoutError) as exc:
+                    self._emit("reveal_failed", message=f"essai n° {attempt} non joué : {exc}")
+                    return None
+                played.append(guess)
+                self._emit("feedback_received", attempt=attempt, guess=guess, pattern=pattern, purpose="reveal")
+                break
+            else:
+                return None
+        return answer_of()
 
     def _current_session(self) -> tuple[dict | None, int]:
         """Session renvoyée par le dernier POST /api/game de la page (moniteur
@@ -561,13 +611,16 @@ class BotRunner:
         return (bodies[-1] if bodies else None), len(creates)
 
     def _abandon(self, client: TuzmoClient, result: dict, corpus: Corpus | None = None,
-                 letter: str | None = None, length: int | None = None) -> None:
+                 letter: str | None = None, length: int | None = None, burn=None) -> None:
         """Mot que le bot ne peut plus trouver (solution hors corpus) : le clore côté
         serveur, sinon le même invité le retrouverait au chargement suivant.
 
         1. `giveup` (endpoint du site) : clôt la partie ET révèle la solution, qui est
-           journalisée et ajoutée au corpus pour les parties suivantes (A6, P8).
-        2. En cas d'échec, bouton ↻ (reset) : clôt sans révéler."""
+           journalisée et ajoutée au corpus pour les parties suivantes (A6, P8). Même
+           résultat que griller les essais restants, en une seule requête.
+        2. En cas d'échec, `burn` : griller les essais restants ; le serveur donne la
+           solution avec le 6e essai raté.
+        3. En dernier recours, bouton ↻ (reset, /infinite) : clôt sans révéler."""
         answer = None
         session_id = client.current_session_id() if hasattr(client, "current_session_id") else None
         if session_id and hasattr(client, "reveal_answer"):
@@ -585,6 +638,16 @@ class BotRunner:
             self._emit("gave_up", method="giveup", answer=result["answer"])
             self._record_revealed(result["answer"], corpus, letter, length)
             return
+        if burn is not None:
+            answer = burn()
+            if result.get("outcome") == "throttled":
+                return
+            if answer:
+                result["answer"] = answer.upper()
+                result["abandoned"] = True
+                self._emit("gave_up", method="essais", answer=result["answer"])
+                self._record_revealed(result["answer"], corpus, letter, length, revealed_by="essais grillés")
+                return
         if not self.handler.reset_fallback:
             # /daily : pas de bouton ↻ ; la partie du jour reste simplement non résolue
             self._emit("reveal_failed", message="giveup indisponible, pas de repli ↻ dans ce mode")
@@ -602,11 +665,13 @@ class BotRunner:
         result["abandoned"] = True
         self._emit("gave_up", method="reset")
 
-    def _record_revealed(self, answer: str, corpus: Corpus | None, letter: str | None, length: int | None) -> None:
+    def _record_revealed(self, answer: str, corpus: Corpus | None, letter: str | None, length: int | None,
+                         revealed_by: str = "abandon") -> None:
         """Journalise une solution révélée ; si elle est hors corpus, l'ajoute au
         corpus (fichier + mémoire) et aux mots connus valides."""
         in_corpus = bool(corpus) and answer in set(corpus.subset(answer[0], len(answer)))
-        entry = {"t": time.time(), "letter": letter, "length": length, "answer": answer, "was_in_corpus": in_corpus}
+        entry = {"t": time.time(), "letter": letter, "length": length, "answer": answer, "was_in_corpus": in_corpus,
+                 "revealed_by": revealed_by, "mode": self.mode.value}
         try:
             with open(DEFAULT_REVEALED, "a", encoding="utf-8") as f:
                 f.write(json.dumps(entry, ensure_ascii=False) + "\n")

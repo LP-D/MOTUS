@@ -1,0 +1,133 @@
+{
+ "generated": "2026-09-25 15:49:45",
+ "elapsed_s": 44.0,
+ "leave_one_out": true,
+ "words": 2289,
+ "variants": {
+  "entropy_pure|base": {
+   "losses": 7,
+   "mean_attempts_won": 3.0188,
+   "mean_attempts_loss_as_7": 3.031,
+   "distribution": {
+    "1": 0,
+    "2": 489,
+    "3": 1364,
+    "4": 343,
+    "5": 69,
+    "6": 17
+   },
+   "mean_solver_s_per_game": 0.0063,
+   "p95_solver_s_per_game": 0.0203,
+   "max_move_s": 0.35,
+   "games_with_endgame_move": 0,
+   "games_with_probe": 0
+  },
+  "entropy_pure|endgame": {
+   "losses": 0,
+   "mean_attempts_won": 3.0258,
+   "mean_attempts_loss_as_7": 3.0258,
+   "distribution": {
+    "1": 0,
+    "2": 449,
+    "3": 1405,
+    "4": 371,
+    "5": 55,
+    "6": 9
+   },
+   "mean_solver_s_per_game": 0.0319,
+   "p95_solver_s_per_game": 0.0946,
+   "max_move_s": 0.371,
+   "games_with_endgame_move": 489,
+   "games_with_probe": 415
+  },
+  "composite|base": {
+   "losses": 8,
+   "mean_attempts_won": 3.078,
+   "mean_attempts_loss_as_7": 3.0917,
+   "distribution": {
+    "1": 0,
+    "2": 464,
+    "3": 1288,
+    "4": 432,
+    "5": 81,
+    "6": 16
+   },
+   "mean_solver_s_per_game": 0.0127,
+   "p95_solver_s_per_game": 0.0412,
+   "max_move_s": 0.734,
+   "games_with_endgame_move": 0,
+   "games_with_probe": 0
+  },
+  "composite|endgame": {
+   "losses": 0,
+   "mean_attempts_won": 3.0996,
+   "mean_attempts_loss_as_7": 3.0996,
+   "distribution": {
+    "1": 0,
+    "2": 406,
+    "3": 1344,
+    "4": 457,
+    "5": 69,
+    "6": 13
+   },
+   "mean_solver_s_per_game": 0.0447,
+   "p95_solver_s_per_game": 0.1461,
+   "max_move_s": 0.777,
+   "games_with_endgame_move": 565,
+   "games_with_probe": 456
+  }
+ },
+ "paired": {
+  "entropy_pure|base vs composite|base": {
+   "better": 637,
+   "worse": 506,
+   "equal": 1146,
+   "mean_diff": -0.0607,
+   "sign_test_p": 0.0001
+  },
+  "entropy_pure|endgame vs composite|endgame": {
+   "better": 604,
+   "worse": 456,
+   "equal": 1229,
+   "mean_diff": -0.0738,
+   "sign_test_p": 0.0
+  },
+  "entropy_pure|endgame vs entropy_pure|base": {
+   "better": 104,
+   "worse": 114,
+   "equal": 2071,
+   "mean_diff": -0.0052,
+   "sign_test_p": 0.5423
+  },
+  "composite|endgame vs composite|base": {
+   "better": 117,
+   "worse": 143,
+   "equal": 2029,
+   "mean_diff": 0.0079,
+   "sign_test_p": 0.1209
+  }
+ },
+ "lost_words": {
+  "entropy_pure|base": [
+   "CARRE",
+   "CARNE",
+   "GAVES",
+   "GAZES",
+   "MORNE",
+   "PAYEE",
+   "RAPES"
+  ],
+  "entropy_pure|endgame": [],
+  "composite|base": [
+   "CAHIER",
+   "CARRE",
+   "CRABE",
+   "FIGES",
+   "MARGE",
+   "MANNE",
+   "RAPES",
+   "RELAXER"
+  ],
+  "composite|endgame": []
+ }
+}

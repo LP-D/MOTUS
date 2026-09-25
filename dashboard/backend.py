@@ -17,6 +17,7 @@ from pydantic import BaseModel, Field
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from bot_config import config as bot_config  # noqa: E402
 from bot_runner import DEFAULT_AUTH_STATE, DEFAULT_LOG, runner  # noqa: E402
+from duel_api import router as duel_router  # noqa: E402
 from stats_store import aggregate as aggregate_stats  # noqa: E402
 from stats_store import aggregate_solutions_report, daily_game_on  # noqa: E402
 
@@ -30,11 +31,18 @@ STATS_MODES = {m.value for m in SUPPORTED_MODES} | {"all"}
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
 app = FastAPI(title="Motus bot dashboard")
+# duel classé simulé en local (toi contre un bot) : aucune requête vers Tuzmo
+app.include_router(duel_router)
 
 
 @app.get("/")
 def index() -> FileResponse:
     return FileResponse(STATIC_DIR / "index.html")
+
+
+@app.get("/duel")
+def duel_page() -> FileResponse:
+    return FileResponse(STATIC_DIR / "duel.html")
 
 
 class StartPayload(BaseModel):

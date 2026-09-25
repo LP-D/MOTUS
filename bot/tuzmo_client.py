@@ -245,6 +245,13 @@ class TuzmoClient:
                 return call.url.split("/api/game/", 1)[1].split("/", 1)[0]
         return None
 
+    def answer_from_last_response(self) -> str | None:
+        """Solution donnée par le serveur dans la réponse au dernier coup, quand ce
+        coup a fait perdre la partie (6e essai raté) : `session.answer`, que le site
+        affiche dans le récapitulatif (`status === 'lost'`, vue de jeu du site)."""
+        session = ((self.last_call.body if self.last_call else None) or {}).get("session") or {}
+        return session.get("answer") if session.get("status") == "lost" else None
+
     def reveal_answer(self, session_id: str) -> str | None:
         """Abandonne le mot côté serveur et récupère la solution : POST
         /api/game/{id}/giveup, requête identique à celle du site (`api.giveUp` :

@@ -107,8 +107,17 @@ pour la même soumission).
   `firstLetter`/`wordLength` changent) — pas besoin de recréer une session à
   chaque mot pour jouer plusieurs mots d'affilée, seulement en cas d'échec ou de
   script qui préfère une session fraîche par mot (ce que fait le code actuel).
-- Le mot cible réel n'est **jamais renvoyé en clair**, y compris en cas d'échec ou
-  de victoire (`word` ne donne que `firstLetter`/`wordLen`).
+- Le mot cible n'est pas renvoyé en clair dans le bloc `finished` d'une victoire
+  (`word` ne donne que `firstLetter`/`wordLen`).
+- **Correction du 25/09/2026** : sur une **défaite** (6e essai raté), la réponse de
+  `/guess` contient `session.status: "lost"` et `session.answer` (la solution). Le
+  site l'affiche dans son récapitulatif (vue de jeu : `a.session.status === 'lost'`
+  → `pushRecap({..., word: a.session.answer})`). Le bot l'enregistre désormais
+  (`TuzmoClient.answer_from_last_response`). `giveup` renvoie aussi `session.answer`.
+- Le serveur n'impose **pas** de jouer un mot compatible avec les retours précédents
+  (codes d'erreur du site : `INVALID_WORD`, `GAME_OVER`, `BAD_LENGTH` seulement). La
+  première lettre est pré-remplie : tout mot joué commence par elle. D'où les mots
+  sondes de fin de partie (`motus_solver/endgame.py`).
 
 ### Duel classé (`/ranked`) — nouveaux endpoints, page chargée sans rejoindre de partie
 
@@ -212,6 +221,21 @@ concerné aujourd'hui).
   exploration (cf. contrainte de la tâche, aucune automatisation duel à ce stade).
 
 ## 4. Détection anti-bot observable
+
+**CGU du site, relues le 25/09/2026** (page `/cgu`, mise à jour du 02/09/2026, texte
+présent dans le bundle JS) :
+- **§3 Règles de conduite** : sont interdits, entre autres, « la triche et
+  l'automatisation, sous toutes leurs formes ». La clause vise tous les modes, solo
+  compris.
+- **§5 Sanctions** : exclusion des classements, pseudo effacé. La sanction peut être
+  étendue aux autres comptes utilisés depuis le même appareil (un second compte
+  n'y échappe donc pas).
+- **Politique de confidentialité** : le site conserve des « alertes automatiques de
+  comportements de triche » et une empreinte d'appareil. Le bundle contient une vue
+  d'administration `AdminAnticheatView`.
+
+Ce qui suit (aucun anti-bot tiers détecté) ne concerne que la couche réseau. Une
+détection côté serveur, à partir du comportement de jeu, existe bel et bien.
 
 - **Aucun service de bot-detection tiers détecté** : pas d'en-têtes Cloudflare
   (`cf-ray`, `cf-cache-status`), pas de signature DataDome/PerimeterX/Akamai Bot
