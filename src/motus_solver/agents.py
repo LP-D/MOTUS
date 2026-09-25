@@ -16,7 +16,10 @@ from pathlib import Path
 
 from .blocklist import load_blocklist
 from .cache import ROOT_CACHE_FILES, load_cache
+from .cache import cache_key
 from .corpus import Corpus
+from .feedback import words_to_matrix
+from .inference import OpponentProfile, candidate_weights, effective_candidates, weighted_entropy
 from .solver import Solver
 
 # Refus du dictionnaire du jeu, simulés pour les bots : un mot jamais accepté par le
@@ -75,9 +78,13 @@ class AgentView:
 class Agent:
     name = "agent"
     description = ""
+    opponent: str | None = None  # nom de l'adversaire du duel en cours (profil)
 
     def new_game(self, letter: str, length: int, ctx: SolverContext, known_valid: set[str]) -> None:
         raise NotImplementedError
+
+    def observe(self, opponent: str, letter: str, length: int, opponent_guesses: list[str]) -> None:
+        """Fin de duel : la grille adverse (lettres comprises) est visible au récapitulatif."""
 
     def choose(self, view: AgentView) -> str:
         raise NotImplementedError
@@ -88,14 +95,22 @@ class Agent:
 
 
 class SolverAgent(Agent):
-    """Le solveur du bot (entropy_pure ou composite). `chase_aware` : quand
-    l'adversaire a trouvé en n essais, la fin de partie vise à trouver en n-1 essais
-    au plus (seule façon de gagner), au lieu de 6."""
+    """Le solveur du bot (entropy_pure ou composite), avec des options de duel :
+
+    - `chase_aware` (riposte) : l'adversaire a trouvé en n essais, la fin de partie
+      vise n-1 essais au plus (seule façon de gagner), au lieu de 6 ;
+    - `pressure` : l'adversaire est à `pressure_missing` lettre(s) ou moins de trouver
+      (d'après ses couleurs) : plus de mot sonde, chaque coup doit pouvoir gagner ;
+    - `near_tie` (tempo) : écart d'entropie toléré pour préférer un mot déjà accepté
+      par le jeu. Plus large = moins de refus (du temps gagné), un peu moins
+      d'information. 0,02 par défaut."""
 
     def __init__(self, name: str, strategy: str = "entropy_pure", endgame: bool = True, chase_aware: bool = False,
-                 rare_probes: bool = False, description: str = ""):
+                 rare_probes: bool = False, pressure: bool = False, pressure_missing: int = 1,
+                 near_tie: float | None = None, description: str = ""):
         self.name, self.strategy, self.endgame, self.chase_aware = name, strategy, endgame, chase_aware
-        self.rare_probes = rare_probes
+        self.rare_probes, self.pressure, self.pressure_missing, self.near_tie = (
+            rare_probes, pressure, pressure_missing, near_tie)
         self.description = description
         self.solver: Solver | None = None
         self._synced = 0
@@ -103,7 +118,7 @@ class SolverAgent(Agent):
     def new_game(self, letter, length, ctx, known_valid):
         self.solver = Solver(letter=letter, length=length, corpus=ctx.corpus, root_cache=ctx.caches[self.strategy],
                              blocklist=ctx.blocklist, known_valid=known_valid, strategy=self.strategy,
-                             endgame=self.endgame, endgame_rare_probes=self.rare_probes)
+                             endgame=self.endgame, endgame_rare_probes=self.rare_probes, near_tie=self.near_tie)
         self._synced = 0
 
     def _sync(self, view: AgentView) -> None:
@@ -112,13 +127,72 @@ class SolverAgent(Agent):
             self.solver.update(pattern)
         self._synced = len(view.history)
 
-    def choose(self, view):
+    def opponent_close(self, view: AgentView) -> bool:
+        if view.to_beat is not None:
+            return True
+        return bool(view.opponent_rows) and view.opponent_rows[-1].count("2") >= view.length - self.pressure_missing
+
+    def _prepare(self, view: AgentView) -> None:
         self._sync(view)
         if self.chase_aware and view.to_beat is not None:
             self.solver.max_attempts = view.to_beat
+        if self.pressure:
+            self.solver.endgame = self.endgame and not self.opponent_close(view)
+
+    def choose(self, view):
+        self._prepare(view)
         if not self.solver.candidates:
             return _burn_word(self.solver, view)  # solution hors corpus : essais grillés
         return self.solver.suggest(top_n=1)[0][0]
+
+
+class InferenceAgent(SolverAgent):
+    """Solveur qui lit aussi les couleurs adverses (motus_solver.inference) et apprend,
+    duel après duel, les mots d'ouverture de chaque adversaire.
+
+    Quand ces couleurs rendent certains candidats nettement plus probables, le coup
+    maximise l'entropie pondérée (+ chance de gagner tout de suite) parmi les
+    candidats. Sinon, coup habituel du solveur (fin de partie comprise)."""
+
+    MAX_CANDIDATES = 1500  # au-delà, calcul trop long pour un gain faible (début de partie)
+    INFORMATIVE = 0.9  # candidats effectifs < 90 % des candidats : poids jugés informatifs
+    WIN_BONUS = 1.0  # bits accordés à la probabilité de gagner tout de suite
+
+    def __init__(self, *args, profiles: dict[str, OpponentProfile] | None = None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.profiles = profiles if profiles is not None else {}
+        self.last_weights: dict[str, float] | None = None
+
+    def new_game(self, letter, length, ctx, known_valid):
+        super().new_game(letter, length, ctx, known_valid)
+        key = cache_key(letter, length)
+        roots = [e["word"] for cache in ctx.caches.values() for e in
+                 ([cache[key], *cache[key].get("alternatives", ())] if cache.get(key) else [])]
+        group = [w for w in self.solver.pool if w in known_valid]
+        self.vocabulary = list(dict.fromkeys(roots + group))
+        profile = self.profiles.get(self.opponent) if self.opponent else None
+        self.predicted_opener = profile.predicted_opener(letter, length, ctx.caches) if profile else None
+
+    def observe(self, opponent, letter, length, opponent_guesses):
+        self.profiles.setdefault(opponent, OpponentProfile()).observe(letter, length, opponent_guesses)
+
+    def choose(self, view):
+        self._prepare(view)
+        self.last_weights = None
+        cands = self.solver.candidates
+        if not cands:
+            return _burn_word(self.solver, view)
+        if not view.opponent_rows or len(cands) <= 1 or len(cands) > self.MAX_CANDIDATES:
+            return self.solver.suggest(top_n=1)[0][0]
+        weights = candidate_weights(cands, view.opponent_rows, self.vocabulary, self.predicted_opener)
+        if effective_candidates(weights) > self.INFORMATIVE * len(cands):
+            return self.solver.suggest(top_n=1)[0][0]
+        self.last_weights = dict(zip(cands, weights.tolist()))
+        if self.solver.attempts_left <= 1:
+            return cands[int(weights.argmax())]  # dernier essai utile : le plus probable
+        arr = words_to_matrix(cands)
+        scores = weighted_entropy(arr, arr, weights) + self.WIN_BONUS * weights
+        return cands[int(scores.argmax())]
 
 
 class RandomCandidateAgent(Agent):
@@ -162,6 +236,15 @@ AGENTS = {
         description="riposte + sondes rares permises pour finir plus vite (refus possibles)"),
     "entropy_pure_sans_fin": lambda: SolverAgent(
         "entropy_pure_sans_fin", "entropy_pure", endgame=False, description="sans mot sonde de fin de partie"),
+    "entropy_pure_pression": lambda: SolverAgent(
+        "entropy_pure_pression", "entropy_pure", chase_aware=True, pressure=True,
+        description="riposte + pression : plus de mot sonde quand l'adversaire est à une lettre"),
+    "entropy_pure_tempo": lambda: SolverAgent(
+        "entropy_pure_tempo", "entropy_pure", chase_aware=True, near_tie=0.10,
+        description="riposte + tempo : mots déjà acceptés préférés jusqu'à 10 % d'entropie en moins"),
+    "entropy_pure_infos": lambda: InferenceAgent(
+        "entropy_pure_infos", "entropy_pure", chase_aware=True,
+        description="riposte + lit les couleurs adverses, apprend les ouvertures de l'adversaire"),
     "composite": lambda: SolverAgent("composite", "composite", description="score composite (entropie, voyelles...)"),
     "aleatoire": lambda: RandomCandidateAgent(),
 }
@@ -223,7 +306,8 @@ def play_duel(word: str, agents: tuple[Agent, Agent], speeds: tuple[SpeedProfile
 
     duel = Duel(word, CHASE_SECONDS if chase_seconds is None else chase_seconds)
     known_valid = ctx.known_valid - {duel.word}
-    for agent in agents:
+    for i, agent in enumerate(agents):
+        agent.opponent = agents[1 - i].name
         agent.new_game(duel.letter, duel.length, ctx, known_valid)
     pending: list[tuple[float, str] | None] = [None, None]
     rejections = [0, 0]

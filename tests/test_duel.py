@@ -112,3 +112,45 @@ def test_bot_duel_runs_to_a_result():
                     (SPEEDS["instantane"], SPEEDS["lent"]), ctx, random.Random(3))
     assert rec.reason in {"fewer_attempts", "cannot_catch_up", "chase_timeout", "only_solver", "nobody"}
     assert any(rec.solved)
+
+
+# --- pistes de la compétition : infos adverses, pression, tempo ----------------------
+
+def test_opponent_profile_recognises_a_bot_opener():
+    from motus_solver.inference import OpponentProfile
+
+    caches = {"entropy_pure": {"P_5": {"word": "PAGES"}, "R_5": {"word": "RIVER"}, "T_5": {"word": "TAPIS"}}}
+    profile = OpponentProfile()
+    profile.observe("P", 5, ["PAGES", "PALES"])
+    profile.observe("R", 5, ["RIVER"])
+    assert profile.predicted_opener("P", 5, caches) == "PAGES"  # groupe déjà vu
+    assert profile.predicted_opener("T", 5, caches) == "TAPIS"  # bot reconnu : son cache racine
+
+
+def test_opponent_colours_weight_the_candidates():
+    from motus_solver.inference import candidate_weights
+
+    cands = ["PAGES", "PALES", "PAMES"]
+    # l'adversaire a ouvert avec PLMNT (prévu par son profil) et obtenu « L bien placé »
+    row = "20000"  # pattern de PLMNT contre PAGES : seul P est bon
+    w = candidate_weights(cands, [row], ["PLMNT", "PAGES"], first_row_opener="PLMNT")
+    assert w.argmax() == 0 and w[0] > 0.8
+    assert w.min() > 0  # jamais d'élimination stricte
+
+
+def test_pressure_disables_probes_when_opponent_is_one_letter_away():
+    ctx = _ctx()
+    agent = SolverAgent("p", chase_aware=True, pressure=True)
+    agent.new_game("P", 5, ctx, ctx.known_valid)
+    view = AgentView("P", 5, [("PAGES", "22022")], ["22202"], to_beat=None)
+    agent._prepare(view)
+    assert agent.solver.endgame is False
+    calm = AgentView("P", 5, [("PAGES", "22022")], ["20000"], to_beat=None)
+    agent._prepare(calm)
+    assert agent.solver.endgame is True
+
+
+def test_tempo_prefers_known_valid_words_more_widely():
+    from motus_solver.agents import make_agent
+
+    assert make_agent("entropy_pure_tempo").near_tie == 0.10

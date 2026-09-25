@@ -156,8 +156,14 @@ python scripts/duel_tournament.py --duels 1000 --speed rapide
 python scripts/duel_tournament.py --agents entropy_pure@instantane,entropy_pure_chasse@humain --duels 500
 ```
 
-Pour ajouter un modèle : une classe `Agent` et une entrée dans `AGENTS`
-(`src/motus_solver/agents.py`).
+Modèles disponibles :
+- `entropy_pure` et ses variantes : `_chasse` (riposte), `_sondes`, `_sans_fin`,
+  `_pression`, `_tempo`, `_infos` (lit les couleurs adverses, apprend les ouvertures) ;
+- `composite` ;
+- `aleatoire`.
+
+Résultats : `docs/diagnostics/2026-09-25_phase8_duel_pistes.md`. Pour ajouter un
+modèle : une classe `Agent` et une entrée dans `AGENTS` (`src/motus_solver/agents.py`).
 
 ## Tests
 

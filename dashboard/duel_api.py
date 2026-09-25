@@ -35,9 +35,13 @@ from motus_solver.agents import (  # noqa: E402
     make_agent,
 )
 from motus_solver.duel import CHASE_SECONDS, Duel, DuelError  # noqa: E402
+from motus_solver.inference import OpponentProfile  # noqa: E402
 
 DATA = ROOT_DIR / "data"
 HISTORY = DATA / "duel_history.jsonl"
+# ton profil vu par les bots qui apprennent (entropy_pure_infos) : tes mots d'ouverture
+PROFILES = DATA / "duel_profiles.json"
+HUMAN_NAME = "toi"
 COUNTDOWN_S = 3.0
 HUMAN, BOT = 0, 1
 MAX_SESSIONS = 20
@@ -46,6 +50,23 @@ router = APIRouter()
 _ctx: SolverContext | None = None
 _ctx_lock = threading.Lock()
 _sessions: dict[str, "LiveDuel"] = {}
+_profiles: dict[str, OpponentProfile] | None = None
+
+
+def profiles() -> dict[str, OpponentProfile]:
+    global _profiles
+    if _profiles is None:
+        raw = json.loads(PROFILES.read_text(encoding="utf-8")) if PROFILES.exists() else {}
+        _profiles = {k: OpponentProfile.from_dict(v) for k, v in raw.items()}
+    return _profiles
+
+
+def _save_profiles() -> None:
+    try:
+        PROFILES.write_text(json.dumps({k: v.to_dict() for k, v in profiles().items()}, ensure_ascii=False, indent=1),
+                            encoding="utf-8")
+    except OSError:
+        pass
 
 
 def context() -> SolverContext:
@@ -71,6 +92,9 @@ class LiveDuel:
         self.duel = Duel(word)
         self.bot_name, self.speed_name = bot, speed
         self.agent = make_agent(bot)
+        self.agent.opponent = HUMAN_NAME
+        if hasattr(self.agent, "profiles"):
+            self.agent.profiles = profiles()  # mémoire partagée d'un duel à l'autre
         self.speed = SPEEDS[speed]
         self.ctx = ctx
         self.rng = random.Random()
@@ -136,6 +160,10 @@ class LiveDuel:
 
     def _save(self) -> None:
         self.saved = True
+        human_words = [g for _, g, _ in self.duel.players[HUMAN].guesses]
+        if hasattr(self.agent, "profiles"):
+            self.agent.observe(HUMAN_NAME, self.duel.letter, self.duel.length, human_words)
+            _save_profiles()
         res = self.duel.result
         entry = {"t": time.time(), "bot": self.bot_name, "speed": self.speed_name, "word": self.duel.word,
                  "winner": {HUMAN: "toi", BOT: "bot", None: "nul"}[res.winner], "reason": res.reason,

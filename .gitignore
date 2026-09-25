@@ -31,3 +31,5 @@ data/simulation_checkpoint*.json
 data/duel_history.jsonl
 # détail duel par duel des tournois (plusieurs Mo, régénérable avec le même --seed)
 data/duel_runs/*_duels.jsonl
+# ton profil de joueur appris par les bots du duel simulé (données live)
+data/duel_profiles.json

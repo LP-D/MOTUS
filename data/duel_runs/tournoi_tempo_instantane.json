@@ -1,0 +1,68 @@
+{
+ "generated": "2026-09-25 21:37:58",
+ "elapsed_s": 85.5,
+ "duels_per_pair": 2000,
+ "seed": 1,
+ "ranking": [
+  {
+   "player": "entropy_pure_sondes@instantane",
+   "elo": 1507.8,
+   "duels": 4000,
+   "wins": 2067,
+   "draws": 0,
+   "losses": 1933,
+   "win_rate_pct": 51.7,
+   "solved_pct": 51.9,
+   "mean_attempts_solved": 2.943,
+   "mean_solve_time_s": 2.3,
+   "rejections_per_duel": 0.22
+  },
+  {
+   "player": "entropy_pure_tempo@instantane",
+   "elo": 1500.7,
+   "duels": 4000,
+   "wins": 2006,
+   "draws": 0,
+   "losses": 1994,
+   "win_rate_pct": 50.1,
+   "solved_pct": 50.6,
+   "mean_attempts_solved": 2.941,
+   "mean_solve_time_s": 2.3,
+   "rejections_per_duel": 0.18
+  },
+  {
+   "player": "entropy_pure@instantane",
+   "elo": 1491.5,
+   "duels": 4000,
+   "wins": 1927,
+   "draws": 0,
+   "losses": 2073,
+   "win_rate_pct": 48.2,
+   "solved_pct": 48.5,
+   "mean_attempts_solved": 2.945,
+   "mean_solve_time_s": 2.3,
+   "rejections_per_duel": 0.19
+  }
+ ],
+ "pairs": {
+  "entropy_pure@instantane vs entropy_pure_tempo@instantane": {
+   "a_wins": 963,
+   "draws": 0,
+   "b_wins": 1037
+  },
+  "entropy_pure@instantane vs entropy_pure_sondes@instantane": {
+   "a_wins": 964,
+   "draws": 0,
+   "b_wins": 1036
+  },
+  "entropy_pure_tempo@instantane vs entropy_pure_sondes@instantane": {
+   "a_wins": 969,
+   "draws": 0,
+   "b_wins": 1031
+  }
+ },
+ "reasons": {
+  "cannot_catch_up": 5958,
+  "fewer_attempts": 42
+ }
+}

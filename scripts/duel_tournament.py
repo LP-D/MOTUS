@@ -62,13 +62,21 @@ def _init() -> None:
     _ctx = SolverContext.load(DATA)
 
 
-def _run(job: tuple) -> dict:
-    (a, sa), (b, sb), word, seed = job
+def _run(job: tuple) -> list[dict]:
+    """Une série de duels entre deux modèles, avec les mêmes instances : un modèle qui
+    apprend (profil d'adversaire) garde sa mémoire d'un duel à l'autre de la série."""
+    (a, sa), (b, sb), words, seed = job
     rng = random.Random(seed)
-    rec = play_duel(word, (make_agent(a), make_agent(b)), (SPEEDS[sa], SPEEDS[sb]), _ctx, rng)
-    return {"a": f"{a}@{sa}", "b": f"{b}@{sb}", "word": word, "winner": rec.winner, "reason": rec.reason,
-            "attempts": rec.attempts, "solved": rec.solved, "solve_times": rec.solve_times,
-            "rejections": rec.rejections, "guesses": rec.guesses}
+    agents = (make_agent(a), make_agent(b))
+    out = []
+    for word in words:
+        rec = play_duel(word, agents, (SPEEDS[sa], SPEEDS[sb]), _ctx, rng)
+        for i in (0, 1):  # récapitulatif : chacun voit la grille de l'autre
+            agents[i].observe(agents[1 - i].name, word[0], len(word), rec.guesses[1 - i])
+        out.append({"a": f"{a}@{sa}", "b": f"{b}@{sb}", "word": word, "winner": rec.winner, "reason": rec.reason,
+                    "attempts": rec.attempts, "solved": rec.solved, "solve_times": rec.solve_times,
+                    "rejections": rec.rejections, "guesses": rec.guesses})
+    return out
 
 
 def elo(players: list[str], duels: list[dict], iterations: int = 200) -> dict[str, float]:
@@ -128,6 +136,8 @@ def main() -> None:
     parser.add_argument("--agents", default=",".join(AGENTS), help="modèles, séparés par des virgules (modele@vitesse)")
     parser.add_argument("--speed", default="rapide", help="vitesse par défaut")
     parser.add_argument("--duels", type=int, default=200, help="duels par paire (mêmes mots pour chaque paire)")
+    parser.add_argument("--series", type=int, default=100,
+                        help="duels d'affilée entre les mêmes instances (mémoire des profils d'adversaire)")
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--workers", type=int, default=max(1, mp.cpu_count() - 1))
     parser.add_argument("--out", default=None)
@@ -138,10 +148,11 @@ def main() -> None:
         raise SystemExit("il faut au moins deux joueurs")
     rng = random.Random(args.seed)
     words = rng.sample(known_solutions(), args.duels)
-    jobs = [(a, b, w, rng.randrange(2**31)) for a, b in itertools.combinations(players, 2) for w in words]
+    series = [words[i:i + args.series] for i in range(0, len(words), args.series)]
+    jobs = [(a, b, chunk, rng.randrange(2**31)) for a, b in itertools.combinations(players, 2) for chunk in series]
     t0 = time.time()
     with mp.Pool(args.workers, initializer=_init) as pool:
-        duels = pool.map(_run, jobs, chunksize=16)
+        duels = [d for batch in pool.imap(_run, jobs) for d in batch]
     names = [f"{n}@{s}" for n, s in players]
     report = {"generated": time.strftime("%Y-%m-%d %H:%M:%S"), "elapsed_s": round(time.time() - t0, 1),
               "duels_per_pair": args.duels, "seed": args.seed, **summarize(names, duels)}

@@ -26,6 +26,8 @@ def small_world(monkeypatch, tmp_path):
     monkeypatch.setattr(duel_api, "_ctx", ctx)
     monkeypatch.setattr(duel_api, "answer_pool", lambda: ["PAVES"])
     monkeypatch.setattr(duel_api, "HISTORY", tmp_path / "duel_history.jsonl")
+    monkeypatch.setattr(duel_api, "PROFILES", tmp_path / "duel_profiles.json")
+    monkeypatch.setattr(duel_api, "_profiles", None)
     monkeypatch.setattr(duel_api, "COUNTDOWN_S", 0.0)
 
 
@@ -53,3 +55,12 @@ def test_bot_letters_hidden_until_the_end():
 
 def test_unknown_bot_is_refused():
     assert client.post("/api/duel/new", json={"bot": "nope"}).status_code == 400
+
+
+def test_learning_bot_remembers_your_openers():
+    import json
+
+    state = client.post("/api/duel/new", json={"bot": "entropy_pure_infos", "speed": "lent"}).json()
+    client.post(f"/api/duel/{state['id']}/guess", json={"word": "PAVES"})
+    saved = json.loads(duel_api.PROFILES.read_text(encoding="utf-8"))
+    assert saved["toi"]["openers"]["P_5"] == ["PAVES"]
