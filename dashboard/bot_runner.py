@@ -400,7 +400,9 @@ class BotRunner:
         record_draw(DEFAULT_DRAWS, letter, length, "bot_runner", strategy=self.strategy, mode=self.mode.value,
                     session_id=(session or {}).get("id"), resumed=bool(result.get("resumed")))
         result["group_draws_before"] = draws_before
-        if not draws_before and not result.get("resumed"):
+        # le statut observé / incertain des groupes ne concerne que /infinite (le mot du
+        # jour n'est pas tiré de la même façon) : pas de signalement en quotidien
+        if self.mode is GameMode.INFINITE and not draws_before and not result.get("resumed"):
             self._emit("unobserved_group_drawn", letter=letter, length=length)
         first_attempt = len(guesses_played) + 1
         exhausted = False

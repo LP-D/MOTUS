@@ -98,11 +98,15 @@ def test_daily_game_records_mode_in_stats_and_draws(runner, monkeypatch, tmp_pat
     result, _ = runner._play_one_game(page=None, corpus=Corpus(["RIVER", "RATER"]), root_cache=None,
                                       blocklist=set())
     assert result["solved"] and runner.recorded[0]["mode"] == "daily"
-    started = [e for e in events(runner) if e["type"] == "game_started"]
+    all_events = events(runner)
+    started = [e for e in all_events if e["type"] == "game_started"]
     assert started[0]["mode"] == "daily"
     assert json.loads(draws.read_text(encoding="utf-8").splitlines()[0])["mode"] == "daily"
     # le mot du jour ne compte pas dans les tirages /infinite (statut des groupes)
     assert load_draw_counts(draws) == {} and load_draw_counts(draws, mode="daily") == {"R_5": 1}
+    # 1er mot du jour d'un groupe : jamais signalé comme groupe /infinite non observé
+    assert result["group_draws_before"] == 0
+    assert not any(e["type"] == "unobserved_group_drawn" for e in all_events)
 
 
 def test_daily_unwinnable_game_has_no_reset_fallback(runner, monkeypatch):

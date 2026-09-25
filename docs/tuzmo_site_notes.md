@@ -142,7 +142,9 @@ tous deux HTTP 200, aucun en-tête de limitation.
 - **Partie déjà jouée** : au rechargement, le serveur renvoie la session terminée
   (statut autre que `playing`). Le bot le traite comme « mot du jour déjà joué » : arrêt
   propre, événement `daily_limit_reached`, statut `daily_limit`, aucune partie comptée.
-  Comportement attendu, à confirmer en jeu réel en phase 5 (`daily_limit_check`).
+  **Vérifié en jeu réel le 25/09/2026** : après RECTEUR trouvé en 3 essais, le
+  rechargement dans le même contexte renvoie `status: "won"`, `mode: "daily"` ; le bot
+  s'arrête sur `daily_limit_reached`, sans envoyer aucun coup.
 - **Garde-fou local** : le bot crée un invité neuf à chaque lancement. Un lancement
   quotidien est donc refusé, sans aucune requête, si une partie du jour est déjà
   enregistrée à la date locale.

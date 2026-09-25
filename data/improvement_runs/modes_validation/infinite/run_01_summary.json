@@ -1,0 +1,130 @@
+{
+  "run": 1,
+  "commit": "9c5cbcd",
+  "games": 10,
+  "solved": 9,
+  "unsolved": [
+    {
+      "group": "C9",
+      "outcome": "candidates_exhausted"
+    }
+  ],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 6.93,
+  "total_time_s": 69.3,
+  "mean_attempts_solved": 2.67,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 3,
+    "3": 6,
+    "4": 0,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 3,
+  "root_rejections": 0,
+  "time_breakdown_mean_s": {
+    "load": 0.77,
+    "solver": 0.0,
+    "typing": 3.77,
+    "enter_and_rate_wait": 1.54,
+    "server_roundtrip": 0.26,
+    "reveal_wait": 0.02
+  },
+  "max_solver_s": 0.0029,
+  "max_latency_s": 0.1044,
+  "words": [
+    "? (9, 2 essais, 10.803s)",
+    "POIGNANTS (9, 3 essais, 6.652s)",
+    "ACCELERER (9, 3 essais, 7.185s)",
+    "PARIEUSE (8, 2 essais, 4.657s)",
+    "GENCIVE (7, 3 essais, 9.137s)",
+    "COUDRE (6, 3 essais, 6.557s)",
+    "OBSTINEES (9, 2 essais, 4.92s)",
+    "COINS (5, 3 essais, 6.649s)",
+    "SOUPERS (7, 2 essais, 4.337s)",
+    "CRUAUTE (7, 3 essais, 8.373s)"
+  ],
+  "rejection_causes": [
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "CADDIATES",
+      "game": 1,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "GENTILE",
+      "game": 5,
+      "attempt": 2
+    },
+    {
+      "api_error": "INVALID_WORD",
+      "source": "dynamic",
+      "root_rank": null,
+      "pre_validated": false,
+      "word": "CRAVETE",
+      "game": 10,
+      "attempt": 3
+    }
+  ],
+  "unobserved_groups_drawn": [],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 9,
+    "mean_attempts_trio_then_bot": 4,
+    "mean_attempts_bot_only_sim": 2.78,
+    "trio_better": 0,
+    "trio_worse": 8,
+    "mean_remaining_after_3_trio": 1,
+    "mean_remaining_after_3_bot": 1,
+    "trio_words_blocklisted": []
+  },
+  "h8": {
+    "not_found_games": [],
+    "guest_precreated": true,
+    "session_id_mismatch_games": []
+  },
+  "cycle": {
+    "cycle_start_run": 1,
+    "runs_in_cycle": 1
+  },
+  "trio_vs_bot_cumulative": {
+    "words_compared": 9,
+    "trio_better": 0,
+    "trio_worse": 8,
+    "equal": 1,
+    "mean_attempts_trio_then_bot": 4,
+    "mean_attempts_bot_only": 2.78
+  },
+  "stop_criterion_met": false,
+  "guest": {
+    "info": {
+      "created": true,
+      "status": 200,
+      "latency_s": 0.173,
+      "t_ready": 1790328447.3111858,
+      "cookie_set": true
+    },
+    "events": [
+      {
+        "type": "guest_ready",
+        "timestamp": 1790328447.3111858,
+        "created": true,
+        "status": 200,
+        "latency_s": 0.173,
+        "t_ready": 1790328447.3111858,
+        "cookie_set": true
+      }
+    ]
+  },
+  "strategy": "entropy_pure",
+  "mode": "infinite"
+}

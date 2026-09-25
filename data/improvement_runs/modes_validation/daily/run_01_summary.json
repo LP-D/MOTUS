@@ -1,0 +1,114 @@
+{
+  "run": 1,
+  "commit": "9c5cbcd",
+  "games": 1,
+  "solved": 1,
+  "unsolved": [],
+  "errors": 0,
+  "error_details": [],
+  "mean_time_per_word_s": 7.39,
+  "total_time_s": 7.4,
+  "mean_attempts_solved": 3,
+  "attempts_distribution": {
+    "1": 0,
+    "2": 0,
+    "3": 1,
+    "4": 0,
+    "5": 0,
+    "6": 0
+  },
+  "rejections": 0,
+  "root_rejections": 0,
+  "time_breakdown_mean_s": {
+    "load": 1.45,
+    "solver": 0.0,
+    "typing": 3.31,
+    "enter_and_rate_wait": 1.94,
+    "server_roundtrip": 0.41,
+    "reveal_wait": 0.02
+  },
+  "max_solver_s": 0.0017,
+  "max_latency_s": 0.0645,
+  "words": [
+    "RECTEUR (7, 3 essais, 7.386s)"
+  ],
+  "rejection_causes": [],
+  "unobserved_groups_drawn": [
+    "R_7"
+  ],
+  "stop_reason": null,
+  "trio_vs_bot": {
+    "games_compared": 1,
+    "mean_attempts_trio_then_bot": 4,
+    "mean_attempts_bot_only_sim": 3,
+    "trio_better": 0,
+    "trio_worse": 1,
+    "mean_remaining_after_3_trio": 6,
+    "mean_remaining_after_3_bot": 1,
+    "trio_words_blocklisted": []
+  },
+  "h8": {
+    "not_found_games": [],
+    "guest_precreated": true,
+    "session_id_mismatch_games": []
+  },
+  "cycle": {
+    "cycle_start_run": 1,
+    "runs_in_cycle": 1
+  },
+  "trio_vs_bot_cumulative": {
+    "words_compared": 1,
+    "trio_better": 0,
+    "trio_worse": 1,
+    "equal": 0,
+    "mean_attempts_trio_then_bot": 4,
+    "mean_attempts_bot_only": 3
+  },
+  "stop_criterion_met": false,
+  "guest": {
+    "info": {
+      "created": true,
+      "status": 200,
+      "latency_s": 0.171,
+      "t_ready": 1790328412.204671,
+      "cookie_set": true
+    },
+    "events": [
+      {
+        "type": "guest_ready",
+        "timestamp": 1790328412.204671,
+        "created": true,
+        "status": 200,
+        "latency_s": 0.171,
+        "t_ready": 1790328412.204671,
+        "cookie_set": true
+      }
+    ]
+  },
+  "strategy": "entropy_pure",
+  "mode": "daily",
+  "daily_limit_check": {
+    "outcome": "daily_limit_reached",
+    "ok": true,
+    "session_status": "won",
+    "session_mode": "daily",
+    "guesses_sent": 0,
+    "events": [
+      {
+        "type": "session_info",
+        "timestamp": 1790328424.554458,
+        "session_id": "32d3c265-c445-4c3e-b410-7c839aa6beba",
+        "status": "won",
+        "prior_guesses": 3,
+        "create_calls": 1
+      },
+      {
+        "type": "daily_limit_reached",
+        "timestamp": 1790328424.554458,
+        "session_id": "32d3c265-c445-4c3e-b410-7c839aa6beba",
+        "status": "won",
+        "message": "mot du jour déjà joué par cet invité : prochaine partie demain"
+      }
+    ]
+  }
+}
