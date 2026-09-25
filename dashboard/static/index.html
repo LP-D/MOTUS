@@ -30,8 +30,9 @@
     padding: 12px 20px;
     border-bottom: 1px solid var(--border);
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 16px;
+    gap: 10px 16px;
   }
   header h1 { font-size: 16px; margin: 0; flex: 0 0 auto; }
   .status-pill {
@@ -45,6 +46,13 @@
   .status-pill[data-status="running"] { background: var(--accent); }
   .status-pill[data-status="solved"], .status-pill[data-status="idle"] { background: var(--correct); }
   .status-pill[data-status="error"], .status-pill[data-status="throttled"] { background: var(--error); }
+  .status-pill[data-status="daily_limit"] { background: var(--present); }
+  select {
+    background: #10181f; color: var(--text); border: 1px solid var(--border);
+    border-radius: 4px; padding: 4px 6px; font-size: 12px;
+  }
+  .game-line { font-size: 12px; color: var(--muted); }
+  .game-line b { color: var(--text); }
   .auth-pill { font-size: 12px; color: var(--muted); margin-left: auto; }
   button {
     background: var(--panel);
@@ -117,11 +125,23 @@
 <header>
   <h1>Motus bot — dashboard</h1>
   <span id="status" class="status-pill" data-status="idle">idle</span>
+  <label for="modeSelect" style="font-size:12px;color:var(--muted);">mode</label>
+  <select id="modeSelect">
+    <option value="infinite">Infini</option>
+    <option value="daily">Quotidien (1 partie / jour)</option>
+    <option value="ranked" disabled title="Duels contre de vrais joueurs : non automatisé">Classé (non automatisé)</option>
+  </select>
+  <label for="strategySelect" style="font-size:12px;color:var(--muted);">stratégie</label>
+  <select id="strategySelect">
+    <option value="entropy_pure">entropy_pure (défaut)</option>
+    <option value="composite">composite</option>
+  </select>
   <label for="iterationsInput" style="font-size:12px;color:var(--muted);">parties</label>
   <input type="number" id="iterationsInput" min="1" max="100000" value="1" style="width:70px;background:#10181f;color:var(--text);border:1px solid var(--border);border-radius:4px;padding:4px 6px;font-size:12px;" />
   <button id="startBtn">Démarrer</button>
   <button id="stopBtn" disabled>Arrêter</button>
   <span id="loopProgress" class="auth-pill" style="margin-left:0;"></span>
+  <span id="gameLine" class="game-line"></span>
   <span id="authPill" class="auth-pill">session : —</span>
 </header>
 <main>
@@ -149,6 +169,15 @@
   </section>
   <section class="stats">
     <h2>Statistiques (parties jouées, persistant entre sessions)</h2>
+    <div class="config-row">
+      <label for="statsModeSelect">mode</label>
+      <select id="statsModeSelect">
+        <option value="infinite">Infini</option>
+        <option value="daily">Quotidien</option>
+        <option value="all">Tous modes (conditions différentes)</option>
+      </select>
+      <span class="config-hint" id="statsModeHint" style="margin:0;"></span>
+    </div>
     <div class="stats-tabs">
       <button data-tab="overall" data-active="true">Global</button>
       <button data-tab="by_length">Par longueur</button>
@@ -189,16 +218,39 @@ const stopBtn = document.getElementById('stopBtn');
 const loopProgress = document.getElementById('loopProgress');
 const iterationsInput = document.getElementById('iterationsInput');
 const latencyBody = document.querySelector('#latencyTable tbody');
+const modeSelect = document.getElementById('modeSelect');
+const strategySelect = document.getElementById('strategySelect');
+const gameLine = document.getElementById('gameLine');
+const statsModeSelect = document.getElementById('statsModeSelect');
+const MODE_LABELS = { infinite: 'infini', daily: 'quotidien', ranked: 'classé' };
 
 let wordLength = 0;
 let rows = [];
 
 function setStatus(status) {
-  statusEl.textContent = status;
+  statusEl.textContent = status === 'daily_limit' ? 'quotidien déjà joué' : status;
   statusEl.dataset.status = status;
   startBtn.disabled = status === 'running';
   stopBtn.disabled = status !== 'running';
+  modeSelect.disabled = strategySelect.disabled = status === 'running';
 }
+
+function renderGameLine(game, mode) {
+  const m = MODE_LABELS[mode] || mode;
+  if (!game) { gameLine.innerHTML = `mode actif : <b>${m}</b>`; return; }
+  const word = game.letter ? `${game.letter}·${game.length}` : '';
+  const sol = game.solution ? ` (${game.solution})` : '';
+  const att = game.attempts ? `, coup ${game.attempts}` : '';
+  gameLine.innerHTML = `mode actif : <b>${MODE_LABELS[game.mode] || m}</b> — partie ${word} : <b>${game.state}</b>${att}${sol}`;
+}
+
+function syncIterationsWithMode() {
+  // quotidien : une seule partie par jour, le champ est figé à 1
+  if (modeSelect.value === 'daily') { iterationsInput.value = 1; iterationsInput.disabled = true; }
+  else { iterationsInput.disabled = false; }
+}
+modeSelect.addEventListener('change', () => { modeSelect.dataset.touched = '1'; syncIterationsWithMode(); });
+strategySelect.addEventListener('change', () => { strategySelect.dataset.touched = '1'; });
 
 function renderBoard() {
   boardEl.innerHTML = '';
@@ -293,8 +345,17 @@ function handleEvent(ev) {
       addEvent(ev, 'error');
       break;
     case 'throttled':
-      // arrêt d'urgence (429 / Retry-After / latence > 10s) — distinct d'une erreur de jeu
+      // arrêt d'urgence (429 / Retry-After / latence > 5s), quel que soit le mode —
+      // distinct d'une erreur de jeu
       setStatus('throttled');
+      addEvent(ev, 'error');
+      break;
+    case 'daily_limit_reached':
+      // mot du jour déjà joué : fin normale, pas une erreur
+      setStatus('daily_limit');
+      addEvent(ev, 'rejected');
+      break;
+    case 'mode_refused':
       addEvent(ev, 'error');
       break;
     case 'guess_not_submitted':
@@ -315,6 +376,18 @@ async function refreshStatus() {
   const res = await fetch('/api/status');
   const data = await res.json();
   setStatus(data.status);
+  if (data.status === 'running') {
+    modeSelect.value = data.mode;
+    strategySelect.value = data.strategy;
+  } else {
+    // reflète l'état du serveur sans écraser un choix en cours dans les sélecteurs
+    if (!modeSelect.dataset.touched) modeSelect.value = data.mode;
+    if (!strategySelect.dataset.touched) strategySelect.value = data.strategy;
+  }
+  syncIterationsWithMode();
+  renderGameLine(data.current_game, data.mode);
+  const dailyOpt = modeSelect.querySelector('option[value="daily"]');
+  dailyOpt.textContent = 'Quotidien (1 partie / jour)' + (data.daily_played_today ? ' — déjà joué' : '');
   authPill.textContent = 'session : ' + (data.auth_state_present ? 'sauvegardée' : 'anonyme');
   if (data.status === 'running' && data.total_iterations > 1) {
     loopProgress.textContent = `partie ${data.current_iteration}/${data.total_iterations}`;
@@ -327,16 +400,18 @@ startBtn.addEventListener('click', async () => {
   const res = await fetch('/api/start', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ iterations }),
+    body: JSON.stringify({ iterations, mode: modeSelect.value, strategy: strategySelect.value }),
   });
   const data = await res.json();
   if (data.started) {
     setStatus('running');
+    statsModeSelect.value = data.mode;  // les stats suivent le mode joué
+    refreshStats();
+    refreshSolutions();
   } else {
-    // Refusé : une partie/boucle tournait déjà (cf. journal de cycle de vie côté
-    // serveur, événement "start_requested") — ne pas prétendre qu'on vient d'en
-    // démarrer une nouvelle, refléter l'état réel du runner.
-    loopProgress.textContent = 'déjà en cours (voir statut)';
+    // Refusé : boucle déjà en cours, partie du jour déjà jouée ou mode non
+    // automatisé — refléter l'état réel du runner sans prétendre avoir démarré.
+    loopProgress.textContent = data.error || 'déjà en cours (voir statut)';
     setStatus(data.status);
   }
 });
@@ -440,8 +515,11 @@ function renderOverallStats(overall) {
 }
 
 async function refreshStats() {
-  const res = await fetch('/bot/stats');
+  const res = await fetch('/bot/stats?mode=' + statsModeSelect.value);
   const stats = await res.json();
+  const counts = Object.entries(stats.games_by_mode || {})
+    .map(([m, n]) => `${MODE_LABELS[m] || m} : ${n}`).join(' · ');
+  document.getElementById('statsModeHint').textContent = counts ? `parties enregistrées — ${counts}` : '';
   renderOverallStats(stats.overall);
   makeSortableTable(document.getElementById('byLengthStatsTable'), stats.by_length, [
     { key: 'length_range', label: 'Longueur' },
@@ -467,7 +545,7 @@ async function refreshStats() {
 }
 
 async function refreshSolutions() {
-  const res = await fetch('/bot/stats/solutions');
+  const res = await fetch('/bot/stats/solutions?mode=' + statsModeSelect.value);
   const data = await res.json();
   const hint = document.getElementById('solutionsHint');
   hint.textContent = `${data.n_solutions_recorded} solution(s) enregistrée(s), ` +
@@ -491,6 +569,8 @@ async function refreshSolutions() {
     { key: 'count', label: 'Nb de fois vu' },
   ]);
 }
+
+statsModeSelect.addEventListener('change', () => { refreshStats(); refreshSolutions(); });
 
 connectWebSocket();
 refreshStatus();

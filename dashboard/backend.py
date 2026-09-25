@@ -18,7 +18,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from bot_config import config as bot_config  # noqa: E402
 from bot_runner import DEFAULT_AUTH_STATE, DEFAULT_LOG, runner  # noqa: E402
 from stats_store import aggregate as aggregate_stats  # noqa: E402
-from stats_store import aggregate_solutions_report  # noqa: E402
+from stats_store import aggregate_solutions_report, daily_game_on  # noqa: E402
+
+from bot.modes import SUPPORTED_MODES, GameMode  # noqa: E402
+from motus_solver.cache import DEFAULT_STRATEGY, STRATEGIES  # noqa: E402
+
+# filtre des statistiques : un mode, ou "all" (tous modes confondus, sur demande
+# explicite uniquement : les conditions de jeu diffèrent d'un mode à l'autre)
+STATS_MODES = {m.value for m in SUPPORTED_MODES} | {"all"}
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
@@ -32,14 +39,27 @@ def index() -> FileResponse:
 
 class StartPayload(BaseModel):
     iterations: int = Field(default=1, ge=1, le=100000)
+    mode: str = GameMode.INFINITE.value
+    strategy: str = DEFAULT_STRATEGY
 
 
 @app.post("/api/start")
 def start(payload: StartPayload = StartPayload()) -> JSONResponse:
     """`iterations` > 1 enchaîne N parties consécutives sans intervention manuelle
-    (tâche 3) — 1 (défaut) reproduit le comportement "une partie" d'origine."""
-    started = runner.start(iterations=payload.iterations)
-    return JSONResponse({"started": started, "status": runner.status, "total_iterations": payload.iterations})
+    (tâche 3) — 1 (défaut) reproduit le comportement "une partie" d'origine.
+    `mode` : infinite (défaut) ou daily (une partie par jour) ; ranked est refusé
+    (duels contre de vrais joueurs, non automatisés, cf. bot/modes.py)."""
+    if payload.strategy not in STRATEGIES:
+        return JSONResponse({"started": False, "error": f"stratégie inconnue : {payload.strategy}"}, status_code=400)
+    started = runner.start(iterations=payload.iterations, mode=payload.mode, strategy=payload.strategy)
+    body = {"started": started, "status": runner.status, "mode": runner.mode.value, "strategy": runner.strategy,
+            "total_iterations": runner.total_iterations if started else payload.iterations}
+    if not started and payload.mode not in {m.value for m in SUPPORTED_MODES}:
+        body["error"] = ("mode classé non automatisé : duels contre de vrais joueurs"
+                         if payload.mode == GameMode.RANKED.value else f"mode inconnu : {payload.mode}")
+    elif not started and runner.status == "daily_limit":
+        body["error"] = "partie du jour déjà jouée aujourd'hui : prochaine partie demain"
+    return JSONResponse(body)
 
 
 @app.post("/api/stop")
@@ -57,6 +77,12 @@ def status() -> JSONResponse:
             "auth_state_present": DEFAULT_AUTH_STATE.exists(),
             "current_iteration": runner.current_iteration,
             "total_iterations": runner.total_iterations,
+            "mode": runner.mode.value,
+            "strategy": runner.strategy,
+            "current_game": runner.current_game,
+            "supported_modes": [m.value for m in SUPPORTED_MODES],
+            "strategies": list(STRATEGIES),
+            "daily_played_today": daily_game_on() is not None,
         }
     )
 
@@ -92,14 +118,26 @@ def set_typing_delay(payload: TypingDelayPayload) -> JSONResponse:
     return JSONResponse(bot_config.as_dict())
 
 
+def _stats_mode(mode: str) -> str | None:
+    if mode not in STATS_MODES:
+        raise ValueError(f"mode inconnu : {mode}")
+    return None if mode == "all" else mode
+
+
 @app.get("/bot/stats")
-def stats() -> JSONResponse:
-    return JSONResponse(aggregate_stats())
+def stats(mode: str = GameMode.INFINITE.value) -> JSONResponse:
+    try:
+        return JSONResponse(aggregate_stats(mode=_stats_mode(mode)))
+    except ValueError as exc:
+        return JSONResponse({"error": str(exc)}, status_code=400)
 
 
 @app.get("/bot/stats/solutions")
-def stats_solutions() -> JSONResponse:
-    return JSONResponse(aggregate_solutions_report())
+def stats_solutions(mode: str = GameMode.INFINITE.value) -> JSONResponse:
+    try:
+        return JSONResponse(aggregate_solutions_report(mode=_stats_mode(mode)))
+    except ValueError as exc:
+        return JSONResponse({"error": str(exc)}, status_code=400)
 
 
 @app.websocket("/ws")

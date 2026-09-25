@@ -93,11 +93,28 @@ python scripts/run_dashboard.py
 ```
 
 Démarre le backend local sur **http://127.0.0.1:8765** et ouvre cette URL dans le
-navigateur par défaut. Boutons Démarrer/Arrêter, plateau miroir mis à jour en
-temps réel (WebSocket), panneau de latence par étape du dernier coup. Local
-uniquement (pas d'exposition réseau, pas d'authentification dashboard —
-mono-utilisateur). Le navigateur du dashboard (onglet normal) et celui piloté par
-Playwright pour jouer sont deux instances Chromium indépendantes : aucun conflit.
+navigateur par défaut. Local uniquement (pas d'exposition réseau, pas
+d'authentification dashboard — mono-utilisateur). Le navigateur du dashboard (onglet
+normal) et celui piloté par Playwright pour jouer sont deux instances Chromium
+indépendantes : aucun conflit.
+
+Dans le dashboard :
+- **Mode de jeu** : infini (par défaut) ou quotidien (une partie par jour ; un
+  second lancement le même jour est refusé proprement). Le mode classé n'est pas
+  automatisé : ses duels opposent de vrais joueurs (voir `bot/modes.py`).
+- **Stratégie** : entropy_pure (par défaut) ou composite.
+- **Suivi en direct** : boutons Démarrer / Arrêter, plateau miroir mis à jour en
+  temps réel (WebSocket), latence par étape du dernier coup, mode actif et état de
+  la partie en cours.
+- **Statistiques et solutions filtrées par mode** : infini, quotidien, ou tous modes
+  sur demande explicite.
+
+Lancer le bot directement dans un mode, sans passer par le bouton :
+
+```bash
+python scripts/run_dashboard.py --mode infinite --games 10 --autostart
+python scripts/run_dashboard.py --mode daily --autostart
+```
 
 ## Tests
 

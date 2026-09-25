@@ -25,7 +25,7 @@ sys.path.insert(0, str(ROOT_DIR / "src"))
 sys.path.insert(0, str(ROOT_DIR))
 
 from motus_solver.blocklist import add_to_blocklist, load_blocklist  # noqa: E402
-from motus_solver.cache import DEFAULT_STRATEGY, ROOT_CACHE_FILES, cache_key, load_cache  # noqa: E402
+from motus_solver.cache import DEFAULT_STRATEGY, ROOT_CACHE_FILES, STRATEGIES, cache_key, load_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.draws import load_draw_counts, record_draw  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
@@ -130,6 +130,9 @@ class BotRunner:
         self.strategy = DEFAULT_STRATEGY
         # mode de jeu (bot/modes.py) : /infinite par défaut, comportement historique
         self.mode = GameMode.INFINITE
+        # partie en cours ou dernière partie, pour l'affichage du dashboard (tenu à
+        # jour à partir des événements émis, sans toucher à la logique de jeu)
+        self.current_game: dict | None = None
 
     @property
     def handler(self):
@@ -138,8 +141,13 @@ class BotRunner:
     def is_running(self) -> bool:
         return self._thread is not None and self._thread.is_alive()
 
-    def start(self, iterations: int = 1, mode: GameMode | str | None = None) -> bool:
+    def start(self, iterations: int = 1, mode: GameMode | str | None = None, strategy: str | None = None) -> bool:
         with self._lock:
+            if strategy is not None and not self.is_running():
+                if strategy not in STRATEGIES:
+                    self._emit("error", message=f"stratégie inconnue : {strategy!r}")
+                    return False
+                self.strategy = strategy
             if mode is not None:
                 try:
                     handler = handler_for(mode)
@@ -193,7 +201,22 @@ class BotRunner:
             self._stop_event.set()
             return True
 
+    _GAME_END_STATES = {"solved": "trouvée", "not_solved": "perdue", "candidates_exhausted": "hors corpus",
+                        "daily_limit_reached": "mot du jour déjà joué", "throttled": "arrêt d'urgence"}
+
+    def _track_game(self, event_type: str, data: dict) -> None:
+        if event_type == "game_started":
+            self.current_game = {"mode": data.get("mode"), "letter": data.get("letter"),
+                                 "length": data.get("length"), "state": "en cours", "attempts": 0}
+        elif event_type == "feedback_received" and self.current_game:
+            self.current_game["attempts"] = data.get("attempt", self.current_game["attempts"])
+        elif event_type in self._GAME_END_STATES:
+            game = self.current_game or {"mode": self.mode.value}
+            self.current_game = {**game, "state": self._GAME_END_STATES[event_type],
+                                 "solution": data.get("solution") or game.get("solution")}
+
     def _emit(self, event_type: str, **data) -> None:
+        self._track_game(event_type, data)
         event = {"type": event_type, "timestamp": time.time(), **data}
         self.events.put(event)
         if event_type in _LIFECYCLE_EVENT_TYPES:
