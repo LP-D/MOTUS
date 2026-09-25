@@ -30,6 +30,7 @@ from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.draws import load_draw_counts, record_draw  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
 
+from bot.modes import DAILY_LIMIT, PLAYABLE, GameMode, ModeNotSupportedError, handler_for  # noqa: E402
 from bot.network_monitor import THROTTLE_LATENCY_S, NetworkMonitor, session_from_body  # noqa: E402
 from bot.parser import CORRECT  # noqa: E402
 from bot.timing import CycleTimer  # noqa: E402
@@ -43,7 +44,7 @@ from bot.tuzmo_client import (  # noqa: E402
 )
 
 from bot_config import config as bot_config  # noqa: E402
-from stats_store import record_game  # noqa: E402
+from stats_store import daily_game_on, record_game  # noqa: E402
 
 DEFAULT_CORPUS = ROOT_DIR / "data" / "corpus_fr.txt"
 DEFAULT_ROOT_CACHE = ROOT_DIR / "data" / ROOT_CACHE_FILES["composite"]
@@ -58,7 +59,6 @@ DEFAULT_REVEALED = ROOT_DIR / "data" / "revealed_solutions.jsonl"
 # groupe (lettre, longueur) de chaque mot tiré : preuve accumulée sur les groupes
 # jamais observés (statut incertain, cf. motus_solver.draws)
 DEFAULT_DRAWS = ROOT_DIR / "data" / "group_draws.jsonl"
-URL = "https://www.tusmo.xyz/infinite"
 API_ME_URL = "https://www.tusmo.xyz/api/me"
 GUEST_COOKIE = "tusmo_token"
 START_BUTTON_SELECTOR = "button:has-text(\"C'est parti\")"
@@ -97,6 +97,8 @@ _LIFECYCLE_EVENT_TYPES = {
     "solution_revealed",
     "guest_ready",
     "unobserved_group_drawn",
+    "daily_limit_reached",
+    "mode_refused",
 }
 
 
@@ -119,19 +121,43 @@ class BotRunner:
         self._stop_event = threading.Event()
         self._lock = threading.Lock()
         self.events: queue.Queue[dict] = queue.Queue()
-        self.status = "idle"  # idle | running | stopped | error | throttled
+        self.status = "idle"  # idle | running | stopped | error | throttled | daily_limit
         self.current_iteration = 0
         self.total_iterations = 0
         self.page_monitor: NetworkMonitor | None = None
         # "entropy_pure" (défaut depuis le 25/09/2026) ou "composite" (option, poids
         # inchangés) ; chacune a son propre cache racine, avec les mêmes replis
         self.strategy = DEFAULT_STRATEGY
+        # mode de jeu (bot/modes.py) : /infinite par défaut, comportement historique
+        self.mode = GameMode.INFINITE
+
+    @property
+    def handler(self):
+        return handler_for(self.mode)
 
     def is_running(self) -> bool:
         return self._thread is not None and self._thread.is_alive()
 
-    def start(self, iterations: int = 1) -> bool:
+    def start(self, iterations: int = 1, mode: GameMode | str | None = None) -> bool:
         with self._lock:
+            if mode is not None:
+                try:
+                    handler = handler_for(mode)
+                except (ModeNotSupportedError, ValueError) as exc:
+                    self._emit("mode_refused", mode=str(getattr(mode, "value", mode)), reason=str(exc))
+                    return False
+                if not self.is_running():
+                    self.mode = handler.mode
+            iterations = self.handler.games_allowed(max(1, iterations))
+            if self.mode is GameMode.DAILY and not self.is_running():
+                played = daily_game_on()
+                if played is not None:
+                    # une partie quotidienne par jour, quel que soit l'invité : refus
+                    # signalé clairement, sans aucune requête
+                    self._emit("daily_limit_reached", source="local", solution=played.get("solution"),
+                               message="partie du jour déjà jouée aujourd'hui : prochaine partie demain")
+                    self.status = "daily_limit"
+                    return False
             # `BotRunner` est un singleton de durée de vie du processus (cf.
             # `runner = BotRunner()` en bas de fichier) : c'est le SEUL endroit du
             # code qui peut faire démarrer une partie (aucun polling ni callback
@@ -148,6 +174,7 @@ class BotRunner:
                 current_iteration=self.current_iteration,
                 total_iterations=self.total_iterations,
                 requested_iterations=max(1, iterations),
+                mode=self.mode.value,
             )
             if already_running:
                 return False
@@ -219,7 +246,8 @@ class BotRunner:
         return info
 
     def _open_game_page(self, context: BrowserContext) -> Page:
-        """Ouvre /infinite dans `context` et démarre une partie.
+        """Ouvre la page du mode courant (`self.handler.url`) dans `context` et
+        démarre une partie.
 
         Un 429 (ou tout signal de throttling) pendant le chargement lève
         `ThrottlingDetectedError` au lieu d'un simple timeout Playwright — c'est
@@ -241,12 +269,14 @@ class BotRunner:
         # le plateau : avec l'invité conservé, l'écran "C'est parti" ne s'affiche
         # qu'au 1er chargement du contexte — attendre le bouton seul coûtait 10 s
         # (timeout) à chaque partie suivante (régression mesurée au run n° 3).
-        page.goto(URL, wait_until="domcontentloaded", timeout=20000)
+        page.goto(self.handler.url, wait_until="domcontentloaded", timeout=20000)
         try:
             page.wait_for_selector(PAGE_READY_SELECTOR, timeout=10000)
         except PlaywrightTimeoutError:
             check_throttle()  # ni bouton ni plateau : 429 au chargement ?
         check_throttle()
+        if self.handler.classify_loaded_session(self._current_session()[0]) == DAILY_LIMIT:
+            return page  # mot du jour déjà joué : _play_one_game s'arrêtera proprement
         start_button = page.locator("button", has_text="C'est parti")
         if start_button.count():
             start_button.first.click()
@@ -256,7 +286,8 @@ class BotRunner:
             check_throttle()
             raise
         check_throttle()
-        self._restart_if_finished(page, monitor)
+        if self.handler.restart_finished:  # /infinite : "Rejouer" ; /daily : jamais
+            self._restart_if_finished(page, monitor)
         check_throttle()
         page.wait_for_timeout(400)
         return page
@@ -290,13 +321,38 @@ class BotRunner:
     def _play_one_game(
         self, page: Page, corpus: Corpus, root_cache: dict, blocklist: set[str]
     ) -> tuple[dict, set[str]]:
-        """Joue une partie complète sur `page` (déjà chargée sur /infinite, prête).
-        Retourne (résultat, blocklist à jour — peut avoir grandi si un mot a été
-        rejeté pendant cette partie)."""
+        """Joue une partie complète sur `page` (déjà chargée sur la page du mode,
+        prête). Retourne (résultat, blocklist à jour — peut avoir grandi si un mot a
+        été rejeté pendant cette partie)."""
         client = TuzmoClient(page)
+        result = {"outcome": "unknown", "solved": False, "letter": None, "length": None}
+
+        # Session renvoyée au chargement, examinée AVANT de lire le plateau : une
+        # partie du jour déjà terminée peut s'afficher sans plateau jouable. Avec un
+        # contexte (donc un invité) conservé d'une partie à l'autre, le serveur peut
+        # aussi renvoyer la partie /infinite en cours de cet invité au lieu d'une
+        # nouvelle (cf. startGame du site : il rejoue `session.guesses`).
+        session, n_create_calls = self._current_session()
+        prior = (session or {}).get("guesses") or []
+        if session is not None:
+            self._emit("session_info", session_id=session.get("id"), status=session.get("status"),
+                       prior_guesses=len(prior), create_calls=n_create_calls)
+            verdict = self.handler.classify_loaded_session(session)
+            if verdict == DAILY_LIMIT:
+                # mot du jour déjà joué : fin normale, signalée clairement (pas une erreur)
+                self._emit("daily_limit_reached", session_id=session.get("id"), status=session.get("status"),
+                           message="mot du jour déjà joué par cet invité : prochaine partie demain")
+                result["outcome"] = "daily_limit_reached"
+                return result, blocklist
+            if verdict != PLAYABLE:
+                self._emit("error", message=f"session renvoyée non jouable (status={session.get('status')!r})")
+                result["outcome"] = "session_not_playable"
+                return result, blocklist
+
         letter = client.get_first_letter()
         length = client.get_word_length()
-        self._emit("game_started", letter=letter, length=length)
+        result["letter"], result["length"] = letter, length
+        self._emit("game_started", letter=letter, length=length, mode=self.mode.value)
 
         known_valid = load_blocklist(DEFAULT_KNOWN_VALID)
         solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist,
@@ -305,20 +361,8 @@ class BotRunner:
         confirmed_solution: str | None = None
         guesses_played: list[str] = []
         stats_saved = False
-        result = {"outcome": "unknown", "solved": False, "letter": letter, "length": length}
 
-        # Avec un contexte (donc un invité) conservé d'une partie à l'autre, le
-        # serveur peut renvoyer la partie /infinite en cours de cet invité au lieu
-        # d'une nouvelle (cf. startGame du site : il rejoue `session.guesses`).
-        session, n_create_calls = self._current_session()
         if session is not None:
-            prior = session.get("guesses") or []
-            self._emit("session_info", session_id=session.get("id"), status=session.get("status"),
-                       prior_guesses=len(prior), create_calls=n_create_calls)
-            if session.get("status") not in (None, "playing"):
-                self._emit("error", message=f"session renvoyée non jouable (status={session.get('status')!r})")
-                result["outcome"] = "session_not_playable"
-                return result, blocklist
             if prior:
                 for g in prior:
                     word = g["word"].upper()
@@ -329,8 +373,8 @@ class BotRunner:
                 result["resumed"] = True
                 self._emit("game_resumed", prior_guesses=[g["word"] for g in prior])
         # tirage journalisé une fois par mot (une reprise ne compte pas de nouveau)
-        draws_before = load_draw_counts(DEFAULT_DRAWS).get(cache_key(letter, length), 0)
-        record_draw(DEFAULT_DRAWS, letter, length, "bot_runner", strategy=self.strategy,
+        draws_before = load_draw_counts(DEFAULT_DRAWS, mode=self.mode.value).get(cache_key(letter, length), 0)
+        record_draw(DEFAULT_DRAWS, letter, length, "bot_runner", strategy=self.strategy, mode=self.mode.value,
                     session_id=(session or {}).get("id"), resumed=bool(result.get("resumed")))
         result["group_draws_before"] = draws_before
         if not draws_before and not result.get("resumed"):
@@ -348,6 +392,7 @@ class BotRunner:
                 outcome=outcome,
                 guesses=guesses_played,
                 solution=confirmed_solution or revealed,
+                mode=self.mode.value,
             )
             stats_saved = True
             result["outcome"] = outcome
@@ -515,6 +560,10 @@ class BotRunner:
             self._emit("gave_up", method="giveup", answer=result["answer"])
             self._record_revealed(result["answer"], corpus, letter, length)
             return
+        if not self.handler.reset_fallback:
+            # /daily : pas de bouton ↻ ; la partie du jour reste simplement non résolue
+            self._emit("reveal_failed", message="giveup indisponible, pas de repli ↻ dans ce mode")
+            return
         try:
             client.abandon_current_word()
         except ThrottlingDetectedError as exc:
@@ -591,12 +640,15 @@ class BotRunner:
                     self.status = "error"
                     return
                 if result["outcome"] == "throttled":
-                    # Arrêt d'urgence de toute la boucle (429 / Retry-After / latence
-                    # > THROTTLE_LATENCY_S) : ne jamais enchaîner de partie suivante dans ce cas.
+                    # Arrêt d'urgence de toute la boucle, quel que soit le mode (429 /
+                    # Retry-After / latence > THROTTLE_LATENCY_S) : ne jamais enchaîner de partie suivante dans ce cas.
                     self.status = "throttled"
                     return
                 if result["outcome"] == "stopped":
                     break
+                if result["outcome"] == "daily_limit_reached":
+                    self.status = "daily_limit"
+                    return
                 # Garde-fous du contexte persistant : jamais de boucle sur une partie
                 # que le bot ne sait pas mener à terme.
                 if result["outcome"] == "session_not_playable" or result.get("abandon_failed"):

@@ -126,6 +126,42 @@ Réponse `/api/rank/fr` observée (compte invité) :
 placement requis avant classement définitif. La page affiche aussi un compteur
 live "N en recherche · M en duel" (alimenté par le canal temps réel, §3).
 
+### Quotidien (`/daily`) : exploré le 25/09/2026, chargement seul
+
+Exploration avec un invité neuf, sans jouer : `GET /api/me` et `POST /api/game`,
+tous deux HTTP 200, aucun en-tête de limitation.
+
+- **Création** : `POST /api/game` `{"lang":"fr","mode":"daily"}` renvoie une session au
+  même format que `/infinite` : `id`, `mode: "daily"`, `status: "playing"`, `guesses`,
+  `score`, `wordIndex`, `firstLetter`, `wordLength`. Le mot du 25/09 était un R en 7 lettres.
+- **Page** : même écran d'accueil (« COMMENT JOUER », bouton « C'EST PARTI ! »), même
+  plateau (`.board.board--stage`, 6 lignes) et même clavier. Le client et la
+  détection de victoire sont donc réutilisés tels quels.
+- **Pas de mot suivant après une victoire** : contrairement à `/infinite`, il n'y a
+  qu'un mot par jour. Pas de bouton ↻ de run non plus.
+- **Partie déjà jouée** : au rechargement, le serveur renvoie la session terminée
+  (statut autre que `playing`). Le bot le traite comme « mot du jour déjà joué » : arrêt
+  propre, événement `daily_limit_reached`, statut `daily_limit`, aucune partie comptée.
+  Comportement attendu, à confirmer en jeu réel en phase 5 (`daily_limit_check`).
+- **Garde-fou local** : le bot crée un invité neuf à chaque lancement. Un lancement
+  quotidien est donc refusé, sans aucune requête, si une partie du jour est déjà
+  enregistrée à la date locale.
+
+### Abstraction des modes (`bot/modes.py`)
+
+| Mode | Page | Parties par lancement | Partie terminée au chargement | Repli ↻ si giveup indisponible |
+|---|---|---|---|---|
+| `INFINITE` | `/infinite` | illimité | « Rejouer » (clic unique) | oui |
+| `DAILY` | `/daily` | 1 | arrêt propre `daily_limit_reached` | non |
+| `RANKED` | `/ranked` | **non automatisé** | — | — |
+
+**Mode classé non automatisé, par choix.** Les duels opposent de vrais joueurs,
+avec ligues et points de classement. Un solveur face à eux reviendrait à tricher
+en compétition.
+- `handler_for("ranked")` lève `ModeNotSupportedError`.
+- Le bot refuse ce mode (événement `mode_refused`).
+- Aucune file de matchmaking n'a été rejointe.
+
 ## 2. Stabilité des sélecteurs DOM
 
 Le jeu utilise **Tailwind CSS + classes BEM personnalisées pour les éléments de

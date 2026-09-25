@@ -33,6 +33,7 @@ sys.path.insert(0, str(ROOT_DIR / "dashboard"))
 import bot_runner  # noqa: E402
 from run_case_matrix import MatrixRunner, drain, evaluate_game  # noqa: E402
 
+from bot.modes import SUPPORTED_MODES, GameMode, handler_for  # noqa: E402
 from bot.network_monitor import session_from_body  # noqa: E402
 from bot.tuzmo_client import ThrottlingDetectedError  # noqa: E402
 from motus_solver.blocklist import load_blocklist  # noqa: E402
@@ -297,6 +298,28 @@ def summarize(run: int, games: list[dict], stop_reason: str | None, previous: di
     return summary
 
 
+def check_daily_limit(runner, context, corpus, root_cache, blocklist) -> dict:
+    """Quotidien : après la partie du jour, recharge /daily dans le MÊME contexte (même
+    invité). Le serveur doit renvoyer la partie terminée, et le bot doit s'arrêter
+    proprement (`daily_limit_reached`), sans erreur ni nouvelle partie."""
+    time.sleep(random.uniform(*bot_runner.INTER_GAME_DELAY_S))
+    page = runner._open_game_page(context)
+    try:
+        drain(runner.events)
+        result, _ = runner._play_one_game(page, corpus, root_cache, blocklist)
+        events = drain(runner.events)
+        runner.monitor.resolve_bodies()
+        creates = [session_from_body(c.body) for c in runner.monitor.calls if c.kind == "create_session" and c.body]
+        guesses_sent = sum(1 for c in runner.monitor.calls if c.kind == "guess")
+    finally:
+        page.close()
+    last = (creates or [None])[-1] or {}
+    return {"outcome": result["outcome"], "ok": result["outcome"] == "daily_limit_reached" and guesses_sent == 0,
+            "session_status": last.get("status"), "session_mode": last.get("mode"), "guesses_sent": guesses_sent,
+            "events": [{k: v for k, v in e.items() if k != "record"} for e in events
+                       if e["type"] in {"daily_limit_reached", "error", "session_info"}]}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--run", type=int, required=True)
@@ -306,6 +329,9 @@ def main() -> None:
     parser.add_argument("--cycle-start", type=int, default=None,
                         help="1er run du cycle en cours (minimum 5 runs comptés à partir de lui).")
     parser.add_argument("--strategy", choices=STRATEGIES, default=DEFAULT_STRATEGY)
+    parser.add_argument("--mode", choices=[m.value for m in SUPPORTED_MODES], default=GameMode.INFINITE.value,
+                        help="Mode de jeu (bot/modes.py). Quotidien : une partie, puis un rechargement qui "
+                             "doit être reconnu comme « mot du jour déjà joué ».")
     parser.add_argument("--force-abandon-game", type=int, default=0,
                         help="Validation : force le chemin 'solution hors corpus' (abandon + révélation) sur cette partie.")
     args = parser.parse_args()
@@ -322,11 +348,14 @@ def main() -> None:
     corpus = Corpus.from_file(bot_runner.DEFAULT_CORPUS)
     runner = MatrixRunner()
     runner.strategy = args.strategy
+    runner.mode = handler_for(args.mode).mode
+    args.games = runner.handler.games_allowed(args.games)
     root_cache = load_cache(runner.root_cache_path())
     blocklist = load_blocklist(bot_runner.DEFAULT_BLOCKLIST)
     cycle_start = args.cycle_start or args.run
     games: list[dict] = []
     stop_reason = None
+    daily_limit_check = None
     real_record_game = bot_runner.record_game
 
     with sync_playwright() as p:
@@ -371,6 +400,7 @@ def main() -> None:
                 log = game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, corpus,
                                blocklist_at_start, root_cache, known_valid_at_start, args.strategy)
                 log["strategy"] = args.strategy
+                log["mode"] = args.mode
                 log["h8"] = h8_watch(index, events, calls, guest_info, cookie_before_load)
                 log["forced_abandon"] = forced_abandon
                 log["revealed_answer"] = result.get("answer")
@@ -401,12 +431,17 @@ def main() -> None:
                     break
                 if index < args.games:
                     time.sleep(random.uniform(*bot_runner.INTER_GAME_DELAY_S))
+            if runner.mode is GameMode.DAILY and games and stop_reason is None:
+                daily_limit_check = check_daily_limit(runner, context, corpus, root_cache, blocklist)
         finally:
             context.close()
             browser.close()
             summary = summarize(args.run, games, stop_reason, previous, cycle_start, out)
             summary["guest"] = {"info": guest_info, "events": [{k: v for k, v in e.items()} for e in guest_events]}
             summary["strategy"] = args.strategy
+            summary["mode"] = args.mode
+            if daily_limit_check is not None:
+                summary["daily_limit_check"] = daily_limit_check
             summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
             print(json.dumps({k: summary.get(k) for k in ("run", "solved", "games", "errors", "total_time_s",
                                                           "mean_time_per_word_s", "mean_attempts_solved", "h8",

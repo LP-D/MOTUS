@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import threading
 import time
+from datetime import date
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +33,7 @@ def record_game(
     guesses: list[str],
     solution: str | None = None,
     path: Path = DEFAULT_STATS_PATH,
+    mode: str = "infinite",
 ) -> None:
     """Ajoute une partie terminée au store persistant. `guesses` : mots réellement
     soumis et acceptés par le jeu pendant cette partie (pas les rejets) — pour une
@@ -50,6 +52,7 @@ def record_game(
                 "outcome": outcome,
                 "guesses": [g.upper() for g in guesses],
                 "solution": solution.upper() if solution else None,
+                "mode": mode,
                 "timestamp": time.time(),
             }
         )
@@ -60,6 +63,36 @@ def _load(path: Path) -> list[dict]:
     if not path.exists():
         return []
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def game_mode(game: dict) -> str:
+    """Mode d'une partie enregistrée ; avant les modes multiples (25/09/2026), toutes
+    les parties du dashboard étaient jouées sur /infinite."""
+    return game.get("mode") or "infinite"
+
+
+def filter_mode(games: list[dict], mode: str | None) -> list[dict]:
+    """Parties d'un seul mode : les runs /infinite et les parties du jour ne sont
+    jamais agrégés ensemble sans le demander (`mode=None` : tous les modes)."""
+    return games if mode is None else [g for g in games if game_mode(g) == mode]
+
+
+def daily_game_on(day: date | None = None, path: Path = DEFAULT_STATS_PATH) -> dict | None:
+    """Partie du jour (mode quotidien) déjà enregistrée à cette date locale, s'il y en
+    a une. Le bot crée un invité neuf à chaque lancement : sans ce garde-fou, il
+    pourrait rejouer le même mot du jour à chaque lancement."""
+    day = day or date.today()
+    for game in reversed(_load(path)):
+        if game_mode(game) == "daily" and date.fromtimestamp(game.get("timestamp") or 0) == day:
+            return game
+    return None
+
+
+def modes_summary(games: list[dict]) -> dict[str, int]:
+    out: dict[str, int] = {}
+    for g in games:
+        out[game_mode(g)] = out.get(game_mode(g), 0) + 1
+    return out
 
 
 def _save(games: list[dict], path: Path) -> None:
@@ -130,8 +163,10 @@ def aggregate_games(games: list[dict], bucket_size: int = DEFAULT_LENGTH_BUCKET_
     return {"overall": overall, "by_length": by_length, "by_letter": by_letter, "failed_games": failed_games}
 
 
-def aggregate(path: Path = DEFAULT_STATS_PATH, bucket_size: int = DEFAULT_LENGTH_BUCKET_SIZE) -> dict:
-    return aggregate_games(_load(path), bucket_size)
+def aggregate(path: Path = DEFAULT_STATS_PATH, bucket_size: int = DEFAULT_LENGTH_BUCKET_SIZE,
+              mode: str | None = "infinite") -> dict:
+    games = _load(path)
+    return {**aggregate_games(filter_mode(games, mode), bucket_size), "mode": mode, "games_by_mode": modes_summary(games)}
 
 
 def aggregate_solutions(games: list[dict]) -> dict:
@@ -183,5 +218,5 @@ def aggregate_solutions(games: list[dict]) -> dict:
     }
 
 
-def aggregate_solutions_report(path: Path = DEFAULT_STATS_PATH) -> dict:
-    return aggregate_solutions(_load(path))
+def aggregate_solutions_report(path: Path = DEFAULT_STATS_PATH, mode: str | None = "infinite") -> dict:
+    return {**aggregate_solutions(filter_mode(_load(path), mode)), "mode": mode}

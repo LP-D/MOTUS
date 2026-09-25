@@ -30,9 +30,11 @@ def record_draw(path: str | Path, letter: str, length: int, source: str, **extra
     return entry
 
 
-def load_draw_counts(path: str | Path) -> Counter:
-    """Nombre de tirages observés par clé de cache (`"A_7"`). Les lignes `resumed`
-    (partie reprise, déjà comptée à son tirage) ne comptent pas."""
+def load_draw_counts(path: str | Path, mode: str = "infinite") -> Counter:
+    """Nombre de tirages observés par clé de cache (`"A_7"`), pour un mode de jeu
+    (`infinite` par défaut : le mot du jour n'est pas tiré de la même façon). Une
+    ligne sans `mode` date d'avant les modes multiples, donc de /infinite. Les lignes
+    `resumed` (partie reprise, déjà comptée à son tirage) ne comptent pas."""
     counts: Counter = Counter()
     path = Path(path)
     if not path.exists():
@@ -40,7 +42,7 @@ def load_draw_counts(path: str | Path) -> Counter:
     for line in path.read_text(encoding="utf-8").splitlines():
         if line.strip():
             entry = json.loads(line)
-            if not entry.get("resumed"):
+            if not entry.get("resumed") and entry.get("mode", "infinite") == mode:
                 counts[cache_key(entry["letter"], entry["length"])] += 1
     return counts
 
