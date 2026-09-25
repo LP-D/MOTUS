@@ -37,7 +37,7 @@ sys.path.insert(0, str(ROOT_DIR / "src"))
 sys.path.insert(0, str(ROOT_DIR))
 
 from motus_solver.blocklist import load_blocklist  # noqa: E402
-from motus_solver.cache import load_cache  # noqa: E402
+from motus_solver.cache import DEFAULT_STRATEGY, ROOT_CACHE_FILES, load_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
 
@@ -115,7 +115,8 @@ def play_game(page, corpus, root_cache, blocklist, log, observe_s: float) -> dic
     client = TuzmoClient(page)
     letter, length = client.get_first_letter(), client.get_word_length()
     log({"event": "game_started", "letter": letter, "length": length})
-    solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist)
+    solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist,
+                    strategy=DEFAULT_STRATEGY)
 
     submits = []
     n_requests = 0
@@ -238,7 +239,7 @@ def main() -> None:
 
     ledger, out = Path(args.ledger), Path(args.out)
     corpus = Corpus.from_file(ROOT_DIR / "data" / "corpus_fr.txt")
-    root_cache = load_cache(ROOT_DIR / "data" / "root_cache.json")
+    root_cache = load_cache(ROOT_DIR / "data" / ROOT_CACHE_FILES[DEFAULT_STRATEGY])
     # lecture seule : la vraie liste noire est chargée comme le fait le bot, jamais écrite ici
     blocklist = load_blocklist(ROOT_DIR / "data" / "known_invalid_words.json")
 

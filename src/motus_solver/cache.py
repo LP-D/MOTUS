@@ -10,6 +10,13 @@ from .scoring import letter_frequencies, positional_frequencies
 from .tree import top_guesses_composite, top_guesses_entropy_pure
 
 STRATEGIES = ("composite", "entropy_pure")
+# Stratégie du solveur par défaut depuis le 25/09/2026 : entropy_pure (3,02 contre
+# 3,12 essais sur 788 solutions réelles, p = 0,0009 ; cf.
+# docs/diagnostics/2026-09-24_phase2_alternance_composite_entropy.md). Le
+# composite reste disponible, avec des poids inchangés.
+DEFAULT_STRATEGY = "entropy_pure"
+# un cache racine par stratégie, jamais mélangés
+ROOT_CACHE_FILES = {"composite": "root_cache.json", "entropy_pure": "root_cache_entropy_pure.json"}
 # Coups 1 de repli stockés par groupe (composite) : si le meilleur coup est refusé
 # par le dictionnaire du jeu, le suivant est pris instantanément au lieu d'un
 # recalcul complet (run d'amélioration n° 1 : 3 rejets d'affilée sur R,9 =

@@ -25,7 +25,7 @@ sys.path.insert(0, str(ROOT_DIR / "src"))
 sys.path.insert(0, str(ROOT_DIR))
 
 from motus_solver.blocklist import add_to_blocklist, load_blocklist  # noqa: E402
-from motus_solver.cache import cache_key, load_cache  # noqa: E402
+from motus_solver.cache import DEFAULT_STRATEGY, ROOT_CACHE_FILES, cache_key, load_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.draws import load_draw_counts, record_draw  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
@@ -46,8 +46,8 @@ from bot_config import config as bot_config  # noqa: E402
 from stats_store import record_game  # noqa: E402
 
 DEFAULT_CORPUS = ROOT_DIR / "data" / "corpus_fr.txt"
-DEFAULT_ROOT_CACHE = ROOT_DIR / "data" / "root_cache.json"
-DEFAULT_ROOT_CACHE_ENTROPY_PURE = ROOT_DIR / "data" / "root_cache_entropy_pure.json"
+DEFAULT_ROOT_CACHE = ROOT_DIR / "data" / ROOT_CACHE_FILES["composite"]
+DEFAULT_ROOT_CACHE_ENTROPY_PURE = ROOT_DIR / "data" / ROOT_CACHE_FILES["entropy_pure"]
 DEFAULT_AUTH_STATE = ROOT_DIR / "data" / "tuzmo_auth_state.json"
 DEFAULT_LOG = ROOT_DIR / "data" / "dashboard_bot_log.jsonl"
 DEFAULT_BLOCKLIST = ROOT_DIR / "data" / "known_invalid_words.json"
@@ -123,9 +123,9 @@ class BotRunner:
         self.current_iteration = 0
         self.total_iterations = 0
         self.page_monitor: NetworkMonitor | None = None
-        # "composite" (défaut) ou "entropy_pure" (alternative, jamais activée par
-        # défaut ; son cache racine a les mêmes coups de repli que le composite)
-        self.strategy = "composite"
+        # "entropy_pure" (défaut depuis le 25/09/2026) ou "composite" (option, poids
+        # inchangés) ; chacune a son propre cache racine, avec les mêmes replis
+        self.strategy = DEFAULT_STRATEGY
 
     def is_running(self) -> bool:
         return self._thread is not None and self._thread.is_alive()
@@ -180,7 +180,7 @@ class BotRunner:
             pass
 
     def root_cache_path(self) -> Path:
-        return DEFAULT_ROOT_CACHE_ENTROPY_PURE if self.strategy == "entropy_pure" else DEFAULT_ROOT_CACHE
+        return {"composite": DEFAULT_ROOT_CACHE, "entropy_pure": DEFAULT_ROOT_CACHE_ENTROPY_PURE}[self.strategy]
 
     def _new_context(self, browser: Browser) -> BrowserContext:
         context_kwargs = {"viewport": {"width": 1280, "height": 900}}

@@ -2,11 +2,22 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .cache import cache_key
+from .cache import DEFAULT_STRATEGY, STRATEGIES, cache_key
 from .corpus import Corpus
 from .feedback import pattern_codes, pattern_to_code, words_to_matrix
 from .scoring import letter_frequencies, positional_frequencies
 from .tree import score_guess, top_guesses_entropy_pure
+
+# Départage des coups calculés dynamiquement (coups 2 et suivants, et repli du coup 1
+# quand tous les candidats en cache sont refusés) : parmi les coups dont le score est
+# à moins de NEAR_TIE_REL (écart relatif) du meilleur, un mot déjà accepté par le jeu
+# passe en premier. Évite les rafales de rejets sur des non-mots du corpus (phase 2 du
+# 24/09/2026 : 23 rejets, tous à ces coups-là). Ni les poids du composite ni le calcul
+# d'entropie ne changent : seul l'ordre entre coups quasi égaux est touché.
+# Valeur retenue sur rejeu hors ligne de 788 solutions réelles (cf.
+# docs/diagnostics/2026-09-25_phase0_defaut_departage_validation.md).
+NEAR_TIE_REL = 0.02
+NEAR_TIE_POOL = 20  # coups examinés au plus pour le départage
 
 
 @dataclass
@@ -24,13 +35,16 @@ class Solver:
         root_cache: dict[str, dict] | None = None,
         blocklist: set[str] | None = None,
         known_valid: set[str] | None = None,
-        strategy: str = "composite",
+        strategy: str = DEFAULT_STRATEGY,
+        near_tie: float | None = None,
     ):
-        if strategy not in ("composite", "entropy_pure"):
+        if strategy not in STRATEGIES:
             raise ValueError(f"stratégie inconnue : {strategy!r}")
-        # "composite" (défaut, poids inchangés) ou "entropy_pure" (alternative, non
-        # activée par défaut) ; `root_cache` doit être le cache de la même stratégie.
+        # "entropy_pure" (défaut depuis le 25/09/2026) ou "composite" (poids
+        # inchangés) ; `root_cache` doit être le cache de la même stratégie
+        # (cache.ROOT_CACHE_FILES).
         self.strategy = strategy
+        self.near_tie = NEAR_TIE_REL if near_tie is None else near_tie
         self.letter = letter.upper()
         # Mots déjà ACCEPTÉS par le vrai jeu : au coup 1, préférés parmi le coup
         # racine et ses replis (scores quasi égaux), pour ne pas payer un rejet.
@@ -71,18 +85,35 @@ class Solver:
                     chosen = next((e for e in ranked if e["word"] in self.known_valid), ranked[0])
                     return [(chosen["word"], chosen["entropy"], chosen.get("vowels", 0))]
 
+        pool = max(top_n, NEAR_TIE_POOL) if self.near_tie and self.known_valid else top_n
         if self.strategy == "entropy_pure":
-            return [(w, e, 0) for w, e in top_guesses_entropy_pure(self.candidates, k=top_n)]
+            ranked = [(w, e, 0) for w, e in top_guesses_entropy_pure(self.candidates, k=pool)]
+            values = [e for _, e, _ in ranked]
+        else:
+            candidates_arr = words_to_matrix(self.candidates)
+            scored = []
+            for guess in self.candidates:
+                score, entropy, vowels = score_guess(
+                    guess, self.candidates, candidates_arr, self._global_freq, self._positional_freq
+                )
+                scored.append((score, guess, entropy, vowels))
+            scored.sort(key=lambda item: item[0], reverse=True)
+            ranked = [(guess, entropy, vowels) for _, guess, entropy, vowels in scored[:pool]]
+            values = [score for score, *_ in scored[:pool]]
+        return self._known_valid_first_among_near_ties(ranked, values)[:top_n]
 
-        candidates_arr = words_to_matrix(self.candidates)
-        scored = []
-        for guess in self.candidates:
-            score, entropy, vowels = score_guess(
-                guess, self.candidates, candidates_arr, self._global_freq, self._positional_freq
-            )
-            scored.append((score, guess, entropy, vowels))
-        scored.sort(key=lambda item: item[0], reverse=True)
-        return [(guess, entropy, vowels) for _, guess, entropy, vowels in scored[:top_n]]
+    def _known_valid_first_among_near_ties(self, ranked: list, values: list[float]) -> list:
+        """Remonte en tête le premier mot déjà accepté par le jeu parmi les coups à
+        moins de `near_tie` (écart relatif) du meilleur score ; sinon, ordre inchangé."""
+        if not ranked or not self.near_tie or not self.known_valid:
+            return ranked
+        threshold = values[0] - abs(values[0]) * self.near_tie
+        for i, (item, value) in enumerate(zip(ranked, values)):
+            if value < threshold:
+                break
+            if item[0] in self.known_valid:
+                return ranked if i == 0 else [item, *ranked[:i], *ranked[i + 1:]]
+        return ranked
 
     def play(self, word: str) -> None:
         self.history.append(Move(word=word.upper(), pattern=""))

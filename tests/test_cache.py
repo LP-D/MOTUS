@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 from motus_solver.cache import build_root_cache, cache_key, load_cache, save_cache
 from motus_solver.corpus import Corpus
@@ -261,9 +262,30 @@ def test_entropy_pure_solver_dynamic_moves_match_reference():
     assert solver.suggest(top_n=1)[0][0] == best_guess_entropy_pure(corpus.subset("R", 5))[0]
 
 
-def test_default_strategy_is_still_composite():
+def test_default_strategy_is_entropy_pure_and_composite_stays_available():
+    """Phase 0 du 25/09/2026 : entropy_pure par défaut, composite en option."""
+    from motus_solver.cache import DEFAULT_STRATEGY, ROOT_CACHE_FILES
+
     corpus = make_corpus()
-    assert Solver(letter="R", length=5, corpus=corpus).strategy == "composite"
+    assert DEFAULT_STRATEGY == "entropy_pure"
+    assert Solver(letter="R", length=5, corpus=corpus).strategy == "entropy_pure"
+    assert Solver(letter="R", length=5, corpus=corpus, strategy="composite").strategy == "composite"
+    assert ROOT_CACHE_FILES == {"composite": "root_cache.json", "entropy_pure": "root_cache_entropy_pure.json"}
+
+
+def test_bot_runner_and_cycle_script_follow_default_strategy():
+    import sys
+
+    root = Path(__file__).resolve().parent.parent
+    sys.path.insert(0, str(root / "dashboard"))
+    sys.path.insert(0, str(root / "scripts"))
+    import bot_runner
+
+    runner = bot_runner.BotRunner()
+    assert runner.strategy == "entropy_pure"
+    assert runner.root_cache_path().name == "root_cache_entropy_pure.json"
+    runner.strategy = "composite"
+    assert runner.root_cache_path().name == "root_cache.json"
 
 
 def test_refresh_also_purges_blocklisted_fallback_moves():

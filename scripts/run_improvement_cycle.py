@@ -36,7 +36,7 @@ from run_case_matrix import MatrixRunner, drain, evaluate_game  # noqa: E402
 from bot.network_monitor import session_from_body  # noqa: E402
 from bot.tuzmo_client import ThrottlingDetectedError  # noqa: E402
 from motus_solver.blocklist import load_blocklist  # noqa: E402
-from motus_solver.cache import cache_key, load_cache  # noqa: E402
+from motus_solver.cache import DEFAULT_STRATEGY, STRATEGIES, cache_key, load_cache  # noqa: E402
 from motus_solver.corpus import Corpus, normalize_word  # noqa: E402
 from motus_solver.feedback import entropy_from_codes, pattern_codes, pattern_string, words_to_matrix  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
@@ -70,10 +70,11 @@ def entropy_of(word: str, candidates: list[str]) -> float | None:
 
 
 def simulate(opening: list[str], solution: str, letter: str, length: int, corpus: Corpus,
-             blocklist: set[str], root_cache: dict | None = None) -> dict:
-    """Joue `opening` puis le solveur (composite) contre `solution`, hors ligne.
-    Sans ouverture imposée, le coup 1 vient du cache racine (comme le bot)."""
-    solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist)
+             blocklist: set[str], root_cache: dict | None = None, strategy: str = DEFAULT_STRATEGY) -> dict:
+    """Joue `opening` puis le solveur (`strategy`, celle du run) contre `solution`,
+    hors ligne. Sans ouverture imposée, le coup 1 vient du cache racine (comme le bot)."""
+    solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist,
+                    strategy=strategy)
     if solution not in solver.candidates:
         return {"valid": False, "reason": "solution absente du sous-corpus (hors corpus ou en liste noire)"}
     remaining, attempts = [], 0
@@ -125,7 +126,7 @@ def move_origin(attempt: int, guess: str, root_entry: dict | None, known_valid: 
 
 
 def game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, corpus, blocklist, root_cache,
-             known_valid: set[str] | None = None):
+             known_valid: set[str] | None = None, strategy: str = DEFAULT_STRATEGY):
     letter, length = report["letter"], report["length"]
     solution = report["solution"]
     root_entry = root_cache.get(cache_key(letter, length)) if letter else None
@@ -179,8 +180,8 @@ def game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, cor
                              "bot_first_accepted": entropy_of(first_bot, cands) if first_bot else None},
         }
         if solution:
-            with_trio = simulate(trio["words"], solution, letter, length, corpus, blocklist)
-            bot_only = simulate([], solution, letter, length, corpus, blocklist, root_cache)
+            with_trio = simulate(trio["words"], solution, letter, length, corpus, blocklist, strategy=strategy)
+            bot_only = simulate([], solution, letter, length, corpus, blocklist, root_cache, strategy=strategy)
             trio_cmp.update({
                 "sim_trio_then_bot": with_trio, "sim_bot_only": bot_only,
                 "bot_real_attempts": len(accepted),
@@ -304,7 +305,7 @@ def main() -> None:
     parser.add_argument("--out-dir", default=str(DEFAULT_OUT))
     parser.add_argument("--cycle-start", type=int, default=None,
                         help="1er run du cycle en cours (minimum 5 runs comptés à partir de lui).")
-    parser.add_argument("--strategy", choices=["composite", "entropy_pure"], default="composite")
+    parser.add_argument("--strategy", choices=STRATEGIES, default=DEFAULT_STRATEGY)
     parser.add_argument("--force-abandon-game", type=int, default=0,
                         help="Validation : force le chemin 'solution hors corpus' (abandon + révélation) sur cette partie.")
     args = parser.parse_args()
@@ -368,7 +369,7 @@ def main() -> None:
                 report = evaluate_game(index, events, calls, root_cache, False, result)
                 trio = trios.get((report["letter"], report["length"]))
                 log = game_log(index, report, events, calls, result, t0, t_ready, t_end, trio, corpus,
-                               blocklist_at_start, root_cache, known_valid_at_start)
+                               blocklist_at_start, root_cache, known_valid_at_start, args.strategy)
                 log["strategy"] = args.strategy
                 log["h8"] = h8_watch(index, events, calls, guest_info, cookie_before_load)
                 log["forced_abandon"] = forced_abandon

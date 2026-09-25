@@ -32,7 +32,7 @@ from bot.tuzmo_client import (  # noqa: E402
 
 URL = "https://www.tusmo.xyz/daily"
 CORPUS_PATH = ROOT_DIR / "data" / "corpus_fr.txt"
-ROOT_CACHE_PATH = ROOT_DIR / "data" / "root_cache.json"
+ROOT_CACHE_PATH = ROOT_DIR / "data" / ROOT_CACHE_FILES[DEFAULT_STRATEGY]  # cache de la stratégie par défaut
 BLOCKLIST_PATH = ROOT_DIR / "data" / "known_invalid_words.json"
 MAX_ATTEMPTS = 6
 REJECT_TIMEOUT_MS = 6000
@@ -86,7 +86,8 @@ def main() -> None:
         length = client.get_word_length()
         print(f"Lettre de départ: {letter}, longueur: {length}")
 
-        solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist)
+        solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache, blocklist=blocklist,
+                        strategy=DEFAULT_STRATEGY)
 
         for attempt in range(1, MAX_ATTEMPTS + 1):
             try:

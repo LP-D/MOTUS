@@ -108,3 +108,52 @@ def test_move2_is_recomputed_from_move1_feedback():
     # (même très proche lexicalement des candidats) n'a pu se glisser dans le résultat
     assert guess2_a.startswith(imposed_letter) and guess2_a not in DECOY_WORDS
     assert guess2_b.startswith(imposed_letter) and guess2_b not in DECOY_WORDS
+
+
+def _near_tie_solver(strategy, known_valid, near_tie=0.02):
+    from motus_solver.corpus import Corpus as _Corpus
+
+    words = ["RATER", "RIVER", "RAYER", "RAVER", "RASER", "RIRES", "ROBOT", "RUSES", "RONDE", "REINE"]
+    # sans cache racine : coup calculé dynamiquement, comme aux coups 2 et suivants
+    return Solver(letter="R", length=5, corpus=_Corpus(words), strategy=strategy, known_valid=known_valid,
+                  near_tie=near_tie)
+
+
+def test_near_tie_prefers_known_valid_word_at_dynamic_moves():
+    """Phase 0 du 25/09/2026 : à score quasi égal, un mot déjà accepté passe devant."""
+    for strategy in ("entropy_pure", "composite"):
+        plain = _near_tie_solver(strategy, known_valid=set(), near_tie=0)
+        ranked = plain.suggest(top_n=len(plain.candidates))
+        best, runner_up = ranked[0][0], ranked[1][0]
+        # sans mot valide connu : ordre strictement inchangé
+        assert _near_tie_solver(strategy, known_valid=set()).suggest(top_n=1)[0][0] == best
+        # le 2e, s'il est dans la tolérance et connu valide, passe en tête
+        wide = _near_tie_solver(strategy, known_valid={runner_up}, near_tie=1.0)
+        assert wide.suggest(top_n=2)[0][0] == runner_up and wide.suggest(top_n=2)[1][0] == best
+        # hors tolérance : jamais préféré à un meilleur coup (entropie strictement supérieure)
+        if strategy == "entropy_pure" and ranked[0][1] > ranked[1][1]:
+            strict = _near_tie_solver(strategy, known_valid={runner_up}, near_tie=1e-12)
+            assert strict.suggest(top_n=1)[0][0] == best
+
+
+def test_near_tie_never_changes_entropy_or_scores():
+    solver = _near_tie_solver("entropy_pure", known_valid=set(), near_tie=0)
+    ranked = solver.suggest(top_n=5)
+    promoted = _near_tie_solver("entropy_pure", known_valid={ranked[-1][0]}, near_tie=1.0).suggest(top_n=5)
+    assert sorted(ranked) == sorted(promoted)  # mêmes coups, mêmes valeurs : seul l'ordre change
+
+
+def test_near_tie_threshold_is_relative_to_best_value():
+    from motus_solver.corpus import Corpus as _Corpus
+
+    solver = Solver(letter="R", length=5, corpus=_Corpus(["RATER", "RIVER"]), known_valid={"RONDE", "RUSES"},
+                    near_tie=0.02)
+    ranked = [("RATER", 0, 0), ("RIVER", 0, 0), ("RONDE", 0, 0), ("RUSES", 0, 0)]
+    # RONDE à 1,5 % du meilleur : dans la tolérance de 2 %, remonté en tête
+    assert [w for w, *_ in solver._known_valid_first_among_near_ties(ranked, [1.0, 0.99, 0.985, 0.5])] == [
+        "RONDE", "RATER", "RIVER", "RUSES"]
+    # RONDE à 3 % : hors tolérance, ordre inchangé (RUSES encore plus loin)
+    assert solver._known_valid_first_among_near_ties(ranked, [1.0, 0.99, 0.97, 0.5]) == ranked
+    # le meilleur déjà connu valide : rien ne bouge
+    solver.known_valid = {"RATER", "RONDE"}
+    assert solver._known_valid_first_among_near_ties(ranked, [1.0, 1.0, 1.0, 1.0]) == ranked

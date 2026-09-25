@@ -4,6 +4,7 @@ import sys
 
 import click
 
+from .cache import DEFAULT_STRATEGY, STRATEGIES
 from .corpus import Corpus
 from .solver import Solver
 
@@ -20,9 +21,11 @@ DEFAULT_CORPUS = "data/corpus_fr.txt"
     help="Fichier dictionnaire (un mot par ligne).",
 )
 @click.option("--top-n", default=5, show_default=True, help="Nombre de suggestions affichées.")
-def main(letter: str, length: int, corpus_path: str, top_n: int) -> None:
+@click.option("--strategy", type=click.Choice(STRATEGIES), default=DEFAULT_STRATEGY, show_default=True,
+              help="Stratégie du solveur (composite disponible en option).")
+def main(letter: str, length: int, corpus_path: str, top_n: int, strategy: str) -> None:
     corpus = Corpus.from_file(corpus_path)
-    solver = Solver(letter=letter, length=length, corpus=corpus)
+    solver = Solver(letter=letter, length=length, corpus=corpus, strategy=strategy)
 
     while not solver.is_solved():
         suggestions = solver.suggest(top_n=top_n)
