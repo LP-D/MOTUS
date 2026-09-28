@@ -165,6 +165,25 @@ Modèles disponibles :
 Résultats : `docs/diagnostics/2026-09-25_phase8_duel_pistes.md`. Pour ajouter un
 modèle : une classe `Agent` et une entrée dans `AGENTS` (`src/motus_solver/agents.py`).
 
+## Entraînement Tusmo (compte Pro)
+
+Le mode `/entrainement` (compte Pro, tier `lettre`) note chaque coup : `percent`
+(100 = meilleur coup possible selon Tusmo), meilleur mot du coup (`bestWord`) et
+taille de la liste de solutions avant le coup. `scripts/scrape_tusmo_training.py`
+fait jouer le solveur via l'API JSON (sans navigateur, session de
+`data/tuzmo_auth_state.json`) et ajoute chaque partie à
+`data/tusmo_training_log.jsonl` :
+
+```bash
+python scripts/scrape_tusmo_training.py --games 5
+python scripts/scrape_tusmo_training.py --games 10 --length 7 --letter R --preview
+python scripts/scrape_tusmo_training.py --summary
+```
+
+`--preview` demande aussi la note du mot avant de le jouer (partie hors
+progression, nombre limité par Tusmo). Même débit que les autres scripts API :
+1,5 à 2,5 s entre requêtes, arrêt immédiat sur HTTP 429.
+
 ## Tests
 
 ```bash
