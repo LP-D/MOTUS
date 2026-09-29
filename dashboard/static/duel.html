@@ -69,14 +69,25 @@
   th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--border); }
   th { color: var(--muted); font-weight: 600; }
   .muted { color: var(--muted); font-size: 12px; }
+  body:not(.versus) .versus-only, body.versus .human-only { display: none; }
 </style>
 </head>
 <body>
 <header>
   <h1>Duel classé simulé</h1>
   <a href="/">← dashboard</a>
-  <label for="botSelect">bot</label><select id="botSelect"></select>
+  <label for="modeSelect">mode</label>
+  <select id="modeSelect">
+    <option value="human">toi contre un bot</option>
+    <option value="bots">bot contre bot</option>
+  </select>
+  <label for="botSelect" id="botLabel">bot</label><select id="botSelect"></select>
   <label for="speedSelect">vitesse</label><select id="speedSelect"></select>
+  <span id="versusControls" class="versus-only">
+    <label for="bot2Select">contre</label><select id="bot2Select"></select>
+    <label for="speed2Select">vitesse</label><select id="speed2Select"></select>
+    <label><input type="checkbox" id="chainBox" /> enchaîner</label>
+  </span>
   <label for="lengthSelect">longueur</label>
   <select id="lengthSelect">
     <option value="">aléatoire</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
@@ -88,20 +99,24 @@
   <div id="banner"><span class="muted">Choisis un bot et sa vitesse, puis lance un duel. Même mot, 6 essais chacun ; le premier qui trouve lance un chrono de 2 min, et l'autre doit trouver en strictement moins d'essais.</span></div>
   <div class="arena">
     <div class="side">
-      <h2><span>Toi</span><span id="meInfo"></span></h2>
+      <h2><span id="leftTitle">Toi</span><span id="meInfo" class="thinking"></span></h2>
       <div class="board" id="myBoard"></div>
       <div id="toast" role="status" aria-live="polite"></div>
-      <div class="keyboard" id="keyboard"></div>
+      <div class="keyboard human-only" id="keyboard"></div>
     </div>
     <div class="side">
       <h2><span id="botTitle">Bot</span><span id="botInfo" class="thinking"></span></h2>
       <div class="board" id="botBoard"></div>
-      <p class="muted" style="text-align:center;margin-top:10px;">Tu vois ses couleurs, pas ses lettres (révélées à la fin).</p>
+      <p class="muted human-only" style="text-align:center;margin-top:10px;">Tu vois ses couleurs, pas ses lettres (révélées à la fin).</p>
     </div>
   </div>
   <section class="history">
     <h2>Ton bilan contre les bots</h2>
     <table id="historyTable"></table>
+  </section>
+  <section class="history">
+    <h2>Bot contre bot</h2>
+    <table id="versusTable"></table>
   </section>
 </main>
 <script>
@@ -121,9 +136,64 @@ function esc(s) { return String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp
 
 async function loadOptions() {
   const o = await (await fetch('/api/duel/options')).json();
-  $('botSelect').innerHTML = o.bots.map((b) => `<option value="${b.name}" title="${esc(b.description)}">${b.name}</option>`).join('');
-  $('speedSelect').innerHTML = o.speeds.map((s) => `<option value="${s.name}">${s.name} — ${esc(s.description)}</option>`).join('');
-  $('speedSelect').value = 'humain';
+  const bots = o.bots.map((b) => `<option value="${b.name}" title="${esc(b.description)}">${b.name}</option>`).join('');
+  const speeds = o.speeds.map((s) => `<option value="${s.name}">${s.name} — ${esc(s.description)}</option>`).join('');
+  $('botSelect').innerHTML = bots; $('bot2Select').innerHTML = bots;
+  $('speedSelect').innerHTML = speeds; $('speed2Select').innerHTML = speeds;
+  $('speedSelect').value = 'humain'; $('speed2Select').value = 'humain';
+  if (o.bots.some((b) => b.name === 'tusmo_conseil')) $('bot2Select').value = 'tusmo_conseil';
+}
+
+function versusSelected() { return $('modeSelect').value === 'bots'; }
+
+function applyMode() {
+  document.body.classList.toggle('versus', versusSelected());
+  $('botLabel').textContent = versusSelected() ? 'bot 1' : 'bot';
+}
+
+function boardHtml(rows, n, showLetters) {
+  let html = '';
+  for (let r = 0; r < 6; r++) {
+    const row = rows[r];
+    let cells = '';
+    for (let i = 0; i < n; i++) cells += row ? cellHtml(showLetters && row.word ? row.word[i] : '', row.pattern[i]) : cellHtml('', null);
+    html += `<div class="row">${cells}</div>`;
+  }
+  return html;
+}
+
+function sideStatus(p) {
+  if (state.result) return p.rejections ? `${p.rejections} mot(s) refusé(s)` : '';
+  return p.solved ? 'a trouvé' : p.failed ? 'a échoué' : p.thinking ? 'réfléchit…' : '';
+}
+
+function renderVersus() {
+  const [a, b] = state.players;
+  $('myBoard').innerHTML = boardHtml(a.rows, state.length, true);
+  $('botBoard').innerHTML = boardHtml(b.rows, state.length, true);
+  $('leftTitle').textContent = `Bot 1 · ${a.name} (${a.speed})`;
+  $('botTitle').textContent = `Bot 2 · ${b.name} (${b.speed})`;
+  $('meInfo').textContent = sideStatus(a);
+  $('botInfo').textContent = sideStatus(b);
+  const banner = $('banner');
+  banner.className = '';
+  const label = (i) => `bot ${i + 1} (${state.players[i].name})`;
+  if (state.result) {
+    const w = state.result.winner;
+    banner.className = w == null ? '' : 'win';
+    banner.innerHTML = `<span class="big">${w == null ? 'Égalité' : `${esc(label(w))} gagne`}</span>
+      <span>${REASONS[state.result.reason] || state.result.reason}. Le mot était <b>${state.result.word}</b>.</span>
+      <span class="muted">Bot 1 : ${a.rows.length} essai(s) · bot 2 : ${b.rows.length} essai(s)</span>`;
+    return;
+  }
+  if (state.countdown > 0) { banner.innerHTML = `<span class="big">${Math.ceil(state.countdown)}</span><span>Même mot pour les deux bots : <b>${state.letter}</b> en ${state.length} lettres.</span>`; return; }
+  if (state.first_solver != null) {
+    const s = state.first_solver;
+    banner.innerHTML = `<span class="big clock">${fmt(state.chase_left)}</span><span>${esc(label(s))} a trouvé en
+      ${state.players[s].rows.length} essais : l'autre doit faire mieux avant la fin du chrono.</span>`;
+    return;
+  }
+  banner.innerHTML = `<span class="big clock">${fmt(Math.max(0, state.clock))}</span><span>Duel en cours : ${state.letter} en ${state.length} lettres.</span>`;
 }
 
 function knownCorrect() {
@@ -163,6 +233,7 @@ function renderBoards() {
     bot += `<div class="row">${cells}</div>`;
   }
   $('botBoard').innerHTML = bot;
+  $('leftTitle').textContent = 'Toi';
   $('botTitle').textContent = `Bot · ${state.bot} (${state.speed})`;
   $('botInfo').textContent = state.result ? '' : state.bot_side.solved ? 'a trouvé' : state.bot_side.failed ? 'a échoué'
     : state.bot_side.thinking ? 'réfléchit…' : '';
@@ -210,7 +281,16 @@ function renderBanner() {
   b.innerHTML = `<span class="big clock">${fmt(Math.max(0, state.clock))}</span><span>À toi de jouer : ${state.letter} en ${state.length} lettres.</span>`;
 }
 
-function render() { renderBoards(); renderKeyboard(); renderBanner(); }
+function render() {
+  document.body.classList.toggle('versus', state ? state.mode === 'bots' : versusSelected());
+  if (state && state.mode === 'bots') { renderVersus(); return; }
+  renderBoards(); renderKeyboard(); renderBanner();
+}
+
+function finished() {
+  clearInterval(poll); poll = null; loadHistory();
+  if (state.mode === 'bots' && $('chainBox').checked && versusSelected()) setTimeout(newDuel, 2500);
+}
 
 async function refresh() {
   if (!state) return;
@@ -218,11 +298,12 @@ async function refresh() {
   if (!res.ok) { clearInterval(poll); return; }
   state = await res.json();
   render();
-  if (state.result) { clearInterval(poll); poll = null; loadHistory(); }
+  if (state.result) finished();
 }
 
 async function newDuel() {
-  const body = { bot: $('botSelect').value, speed: $('speedSelect').value };
+  const body = { bot: $('botSelect').value, speed: $('speedSelect').value, mode: $('modeSelect').value };
+  if (versusSelected()) { body.bot2 = $('bot2Select').value; body.speed2 = $('speed2Select').value; }
   if ($('lengthSelect').value) body.length = Number($('lengthSelect').value);
   const res = await fetch('/api/duel/new', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   const data = await res.json();
@@ -233,7 +314,7 @@ async function newDuel() {
   poll = setInterval(refresh, 250);
 }
 
-function canType() { return state && !state.result && !state.me.solved && !state.me.failed && state.countdown <= 0; }
+function canType() { return state && state.mode !== 'bots' && !state.result && !state.me.solved && !state.me.failed && state.countdown <= 0; }
 
 async function press(k) {
   if (!canType()) return;
@@ -247,7 +328,7 @@ async function press(k) {
     if (data.error) { $('toast').textContent = data.error; if (res.status !== 422) return; }
     if (res.ok) typed = state.letter;
     state = data;
-    if (state.result) { clearInterval(poll); poll = null; loadHistory(); }
+    if (state.result) finished();
   } else if (typed.length < state.length) typed += k;
   render();
 }
@@ -271,8 +352,19 @@ async function loadHistory() {
   $('historyTable').innerHTML = h.duels
     ? `<thead><tr><th>bot</th><th>victoires</th><th>nulles</th><th>défaites</th><th>score</th></tr></thead><tbody>${rows}</tbody>`
     : '<tbody><tr><td class="muted">Aucun duel joué pour l\'instant.</td></tr></tbody>';
+  const vs = (h.versus || []).map((m) => {
+    const n = m.wins_a + m.draws + m.wins_b;
+    const score = n ? Math.round(100 * (m.wins_a + m.draws / 2) / n) : 0;
+    return `<tr><td>${esc(m.a)}</td><td>${m.wins_a}</td><td>${m.draws}</td><td>${m.wins_b}</td><td>${esc(m.b)}</td>
+      <td>${score} % / ${100 - score} %</td><td>${n ? (m.attempts[0] / n).toFixed(2) : '-'} / ${n ? (m.attempts[1] / n).toFixed(2) : '-'}</td></tr>`;
+  }).join('');
+  $('versusTable').innerHTML = vs
+    ? `<thead><tr><th>bot A</th><th>victoires A</th><th>nulles</th><th>victoires B</th><th>bot B</th><th>score A / B</th><th>essais moy. A / B</th></tr></thead><tbody>${vs}</tbody>`
+    : '<tbody><tr><td class="muted">Aucun duel bot contre bot pour l\'instant (mode « bot contre bot »).</td></tr></tbody>';
 }
 
+$('modeSelect').addEventListener('change', () => { applyMode(); if (state && state.result) { state = null; } });
+applyMode();
 loadOptions();
 loadHistory();
 renderKeyboard();

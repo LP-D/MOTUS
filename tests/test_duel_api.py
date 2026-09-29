@@ -48,7 +48,7 @@ def test_bot_letters_hidden_until_the_end():
     state = client.post("/api/duel/new", json={"bot": "aleatoire", "speed": "instantane"}).json()
     live = duel_api._sessions[state["id"]]
     live.duel.submit(duel_api.BOT, "PAGES", 0.1)  # coup du bot posé à la main
-    live.pending = None
+    live.pending[duel_api.BOT] = None
     rows = client.get(f"/api/duel/{state['id']}").json()["bot_side"]["rows"]
     assert rows[0]["word"] is None and rows[0]["pattern"] == "22022"
 
@@ -64,3 +64,35 @@ def test_learning_bot_remembers_your_openers():
     client.post(f"/api/duel/{state['id']}/guess", json={"word": "PAVES"})
     saved = json.loads(duel_api.PROFILES.read_text(encoding="utf-8"))
     assert saved["toi"]["openers"]["P_5"] == ["PAVES"]
+
+
+def _finish(state):
+    """Avance l'horloge du duel bien au-delà des coups et du chrono de riposte."""
+    live = duel_api._sessions[state["id"]]
+    live.started -= 10_000
+    return client.get(f"/api/duel/{state['id']}").json()
+
+
+def test_bot_against_bot_duel_is_watched_to_the_end():
+    state = client.post("/api/duel/new", json={"mode": "bots", "bot": "entropy_pure", "speed": "rapide",
+                                               "bot2": "aleatoire", "speed2": "lent"}).json()
+    assert state["mode"] == "bots" and [p["name"] for p in state["players"]] == ["entropy_pure", "aleatoire"]
+    end = _finish(state)
+    assert end["result"]["word"] == "PAVES" and end["result"]["winner"] in (0, 1, None)
+    assert all(row["word"] for p in end["players"] for row in p["rows"])  # spectateur : lettres visibles
+    history = client.get("/api/duel-history").json()
+    assert history["duels"] == 0 and history["versus_duels"] == 1  # ton bilan n'est pas touché
+    match = history["versus"][0]
+    assert (match["a"], match["b"]) == ("aleatoire@lent", "entropy_pure@rapide")
+    assert match["wins_a"] + match["draws"] + match["wins_b"] == 1
+
+
+def test_nothing_to_type_in_a_bot_against_bot_duel():
+    state = client.post("/api/duel/new", json={"mode": "bots", "bot": "entropy_pure", "bot2": "entropy_pure"}).json()
+    res = client.post(f"/api/duel/{state['id']}/guess", json={"word": "PAVES"})
+    assert res.status_code == 422 and "bots" in res.json()["error"]
+
+
+def test_unknown_second_bot_or_mode_is_refused():
+    assert client.post("/api/duel/new", json={"mode": "bots", "bot2": "nope"}).status_code == 400
+    assert client.post("/api/duel/new", json={"mode": "spectre"}).status_code == 400

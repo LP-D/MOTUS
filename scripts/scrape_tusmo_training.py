@@ -18,7 +18,13 @@ chaque requête, arrêt immédiat sur HTTP 429 / Retry-After / latence > 5 s.
 
     python scripts/scrape_tusmo_training.py --games 5
     python scripts/scrape_tusmo_training.py --games 10 --length 7 --letter R --preview
+    python scripts/scrape_tusmo_training.py --games 50 --player tusmo --preview
     python scripts/scrape_tusmo_training.py --summary
+
+`--player tusmo` : joue comme Tusmo conseille (motus_solver.tusmo_list, liste de
+solutions estimée depuis ce même journal) ; la note des coups mesure la fidélité.
+`--preview` : avant chaque coup, note Tusmo des PREVIEW_TRIES premiers conseils, et
+le premier à 100 % est joué.
 """
 from __future__ import annotations
 
@@ -38,6 +44,7 @@ from motus_solver.blocklist import load_blocklist  # noqa: E402
 from motus_solver.cache import DEFAULT_STRATEGY, ROOT_CACHE_FILES, load_cache  # noqa: E402
 from motus_solver.corpus import Corpus  # noqa: E402
 from motus_solver.solver import Solver  # noqa: E402
+from motus_solver.tusmo_list import TusmoAdvisor, TusmoModel  # noqa: E402
 
 BASE_URL = "https://www.tusmo.xyz"
 DATA = ROOT_DIR / "data"
@@ -47,6 +54,8 @@ GAP_S = (1.5, 2.5)
 THROTTLE_LATENCY_S = 5.0
 RESULT_CODES = {"correct": "2", "present": "1", "absent": "0"}
 MAX_REJECTS_PER_MOVE = 20
+PREVIEW_TRIES = 3  # conseils notés au plus avant chaque coup (--preview)
+MODEL_RELOAD_GAMES = 25  # --player tusmo : le journal grossit, la liste estimée s'affine
 USER_AGENT = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
               "(KHTML, like Gecko) Chrome/130.0 Safari/537.36")
 
@@ -108,46 +117,97 @@ def result_to_pattern(result: list[str]) -> str:
     return "".join(RESULT_CODES[r] for r in result)
 
 
-def play_game(api, solver: Solver, session: dict, use_preview: bool = False) -> dict:
-    """Joue la session jusqu'au bout avec le solveur ; renvoie l'enregistrement de la
-    partie (coups notés par Tusmo, mots refusés, rapport brut)."""
+class TusmoPlayer:
+    """Conseiller « comme Tusmo » (motus_solver.tusmo_list) avec l'interface du Solver
+    utilisée par play_game."""
+
+    strategy = "tusmo_conseil"
+
+    def __init__(self, advisor: TusmoAdvisor):
+        self.advisor = advisor
+        self._pending: str | None = None
+
+    @property
+    def candidates(self) -> list[str]:
+        return self.advisor.candidates()[0]
+
+    def suggest(self, top_n: int = 1) -> list[tuple[str, float, int]]:
+        return [(w, h, 0) for w, h in self.advisor.ranked(top_n)]
+
+    def play(self, word: str) -> None:
+        self._pending = word
+
+    def update(self, pattern: str) -> None:
+        self.advisor.update(self._pending, pattern)
+
+    def discard(self, word: str) -> None:
+        self.advisor.discard(word)
+
+
+def best_previewed(api, session_id: str, words: list[str]) -> tuple[str | None, list, bool, list[str]]:
+    """Note (preview) des mots conseillés, dans l'ordre, jusqu'au premier à 100 % :
+    renvoie (mot à jouer, notes obtenues, preview encore disponible, mots refusés)."""
+    previews, invalid = [], []
+    available = True
+    for word in words:
+        p = api.preview(session_id, word)
+        if p.get("error") == "TOO_MANY_PREVIEWS":
+            available = False
+            break
+        if p.get("error") == "INVALID_WORD":
+            invalid.append(word)
+            continue
+        previews.append([word, p.get("percent")])
+        if (p.get("percent") or 0) >= 100:
+            break
+    rated = [x for x in previews if x[1] is not None]
+    chosen = max(rated, key=lambda x: x[1])[0] if rated else next((w for w in words if w not in invalid), None)
+    return chosen, previews, available, invalid
+
+
+def play_game(api, solver, session: dict, use_preview: bool = False) -> dict:
+    """Joue la session jusqu'au bout avec le joueur (`Solver` ou `TusmoPlayer`) ;
+    renvoie l'enregistrement de la partie (coups notés par Tusmo, mots refusés,
+    rapport brut). Avec `use_preview`, chaque coup est choisi parmi les
+    PREVIEW_TRIES premiers conseils du joueur : le premier noté 100 % par Tusmo avant
+    d'être joué, sinon le mieux noté."""
     moves, rejected = [], []
     preview_on = use_preview and session.get("preview", False)
-    while session.get("status") == "playing":
-        if not solver.candidates:
-            break  # solution hors corpus du solveur : rien de cohérent à proposer
-        suggestions = solver.suggest(top_n=3)
-        word = suggestions[0][0] if suggestions else None
-        rejects = 0
-        while word is not None:
-            preview = None
-            if preview_on:
-                p = api.preview(session["id"], word)
-                if p.get("error") == "TOO_MANY_PREVIEWS":
-                    preview_on = False
-                preview = p.get("percent")
-            resp = api.guess(session["id"], word)
-            if resp.get("error") != "INVALID_WORD":
-                break
+    rejects = 0
+    while session.get("status") == "playing" and solver.candidates and rejects < MAX_REJECTS_PER_MOVE:
+        # une seule solution selon Tusmo : la note avant de jouer vaut 0 partout, inutile
+        previewing = preview_on and session.get("candidatesLeft") != 1
+        suggestions = solver.suggest(top_n=PREVIEW_TRIES if previewing else 1)
+        if not suggestions:
+            break
+        word, previews = suggestions[0][0], []
+        if previewing:
+            word, previews, preview_on, invalid = best_previewed(api, session["id"], [w for w, *_ in suggestions])
+            for w in invalid:
+                rejected.append(w)
+                solver.discard(w)
+            if word is None:
+                rejects += len(invalid)
+                continue
+        resp = api.guess(session["id"], word)
+        if resp.get("error") == "INVALID_WORD":
             rejected.append(word)
             solver.discard(word)
             rejects += 1
-            suggestions = solver.suggest(top_n=3) if solver.candidates and rejects < MAX_REJECTS_PER_MOVE else []
-            word = suggestions[0][0] if suggestions else None
-        if word is None:
-            break
+            continue
         if "error" in resp:
             moves.append({"word": word, "error": resp["error"]})
             session = resp.get("session", session)
             break
+        rejects = 0
         session = resp
         last = session["guesses"][-1]
         pattern = result_to_pattern(last["result"])
         solver.play(word)
         solver.update(pattern)
         moves.append({"word": word, "pattern": pattern, "percent": last.get("percent"),
-                      "preview_percent": preview, "winning": last.get("winning"),
-                      "solver_top": [[w, round(float(s), 4)] for w, s, _ in suggestions],
+                      "previews": previews, "winning": last.get("winning"),
+                      "solver_top": [[w, round(float(s), 4) if s == s else None] for w, s, _ in suggestions],
                       "candidates_left_tusmo": session.get("candidatesLeft"),
                       "candidates_left_solver": len(solver.candidates)})
     report = api.report(session["id"]) if session.get("status") != "playing" else None
@@ -196,12 +256,16 @@ def main() -> None:
     parser.add_argument("--preview", action="store_true",
                         help="Note de chaque mot avant de le jouer (partie hors progression, nombre limité).")
     parser.add_argument("--strategy", choices=sorted(ROOT_CACHE_FILES), default=DEFAULT_STRATEGY)
+    parser.add_argument("--player", choices=["solver", "tusmo"], default="solver",
+                        help="tusmo : joue comme Tusmo conseille (liste Tusmo estimée depuis ce journal).")
     parser.add_argument("--log", type=Path, default=DEFAULT_LOG)
-    parser.add_argument("--summary", action="store_true", help="Synthèse du journal existant, sans jouer.")
+    parser.add_argument("--summary", action="store_true", help="Synthèse du journal existant, par joueur, sans jouer.")
     args = parser.parse_args()
 
     if args.summary:
-        print(summarize(load_records(args.log)))
+        records = load_records(args.log)
+        for strategy in dict.fromkeys(r["strategy"] for r in records):
+            print(f"== {strategy}\n{summarize([r for r in records if r['strategy'] == strategy])}\n")
         return
     if not AUTH_STATE.exists():
         sys.exit("pas de session : lance d'abord python bot/save_auth_state.py (compte Pro)")
@@ -218,6 +282,7 @@ def main() -> None:
     known_valid = load_blocklist(DATA / "known_valid_words.json")
     args.log.parent.mkdir(parents=True, exist_ok=True)
     records = []
+    model = None
     try:
         for i in range(1, args.games + 1):
             config = {"lang": "fr", "wordLen": args.length or random.randint(5, 9), "maxTries": args.max_tries,
@@ -227,9 +292,15 @@ def main() -> None:
             if "error" in session:
                 print(f"partie {i} : démarrage refusé ({session['error']} {session.get('letter') or ''})")
                 break
-            solver = Solver(letter=session["firstLetter"], length=session["wordLen"], corpus=corpus,
-                            root_cache=root_cache, blocklist=blocklist, known_valid=known_valid,
-                            strategy=args.strategy, max_attempts=session["maxTries"])
+            letter, length = session["firstLetter"], session["wordLen"]
+            if args.player == "tusmo":
+                if model is None or i % MODEL_RELOAD_GAMES == 1:
+                    model = TusmoModel.load(DATA)
+                solver = TusmoPlayer(model.advisor(letter, length, corpus.subset(letter, length), blocklist))
+            else:
+                solver = Solver(letter=letter, length=length, corpus=corpus, root_cache=root_cache,
+                                blocklist=blocklist, known_valid=known_valid, strategy=args.strategy,
+                                max_attempts=session["maxTries"])
             record = play_game(api, solver, session, use_preview=args.preview)
             record["config"] = config
             with args.log.open("a", encoding="utf-8") as f:

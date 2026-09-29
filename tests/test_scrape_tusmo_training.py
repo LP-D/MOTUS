@@ -93,3 +93,33 @@ def test_summarize_uses_tusmo_reports():
     assert "parties terminées : 1 (gagnées : 1, 100%)" in text
     assert "coup 1 : note moyenne" in text
     assert stt.summarize([]) == "aucune partie terminée."
+
+
+class PreviewAPI(FakeTrainingAPI):
+    """Note avant de jouer : 100 % pour `best`, 40 % sinon ; INVALID_WORD pour `invalid`."""
+
+    def preview(self, session_id, word):
+        self.calls.append(("preview", word))
+        if word in self.invalid:
+            return {"error": "INVALID_WORD"}
+        return {"percent": 100 if word == self.best else 40}
+
+
+def test_best_previewed_stops_at_the_first_100_percent_word():
+    api = PreviewAPI("RASSIS", invalid={"RIVAGE"}, best="RASOIR")
+    word, previews, available, invalid = stt.best_previewed(api, "s1", ["RIVAGE", "RESAIT", "RASOIR", "ROULER"])
+    assert word == "RASOIR" and available and invalid == ["RIVAGE"]
+    assert previews == [["RESAIT", 40], ["RASOIR", 100]]  # ROULER n'est pas noté
+
+
+def test_tusmo_player_plays_a_training_game():
+    import numpy as np
+
+    from motus_solver.tusmo_list import TusmoAdvisor
+
+    advisor = TusmoAdvisor("R", 6, WORDS, np.array([1.0 if w in ("RASSIS", "RASOIR") else 0.0 for w in WORDS]),
+                           WORDS)
+    api = FakeTrainingAPI("RASSIS")
+    record = stt.play_game(api, stt.TusmoPlayer(advisor), dict(api.session))
+    assert record["status"] == "won" and record["strategy"] == "tusmo_conseil"
+    assert len(record["moves"]) <= 2

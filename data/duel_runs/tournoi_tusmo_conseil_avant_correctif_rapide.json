@@ -1,0 +1,96 @@
+{
+ "generated": "2026-09-29 18:01:16",
+ "elapsed_s": 1009.9,
+ "duels_per_pair": 200,
+ "seed": 7,
+ "ranking": [
+  {
+   "player": "entropy_pure@rapide",
+   "elo": 1515.7,
+   "duels": 600,
+   "wins": 318,
+   "draws": 0,
+   "losses": 282,
+   "win_rate_pct": 53.0,
+   "solved_pct": 54.0,
+   "mean_attempts_solved": 2.877,
+   "mean_solve_time_s": 11.9,
+   "rejections_per_duel": 0.1
+  },
+  {
+   "player": "entropy_pure_chasse@rapide",
+   "elo": 1515.7,
+   "duels": 600,
+   "wins": 318,
+   "draws": 0,
+   "losses": 282,
+   "win_rate_pct": 53.0,
+   "solved_pct": 55.8,
+   "mean_attempts_solved": 2.878,
+   "mean_solve_time_s": 11.5,
+   "rejections_per_duel": 0.1
+  },
+  {
+   "player": "tusmo_conseil@rapide",
+   "elo": 1491.3,
+   "duels": 600,
+   "wins": 290,
+   "draws": 0,
+   "losses": 310,
+   "win_rate_pct": 48.3,
+   "solved_pct": 49.3,
+   "mean_attempts_solved": 2.797,
+   "mean_solve_time_s": 12.1,
+   "rejections_per_duel": 0.44
+  },
+  {
+   "player": "composite@rapide",
+   "elo": 1477.4,
+   "duels": 600,
+   "wins": 274,
+   "draws": 0,
+   "losses": 326,
+   "win_rate_pct": 45.7,
+   "solved_pct": 47.7,
+   "mean_attempts_solved": 2.853,
+   "mean_solve_time_s": 11.8,
+   "rejections_per_duel": 0.17
+  }
+ ],
+ "pairs": {
+  "tusmo_conseil@rapide vs entropy_pure@rapide": {
+   "a_wins": 98,
+   "draws": 0,
+   "b_wins": 102
+  },
+  "tusmo_conseil@rapide vs entropy_pure_chasse@rapide": {
+   "a_wins": 89,
+   "draws": 0,
+   "b_wins": 111
+  },
+  "tusmo_conseil@rapide vs composite@rapide": {
+   "a_wins": 103,
+   "draws": 0,
+   "b_wins": 97
+  },
+  "entropy_pure@rapide vs entropy_pure_chasse@rapide": {
+   "a_wins": 104,
+   "draws": 0,
+   "b_wins": 96
+  },
+  "entropy_pure@rapide vs composite@rapide": {
+   "a_wins": 112,
+   "draws": 0,
+   "b_wins": 88
+  },
+  "entropy_pure_chasse@rapide vs composite@rapide": {
+   "a_wins": 111,
+   "draws": 0,
+   "b_wins": 89
+  }
+ },
+ "reasons": {
+  "cannot_catch_up": 1159,
+  "fewer_attempts": 41
+ }
+}

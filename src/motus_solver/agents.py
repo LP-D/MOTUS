@@ -21,6 +21,7 @@ from .corpus import Corpus
 from .feedback import words_to_matrix
 from .inference import OpponentProfile, candidate_weights, effective_candidates, weighted_entropy
 from .solver import Solver
+from .tusmo_list import TusmoModel
 
 # Refus du dictionnaire du jeu, simulés pour les bots : un mot jamais accepté par le
 # vrai jeu est refusé dans ~30 % des cas (taux mesuré sur les coups 1 non validés).
@@ -38,18 +39,21 @@ class SolverContext:
     caches: dict[str, dict]
     blocklist: set[str]
     known_valid: set[str]
+    tusmo: TusmoModel | None = None  # liste Tusmo estimée (joueur tusmo_conseil)
 
     @classmethod
     def load(cls, data_dir: Path) -> "SolverContext":
         return cls(corpus=Corpus.from_file(data_dir / "corpus_fr.txt"),
                    caches={s: load_cache(data_dir / f) for s, f in ROOT_CACHE_FILES.items()},
                    blocklist=load_blocklist(data_dir / "known_invalid_words.json"),
-                   known_valid=load_blocklist(data_dir / "known_valid_words.json"))
+                   known_valid=load_blocklist(data_dir / "known_valid_words.json"),
+                   tusmo=TusmoModel.load(data_dir))
 
     def accepts(self, word: str, answer: str) -> bool:
-        """Le dictionnaire simulé du jeu accepte-t-il ce coup d'un bot ?"""
+        """Le dictionnaire simulé du jeu accepte-t-il ce coup d'un bot ? Les mots joués
+        ou conseillés en entraînement Tusmo sont acceptés par le vrai jeu."""
         word = word.upper()
-        if word == answer or word in self.known_valid:
+        if word == answer or word in self.known_valid or (self.tusmo is not None and word in self.tusmo.accepted):
             return True
         if word in self.blocklist:
             return False
@@ -61,6 +65,8 @@ class SolverContext:
         word = word.upper()
         if word in self.blocklist:
             return False
+        if self.tusmo is not None and word in self.tusmo.accepted:
+            return True
         return word in self.known_valid or word in set(self.corpus.subset(word[0], len(word)))
 
 
@@ -220,6 +226,42 @@ class RandomCandidateAgent(Agent):
         return self.rng.choice(self.solver.candidates)
 
 
+class TusmoAgent(Agent):
+    """Joue le coup que conseillerait Tusmo en mode Entraînement (motus_solver.tusmo_list) :
+    entropie maximale sur la liste de solutions Tusmo estimée, candidat le plus probable
+    à égalité. Coup 1 : le mot conseillé par Tusmo pour le groupe, s'il a été observé.
+
+    Le mot du duel est tiré parmi les solutions connues : le joueur l'oublie (ainsi que
+    les parties d'entraînement où il était la réponse), comme les autres joueurs
+    oublient qu'il a été accepté (leave-one-out, cf. play_duel)."""
+
+    name = "tusmo_conseil"
+    description = "joue comme Tusmo conseille (entropie sur la liste Tusmo estimée)"
+
+    def __init__(self):
+        self.advisor = None
+        self._synced = 0
+
+    def new_game(self, letter, length, ctx, known_valid):
+        model = ctx.tusmo if ctx.tusmo is not None else TusmoModel({})
+        forget = ctx.known_valid - known_valid  # le mot du duel
+        self.advisor = model.advisor(letter, length, ctx.corpus.subset(letter, length), ctx.blocklist, forget=forget)
+        self._synced = 0
+
+    def choose(self, view):
+        for word, pattern in view.history[self._synced:]:
+            self.advisor.update(word, pattern)
+        self._synced = len(view.history)
+        word = self.advisor.choose()
+        if word is None:  # plus aucun mot compatible : essais grillés
+            played = {w for w, _ in view.history}
+            return next((w for w in self.advisor.pool if w not in played), view.history[-1][0])
+        return word
+
+    def reject(self, word: str) -> None:
+        self.advisor.discard(word)
+
+
 def _burn_word(solver: Solver, view: AgentView) -> str:
     played = {w for w, _ in view.history}
     return next((w for w in solver.pool if w not in played), view.history[-1][0])
@@ -246,6 +288,7 @@ AGENTS = {
         "entropy_pure_infos", "entropy_pure", chase_aware=True,
         description="riposte + lit les couleurs adverses, apprend les ouvertures de l'adversaire"),
     "composite": lambda: SolverAgent("composite", "composite", description="score composite (entropie, voyelles...)"),
+    "tusmo_conseil": lambda: TusmoAgent(),
     "aleatoire": lambda: RandomCandidateAgent(),
 }
 

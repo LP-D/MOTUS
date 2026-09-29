@@ -21,6 +21,8 @@ dashboard web local pour piloter/observer le bot en temps réel.
   - `cli.py` — interface en ligne de commande interactive.
   - `duel.py` / `agents.py` — simulateur local du duel classé (règles du site,
     modèles de bot, profils de vitesse). Aucune requête vers Tuzmo.
+  - `tusmo_list.py` — liste de solutions de Tusmo estimée depuis le journal
+    d'entraînement, et conseiller qui joue comme Tusmo conseille.
 - **`bot/`** — intégration Tuzmo (Playwright) :
   - `tuzmo_client.py` — lecture/écriture du DOM du jeu (plateau, clavier, feedback,
     détection des mots rejetés par le dictionnaire de validation du jeu).
@@ -147,6 +149,10 @@ Les mots sont tirés parmi les solutions réelles connues.
 - **Jouer contre un bot** : page **http://127.0.0.1:8765/duel**, lien « duel simulé »
   du dashboard. Choisis le modèle et sa vitesse (instantané, rapide, humain, lent).
   Ton bilan contre chaque bot est gardé dans `data/duel_history.jsonl`.
+- **Bot contre bot** : même page, mode « bot contre bot ». Tu choisis les deux modèles
+  et leurs vitesses, et tu regardes le duel (lettres des deux grilles visibles).
+  « Enchaîner » relance un duel à la fin du précédent. Le bilan par affiche s'affiche
+  sous le tien (même fichier d'historique).
 - **Compétition entre modèles** : `scripts/duel_tournament.py`. Chaque paire joue les
   mêmes mots ; le script sort un classement Elo, les victoires, les essais et le temps.
   Résultats dans `data/duel_runs/`.
@@ -160,6 +166,7 @@ Modèles disponibles :
 - `entropy_pure` et ses variantes : `_chasse` (riposte), `_sondes`, `_sans_fin`,
   `_pression`, `_tempo`, `_infos` (lit les couleurs adverses, apprend les ouvertures) ;
 - `composite` ;
+- `tusmo_conseil` : joue comme Tusmo conseille en mode Entraînement (voir plus bas) ;
 - `aleatoire`.
 
 Résultats : `docs/diagnostics/2026-09-25_phase8_duel_pistes.md`. Pour ajouter un
@@ -177,12 +184,23 @@ fait jouer le solveur via l'API JSON (sans navigateur, session de
 ```bash
 python scripts/scrape_tusmo_training.py --games 5
 python scripts/scrape_tusmo_training.py --games 10 --length 7 --letter R --preview
+python scripts/scrape_tusmo_training.py --games 50 --player tusmo
 python scripts/scrape_tusmo_training.py --summary
 ```
 
-`--preview` demande aussi la note du mot avant de le jouer (partie hors
-progression, nombre limité par Tusmo). Même débit que les autres scripts API :
+`--preview` : avant chaque coup, Tusmo note les 3 premiers conseils du joueur et le
+premier à 100 % est joué (partie hors progression, nombre de notes limité par
+Tusmo). `--summary` : bilan par joueur. Même débit que les autres scripts API :
 1,5 à 2,5 s entre requêtes, arrêt immédiat sur HTTP 429.
+
+**Jouer comme Tusmo conseille** (`--player tusmo`, modèle de duel `tusmo_conseil`).
+La note Tusmo d'un coup est l'entropie de son retour sur les solutions restantes de
+la liste de Tusmo, divisée par celle du meilleur mot. C'est le calcul
+d'`entropy_pure`, mais sur une liste d'environ 360 solutions par groupe au lieu des
+milliers de mots du corpus. `src/motus_solver/tusmo_list.py` estime cette liste depuis
+le journal : solutions connues, taille de la liste et nombre de solutions restantes
+après chaque coup. Le coup 1 est celui que Tusmo a conseillé pour le groupe. Plus
+le journal grossit, plus l'estimation s'affine.
 
 ## Tests
 
